@@ -1,0 +1,6 @@
+exclude_paths:
+- "db"
+- "build"
+- "node_modules"
+- "semantic"
+- "public"

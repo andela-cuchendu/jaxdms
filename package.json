@@ -15,7 +15,9 @@
     "server": "babel-node server.js",
     "client": "babel-node start-client.js",
     "dev": "echo \"This command has been deprecated. Use 'npm start'\" && exit 1",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "covercheck": "nyc report --reporter=text-lcov > lcov.info",
+    "codeclimate": "CODECLIMATE_REPO_TOKEN=e99c52aa5a881a627499d4cb46970e0d03cf95284f0272b1a0450a6cbe121bf7 codeclimate-test-reporter < lcov.info"
   },
   "devDependencies": {
     "babel-eslint": "^7.2.3",
