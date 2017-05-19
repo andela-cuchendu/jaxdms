@@ -1,3 +1,10 @@
+engines:
+  rubocop:
+    enabled: true
+eslint:
+  enabled: false
+csslint:
+  enabled: false    
 exclude_paths:
 - "db"
 - "build"
