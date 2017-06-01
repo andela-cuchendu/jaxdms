@@ -3,20 +3,15 @@ import path from 'path';
 
 const WebpackDev = {
   entry: [
-    'webpack-hot-middleware/client?reload=true',
     'eventsource-polyfill',
+    'webpack-hot-middleware/client?reload=true',
     './client/index'
   ],
-  stat: 'no-error',
   debug: true,
   devtool: 'cheap-module-eval-source-map',
   noInfo: false,
+  stat: 'no-error',
   target: 'web',
-  output: {
-    path: __dirname + '/dist',
-    publicPath: '/',
-    filename: 'bundle.js'
-  },
   devServer: {
     contentBase: './src'
   },
@@ -24,6 +19,11 @@ const WebpackDev = {
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoErrorsPlugin()
   ],
+  output: {
+    path: __dirname + '/dist',
+    publicPath: '/',
+    filename: 'bundle.js'
+  },
   module: {
     loaders: [{
         test: /\.js$/,
@@ -44,13 +44,6 @@ const WebpackDev = {
         loaders: ['style', 'css']
       },
       {
-        test: /\.(jpe?g|png|gif|svg)$/i,
-        loaders: [
-          'file?hash=sha512&digest=hex&name=[hash].[ext]',
-          'image-webpack?bypassOnDebug&optimizationLevel=7&interlaced=false'
-        ]
-      },
-      {
         test: /\.eot(\?v=\d+\.\d+\.\d+)?$/,
         loader: 'file'
       },
@@ -59,8 +52,11 @@ const WebpackDev = {
         loader: 'url?prefix=font/&limit=5000'
       },
       {
-        test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/,
-        loader: 'url?limit=10000&mimetype=application/octet-stream'
+        test: /\.(jpe?g|png|gif|svg)$/i,
+        loaders: [
+          'file?hash=sha512&digest=hex&name=[hash].[ext]',
+          'image-webpack?bypassOnDebug&optimizationLevel=7&interlaced=false'
+        ]
       },
       {
         test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
@@ -69,6 +65,10 @@ const WebpackDev = {
       {
         test: /\.scss$/,
         loaders: ['style-loader', 'css-loader', 'sass-loader']
+      },
+      {
+        test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/,
+        loader: 'url?limit=10000&mimetype=application/octet-stream'
       },
       {
         test: /\.sass$/,

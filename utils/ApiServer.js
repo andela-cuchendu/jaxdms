@@ -1,7 +1,7 @@
 import express from 'express';
 import path from 'path';
 import open from 'open';
-import {api} from '../server/index';
+import {api} from '../server/server';
 
 /* eslint-disable no-console */
 
