@@ -1,3 +1,16 @@
-cra-server-ex.graffle
+# OSX Stuff
+.DS_Store
+
+# Logs
+logs
+*.log
+
+# Runtime data
 node_modules
-npm-debug.log
+dist/lib
+coverage.lcov
+.env
+.idea/
+.nyc_output/
+lcov.info
+dist/

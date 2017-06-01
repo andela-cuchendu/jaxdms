@@ -1,13 +1,7 @@
-engines:
-  rubocop:
-    enabled: true
-eslint:
-  enabled: false
-csslint:
-  enabled: false    
+languages:
+  JavaScript: true
+ratings:
+   paths:
+     - '**.js'
 exclude_paths:
-- "db"
-- "build"
-- "node_modules"
-- "semantic"
-- "public"
+  - 'tests/'
