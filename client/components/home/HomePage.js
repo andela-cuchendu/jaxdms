@@ -1,51 +1,16 @@
-import React, {Component, PropTypes} from 'react';
-import Header from '../common/Header';
-import Footer from '../common/Footer';
-import HomeContent from './Content.jsx';
-import {DocController} from '../common/documentController';
+import React from 'react';
+import {Link} from 'react-router';
 
-export class Homepage extends Component {
-  constructor() {
-    super();
-
-    this.toggleSignUp = this.toggleSignUp.bind(this);
-  }
-
-  componentWillMount() {
-    if (window.localStorage.getItem('token')) {
-      this.context.router.push('/owned-docs');
-    }
-  }
-
-  toggleSignUp(dom) {
-    $(dom).slideUp('slow', function () {
-      if (dom.className === 'signin-container') {
-        return $('.signup-container').slideDown('fast');
-      }
-
-      return $('.signin-container').slideDown('fast');
-    });
-  }
-
+class HomePage extends React.Component {
   render() {
     return (
-      <div>
-        <nav>
-          <div className='nav-wrapper custom-black'>
-            <div className='logo-name left white-text left-align'>Jaxdms</div>
-          </div>
-        </nav>
-        <HomeContent
-          {...this.props}
-          toggleSignUp={this.toggleSignUp}
-        />
-        <Footer/>
+      <div className="jumbotron">
+        <h1>Cat Book</h1>
+        <p>the best way manage your cat collection.</p>
+        <Link to="about" className="btn btn-primary btn-lg">Learn More</Link>
       </div>
     );
   }
 }
-Homepage.contextTypes = {
-  router: PropTypes.object
-};
 
-export default DocController(Homepage);
+export default HomePage;

@@ -1,21 +1,27 @@
 import 'babel-polyfill';
 import React from 'react';
-import {browserHistory, Router} from 'react-router';
-import {render} from 'react-dom';
-import {Provider} from 'react-redux';
-import routes from './routes/index';
-import {getRoles} from './actions/roleActions.js';
+import { render } from 'react-dom';
 import configureStore from './store/configureStore';
-import './style/main.sass';
-
-const app = document.getElementById('app');
+import { Provider } from 'react-redux';
+import { Router, browserHistory } from 'react-router';
+import routes from './routes';
+import {loadCats} from './actions/catActions';
+import {loadHobbies} from './actions/hobbyActions';
+import '../node_modules/toastr/build/toastr.min.css';
+  
 const store = configureStore();
 
-store.dispatch(getRoles());
+// 1. Call dispatch on the store with an argument of this action that makes an API request
+// 2. The loadCourses() action is invoked, which makes an API call, and dispatches the loadCoursesSuccess action
+// 3. that action: store -> root reducer -> courses reducer
+// 4. courses reducer handles that action, recieves course payload and return new state that has courses: courses payload
+// 5. the CoursesPage component is connected to the store, so store's new state triggers the mapStateToProps function, which triggers the render function on that component
+store.dispatch(loadCats());
+store.dispatch(loadHobbies());
 
 render(
   <Provider store={store}>
-    <Router history={browserHistory} routes={routes}/>
+    <Router history={browserHistory} routes={routes} />
   </Provider>,
-  app
+  document.getElementById('app')
 );

@@ -164,6 +164,7 @@ export function saveUserData(user) {
 }
 
 export function loginUser(userData) {
+  console.log('api', apiRequest);
   return (dispatch) => {
     dispatch(checkingUser());
     const url = '/server/users/login';
