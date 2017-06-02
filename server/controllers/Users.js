@@ -221,19 +221,21 @@ module.exports = {
       })
       .then((User) => {
         let ValidPassword = null;
-        try {
-          ValidPassword = ComparePassword(req.body.password, User.password);
-        } catch (e) {
-          let err;
-          err = new Error(e);
-          err.status = 404;
-          throw err;
-        }
         let err;
         if (!User) {
           err = new Error('Authentication failed. Invalid login.');
           err.status = 404;
           throw err;
+          else if (User) {
+            try {
+              ValidPassword = ComparePassword(req.body.password, User.password);
+            } catch (e) {
+              let err;
+              err = new Error(e);
+              err.status = 404;
+              throw err;
+            }
+          }
         } else if (!ValidPassword) {
           err = new Error('Authentication failed. Invalid login.');
           err.status = 401;
