@@ -1,3 +1,4 @@
+const bcrypt = require('bcrypt');
 const Users = require('../models').Users;
 const Documents = require('../models').Documents;
 const _ = require('underscore');
@@ -27,7 +28,13 @@ module.exports = {
         'All fields are mandatory'
       );
       err.status = 400;
-      next(err);
+      res.json({
+        message: err.message,
+        success: false,
+        errorObject: err,
+        error: err.message,
+        status: err.status
+      });      
     } else {
       if (!req.body.role) {
         req.body.role = 1;
@@ -38,7 +45,7 @@ module.exports = {
           lastname: req.body.lastname,
           email: req.body.email,
           username: req.body.username,
-          password: req.body.password,
+          password: bcrypt.hashSync(req.body.password,10),
           role: req.body.role,
           loggedin: true
         })
@@ -51,7 +58,8 @@ module.exports = {
           user.password = null;
           res.status(201).json({
             user: user,
-            token: token
+            token: token,
+            success: true
           });
         })
         .catch((err) => {
@@ -59,7 +67,13 @@ module.exports = {
             err.status = 500;
             err.message = err.original.message;
           }
-          next(err);
+          res.json({
+            message: err.message,
+            success: false,
+            errorObject: err,
+            error: err.message,
+            status: err.status
+          });   
         });
     }
   },
@@ -226,45 +240,52 @@ module.exports = {
           err = new Error('Authentication failed. Invalid login.');
           err.status = 404;
           throw err;
-          else if (User) {
-            try {
-              ValidPassword = ComparePassword(req.body.password, User.password);
-            } catch (e) {
-              let err;
-              err = new Error(e);
-              err.status = 404;
-              throw err;
-            }
-          }
-        } else if (!ValidPassword) {
-          err = new Error('Authentication failed. Invalid login.');
-          err.status = 401;
-          throw err;
         } else {
-          return User
-            .update({
-              loggedin: true
-            })
-            .then((User) => {
-              User.password = null;
-              let UserToken = {
-                id: User.id,
-                role: User.role,
-                loggedin: User.loggedin
-              };
-              let token = jwt.sign(UserToken, req.app.get('superSecret'), {
-                expiresIn: 43200
-              });
+          try {
+            console.log('In login server');
+            ValidPassword = ComparePassword(req.body.password, User.password);
+          } catch (e) {
+            console.log('In login server error');
+            let err;
+            err = new Error(e);
+            err.status = 404;
+            throw err;
+          }
+          if (!ValidPassword) {
+            err = new Error('Authentication failed. Invalid login.');
+            err.status = 401;
               res.json({
-                user: User,
-                token: token
+                message: err.message,
+                success: false,
+                error: err,
+                status: err.status
               });
-            })
-            .catch((error) => res.status(400).send(error));
+          } else {
+            return User
+              .update({
+                loggedin: true
+              })
+              .then((User) => {
+                User.password = null;
+                let UserToken = {
+                  id: User.id,
+                  role: User.role,
+                  loggedin: User.loggedin
+                };
+                let token = jwt.sign(UserToken, req.app.get('superSecret'), {
+                  expiresIn: 43200
+                });
+                res.json({
+                  userData: User,
+                  token: token
+                });
+              })
+              .catch((error) => res.status(400).send(error));
+          }
         }
       })
       .catch((err) => {
-        next(err);
+        next(err.message);
       });
   },
   /**

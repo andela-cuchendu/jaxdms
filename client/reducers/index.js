@@ -1,11 +1,13 @@
 import {combineReducers} from 'redux';
-import cats from './catReducer';
-import hobbies from './hobbyReducer';
+import Roles from './RolesReducer';
+import Users from './UserReducer';
+import Doc from './DocumentReducer';
 
 const rootReducer = combineReducers({
   // short hand property names
-  cats,
-  hobbies
+Roles,
+Users,
+Doc
 })
 
 export default rootReducer;

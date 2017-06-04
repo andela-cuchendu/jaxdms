@@ -1,21 +1,41 @@
-  import React, {PropTypes} from 'react';
+import React, {PropTypes} from 'react';
 
-class CheckBox extends React.Component {
-  render() {
-    return (
-     <div className="field">
-        <div>
-          <label>{this.props.item.name}</label>
-          <input type="checkbox" name={this.props.item.name} value={this.props.item.id} checked={this.props.item.checked} onChange={this.props.handleChange}/>
-        </div>
-      </div>
-    );
-  }
-}
+const CheckBox = ({data, name, checkedData, onClickEvent}) => {
+  return (
+    <div className='custom-checkox'>
+      <div className='grey-text'>Privilege</div>
+      {data.map((item) => {
+        let checked;
+
+        if (checkedData) {
+          let roleId = item._id.toString();
+          checked = checkedData.indexOf(roleId) >= 0 ? 'checked' : false;
+        } else {
+          checked = false;
+        }
+
+        return (
+          <p key={item._id}>
+            <input
+              defaultChecked={checked}
+              name={name}
+              onClick={onClickEvent}
+              value={item._id}
+              type='checkbox'
+              id={`${name}${item._id}`}/>
+            <label htmlFor={`${name}${item._id}`}>{item.role}</label>
+          </p>
+        );
+      })}
+    </div>
+  );
+};
 
 CheckBox.propTypes = {
-  item: PropTypes.object.isRequired, 
-  handleChange: PropTypes.func.isRequired
+  data: PropTypes.array.isRequired,
+  name: PropTypes.string,
+  checkedData: PropTypes.array,
+  onClickEvent: PropTypes.func
 };
 
 export default CheckBox;
