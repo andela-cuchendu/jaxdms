@@ -1,7 +1,7 @@
 import React, {PropTypes, Component} from 'react';
 import SignInForm from './common/SignInForm';
 
-export class SignInComponent extends Component {
+export class SignIn extends Component {
   constructor() {
     super();
     this.state = {
@@ -22,7 +22,6 @@ export class SignInComponent extends Component {
   }
 
   onChangeHandler(event) {
-    console.log('setting login data with event name:',this.state.loginData);
     this.state.loginData[event.target.name] = event.target.value;
     this.setState({loginData: this.state.loginData});
   }
@@ -66,14 +65,14 @@ export class SignInComponent extends Component {
   }
 }
 
-SignInComponent.propTypes = {
+SignIn.propTypes = {
   toggleSignUp: PropTypes.func.isRequired,
   userActions: PropTypes.object.isRequired,
   stateProp: PropTypes.object
 };
 
-SignInComponent.contextTypes = {
+SignIn.contextTypes = {
   router: PropTypes.object
 };
 
-export default SignInComponent;
+export default SignIn;

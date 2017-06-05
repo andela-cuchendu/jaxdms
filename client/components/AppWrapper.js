@@ -4,9 +4,11 @@ import {bindActionCreators} from 'redux';
 import * as RolesActions from '../actions/RolesActions';
 import * as UserActions from '../actions/UserAction';
 import * as DocActions from '../actions/DocActions';
-import * as SearchActions from '../../actions/SearchAction';
+import * as SearchActions from '../actions/SearchAction';
+import Header from './common/Header';
+import Footer from './common/Footer';
 
-export const AppWrapper = (ChildComponent) => {
+export const AppWrapper = (ChildComponent,path) => {
   class AppContainer extends Component {
     constructor() {
       super();
@@ -32,21 +34,21 @@ export const AppWrapper = (ChildComponent) => {
     }
 
     componentWillMount() {
+
       if (window.localStorage.getItem('token')) {
       this.props.documentActions
           .getComponentResources(this.props.stateProp.userState.userData);
+          if(path === '/' || path === '/auth'){
+            this.context.router.push('/docs');
+          }
+      } else {
+          if(!(path === '/' || path === '/auth')){
+            this.context.router.push('/auth');
+          }        
       }
     }
 
-    componentWillReceiveProps(nextProps) {
-      const {docSuccess} = this.props.stateProp.userDocs;
 
-      if (!docSuccess) $('#createModal').closeModal();
-
-      if (nextProps.stateProp.userDocs.redirect) {
-        this.context.router.push('/');
-      }
-    }
 
     searchDoc(event) {
       let searchValue = event.target.value;
@@ -65,8 +67,9 @@ export const AppWrapper = (ChildComponent) => {
 
     logout(event) {
       event.preventDefault();
+      this.props.stateProp.userState.userData = {};
       window.localStorage.removeItem('token');
-      this.context.router.push('/');
+      this.context.router.push('/auth');
     }
 
     deleteDoc(event) {
@@ -139,48 +142,58 @@ export const AppWrapper = (ChildComponent) => {
     }
     
     render() {
+      let User = this.props.stateProp.userState.userData;     
+      
+      status = (Object.keys(User).length > 0);
+      console.log('wrapper status', status);
+      console.log('wrapper length', Object.keys(User).length);
+      console.log('wrapper status object', User);
       return (
+        <div>
+        <Header 
+          LogoutEvent={this.logout}
+          UserStatus ={status}
+          searchEvent={this.searchDoc}
+         User={User} />
         <ChildComponent
           deleteDoc={this.deleteDoc}
-          searchEvent={this.searchDoc}
           onChangeHandler={this.onChangeHandler}
           confirmDelete={this.confirmDelete}
           OnchangeTinymce={this.OnchangeTinymce}
           modalSubmitAction={this.modalSubmitAction}
           onClickCheckbox={this.onClickCheckBox}
-          logoutEvent={this.logout}
           fabClick={this.fabClick}
           {...this.props}/>
+          <Footer/>
+          </div>
       );
     }
   }
 
-  ParentComponent.contextTypes = {
+  AppContainer.contextTypes = {
     router: PropTypes.object
   };
 
-  ParentComponent.propTypes = {
+  AppContainer.propTypes = {
     stateProp: PropTypes.object.isRequired,
     documentActions: PropTypes.object.isRequired
   };
 
   const mapDispatchToProps = (dispatch) => {
-    console.log('map dispatch', dispatch);
     return {
-      documentActions: bindActionCreators(documentActions, dispatch),
-      userActions: bindActionCreators(userActions, dispatch),
-      searchActions: bindActionCreators(searchActions, dispatch),
-      roleActions: bindActionCreators(roleActions, dispatch)
+      documentActions: bindActionCreators(DocActions, dispatch),
+      userActions: bindActionCreators(UserActions, dispatch),
+      searchActions: bindActionCreators(SearchActions, dispatch),
+      roleActions: bindActionCreators(RolesActions, dispatch)
     };
   };
 
   const mapStateToProps = (state) => {
-    console.log('map props', state);
     return {
       stateProp: {
-        userState: state.users,
-        userDocs: state.docStates,
-        roles: state.roleState
+        userState: state.Users,
+        userDocs: state.Doc,
+        roles: state.Roles
       }
     };
   };

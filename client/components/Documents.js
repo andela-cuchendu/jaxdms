@@ -6,6 +6,8 @@ import DocumentForm from './DocumentForm';
 import * as DocActions from '../actions/DocActions';
 import * as RolesActions from '../actions/RolesActions';
 import * as UserAction from '../actions/UserAction';
+import {AppWrapper} from './Appwrapper';
+
 
 export class Documents extends Component {
   constructor() {
@@ -45,7 +47,6 @@ export class Documents extends Component {
       const docObj = $(document);
       const {lazyLoading, docs} = this.props.stateProp.userDocs;
       const {_id: userId} = this.props.stateProp.userState.userData;
-
       if (winObj.scrollTop() + winObj.height() === docObj.height()
         && !lazyLoading && docs.length > 9) {
           this
@@ -93,7 +94,6 @@ export class Documents extends Component {
   }
 
   render() {
-    console.log('doc success', this.props.stateProps)
     const {
       userDocs: {
         docSuccess,
@@ -188,4 +188,5 @@ Documents.contextTypes = {
     };
   };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Documents);
+//export default connect(mapStateToProps, mapDispatchToProps)(Documents);
+export default AppWrapper(Documents,'/docs');

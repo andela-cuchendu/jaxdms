@@ -110,7 +110,28 @@ module.exports = {
         .catch(error => res.status(400).send(error));
     }
   },
-
+  /**
+   * Gets a user with ID. Only the account owner
+   * or the admin can perfom this action.
+   * 
+   * @param {any} req - Request Object from express
+   * @param {any} res - Response Object from express
+   */
+  GetData(req, res) {
+        return Users
+          .findById(req.decoded.id)
+          .then(User => {
+            if (!User) {
+              return res.status(404).send({
+                message: 'User Not Found'
+              });
+            }
+            User.password = null;
+            return res.status(200).send(User);
+          })
+          .catch(error => {
+            res.status(400).send(error)});
+  },
   /**
    * Gets a user with ID. Only the account owner
    * or the admin can perfom this action.
@@ -242,10 +263,8 @@ module.exports = {
           throw err;
         } else {
           try {
-            console.log('In login server');
             ValidPassword = ComparePassword(req.body.password, User.password);
           } catch (e) {
-            console.log('In login server error');
             let err;
             err = new Error(e);
             err.status = 404;
@@ -371,7 +390,7 @@ module.exports = {
         res.json(docs);
       })
       .catch((err) => {
-        res.next(err);
+        res.json(err);
       });
   },
   /**

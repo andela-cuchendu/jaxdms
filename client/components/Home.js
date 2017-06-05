@@ -1,5 +1,6 @@
 import React from 'react';
 import {Link} from 'react-router';
+import {AppWrapper} from './Appwrapper';
 
 class Home extends React.Component {
   render() {
@@ -31,4 +32,4 @@ class Home extends React.Component {
     );
   }
 }
-export default Home;
+export default AppWrapper(Home,'/');

@@ -249,11 +249,11 @@ export function upadateDocument(newDocData, docId) {
 
 export function validateUser() {
   return (dispatch) => {
-    const url = '/api/users/getData';
+    const url = '/api/users/data';
     return BaseApi(null, 'get', url, function (apiResult) {
-      if (apiResult.user) {
-        dispatch(updateStoreWithUserData(apiResult.user));
-        return dispatch(getComponentResources(apiResult.user));
+      if (apiResult.id) {
+        dispatch(updateStoreWithUserData(apiResult));
+        return dispatch(getComponentResources(apiResult));
       }
       return dispatch(invalidUser());
     });

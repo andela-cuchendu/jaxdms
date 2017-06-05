@@ -123,14 +123,15 @@ export function saveUserFailed() {
 }
 
 export function checkLoginResult(loginData) {
+  console.log('am tired';)
   return (dispatch) => {
     if (loginData.message) {
       dispatch(loginFailed(loginData));
     }
 
     if (loginData.result.token) {
-      window.localStorage.setItem('token', loginData.result.token);
-      dispatch(loginSuccess(loginData.result.userData));
+      window.localStorage.setItem('token', loginData.token);
+      dispatch(loginSuccess(loginData.userData));
     }
   };
 }

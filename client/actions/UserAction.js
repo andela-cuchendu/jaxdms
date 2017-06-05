@@ -124,7 +124,6 @@ export function saveUserFailed(ErrorMessage) {
 }
 
 export function checkLoginResult(loginData) {
-  console.log('before dispatch',loginData);
   return (dispatch) => {
     if (loginData.message) {
       dispatch(loginFailed(loginData));
@@ -132,6 +131,7 @@ export function checkLoginResult(loginData) {
 
     if (loginData.token) {
       window.localStorage.setItem('token', loginData.token);
+      //window.localStorage.setItem('user', loginData.userData);
       dispatch(loginSuccess(loginData.userData));
     }
   };

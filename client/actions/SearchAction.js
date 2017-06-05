@@ -1,9 +1,9 @@
-import * as actionTypes from './actionType';
-import {apiRequest} from '../utils/apiRequest';
+import * as ActionTypes from './ActionTypes';
+import {BaseApi} from '../api/BaseApi';
 
 export function searchCompleted(searchTerm, searchResult) {
   return {
-    type: actionTypes.SEARCH_COMPLETED,
+    type: ActionTypes.SEARCH_COMPLETED,
     data: {
       updateSearch: false,
       refreshed: false,
@@ -17,7 +17,7 @@ export function searchDocument(searchTerm, userRole) {
   return (dispatch) => {
     const url = '/api/documents?q=' + searchTerm + '&role=' + userRole;
 
-    apiRequest(null, 'get', url, (apiResult) => {
+    BaseApi(null, 'get', url, (apiResult) => {
       dispatch(searchCompleted(searchTerm, apiResult));
     });
   };
@@ -25,14 +25,14 @@ export function searchDocument(searchTerm, userRole) {
 
 export function addingMoreDocToStore() {
   return {
-    type: actionTypes.ADDING_MORE_DOC_TO_STORE,
+    type: ActionTypes.ADDING_MORE_DOC_TO_STORE,
     data: {lazyLoading: true}
   };
 }
 
 export function updatedStoreWithSearchedDocs(newDocs) {
   return {
-    type: actionTypes.ADD_MORE_SHARED_DOCS,
+    type: ActionTypes.ADD_MORE_SHARED_DOCS,
     data: {
       docs: newDocs.doc,
       lazyLoading: false
