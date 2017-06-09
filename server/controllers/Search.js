@@ -19,8 +19,8 @@ module.exports = {
     if (query != null && query.length > 0) {
       const offset = parseInt(req.query.offset, 10) || 0;
       const limit = parseInt(req.query.limit, 10) || 0;
-      let DocumentAccess = [-1, req.parcel.id];
-      if (req.parcel.role === 3) {
+      let DocumentAccess = [-1, req.decoded.role];
+      if (req.decoded.role === 3) {
         DocumentAccess = [-1, -2, 1, 2, 3];
       }
 
@@ -40,15 +40,11 @@ module.exports = {
               ]
             },
             {
-              $or: [{
+              $or: {
                   access: {
                     $in: DocumentAccess
                   }
-                },
-                {
-                  UserId: req.parcel.id
-                }
-              ]
+              }
             }
           ]
         },
@@ -66,11 +62,14 @@ module.exports = {
       return Documents
         .findAll(QueryOption)
         .then(documents => {
+          console.log('docuemtn')
           if (!documents) {
+            console.log('not found')
             return res.status(404).send({
               message: 'No Document Found'
             });
           } else {
+            console.log('my documents',documents)
             res.status(200).send(documents);
           }
         })

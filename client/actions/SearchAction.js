@@ -7,17 +7,19 @@ export function searchCompleted(searchTerm, searchResult) {
     data: {
       updateSearch: false,
       refreshed: false,
-      search: searchResult.doc,
+      search: searchResult,
       searchTerm: searchTerm
     }
   };
 }
 
-export function searchDocument(searchTerm, userRole) {
+export function searchDocument(searchTerm) {
+  console.log('api search doc', searchTerm)
   return (dispatch) => {
-    const url = '/api/documents?q=' + searchTerm + '&role=' + userRole;
+    const url = '/api/search/documents?q=' + searchTerm;
 
     BaseApi(null, 'get', url, (apiResult) => {
+      console.log('api search res', apiResult)
       dispatch(searchCompleted(searchTerm, apiResult));
     });
   };

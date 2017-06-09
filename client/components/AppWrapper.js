@@ -5,8 +5,8 @@ import * as RolesActions from '../actions/RolesActions';
 import * as UserActions from '../actions/UserAction';
 import * as DocActions from '../actions/DocActions';
 import * as SearchActions from '../actions/SearchAction';
+import SideBar from './SideBar.js';
 import Header from './common/Header';
-import Footer from './common/Footer';
 
 export const AppWrapper = (ChildComponent,path) => {
   class AppContainer extends Component {
@@ -31,33 +31,61 @@ export const AppWrapper = (ChildComponent,path) => {
       this.onChangeHandler    = this.onChangeHandler.bind(this);
       this.onClickCheckBox    = this.onClickCheckBox.bind(this);
       this.modalSubmitAction  = this.modalSubmitAction.bind(this);
+      this.SharedClick = this.SharedClick.bind(this);
+      this.RoleClick  = this.RoleClick.bind(this);
+      this.DocClick  = this.DocClick.bind(this);
+      this.deleteUser = this.deleteUser.bind(this);
     }
 
     componentWillMount() {
 
       if (window.localStorage.getItem('token')) {
+        let DocType = this.props.location.pathname.substring(1,5);
+        if(DocType.includes('docs')){
+          DocType = 'own';
+        }
       this.props.documentActions
-          .getComponentResources(this.props.stateProp.userState.userData);
-          if(path === '/' || path === '/auth'){
-            this.context.router.push('/docs');
-          }
-      } else {
-          if(!(path === '/' || path === '/auth')){
-            this.context.router.push('/auth');
-          }        
+          .getComponentResources(this.props.stateProp.userState.userData,DocType);        
+      }else {
+        this.context.router.push('/auth');
       }
     }
+    componentWillReceiveProps(nextProps) {
+      const {docSuccess} = this.props.stateProp.userDocs;
+      const {userSuccess} = this.props.stateProp.userState.userCreated;
+      if (userSuccess) $('#createModal').closeModal();
+      if (!docSuccess) $('#createModal').closeModal();
 
-
+      if (nextProps.stateProp.userDocs.redirect) {
+        this.context.router.push('/auth');
+      }
+    }
+    SharedClick (){
+      this.props.documentActions
+          .getComponentResources(this.props.stateProp.userState.userData,'shar'); 
+          this.context.router.push('/shar');
+    }
+    RoleClick (){
+      this.props.documentActions
+          .getComponentResources(this.props.stateProp.userState.userData,'role'); 
+          this.context.router.push('/role');
+    }
+    DocClick (){
+      this.props.documentActions
+          .getComponentResources(this.props.stateProp.userState.userData,'own'); 
+          this.context.router.push('/docs');
+    }        
 
     searchDoc(event) {
+      console.log('in search')
       let searchValue = event.target.value;
-      const {role: {_id: roleId}} = this.props.stateProp.userState.userData;
+      const roleId = this.props.stateProp.userState.userData.role;
 
       if (event.key === 'Enter') {
+        console.log('search any' ,roleId)
         this.props.searchActions.searchDocument(searchValue, roleId);
         this.context.router.push({
-          pathname: '/search',
+          pathname: '/docs',
           query: {
             q: searchValue
           }
@@ -67,18 +95,26 @@ export const AppWrapper = (ChildComponent,path) => {
 
     logout(event) {
       event.preventDefault();
-      this.props.stateProp.userState.userData = {};
       window.localStorage.removeItem('token');
+      window.localStorage.clear()
+      window.location.reload();
       this.context.router.push('/auth');
     }
 
     deleteDoc(event) {
       event.preventDefault();
-      const {_id: docId} = this.props.stateProp.userDocs.deleteDoc;
-
+      const {id: docId} = this.props.stateProp.userDocs.deleteDoc;
+      console.log('deletedoc', docId)
       this.props.documentActions.deleteDocAction(docId);
       $('#deleteDocModal').closeModal();
     }
+    deleteUser(event) {
+      event.preventDefault();
+      const userId = this.props.stateProp.userState.deleteUser.id;
+      console.log('deleteUser', userId)
+      this.props.userActions.deleteUserAction(userId);
+      $('#deleteDocModal').closeModal();
+    }    
 
     onChangeHandler(event) {
       event.preventDefault();
@@ -86,8 +122,14 @@ export const AppWrapper = (ChildComponent,path) => {
       this.state.docData[name] = value;
     }
 
-    confirmDelete(selectedDocumentData) {
-      this.props.documentActions.createModalData(selectedDocumentData);
+    confirmDelete(selectedDocumentData, user) {
+      console.log('User please',this.props)
+      if(user != undefined) {
+        this.props.userActions.createModalData(selectedDocumentData);
+      } else {
+        this.props.documentActions.createModalData(selectedDocumentData);
+      }
+      
       $('#deleteDocModal').openModal();
     }
 
@@ -99,8 +141,7 @@ export const AppWrapper = (ChildComponent,path) => {
     modalSubmitAction(event) {
       event.preventDefault();
       const {docData} = this.state;
-      const {_id, username} = this.props.stateProp.userState.userData;
-      const creatorData = {_id, username}
+      const username = this.props.stateProp.userState.userData.username;
 
       docData.access = docData.access.toString();
       this.setState({
@@ -111,7 +152,7 @@ export const AppWrapper = (ChildComponent,path) => {
         }
       });
 
-      this.props.documentActions.createDoc(docData, creatorData);
+      this.props.documentActions.createDoc(docData, username);
       event.currentTarget.reset();
     }
 
@@ -142,19 +183,21 @@ export const AppWrapper = (ChildComponent,path) => {
     }
     
     render() {
-      let User = this.props.stateProp.userState.userData;     
-      
+      let User = this.props.stateProp.userState.userData;   
       status = (Object.keys(User).length > 0);
-      console.log('wrapper status', status);
-      console.log('wrapper length', Object.keys(User).length);
-      console.log('wrapper status object', User);
       return (
         <div>
         <Header 
           LogoutEvent={this.logout}
           UserStatus ={status}
-          searchEvent={this.searchDoc}
+          SearchEvent={this.searchDoc}
          User={User} />
+        <SideBar 
+        userData={User}
+        SharedClick={this.SharedClick}
+        RoleClick={this.RoleClick}
+        DocClick={this.DocClick}
+        logout={this.logout}/>
         <ChildComponent
           deleteDoc={this.deleteDoc}
           onChangeHandler={this.onChangeHandler}
@@ -163,8 +206,8 @@ export const AppWrapper = (ChildComponent,path) => {
           modalSubmitAction={this.modalSubmitAction}
           onClickCheckbox={this.onClickCheckBox}
           fabClick={this.fabClick}
+          deleteUser={this.deleteUser}
           {...this.props}/>
-          <Footer/>
           </div>
       );
     }

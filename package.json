@@ -26,14 +26,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/andela-ooduntan/dockip.git"
+    "url": "git+https://github.com/andela-cuchendu/jaxdms.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/andela-ooduntan/dockip/issues"
+    "url": "https://github.com/andela-cuchendu/jaxdms"
   },
-  "homepage": "https://github.com/andela-ooduntan/dockip#readme",
+  "homepage": "https://github.com/andela-cuchendu/jaxdms",
   "dependencies": {
     "bcrypt": "^1.0.2",
     "bcrypt-nodejs": "0.0.3",

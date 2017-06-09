@@ -6,7 +6,6 @@
   const Error = require('./Tools').Error;
   const jwt = require('jsonwebtoken');
 
-
   module.exports = {
     create: (req, res, next) => {
       const required = ['title', 'content'];
@@ -21,7 +20,8 @@
           .create({
             title: req.body.title,
             content: req.body.content,
-            access: parseInt(req.body.access, 10) || -3,
+            creator: req.body.creator || req.parcel.id,
+            access: parseInt(req.body.access, 10) || -2,
             UserId: req.parcel.id
           })
           .then((newDocument) => {
@@ -76,6 +76,65 @@
         .then(documents => res.status(200).send(documents))
         .catch(error => res.status(400).send(error));
     },
+    /**
+     * Gets a user with ID. Only the account owner
+     * or the admin can perfom this action.
+     * 
+     * @param {any} req - Request Object from express
+     * @param {any} res - Response Object from express
+     */
+    GetShared(req, res) {
+      const AccessParam = req.params.type;
+      let query;    
+      console.log('access pparam',AccessParam)
+      switch(AccessParam) {
+          case 'shar':
+              query = {
+                where: {
+                  access: -1
+                }
+              }
+              break;
+          case 'own':
+            query = {
+              where: {
+                UserId: parseInt(req.params.id)
+              }
+            }
+              break;
+          case 'role':
+            query = {
+              where: {
+                access: parseInt(req.params.id)
+              }
+            }
+              break;              
+          default:
+            query = {
+              where: {
+                access: -1
+              }
+            }
+      }  
+      console.log('our query ', query)     
+      if (req.params.id == null) {
+        return res.status(404).send({
+          message: 'No ID found'
+        });
+      } else {
+        return Documents
+          .findAll(query)
+          .then(document => {
+            if (!document) {
+              return res.status(404).send({
+                message: 'Document Not Found'
+              });
+            }
+            return res.status(200).send(document);
+          })
+          .catch(error => res.status(400).send(error));
+      }
+    },    
     /**
      * Gets a user with ID. Only the account owner
      * or the admin can perfom this action.

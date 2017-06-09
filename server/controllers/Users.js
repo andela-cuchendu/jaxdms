@@ -47,7 +47,7 @@ module.exports = {
           username: req.body.username,
           password: bcrypt.hashSync(req.body.password,10),
           role: req.body.role,
-          loggedin: true
+          loggedin: false
         })
         .then((user) => {
           let TokenUser = _.pick(user, 'id', 'role', 'loggedin');
@@ -217,9 +217,6 @@ module.exports = {
           } else {
             delete req.body.email;
             delete req.body.username;
-            if (req.decoded.id != 3 && ('role' in req.body)) {
-              delete req.body.role;
-            }
             return User
               .update(req.body, {
                 fields: Object.keys(req.body)
@@ -383,7 +380,7 @@ module.exports = {
     Documents.
     findAll({
         where: {
-          UserId: req.params.id
+          UserId: parseInt(req.params.id)
         }
       })
       .then((docs) => {

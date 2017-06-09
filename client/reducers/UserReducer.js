@@ -3,6 +3,18 @@ import {InitialState} from './InitialState';
 
 export default function userReducer(state = InitialState, action) {
   switch (action.type) {
+    case ActionTypes.PREPARE_EDIT_PAGE:
+      return Object.assign({}, state, action.data);       
+    case ActionTypes.USER_DELETE_SUCCESS:
+      return Object.assign({}, state, action.data);      
+    case ActionTypes.USER_DELETE_HANDLED:
+      return Object.assign({}, state, action.data);     
+    case ActionTypes.CREATE_MODAL_FOR_DELETE:
+      return Object.assign({}, state, action.data);     
+    case ActionTypes.DEFAULT_USERS_SUCCESS:
+      return Object.assign({}, state, action.data);       
+    case ActionTypes.FETCH_USERS_SUCCESS:
+      return Object.assign({}, state, action.data);    
     case ActionTypes.CREATE_USER:
       return Object.assign({}, state, action.data);
     case ActionTypes.SAVING_USER:

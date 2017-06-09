@@ -12,6 +12,11 @@ module.exports = {
         trim: true,
         required: true
       },
+      creator: {
+        type: Sequelize.STRING,
+        trim: true,
+        required: true
+      },      
       content: {
         type: Sequelize.STRING(5000),
         allowNull: false

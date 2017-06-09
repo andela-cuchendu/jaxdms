@@ -28,9 +28,13 @@ export class Documents extends Component {
         if(DocType.includes('docs')){
           DocType = 'own';
         }
+        console.log(DocType, 'mounting2')
       this.props.documentActions
           .getComponentResources(this.props.stateProp.userState.userData,DocType);    
     this.props.documentActions.editDocSuccess();
+    if (!window.localStorage.getItem('token')) {
+      this.context.router.push('/auth');
+    }
   }
 
   componentDidMount() {
@@ -75,7 +79,7 @@ export class Documents extends Component {
         }
       });
       $('#createModal').openModal();
-    } 
+    }
   viewDocEvent(event) {
     const {id} = event.target;
     let selectedDocumentData = this.props.stateProp.userDocs.docs[id];

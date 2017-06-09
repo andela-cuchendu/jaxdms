@@ -1,11 +1,12 @@
-// export const LOAD_CATS_SUCCESS = 'LOAD_CATS_SUCCESS';
-// export const LOAD_HOBBIES_SUCCESS = 'LOAD_HOBBIES_SUCCESS';
-// export const UPDATE_CAT_SUCCESS = 'UPDATE_CAT_SUCCESS';
-// export const CREATE_CAT_SUCCESS = 'CREATE_CAT_SUCCESS';
-// export const DELETE_CAT_SUCCESS = 'DELETE_CAT_SUCCESS';
 export const LOAD_ROLES_SUCCESS = 'LOAD_ROLES_SUCCESS';
-
-
+export const DOC_DELETE_SUCCESS = 'DOC_DELETE_SUCCESS';
+export const DOC_DELETE_HANDLED = 'DOC_DELETE_HANDLED';
+export const FETCH_USERS = 'FETCH_USERS';
+export const FETCH_USERS_SUCCESS = 'FETCH_USERS_SUCCESS';
+export const DEFAULT_USERS_SUCCESS = 'DEFAULT_USERS_SUCCESS';
+export const USER_DELETE_SUCCESS = 'USER_DELETE_SUCCESS';
+export const USER_DELETE_HANDLED = 'USER_DELETE_HANDLED';
+export const UPDATED_USER_DATA = 'UPDATED_USER_DATA';
 
 export const LOGIN_FAIL                   = 'LOGIN_FAIL';
 export const CREATE_USER                  = 'CREATE_USER';
@@ -25,7 +26,6 @@ export const UPDATE_USER_STORE            = 'UPDATE_USER_STORE';
 export const PREPARE_EDIT_PAGE            = 'PREPARE_EDIT_PAGE';
 export const GETTING_USER_DOCS            = 'GETTING_USER_DOCS';
 export const UPDATING_DOC_DATA            = 'UPDATING_DOC_DATA';
-export const UPDATED_USER_DATA            = 'UPDATED_USER_DATA';
 export const USER_DOCS_SUCCESS            = 'USER_DOCS_SUCCESS';
 export const SEARCHING_DOCUMENT           = 'SEARCHING_DOCUMENT';
 export const CREATE_DOC_SUCCESS           = 'CREATE_DOC_SUCCESS';

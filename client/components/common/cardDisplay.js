@@ -7,6 +7,7 @@ const CardGroup = ({
   cardCorver,
   cardTitle,
   cardCreator,
+  cardUserID,
   docDate,
   cardType,
   confirmDelete,
@@ -15,7 +16,7 @@ const CardGroup = ({
   cardContent
 }) => {
   let deleteButton;
-  if (cardCreator._id === currentUserId) {
+  if (cardUserID === currentUserId) {
     deleteButton = (
       <i id={docIndex}
          onClick={confirmDelete}
@@ -31,22 +32,25 @@ const CardGroup = ({
         <img className='activator' src={cardCorver}/>
       </div>
       <div className='card-content custom-doc-card'>
-        <i className='material-icons activator right'>more_vert</i>
         <span className='card-title activator truncate custom-blue-text '>
           {cardTitle}
         </span>
         <p>
-          <span>Created by: <span className='username'>{cardCreator.username}</span> | </span>
+          <span>Created by: <span className='username'>{cardCreator}</span></span>
+          <br/>
           <span className='grey-text'>{docDate}</span>
         </p>
       </div>
       <div className='card-action action-card-custom'>
         {deleteButton}
-        <Link to={`/docs/edit/${cardType}/${id}`}>
+        {cardUserID === currentUserId ?
+          <Link to={`/docs/edit/${id}`}>
           <i className='material-icons modal-trigger custom-icon'>
             edit
           </i>
-        </Link>
+        </Link> 
+        : ''         
+        }
         <i
           id={docIndex}
           onClick={viewDoc}

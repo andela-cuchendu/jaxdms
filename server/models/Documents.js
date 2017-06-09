@@ -5,6 +5,11 @@ module.exports = (sequelize, DataTypes) => {
       trim: true,
       required: true
     },
+    creator: {
+      type: DataTypes.STRING,
+      trim: true,
+      required: true
+    },    
     content: {
       type: DataTypes.STRING,
       trim: true

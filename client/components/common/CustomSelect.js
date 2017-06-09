@@ -11,7 +11,10 @@ const CustomSelect = ({
   addedClass, 
   selectedValue, 
   onChangeEvent, 
-  name
+  name,
+  disabled,
+  label,
+  CheckType
 }) => {
   return (
     <Row className={addedClass}>
@@ -20,11 +23,17 @@ const CustomSelect = ({
         onChange={onChangeEvent}
         s={size}
         type='select'
-        label='Role'>
-        <option disabled>Choose your role</option>
+        label={label}>
+        <option disabled>{disabled}</option>
         {
           selectData.map((item) => {
-            let selectedOption = parseInt(selectedValue) === item.id ? 'selected' : false;
+
+            let selectedOption ;
+            if (CheckType != undefined){
+              selectedOption = parseInt(selectedValue) === item.access ? 'selected' : false;
+            } else {
+              selectedOption = parseInt(selectedValue) === item.id ? 'selected' : false;
+            }            
             return (
               <option
                 selected={selectedOption}

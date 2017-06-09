@@ -15,6 +15,7 @@ const SignUpForm = ({
   showLoader,
   errorMessage
 }) => {
+
   return (
     <form onSubmit={saveAction} id='sign-up' className='col s12 form-container-space'>
       <div className='row'>
@@ -48,9 +49,12 @@ const SignUpForm = ({
           addedClass='custom-select row'
           name='role'
           size={6}
-          selectedValue='3'
+          selectedValue={3}
           selectData={roles}
-          onChangeEvent={changeHandler}/>
+          onChangeEvent={changeHandler}
+          disabled='Choose your role'
+          label='Role'
+          />
       </div>
       <div className='row'>
         <CustomTextInput

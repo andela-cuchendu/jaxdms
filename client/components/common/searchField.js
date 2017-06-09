@@ -1,6 +1,7 @@
 import React, {PropTypes} from 'react';
 
 const SearchField = ({searchEvent}) => {
+  console.log('search event',searchEvent)
   return (
     <div className='input-field custom-nav-bar'>
       <input

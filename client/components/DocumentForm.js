@@ -1,7 +1,7 @@
 import TinyMCE from 'react-tinymce';
 import React, {PropTypes} from 'react';
 import Preloader from './common/Spinner';
-import CheckBox from './common/CheckBox';
+import CustomSelect from './common/CustomSelect';
 import {Input, Row} from 'react-materialize';
 const NewDocumentForm = ({
   CheckboxHandler,
@@ -9,10 +9,28 @@ const NewDocumentForm = ({
   tinymceEvent,
   submitAction,
   showLoader,
-  docRoles
+  docRoles,
+  userRole
 }) => {
+  const access = [
+    {
+      id: 1,
+      access: -1,
+      title: 'Public'
+    },
+    {
+      id:2,
+      access:-2,
+      title: 'Private'
+    },
+    {
+      id:3,
+      access: userRole,
+      title: 'Role'
+    }
+  ]
   return (
-    <form onSubmit={submitAction}>
+    <form onSubmit={submitAction}> 
       <div id='createModal' className='modal modal-fixed-footer'>
         <div className='modal-content'>
           <h4 className='custom-blue-text'>Create new document</h4>
@@ -24,11 +42,16 @@ const NewDocumentForm = ({
               label='Title'
               validate
               onChange={changeHandler}/>
-            <CheckBox
-              data={docRoles}
-              name='role'
-              extraClass='custom-checkox'
-              onClickEvent={CheckboxHandler}/>
+            <CustomSelect
+              addedClass='custom-select row'
+              name='access'
+              size={6}
+              selectedValue='-1'
+              selectData={access}
+              onChangeEvent={changeHandler}
+              disabled='Choose your role'
+              label='Role'
+              />
           </Row>
           <Row>
             <TinyMCE
@@ -50,7 +73,7 @@ const NewDocumentForm = ({
           />
           <button
             className='btn custom-create-doc custom-blue '>Create
-          </button>
+          </button>                  
         </div>
       </div>
     </form>

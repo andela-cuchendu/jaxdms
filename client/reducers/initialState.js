@@ -6,6 +6,9 @@ export const InitialState = {
   createUserError: '',
   shouldRedirect: false,
   userData: {},
+  users: {},
+  adminUser: false,
+  selectedUserData: {},
   displayFeedBack: 'none',
   feedBack: 'Oops!!! An error occured.',
   feedBackColor: '#dd0404',
@@ -22,15 +25,24 @@ export const InitialState = {
     creator: ''
   },
   docSuccess: false,
+  editUserData: {
+    firstname: '',
+    lastname: ''
+  },
   editDocumentData: {
     title: '',
     content: '',
     access: []
   },
+  Deleted: false,
   deleteDoc: {
     title: '',
     content: '',
     access: []
+  },
+  deleteUser: {
+    username: '',
+    id: 0
   },
   editSuccess: false,
   search: [],

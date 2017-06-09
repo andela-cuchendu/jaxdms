@@ -7,7 +7,7 @@
   const express = require('express');
   const router = express.Router();
 
-  router.get('/search/documents', Documents.verify, Search.FindDocuments);
+  router.get('/search/documents', Users.verify, Search.FindDocuments);
   router.get('/search/users', Users.verify, Search.FindUsers);
 
 

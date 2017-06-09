@@ -53,37 +53,49 @@ const Header = ({LogoutEvent, UserStatus, SearchEvent, User}) => {
                     <span>{User.lastname},</span> {User.firstname}
                   </div>
                   <div className='center-align'>{User.username}</div>
-                  <div className='center-align'>
-                    {User.role}
-                  </div>
                   <div className='custom-blue-text center-align'>{User.email}</div>
                 </div>
               </li>
-              <li id='MY_DOCUMENTS' className='bold documents'>
-                <Link to='docs'>
-                  <div className='custom-div waves-effect'>
-                    <i className='sidebar-icon-position material-icons'>description</i>
-                    <span>My Documents</span>
-                  </div>
-                </Link>
-              </li>
-              <li id='SHARED_DOCUMENTS' className='bold shared'>
-                <Link to='/shared-docs'>
-                  <div className='custom-div waves-effect'>
-                    <i className='sidebar-icon-position material-icons'>group_work</i>
-                    <span>Shared Documents</span>
-                  </div>
-                </Link>
-              </li>
-              <li id='EDIT_PROFILE' className='bold edit'>
-                <Link to='/profile/edit'>
-                  <div className='custom-div waves-effect'>
-                    <i className='sidebar-icon-position material-icons'>mode_edit</i>
-                    <span>Edit Profile</span>
-                  </div>
-                </Link>
-              </li>
+        <li id='MY_DOCUMENTS' className='bold documents'>
+          <Link to='/docs'>
+            <div className='custom-div waves-effect'>
+              <span>My Documents</span>
+            </div>
+          </Link>
+        </li>
+        <li id='SHARED_DOCUMENTS' className='bold shared'>
+          <Link to='/shar'>
+            <div className='custom-div waves-effect'>
+              <span>Public Documents</span>
+            </div>
+          </Link>
+        </li>
+        <li id='ROLE_DOCUMENTS' className='bold edit'>
+          <Link to='/role'>
+            <div className='custom-div waves-effect'>
+              <span>Role Documents</span>
+            </div>
+          </Link>
+        </li>
+        {User.role === 3 ?
+        <li id='USERS' className='bold edit'>
+          <Link to='/users'>
+            <div className='custom-div waves-effect'>
+              <span>Users</span>
+            </div>
+          </Link>
+        </li>        
+        : ''
+        }  
+        <li id='LOGOUT' className='bold edit'>
+          <Link onClick={LogoutEvent} to='#'>
+            <div className='custom-div waves-effect'>
+              <span>Logout</span>
+            </div>
+          </Link>
+        </li>                          
             </ul>
+            
             : ''
             }
     </div>

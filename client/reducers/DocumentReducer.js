@@ -3,6 +3,10 @@ import {InitialState} from './InitialState';
 
 export default function docReducer(state = InitialState, action) {
   switch (action.type) {
+    case actionTypes.DOC_DELETE_SUCCESS:
+      return Object.assign({}, state, action.data);  
+    case actionTypes.DOC_DELETE_HANDLED:
+      return Object.assign({}, state, action.data);          
     case actionTypes.GETTING_USER_DOCS:
       return Object.assign({}, state);
     case actionTypes.USER_DOCS_SUCCESS:

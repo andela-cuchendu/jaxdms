@@ -5,6 +5,12 @@ import {AppWrapper} from './Appwrapper';
 class Home extends React.Component {
   render() {
     return (
+    <div>
+      <nav>
+        <div className="nav-wrapper custom-black">
+          <div className='logo-name left white-text  left-align'>Jaxmdms</div>
+        </div>
+      </nav>          
       <div className='info-container'>
         <div className="container" id="hero-text-container">
           <div className="row">
@@ -29,7 +35,8 @@ class Home extends React.Component {
           </div>
         </div>
       </div>
+      </div>
     );
   }
 }
-export default AppWrapper(Home,'/');
+export default Home;

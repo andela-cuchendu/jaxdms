@@ -1,6 +1,26 @@
 import * as ActionTypes from './ActionTypes.js';
 import {BaseApi} from '../api/BaseApi';
 
+export function DocumentDeleted() {
+  console.log('I deleted you')
+  return {
+    type: ActionTypes.DOC_DELETE_SUCCESS,
+    data: {
+      Deleted: true
+    }
+  };
+}
+
+export function DocumentDeletedHandled() {
+  console.log('I deleted you and handled')
+  return {
+    type: ActionTypes.DOC_DELETE_HANDLED,
+    data: {
+      Deleted: false
+    }
+  };
+}
+
 export function getSharedDocSuccess(sharedDocs) {
   return {
     type: ActionTypes.SHARED_DOCUMENTS,
@@ -21,7 +41,7 @@ export function getDocsSuccess(docs) {
     type: ActionTypes.USER_DOCS_SUCCESS,
     data: {
       docSuccess: true,
-      docs: docs.doc,
+      docs: docs,
       editSuccess: false
     }
   };
@@ -40,22 +60,29 @@ export function updateStoreWithNewDoc(docData) {
   return {
     type: ActionTypes.UPDATE_STORE_WITH_NEW_DOC,
     data: {
-      newDoc: [docData.newDoc],
+      newDoc: [docData],
       successState: true
     }
   };
 }
 
 export function preparePageForEdit(docData) {
+  const editData = {
+    title: docData.title,
+    content: docData.content,
+    access: docData.access
+  }
+  console.log('prepare for edit',editData)
   return {
     type: ActionTypes.PREPARE_EDIT_PAGE,
     data: {
-      editDocumentData: docData
+      editDocumentData: editData
     }
   };
 }
 
 export function docDeleted(docsInState) {
+  console.log('Doc deleted',docsInState )
   return {
     type: ActionTypes.DELETE_DOC_SUCCESS,
     data: {
@@ -65,6 +92,7 @@ export function docDeleted(docsInState) {
 }
 
 export function sharedDocsDeleted(docsInState) {
+  console.log('sharedDocsDeleted deleted',docsInState )
   return {
     type: ActionTypes.DELETE_DOC_SUCCESS,
     data: {
@@ -155,18 +183,20 @@ export function updatedStoreWithMoreDocs(result) {
   };
 }
 
-export function getsharedDocument(userData) {
+export function getsharedDocument(userData,type) {
+  console.log('oginidi',type)
   return (dispatch) => {
     dispatch(gettingUserDocs());
-    const url = '/api/documents?role=' + userData.role._id;
+    const url = `/api/documents/${userData.id}/${type}`;
     return BaseApi(null, 'get', url, function (apiResult) {
       dispatch(getSharedDocSuccess(apiResult));
-      return dispatch(getUserDocs(userData._id));
+      return dispatch(getUserDocs(parseInt(userData.id),type));
     });
   };
 }
 
 export function updatedStoreWithSharedDocs(newDocs) {
+  console.log('update confused', newDoc)
   return {
     type: ActionTypes.ADD_MORE_SHARED_DOCS,
     data: {
@@ -189,7 +219,7 @@ export function addSharedDocs(offset, userRole) {
 export function addOwnedDocs(offset, userId) {
   return (dispatch) => {
     dispatch(addingMoreDocToStore());
-    const url = '/api/users/' + userId + '/documents/?offset=' + offset;
+    const url = '/api/users/' + parseInt(userId) + '/documents/?offset=' + offset;
     return BaseApi(null, 'get', url, function (apiResult) {
       return dispatch(updatedStoreWithMoreDocs(apiResult));
     });
@@ -200,26 +230,34 @@ export function deleteDocAction(docId) {
   return (dispatch) => {
     const url = '/api/documents/' + docId;
     return BaseApi(null, 'delete', url, function (apiResult) {
-      return dispatch(getComponentResources({}));
+      console.log('apiResult delete ',apiResult)
+       dispatch(DocumentDeleted());
+       console.log('calling from delete',apiResult)
+      return dispatch(getComponentResources({},'own'));
     });
   };
 }
 
 export function createDoc(docData, creatorData) {
+  console.log('create user', creatorData)
   return (dispatch) => {
     dispatch(savingDoc());
     const url = '/api/documents/';
+    docData.creator = creatorData;
+    console.log('creator docs', creatorData)
+    console.log('create doc', docData)
     return BaseApi(docData, 'post', url, function (apiResult) {
-      apiResult.newDoc.creator = creatorData;
+      console.log('save docs', apiResult)
+      Materialize.toast('Document Created successfully', 4000);
       dispatch(updateStoreWithNewDoc(apiResult));
     });
   };
 }
 
-export function getUserDocs(userId) {
+export function getUserDocs(userId,type) {
   return (dispatch) => {
     dispatch(gettingUserDocs());
-    const url = '/api/users/' + userId + '/documents';
+    const url = `/api/documents/${userId}/${type}`;
     return BaseApi(null, 'get', url, function (apiResult) {
       dispatch(getDocsSuccess(apiResult));
     });
@@ -241,19 +279,20 @@ export function upadateDocument(newDocData, docId) {
     dispatch(updatingDocData());
     const url = '/api/documents/' + docId;
     return BaseApi(newDocData, 'put', url, function () {
-      dispatch(getComponentResources({}));
+      dispatch(getComponentResources({},'own'));
       dispatch(editDocSuccess());
     });
   };
 }
 
-export function validateUser() {
+export function validateUser(type) {
   return (dispatch) => {
-    const url = '/api/users/data';
+    const url = '/api/users/data/data';
     return BaseApi(null, 'get', url, function (apiResult) {
       if (apiResult.id) {
         dispatch(updateStoreWithUserData(apiResult));
-        return dispatch(getComponentResources(apiResult));
+        console.log('calling from validateUser,')
+        return dispatch(getComponentResources(apiResult,type));
       }
       return dispatch(invalidUser());
     });
@@ -264,17 +303,18 @@ export function updatePageWithEditData(docId) {
   return (dispatch) => {
     const url = '/api/documents/' + docId;
     return BaseApi(null, 'get', url, function (apiResult) {
-      return dispatch(preparePageForEdit(apiResult.doc));
+      console.log('edit doc jhjkhjkhjkh',apiResult)
+      return dispatch(preparePageForEdit(apiResult));
     });
   };
 }
 
-export function getComponentResources(userData) {
+export function getComponentResources(userData,type) {
   return (dispatch) => {
     if (Object.keys(userData).length) {
-      return dispatch(getsharedDocument(userData));
+      return dispatch(getsharedDocument(userData,type));
     }
 
-    return dispatch(validateUser());
+    return dispatch(validateUser(type));
   };
 }
