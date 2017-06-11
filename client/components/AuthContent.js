@@ -13,7 +13,7 @@ import SignIn from './SignIn.js';
  */
 const AuthContent = ({toggleSignUp, userActions, stateProp}) => {
   return (
-    <div className='info-container'>
+    <div className='info-wrapper'>
       <div className='form-container'>
         <SignUp
           userActions={userActions}
@@ -24,7 +24,7 @@ const AuthContent = ({toggleSignUp, userActions, stateProp}) => {
           stateProp={stateProp}
           toggleSignUp={toggleSignUp}/>
       </div>
-      <div className='login-side'>
+      <div className='login-image'>
             <div className="card">
               <div className="card-image">
                 <img src={require('../images/auth.jpg')} />

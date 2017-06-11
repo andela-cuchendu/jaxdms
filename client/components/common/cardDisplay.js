@@ -29,10 +29,10 @@ const CardGroup = ({
   return (
     <div key={id} className='card hoverable document-cards'>
       <div className='card-image waves-effect waves-block waves-light'>
-        <img className='activator' src={cardCorver}/>
+        <img className='zapper' src={cardCorver}/>
       </div>
       <div className='card-content custom-doc-card'>
-        <span className='card-title activator truncate custom-blue-text '>
+        <span className='card-title zapper truncate custom-blue-text '>
           {cardTitle}
         </span>
         <p>

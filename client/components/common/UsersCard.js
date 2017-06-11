@@ -20,7 +20,7 @@ const UsersCard = ({
 return(
     <div key={id} className='card hoverable document-cards'>
       <div className='card-content custom-doc-card'>
-        <span className='card-title activator truncate custom-blue-text '>
+        <span className='card-title zapper truncate custom-blue-text '>
           {user.username}
         </span>
         <p>

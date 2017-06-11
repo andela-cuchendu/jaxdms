@@ -11,7 +11,7 @@ class Home extends React.Component {
           <div className='logo-name left white-text  left-align'>Jaxmdms</div>
         </div>
       </nav>          
-      <div className='info-container'>
+      <div className='info-wrapper'>
         <div className="container" id="hero-text-container">
           <div className="row">
             <div className="col s12 center-align">

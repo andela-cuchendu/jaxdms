@@ -23,7 +23,7 @@ const SideBar = ({
           </div>
         </li>
         <li>
-          <div className='user-info-container'>
+          <div className='user-info-wrapper'>
             <div>
               <i className='user-image material-icons'>perm_identity</i>
             </div>
@@ -36,21 +36,21 @@ const SideBar = ({
         </li>
         <li id='MY_DOCUMENTS' className='bold documents'>
           <Link onClick={DocClick} to='/docs'>
-            <div className='custom-div waves-effect'>
+            <div className='div-neat waves-effect'>
               <span>My Documents</span>
             </div>
           </Link>
         </li>
         <li id='SHARED_DOCUMENTS' className='bold shared'>
           <Link onClick={SharedClick} to='/shar'>
-            <div className='custom-div waves-effect'>
+            <div className='div-neat waves-effect'>
               <span>Public Documents</span>
             </div>
           </Link>
         </li>
         <li id='ROLE_DOCUMENTS' className='bold edit'>
           <Link onClick={RoleClick} to='/role'>
-            <div className='custom-div waves-effect'>
+            <div className='div-neat waves-effect'>
               <span>Role Documents</span>
             </div>
           </Link>
@@ -58,7 +58,7 @@ const SideBar = ({
         {role === 3 ?
         <li id='USERS' className='bold edit'>
           <Link to='/user'>
-            <div className='custom-div waves-effect'>
+            <div className='div-neat waves-effect'>
               <span>Users</span>
             </div>
           </Link>
@@ -67,7 +67,7 @@ const SideBar = ({
         } 
         <li id='LOGOUT' className='bold edit'>
           <Link onClick={logout} to='#'>
-            <div className='custom-div waves-effect'>
+            <div className='div-neat waves-effect'>
               <span>Logout</span>
             </div>
           </Link>
