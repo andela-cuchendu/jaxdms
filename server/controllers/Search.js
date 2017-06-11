@@ -2,16 +2,17 @@ const Users = require('../models').Users;
 const Documents = require('../models').Documents;
 
 /**
- * Represents Roles 
+ * Represents Search
  */
 module.exports = {
   /**
-   * List all Roles. This can be done any 
-   * user
-   * 
+   * Find documents. This can be done any
+   * user and result returned is based on
+   * access rights
+   *
    * @param {any} req - Request Object from express
    * @param {any} res - Response Object from express
-   * @returns {jsonObject} - This maybe error json Object 
+   * @returns {jsonObject} - This maybe error json Object
    */
   FindDocuments(req, res) {
     const query = req.query.q.trim();
@@ -23,33 +24,32 @@ module.exports = {
       if (req.decoded.role === 3) {
         DocumentAccess = [-1, -2, 1, 2, 3];
       }
-
       let QueryOption = {
         where: {
           $and: [{
-              $or: [{
-                  title: {
-                    $iLike: `%${query}%`
-                  }
-                },
-                {
-                  content: {
-                    $iLike: `%${query}%`
-                  }
-                }
-              ]
+            $or: [{
+              title: {
+                $iLike: `%${query}%`,
+              },
             },
             {
-              $or: {
-                  access: {
-                    $in: DocumentAccess
-                  }
-              }
-            }
-          ]
+              content: {
+                $iLike: `%${query}%`,
+              },
+            },
+            ],
+          },
+          {
+            $or: {
+              access: {
+                $in: DocumentAccess,
+              },
+            },
+          },
+          ],
         },
         limit,
-        offset
+        offset,
       };
 
       if (QueryOption.offset < 1) {
@@ -62,14 +62,11 @@ module.exports = {
       return Documents
         .findAll(QueryOption)
         .then(documents => {
-          console.log('docuemtn')
           if (!documents) {
-            console.log('not found')
             return res.status(404).send({
               message: 'No Document Found'
             });
           } else {
-            console.log('my documents',documents)
             res.status(200).send(documents);
           }
         })
@@ -79,8 +76,15 @@ module.exports = {
         message: 'No Query found'
       });
     }
-
   },
+  /**
+   * Find Users. This can be done any
+   * only admin
+   *
+   * @param {any} req - Request Object from express
+   * @param {any} res - Response Object from express
+   * @returns {jsonObject} - This maybe error json Object
+   */
   FindUsers(req, res) {
     const query = req.query.q.trim();
     if (query != null && query.length > 0) {
@@ -91,10 +95,9 @@ module.exports = {
         offset,
         where: {
           username: {
-            $ilike:  `%${query}%`
-            
-          }
-        }
+            $ilike:  `%${query}%`,         
+          },
+        },
       };
       if (QueryOption.offset < 1) {
         delete QueryOption.offset;
@@ -102,9 +105,7 @@ module.exports = {
       if (QueryOption.limit < 1) {
         delete QueryOption.limit;
       }
-      Users.findAll(
-          QueryOption
-        )
+      Users.findAll(QueryOption)
         .then((users) => {
           if (!users) {
             return res.status(404).send({
@@ -120,5 +121,5 @@ module.exports = {
         message: 'No Query found'
       });
     }
-  }
+  },
 };

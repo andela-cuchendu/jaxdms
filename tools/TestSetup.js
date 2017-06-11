@@ -1,6 +1,7 @@
 require('babel-register')();
 process.env.NODE_ENV = 'TEST';
 require.extensions['.css'] = function () {return null;};
+require.extensions['.sass'] = function () {return null;};
 require.extensions['.png'] = function () {return null;};
 require.extensions['.jpg'] = function () {return null;};
 var jsdom = require('jsdom').jsdom,

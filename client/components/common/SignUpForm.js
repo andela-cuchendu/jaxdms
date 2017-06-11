@@ -15,7 +15,6 @@ const SignUpForm = ({
   showLoader,
   errorMessage
 }) => {
-
   return (
     <form onSubmit={saveAction} id='sign-up' className='col s12 form-container-space'>
       <div className='row'>

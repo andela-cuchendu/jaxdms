@@ -1,9 +1,7 @@
 import express from 'express';
 import path from 'path';
 import open from 'open';
-import {api} from '../server/server';
-
-/* eslint-disable no-console */
+import { api } from '../server/server';
 
 const port = process.env.PORT;
 const app = express();

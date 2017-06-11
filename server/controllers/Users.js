@@ -13,27 +13,27 @@ const ComparePassword = require('./Tools').ComparePassword;
 module.exports = {
   /**
    * Create new User
-   * 
+   *
    * @param {any} req - Request Object from express
    * @param {any} res - Response Object from express
    * @param {any} next - Middleware
-   * @returns {responseObject}
+   * @returns {responseObject} This maybe error json Object
+   * or result json Object
    */
-  create(req, res, next) {
+  create(req, res) {
     const required = ['username', 'firstname',
-      'lastname', 'email', 'password'
+      'lastname', 'email', 'password',
     ];
     if (!required.every(field => field in req.body)) {
       const err = new Error(
-        'All fields are mandatory'
-      );
+        'All fields are mandatory');
       err.status = 400;
       res.json({
         message: err.message,
         success: false,
         errorObject: err,
         error: err.message,
-        status: err.status
+        status: err.status,
       });      
     } else {
       if (!req.body.role) {
@@ -45,21 +45,21 @@ module.exports = {
           lastname: req.body.lastname,
           email: req.body.email,
           username: req.body.username,
-          password: bcrypt.hashSync(req.body.password,10),
+          password: bcrypt.hashSync(req.body.password, 10),
           role: req.body.role,
-          loggedin: false
+          loggedin: false,
         })
         .then((user) => {
-          let TokenUser = _.pick(user, 'id', 'role', 'loggedin');
+          const TokenUser = _.pick(user, 'id', 'role', 'loggedin');
           const AppSecret = req.app.get('superSecret');
-          let token = jwt.sign(TokenUser, AppSecret, {
-            expiresIn: 43200
+          const token = jwt.sign(TokenUser, AppSecret, {
+            expiresIn: 43200,
           });
           user.password = null;
           res.status(201).json({
             user: user,
             token: token,
-            success: true
+            success: true,
           });
         })
         .catch((err) => {
@@ -72,16 +72,17 @@ module.exports = {
             success: false,
             errorObject: err,
             error: err.message,
-            status: err.status
+            status: err.status,
           });   
         });
     }
+    return true;
   },
 
   /**
    * List all users. This can be done only by Admin
    * It also checks if there is limit or offset query
-   * 
+   *
    * @param {any} req - Request Object from express
    * @param {any} res - Response Object from express
    * @returns {jsonObject} - This maybe error json Object 
@@ -94,7 +95,7 @@ module.exports = {
     } else {
       let QueryOption = {
         limit: 0,
-        offset: 0
+        offset: 0,
       };
       QueryOption.offset = parseInt(req.query.offset, 10) || 0;
       QueryOption.limit = parseInt(req.query.limit, 10) || 0;
@@ -109,35 +110,38 @@ module.exports = {
         .then(Users => res.status(200).send(Users))
         .catch(error => res.status(400).send(error));
     }
+    return true;
   },
   /**
    * Gets a user with ID. Only the account owner
    * or the admin can perfom this action.
-   * 
+   *
    * @param {any} req - Request Object from express
    * @param {any} res - Response Object from express
+   * @returns {jsonObject} - This maybe error json Object
    */
   GetData(req, res) {
-        return Users
-          .findById(req.decoded.id)
-          .then(User => {
-            if (!User) {
-              return res.status(404).send({
-                message: 'User Not Found'
-              });
-            }
-            User.password = null;
-            return res.status(200).send(User);
-          })
-          .catch(error => {
-            res.status(400).send(error)});
+    return Users
+      .findById(req.decoded.id)
+      .then(User => {
+        if (!User) {
+          return res.status(404).send({
+            message: 'User Not Found'
+          });
+        }
+        User.password = null;
+        return res.status(200).send(User);
+      })
+      .catch(error => {
+        res.status(400).send(error)});
   },
   /**
    * Gets a user with ID. Only the account owner
    * or the admin can perfom this action.
-   * 
+   *
    * @param {any} req - Request Object from express
    * @param {any} res - Response Object from express
+   * @returns {jsonObject} - This maybe error json Object
    */
   GetUser(req, res) {
     if (req.decoded.id.toString() === req.params.id ||
@@ -165,15 +169,16 @@ module.exports = {
         error: 'Unauthorized Access'
       });
     }
+    return true;
   },
   /**
    * Deletes a User specified in the ID param.
    * This can only be done by the Admin
-   * 
+   *
    * @param {any} req - Request Object from express
    * @param {any} res - Response Object from express
    * @param {any} next - Middleware
-   * @returns {responseObject}
+   * @returns {responseObject} json Object
    */
   DeleteUser(req, res, next) {
     if (req.decoded._id === req.params.id ||
@@ -196,17 +201,16 @@ module.exports = {
   },
 
   /**
-   * Updates user using the ID and parameters 
+   * Updates user using the ID and parameters
    * provided. Also check for token and logged in
-   * 
+   *
    * @param {any} req - Request Object from express
    * @param {any} res - Response Object from express
-   * @returns 
+   * @returns {responseObject} json Object
    */
   UpdateUser(req, res) {
     if (req.decoded.id.toString() === req.params.id ||
       req.decoded.role === 3) {
-
       return Users
         .findById(req.params.id)
         .then(User => {
@@ -239,18 +243,18 @@ module.exports = {
   },
   /**
    * Login a user and retrun a token for the user
-   * 
+   *
    * @param {any} req - Request Object from express
    * @param {any} res - Response Object from express
    * @param {any} next - Middleware
-   * @returns {responseObject}
+   * @returns {responseObject} - json Object
    */
   login(req, res, next) {
     Users.find({
-        where: {
-          username: req.body.username
-        }
-      })
+      where: {
+        username: req.body.username,
+      },
+    })
       .then((User) => {
         let ValidPassword = null;
         let err;
@@ -274,7 +278,7 @@ module.exports = {
                 message: err.message,
                 success: false,
                 error: err,
-                status: err.status
+                status: err.status,
               });
           } else {
             return User
@@ -306,14 +310,14 @@ module.exports = {
   },
   /**
    * Logout a user by setting the loggin to false
-   * 
+   *
    * @param {any} req - Request Object from express
    * @param {any} res - Response Object from express
    * @param {any} next - Middleware
-   * @returns {responseObject}
+   * @returns {responseObject} - json Object
    */
   logout(req, res, next) {
-    const token = req.body.token || req.headers['x-access-token'];
+    const token = req.headers['x-access-token'];
     if (!token) {
       let err;
       err = new Error('No token found');
@@ -343,11 +347,11 @@ module.exports = {
   },
   /**
    * Delete a user and its documents
-   * 
+   *
    * @param {any} req - Request Object from express
    * @param {any} res - Response Object from express
    * @param {any} next - Middleware
-   * @returns {responseObject}
+   * @returns {responseObject} - json Object
    */
   delete(req, res, next) {
     if (req.decoded.id.toString() === req.params.id ||
@@ -356,10 +360,10 @@ module.exports = {
         .findById(req.params.id)
         .then((User) => {
           User.destroy({
-              where: {
-                id: User.id
-              }
-            })
+            where: {
+              id: User.id,
+            },
+          })
             .then(() => {
               res.sendStatus(204);
             })
@@ -376,30 +380,39 @@ module.exports = {
       });
     }
   },
-  GetDocs(req, res) {
-    Documents.
-    findAll({
-        where: {
-          UserId: parseInt(req.params.id)
-        }
-      })
-      .then((docs) => {
-        res.json(docs);
-      })
-      .catch((err) => {
-        res.json(err);
-      });
-  },
   /**
-   * Verify user by checking for token and logged in
-   * 
+   * Gets document associated with the user
+   *
    * @param {any} req - Request Object from express
    * @param {any} res - Response Object from express
    * @param {any} next - Middleware
+   * @returns {responseObject} - json Object
+   */
+  GetDocs(req, res) {
+    Documents
+    .findAll({
+      where: {
+        UserId: parseInt(req.params.id, 10),
+      },
+    })
+    .then((docs) => {
+      res.json(docs);
+    })
+    .catch((err) => {
+      res.json(err);
+    });
+  },
+  /**
+   * Verify user by checking for token and logged in
+   *
+   * @param {any} req - Request Object from express
+   * @param {any} res - Response Object from express
+   * @param {any} next - Middleware
+   * @returns {responseObject} - json Object
    */
   verify(req, res, next) {
     // Check for the token from the header or from the request body
-    let token = req.body.token || req.headers['x-access-token'];
+    const token = req.body.token || req.headers['x-access-token'];
 
     if (token) {
       let user = ExtractUser(token);
@@ -428,5 +441,5 @@ module.exports = {
         error: 'No token provided.'
       });
     }
-  }
+  },
 };

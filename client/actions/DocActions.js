@@ -291,7 +291,6 @@ export function validateUser(type) {
     return BaseApi(null, 'get', url, function (apiResult) {
       if (apiResult.id) {
         dispatch(updateStoreWithUserData(apiResult));
-        console.log('calling from validateUser,')
         return dispatch(getComponentResources(apiResult,type));
       }
       return dispatch(invalidUser());

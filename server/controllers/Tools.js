@@ -9,7 +9,7 @@ const jwt = require('jsonwebtoken');
 class CustomError extends Error {
   /**
    * Creates an instance of CustomError.
-   * @param {string} message 
+   * @param {string} message
    * @memberOf CustomError
    */
   constructor(message) {
@@ -24,11 +24,11 @@ class CustomError extends Error {
 module.exports = {
   /**
    * Takes a token and return user object
-   * @param {string} token - Token to be extracted 
+   * @param {string} token - Token to be extracted
    * @return{object} - Extracted User Object
    */
   ExtractUser: (token) => {
-    let ExtractedUser = jwt.decode(token, {
+    const ExtractedUser = jwt.decode(token, {
       complete: true
     });
     return ExtractedUser.payload;
@@ -37,19 +37,4 @@ module.exports = {
   ComparePassword: (password, compare) => {
     return bcrypt.compareSync(password, compare);
   },
-  /**
-   * Takes a password and return a hashed string
-   * using bcrypt plugin
-   * @param {string} password - password to be hashed 
-   * @return{string} - hashed string
-   */
-  HashPassword: (password) => {
-    bcrypt.hash(password, null, null, function (err, hash) {
-      if (err) {
-        return err;
-      } else {
-        password = hash;
-      }
-    });
-  }
 };

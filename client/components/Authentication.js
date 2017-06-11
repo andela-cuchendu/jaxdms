@@ -36,6 +36,7 @@ export class Authentication extends Component {
   }
 
   render() {
+    console.log('bbbbbb',this.props.stateProp)
     return (
       <div>
         <nav>

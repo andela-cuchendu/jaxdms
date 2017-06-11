@@ -5,3 +5,4 @@ ratings:
      - '**.js'
 exclude_paths:
   - 'tests/'
+  - 'tools'

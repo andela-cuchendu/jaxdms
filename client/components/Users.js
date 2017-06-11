@@ -144,6 +144,8 @@ fabClick(event) {
   const UsersProps = this.props.stateProp.userState.users;
   const createUserError = this.props.stateProp.userState.createUserError;
   const roles = this.props.stateProp.roles.roles;
+  console.log('our roles', this.props.stateProp)
+  console.log('role prop',roles)
   const displayLoader = this.props.stateProp.userState.displayLoader; 
   let cards;
   if (UsersProps.length) {

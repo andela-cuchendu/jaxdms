@@ -88,7 +88,9 @@ export class SignUp extends Component {
 const displayLoader = this.props.stateProp.userState.displayLoader;
 const createUserError = this.props.stateProp.userState.createUserError;
 const roles = this.props.stateProp.roles.roles;
-
+  let NewRoles = [...roles];
+  NewRoles.splice(0, 1);
+console.log( 'select role',roles)
     return (
       <div ref='signUpComponent' className='hide-element signup-container'>
         <div className='signup-wrapper'>
@@ -108,7 +110,7 @@ const roles = this.props.stateProp.roles.roles;
             matchPasswordError={this.state.confirmPasswordError}
             errorMessage={createUserError}
             showLoader={displayLoader}
-            roles={roles}
+            roles={NewRoles}
             matchPassword={this.confirmPassword}/>
           <a className='custom-link'
              onClick={this.toggleDisplay}>
