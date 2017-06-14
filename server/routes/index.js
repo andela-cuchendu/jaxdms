@@ -9,10 +9,10 @@
   });
 
   // Lists all routes
-  router.use('/api', require('./users'));
-  router.use('/api', require('./documents'));
-  router.use('/api', require('./roles'));
-  router.use('/api', require('./search'));
+  router.use('/api', require('./Users'));
+  router.use('/api', require('./Documents'));
+  router.use('/api', require('./Roles'));
+  router.use('/api', require('./Search'));
 
   module.exports = router;
 

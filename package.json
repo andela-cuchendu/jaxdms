@@ -18,7 +18,7 @@
     "prebuild": "npm-run-all clean-dist build:html",
     "build": "npm run build:app",
     "postbuild": "npm run start:prod-server",
-    "postinstall": "npm-run-all clean-dist build:html build:app",
+    "heroku-postbuild": "npm-run-all clean-dist build:html build:app",
     "seedData": "node ./seeder/seedData.js",
     "migrate:test": "NODE_ENV=TEST sequelize db:migrate",
     "test:watch": "npm run test -- --watch"
