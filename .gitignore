@@ -7,4 +7,5 @@ coverage.lcov
 lcov.info
 dist/
 .DS_Store
-
+.chrome
+.vscode
