@@ -1,11 +1,9 @@
 node_modules
-dist/lib
 coverage.lcov
 .env
 .idea/
 .nyc_output/
 lcov.info
-dist/
 .DS_Store
 .chrome
 .vscode
