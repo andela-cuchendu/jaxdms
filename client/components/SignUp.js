@@ -1,7 +1,18 @@
-import React, {PropTypes, Component} from 'react';
+import React, { PropTypes, Component } from 'react';
 import SignUpForm from './common/SignUpForm';
 
+/**
+ * Represents Signup
+ *
+ * @class SignUp
+ * @extends {Component}
+ */
 export class SignUp extends Component {
+  /**
+   * Creates an instance of SignUp.
+   *
+   * @memberOf SignUp
+   */
   constructor() {
     super();
     this.state = {
@@ -9,10 +20,10 @@ export class SignUp extends Component {
       emailError: false,
       confirmPasswordError: false,
       passwordError: false,
-      submitResult: false
+      submitResult: false,
     };
 
-    this.onChangeHandler = this.onChangeHandler.bind(this);
+    this.onChangeEvent = this.onChangeEvent.bind(this);
     this.isValidEmail = this.isValidEmail.bind(this);
     this.isFormValid = this.isFormValid.bind(this);
     this.validateEmail = this.validateEmail.bind(this);
@@ -22,20 +33,54 @@ export class SignUp extends Component {
     this.toggleDisplay = this.toggleDisplay.bind(this);
   }
 
+  /**
+   * onChangeEvent - Called when input
+   * elemets change
+   *
+   * @param {any} event -Dom event
+   *
+   * @memberOf SignUp
+   */
+  onChangeEvent(event) {
+    this.state.user[event.target.name] = event.target.value;
+    this.setState({ user: this.state.user });
+  }
+
+  /**
+   * toggleSignUp - Toggles between signin
+   * and signup pages
+   *
+   * @param {any} event -Dom event
+   *
+   * @memberOf SignUp
+   */
   toggleDisplay(event) {
     event.preventDefault();
     this.props.toggleSignUp(this.refs.signUpComponent);
   }
 
-  onChangeHandler(event) {
-    this.state.user[event.target.name] = event.target.value;
-    this.setState({user: this.state.user});
-  }
-
+  /**
+   * isValidEmail - Checks if the email
+   * follows a valid patter
+   *
+   * @param {string} value - the email
+   * to be validated
+   * @returns {boolean}
+   *
+   * @memberOf SignUp
+   */
   isValidEmail(value) {
     return /\w+@\w+\.\w+/g.test(value);
   }
 
+  /**
+   * isFormValid - Checks if the form
+   * is valid
+   *
+   * @returns {boolean}
+   *
+   * @memberOf SignUp
+   */
   isFormValid() {
     if (!this.state.confirmPasswordError
       && !this.state.emailError
@@ -46,74 +91,110 @@ export class SignUp extends Component {
     return false;
   }
 
+/**
+ * validateEmail -Calls isValidEmail
+ * to validate email
+ *
+ * @param {any} event -Dom
+ * @returns {boolean}
+ *
+ * @memberOf SignUp
+ */
   validateEmail(event) {
-    let value = event.target.value;
+    const value = event.target.value;
 
     if (this.isValidEmail(value)) {
-      return this.setState({emailError: false});
+      return this.setState({ emailError: false });
     }
 
-    return this.setState({emailError: true});
+    return this.setState({ emailError: true });
   }
 
+  /**
+   * confirmPassword -checks the two password
+   * inputs
+   *
+   * @returns {boolean}
+   *
+   * @memberOf SignUp
+   */
   confirmPassword() {
     if (this.state.user.password === this.state.user.confirmPassword) {
-      return this.setState({confirmPasswordError: false});
+      return this.setState({ confirmPasswordError: false });
     }
 
-    return this.setState({confirmPasswordError: true});
+    return this.setState({ confirmPasswordError: true });
   }
 
+  /**
+   * validatePassword - checks to see if
+   * is up to 6 characters
+   *
+   * @param {any} event
+   * @returns {state}
+   *
+   * @memberOf SignUp
+   */
   validatePassword(event) {
     const value = event.target.value;
 
     this.confirmPassword();
     if (/(\w|\W|\d|\S|\s){6,}/.test(value)) {
-      return this.setState({passwordError: false});
+      return this.setState({ passwordError: false });
     }
 
-    return this.setState({passwordError: true});
+    return this.setState({ passwordError: true });
   }
 
+  /**
+   * saveUser - Save the user
+   *
+   * @param {any} event
+   * @returns {boolean}
+   *
+   * @memberOf SignUp
+   */
   saveUser(event) {
     event.preventDefault();
     if (!this.isFormValid()) {
       return false;
     }
 
-    this.props.userActions.saveUserData(this.state.user, event);
+    return this.props.userActions.saveUserData(this.state.user, event);
   }
 
   render() {
-const displayLoader = this.props.stateProp.userState.displayLoader;
-const createUserError = this.props.stateProp.userState.createUserError;
-const roles = this.props.stateProp.roles.roles;
-  let NewRoles = [...roles];
-  NewRoles.splice(0, 1);
-console.log( 'select role',roles)
+    const displayLoader = this.props.stateProp.userState.displayLoader;
+    const UserError = this.props.stateProp.userState.UserError;
+    const roles = this.props.stateProp.roles.roles;
+    const NewRoles = [...roles];
+    NewRoles.splice(0, 1);
     return (
-      <div ref='signUpComponent' className='hide-element signup-container'>
-        <div className='signup-wrapper'>
+      <div ref="signUpComponent" className="hide-element signup-container">
+        <div className="signup-wrapper">
           <div>Sign up for free</div>
-          <div className='small-signup-text'>
+          <div className="small-signup-text">
             Create a free Kipa account
           </div>
         </div>
-        <div className='row'>
+        <div className="row">
           <SignUpForm
-            changeHandler={this.onChangeHandler}
-            saveAction={this.saveUser}
-            emailHasError={this.state.emailError}
-            emailIsValid={this.validateEmail}
-            passwordIsVslid={this.validatePassword}
+            changeEvent={this.onChangeEvent}
+            saveEvent={this.saveUser}
+            emailError={this.state.emailError}
+            validEmail={this.validateEmail}
+            validPassword={this.validatePassword}
             passwordHasError={this.state.passwordError}
-            matchPasswordError={this.state.confirmPasswordError}
-            errorMessage={createUserError}
+            matchError={this.state.confirmPasswordError}
+            errorMessage={UserError}
             showLoader={displayLoader}
             roles={NewRoles}
-            matchPassword={this.confirmPassword}/>
-          <a className='custom-link'
-             onClick={this.toggleDisplay}>
+            matchPassword={this.confirmPassword}
+          />
+          <a
+            className="custom-link"
+            onClick={this.toggleDisplay}
+          >
             Existing user? Sign in
           </a>
         </div>

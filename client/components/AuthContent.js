@@ -1,36 +1,41 @@
-import React, {PropTypes} from 'react';
-import SignUp from './SignUp.js';
-import SignIn from './SignIn.js';
+import React, { PropTypes } from 'react';
+import SignUp from './SignUp';
+import SignIn from './SignIn';
+
+const LoginImage = require('../images/auth.jpg');
+
 /**
  * This represents the the signin/signup page
- * @param {function} toggleSignUp - function that toggles the 
+ * @param {function} toggleSignUp - function that toggles the
  * signup and signin
- * @param {object} userActions - Object that represents the 
+ * @param {object} userActions - Object that represents the
  * user actions
  * @param {object} stateProp - Object that represents the state
  * of the component.
- * @return {ReactElement} 
+ * @return {ReactElement}
  */
-const AuthContent = ({toggleSignUp, userActions, stateProp}) => {
+const AuthContent = ({ toggleSignUp, userActions, stateProp }) => {
   return (
-    <div className='info-wrapper'>
-      <div className='form-container'>
+    <div className="info-wrapper">
+      <div className="form-container">
         <SignUp
           userActions={userActions}
           stateProp={stateProp}
-          toggleSignUp={toggleSignUp}/>
+          toggleSignUp={toggleSignUp}
+        />
         <SignIn
           userActions={userActions}
           stateProp={stateProp}
-          toggleSignUp={toggleSignUp}/>
+          toggleSignUp={toggleSignUp}
+        />
       </div>
-      <div className='login-image'>
-            <div className="card">
-              <div className="card-image">
-                <img src={require('../images/auth.jpg')} />
-                <span className="card-title">Jaxified</span>
-              </div>
-            </div>    
+      <div className="login-image">
+        <div className="card">
+          <div className="card-image">
+            <img alt="login" src={LoginImage} />
+            <span className="card-title">Jaxified</span>
+          </div>
+        </div>
       </div>
     </div>
   );
@@ -39,7 +44,7 @@ const AuthContent = ({toggleSignUp, userActions, stateProp}) => {
 AuthContent.propTypes = {
   userActions: PropTypes.object,
   stateProp: PropTypes.object,
-  toggleSignUp: PropTypes.func
+  toggleSignUp: PropTypes.func,
 };
 
 export default AuthContent;

@@ -1,30 +1,54 @@
-import * as ActionTypes from './ActionTypes.js';
-import {BaseApi} from '../api/BaseApi.js';
+import * as ActionTypes from './ActionTypes';
+import { BaseApi } from '../api/BaseApi';
 
 export function createUser(user) {
   return {
     type: ActionTypes.CREATE_USER,
-    data: user
+    data: user,
   };
-}export function UserDeleted() {
-  console.log('I deleted you')
+}
+
+export function UserDeleted() {
   return {
     type: ActionTypes.USER_DELETE_SUCCESS,
     data: {
-      Deleted: true
-    }
+      Deleted: true,
+    },
   };
 }
-export function updatePageWithEditData(userId) {
+
+export function editPage(userData) {
+  const editData = {
+    firstname: userData.firstname,
+    lastname: userData.lastname,
+  };
+  return {
+    type: ActionTypes.EDIT_PAGE,
+    data: {
+      editUserData: editData,
+    },
+  };
+}
+
+export function EditData(userId) {
   return (dispatch) => {
-    const url = '/api/users/' + userId;
+    const url = `/api/users/${userId}`;
     return BaseApi(null, 'get', url, function (apiResult) {
-      console.log('edit user data',apiResult)
-      return dispatch(preparePageForEdit(apiResult));
+      return dispatch(editPage(apiResult));
     });
   };
 }
-export function editUserSuccess() {
+
+export function VoidEditSuccess() {
+  return (dispatch) => {
+    dispatch({
+      type: ActionTypes.UPDATED_USER_DATA,
+      data: { editSuccess: false },
+    });
+  };
+}
+
+export function editSuccess() {
   return {
     type: ActionTypes.UPDATED_USER_DATA,
     data: {
@@ -32,73 +56,72 @@ export function editUserSuccess() {
       editSuccess: true,
       editUserData: {
         firstname: '',
-        lastname: ''
-      }
-    }
-  };
-}
-export function upadateUser(newUserData, userId) {
-  return (dispatch) => {
-    dispatch(updatingUserData());
-    const url = '/api/users/' + userId;
-    return BaseApi(newUserData, 'put', url, function () {
-      dispatch(editUserSuccess());
-    });
-  };
-}
-export function preparePageForEdit(userData) {
-  const editData = {
-    firstname: userData.firstname,
-    lastname: userData.lastname
-  }
-  console.log('user prepare for edit',editData)
-  return {
-    type: ActionTypes.PREPARE_EDIT_PAGE,
-    data: {
-      editUserData: editData
-    }
+        lastname: '',
+      },
+    },
   };
 }
 
-export function UserDeletedHandled() {
-  console.log('I deleted you and handled')
+export function updatingUserData() {
   return {
-    type: ActionTypes.USER_DELETE_HANDLED,
+    type: ActionTypes.UPDATING_USER_DATA,
     data: {
-      Deleted: false
-    }
+      editPreLoader: false,
+    },
   };
 }
+
+export function upadateUser(newUserData, userId) {
+  return (dispatch) => {
+    dispatch(updatingUserData());
+    const url = `/api/users/${userId}`;
+    return BaseApi(newUserData, 'put', url, function () {
+      dispatch(editSuccess());
+    });
+  };
+}
+
 
 export function savingUser() {
   return {
     type: ActionTypes.SAVING_USER,
     data: {
       displayLoader: '',
-      userCreated: false
-    }
+    },
   };
 }
 
-export function saveUserSuccess() {
-  console.log('Ending save')
+export function savedUser() {
   return {
-    type: ActionTypes.SAVE_USER_SUCCESS,
+    type: ActionTypes.USER_SUCCESS,
     data: {
       displayLoader: 'hide-element',
-      adminUser: true
-    }
+      CreateUser: true,
+      adminUser: true,
+    },
+  };
+}
+
+export function saveUserSuccess(dispatch) {
+  dispatch(savingUser);
+  return {
+    type: ActionTypes.USER_SUCCESS,
+    data: {
+      displayLoader: 'hide-element',
+      CreateUser: true,
+      adminUser: true,
+    },
   };
 }
 
 export function DefaultUserSuccess() {
-  console.log('defult save')
   return {
-    type: ActionTypes.SAVE_USER_SUCCESS,
+    type: ActionTypes.USER_SUCCESS,
     data: {
       displayLoader: 'hide-element',
-      adminUser: false
-    }
+      adminUser: false,
+      CreateUser: false,
+    },
   };
 }
 
@@ -106,17 +129,17 @@ export function UsersSuccess(Users) {
   return {
     type: ActionTypes.FETCH_USERS_SUCCESS,
     data: {
-      users: Users
-    }
+      users: Users,
+    },
   };
 }
 
 export function checkingUser() {
   return {
-    type: ActionTypes.CHECKING_USER,
+    type: ActionTypes.LOGIN_USER,
     data: {
-      displayLoader: ''
-    }
+      displayLoader: '',
+    },
   };
 }
 
@@ -126,84 +149,54 @@ export function loginSuccess(loginResult) {
     data: {
       shouldRedirect: true,
       displayLoader: 'hide-element',
-      userData: loginResult
-    }
+      userData: loginResult,
+    },
   };
 }
 
-export function activateSubmit() {
-  return {
-    type: ActionTypes.ACTIVATE_SUBMIT_BUTTON,
-    data: {
-      editFormState: false
-    }
-  };
-}
-
-export function userUpdataSuccess(newUserData) {
+export function userUpdated(newUserData) {
   return {
     type: ActionTypes.UPDATED_USER_DATA,
     data: {
       editPreLoader: true,
       userData: newUserData.user,
-      feedBack: 'Updated!!!',
+      AppInfo: 'Updated!!!',
       displayFeedBack: 'block',
-      feedBackColor: '#26a69a'
-    }
+      AppInfoColor: '#26a69a',
+    },
   };
 }
 
-export function userUpdateFailed() {
+export function updateFailed() {
   return {
-    type: ActionTypes.UPDATE_FAILED,
+    type: ActionTypes.USER_FAILED,
     data: {
       editPreLoader: true,
-      feedBack: 'Oops!!! An error occured.',
+      AppInfo: 'Oops!!! An error occured.',
       displayFeedBack: 'block',
-      feedBackColor: '#dd0404'
-    }
-  };
-}
-
-export function updatingUserData() {
-  return {
-    type: ActionTypes.UPDATING_USER_DATA,
-    data: {
-      editPreLoader: false
-    }
-  };
-}
-
-export function updatedUserData(newUserData, roles) {
-  return (dispatch) => {
-    if (newUserData.user) {
-      newUserData.user.role = roles[newUserData.user.role - 1];
-      return dispatch(userUpdataSuccess(newUserData));
-    }
-
-    return dispatch(userUpdateFailed());
+      AppInfoColor: '#dd0404',
+    },
   };
 }
 
 export function loginFailed(loginResult) {
-  console.log('Dispached',loginResult)
   return {
     type: ActionTypes.LOGIN_FAIL,
     data: {
       error: loginResult.message,
-      displayLoader: 'hide-element'
-    }
+      displayLoader: 'hide-element',
+    },
   };
 }
 
 export function saveUserFailed(ErrorMessage) {
   return {
-    type: ActionTypes.CREATE_USER_FAILED,
+    type: ActionTypes.USER_CREATE_FAILED,
     data: {
-      createUserError: ErrorMessage,
-      displayLoader: 'hide-element'
-    }
-  }
+      UserError: ErrorMessage,
+      displayLoader: 'hide-element',
+    },
+  };
 }
 
 export function checkLoginResult(loginData) {
@@ -219,32 +212,20 @@ export function checkLoginResult(loginData) {
   };
 }
 
-export function updateUserData(newUserData, id, roles) {
+export function saveUserData(user, login) {
   return (dispatch) => {
-    dispatch(updatingUserData());
-    const url = '/api/users/' + id;
-    return BaseApi(newUserData, 'put', url, function (apiResult) {
-      dispatch(updatedUserData(apiResult, roles));
-    });
-  };
-}
-
-export function saveUserData(user,login) {
-  return (dispatch) => {
-    dispatch(savingUser());
     const url = '/api/users/';
     return BaseApi(user, 'post', url, function (apiResult) {
       dispatch(createUser(apiResult));
       if (apiResult.success) {
         Materialize.toast('Account successfully created', 4000);
-        if(login === 'true'){
-          console.log('is it true now', login)
-          return dispatch(saveUserSuccess);
+        if (login === 'true') {
+          dispatch(fetchUsers());
+          return dispatch(saveUserSuccess(dispatch));
         } else {
           return dispatch(loginUser(user));
         }
       }
-      console.log('is it true failed', apiResult)
       return dispatch(saveUserFailed(apiResult.message));
     });
   };
@@ -259,6 +240,7 @@ export function loginUser(userData) {
     });
   };
 }
+
 export function fetchUsers() {
   return (dispatch) => {
     const url = '/api/users';
@@ -267,22 +249,22 @@ export function fetchUsers() {
     });
   };
 }
-export function createModalData(selectedUser) {
-  console.log('create modal data', selectedUser)
+
+export function ModalData(selectedUser) {
   return {
-    type: ActionTypes.CREATE_MODAL_FOR_DELETE,
+    type: ActionTypes.MODAL_FOR_DELETE,
     data: {
-      deleteUser: selectedUser
-    }
+      deleteUser: selectedUser,
+    },
   };
 }
+
 export function deleteUserAction(userId) {
   return (dispatch) => {
-    const url = '/api/users/' + userId;
+    const url = `/api/users/${userId}`;
     return BaseApi(null, 'delete', url, function (apiResult) {
-      console.log('apiResult delete ',apiResult)
-       dispatch(UserDeleted());
-       Materialize.toast('Account successfully deleted', 4000);
+      dispatch(UserDeleted());
+      Materialize.toast('Account successfully deleted', 4000);
       return dispatch(fetchUsers());
     });
   };

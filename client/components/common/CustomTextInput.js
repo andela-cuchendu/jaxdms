@@ -1,19 +1,20 @@
-import React, {PropTypes, Component} from 'react';
+import React, { PropTypes, Component } from 'react';
 
 
 /**
- * Represents the Input element
- * @class InputComponent
+ * Represents Text Inpunt
+ *
+ * @class CustomTextInput
  * @extends {Component}
  */
 class CustomTextInput extends Component {
 
 
   /**
-   * Creates an instance of InputComponent and set
+   * Creates an instance of this class and set
    * the inputClassName and errorMessage with empty
    * String
-   * 
+   *
    * @memberOf InputComponent
    */
   constructor() {
@@ -21,36 +22,34 @@ class CustomTextInput extends Component {
 
     this.state = {
       inputClassName: '',
-      errorMessage: ''
+      errorMessage: '',
     };
   }
 
-
   /**
-   * Sets className and errorMessage state 
-   * 
-   * @param {any} porp
-   * @return {void}
-   * 
+   * Sets className and errorMessage state
+   *
+   * @param {any} prop
+   *
    * @memberOf InputComponent
    */
   componentWillReceiveProps(porp) {
     if (porp.inputError) {
       this.setState({
         inputClassName: 'input-error',
-        errorMessage: this.props.errorMessage
+        errorMessage: this.props.errorMessage,
       });
     } else {
-      this.setState({inputClassName: '', errorMessage: ''});
+      this.setState({ inputClassName: '', errorMessage: '' });
     }
   }
 
 
   /**
    * Renders the component
-   * 
-   * @returns {ReactElement} 
-   * 
+   *
+   * @returns {ReactElement}
+   *
    * @memberOf InputComponent
    */
   render() {
@@ -67,13 +66,15 @@ class CustomTextInput extends Component {
           onKeyUp={this.props.validateFunction}
           className={`validate ${this.state.inputClassName}`}
           onChange={this.props.onChangeEvent}
-          required/>
+          required
+        />
         <label
           className={labelClass}
-          htmlFor={this.props.id}>
+          htmlFor={this.props.id}
+        >
           {this.props.label}
         </label>
-        <span className='error-span'>{this.state.errorMessage}</span>
+        <span className="error-span">{this.state.errorMessage}</span>
       </div>
     );
   }
@@ -89,7 +90,7 @@ CustomTextInput.propTypes = {
   errorMessage: PropTypes.string,
   validateFunction: PropTypes.func,
   value: PropTypes.string,
-  inputError: PropTypes.bool
+  inputError: PropTypes.bool,
 };
 
 export default CustomTextInput;

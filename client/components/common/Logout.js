@@ -1,11 +1,18 @@
-import React, {PropTypes} from 'react';
-import {Link} from 'react-router';
+import React, { PropTypes } from 'react';
+import { Link } from 'react-router';
 
-const Logout = ({UserStatus, LogoutEvent}) => {
-  let text = UserStatus ? 'LOGOUT' : 'SIGN IN';
+/**
+ * Represents the Logout
+ * @param {object} - Object passed as props
+ * used in building the logout html tags
+ * @return {htmlElements} - Html Elements
+ * representing this logout
+ */
+const Logout = ({ UserStatus, LogoutEvent }) => {
+  const text = UserStatus ? 'LOGOUT' : 'SIGN IN';
   return (
-    <li activeClassName='active'>
-      <Link onClick={LogoutEvent} to='#'>
+    <li activeClassName="active">
+      <Link onClick={LogoutEvent} to="#">
         {text}
       </Link>
     </li>
@@ -13,8 +20,8 @@ const Logout = ({UserStatus, LogoutEvent}) => {
 };
 
 Logout.propTypes = {
-  status: PropTypes.bool.isRequired,
-  logoutEvent: PropTypes.func.isRequired
+  UserStatus: PropTypes.bool.isRequired,
+  LogoutEvent: PropTypes.func.isRequired,
 };
 
 export default Logout;

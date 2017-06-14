@@ -1,31 +1,48 @@
-import React, {Component, PropTypes} from 'react';
-import {connect} from 'react-redux';
-import {bindActionCreators} from 'redux';
+import React, { Component, PropTypes } from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import * as RolesActions from '../actions/RolesActions';
 import * as UserActions from '../actions/UserAction';
-// import * as documentActions from '../actions/documentAction';
-import AuthContent from './AuthContent.js';
+import AuthContent from './AuthContent';
 
+/**
+ * Represents the Login and SignUp pages
+ *
+ * @class Authentication
+ * @extends {Component}
+ */
 export class Authentication extends Component {
+  /**
+   * Creates an instance of Authentication.
+   * and bind the signup toggle
+   * @memberOf Authentication
+   */
   constructor() {
     super();
-    this.state = {
-      docData: {
-        title: '',
-        content: '',
-        access: []
-      },
-      searchTerm: ''
-    };    
     this.toggleSignUp = this.toggleSignUp.bind(this);
   }
 
+  /**
+   * componentWillMount - Ensures we do not
+   * need this page if user is already signed
+   * in
+   *
+   * @memberOf Authentication
+   */
   componentWillMount() {
     if (window.localStorage.getItem('token')) {
       this.context.router.push('/docs');
     }
   }
 
+  /**
+   * toggleSignUp - Toggles between signin
+   * and signup pages
+   *
+   * @param {any} dom 
+   *
+   * @memberOf Authentication
+   */
   toggleSignUp(dom) {
     $(dom).slideUp('slow', function () {
       if (dom.className === 'signin-container') {
@@ -36,19 +53,18 @@ export class Authentication extends Component {
   }
 
   render() {
-    console.log('bbbbbb',this.props.stateProp)
     return (
       <div>
         <nav>
           <div className="nav-wrapper custom-black">
-            <div className='logo-name left white-text  left-align'>Jaxmdms</div>
+            <div className="logo-name left white-text  left-align">Jaxmdms</div>
           </div>
-        </nav>        
+        </nav>
         <AuthContent
           {...this.props}
           toggleSignUp={this.toggleSignUp}
         />
-        </div>
+      </div>
     );
   }
 }
@@ -57,24 +73,22 @@ Authentication.contextTypes = {
 };
 
 
-  const mapDispatchToProps = (dispatch) => {
-    return {
-      userActions: bindActionCreators(UserActions, dispatch),
-      // documentActions: bindActionCreators(documentActions, dispatch),
-      // searchActions: bindActionCreators(searchActions, dispatch),
-      roleActions: bindActionCreators(RolesActions, dispatch)
-    };
+const mapDispatchToProps = (dispatch) => {
+  return {
+    userActions: bindActionCreators(UserActions, dispatch),
+    roleActions: bindActionCreators(RolesActions, dispatch),
   };
+};
 
-  const mapStateToProps = (state) => {
-    return {
-      stateProp: {
-        userState: state.Users,
-        userDocs: null,
-        roles: state.Roles
-      }
-    };
+const mapStateToProps = (state) => {
+  return {
+    stateProp: {
+      userState: state.Users,
+      userDocs: null,
+      roles: state.Roles,
+    },
   };
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Authentication);
 

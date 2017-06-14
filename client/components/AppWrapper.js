@@ -1,14 +1,32 @@
-import React, {Component, PropTypes} from 'react';
-import {connect} from 'react-redux';
-import {bindActionCreators} from 'redux';
+import React, { Component, PropTypes } from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import * as RolesActions from '../actions/RolesActions';
 import * as UserActions from '../actions/UserAction';
 import * as DocActions from '../actions/DocActions';
 import * as SearchActions from '../actions/SearchAction';
-import SideBar from './SideBar.js';
+import SideBar from './SideBar';
 import Header from './common/Header';
 
-export const AppWrapper = (ChildComponent,path) => {
+
+/**
+ *
+ * Represents the AppWrapper. This
+ * wrapps the connect feature
+ * for other components to connect.
+ *
+ * @param {Component} - React component that conncts
+ * to the store via this wrapper
+ */
+export const AppWrapper = (ChildComponent) => {
+
+  /**
+   *
+   * @class AppContainer
+   * @extends {Component}
+   *
+   * @description -sets the state with empty data
+   */
   class AppContainer extends Component {
     constructor() {
       super();
@@ -16,199 +34,287 @@ export const AppWrapper = (ChildComponent,path) => {
         docData: {
           title: '',
           content: '',
-          access: []
+          access: [],
         },
-        searchTerm: ''
+        query: '',
       };
-      
 
-      this.logout             = this.logout.bind(this);
-      this.fabClick           = this.fabClick.bind(this);
-      this.searchDoc          = this.searchDoc.bind(this);
-      this.deleteDoc          = this.deleteDoc.bind(this);
-      this.confirmDelete      = this.confirmDelete.bind(this);
-      this.OnchangeTinymce    = this.OnchangeTinymce.bind(this);
-      this.onChangeHandler    = this.onChangeHandler.bind(this);
-      this.onClickCheckBox    = this.onClickCheckBox.bind(this);
-      this.modalSubmitAction  = this.modalSubmitAction.bind(this);
+      this.plusClick = this.plusClick.bind(this);
+      this.deleteDoc = this.deleteDoc.bind(this);
+      this.confirmDelete = this.confirmDelete.bind(this);
+      this.OnchangeTinymce = this.OnchangeTinymce.bind(this);
+      this.onChangeEvent = this.onChangeEvent.bind(this);
+      this.modalSubmitAction = this.modalSubmitAction.bind(this);
+      this.searchDoc = this.searchDoc.bind(this);
       this.SharedClick = this.SharedClick.bind(this);
-      this.RoleClick  = this.RoleClick.bind(this);
-      this.DocClick  = this.DocClick.bind(this);
+      this.RoleClick = this.RoleClick.bind(this);
+      this.logout = this.logout.bind(this);
+      this.DocClick = this.DocClick.bind(this);
       this.deleteUser = this.deleteUser.bind(this);
     }
 
+    /**
+     * componentWillMount - Called when the app
+     * is about to mount. Here, we call the document action
+     *
+     * @memberOf AppContainer
+     */
     componentWillMount() {
-
       if (window.localStorage.getItem('token')) {
-        let DocType = this.props.location.pathname.substring(1,5);
-        if(DocType.includes('docs')){
+        let DocType = this.props.location.pathname.substring(1, 5);
+        if (DocType.includes('docs')) {
           DocType = 'own';
         }
-      this.props.documentActions
-          .getComponentResources(this.props.stateProp.userState.userData,DocType);        
-      }else {
+        this.props.documentActions
+          .getComponentResources(this.props.stateProp.userState.userInfo, DocType);
+      } else {
         this.context.router.push('/auth');
       }
     }
+
+    /**
+     * componentWillReceiveProps - Called
+     * when the compoenent is reciving props.
+     * @param {any} nextProps - Props from the store
+     *
+     * @memberOf AppContainer
+     */
     componentWillReceiveProps(nextProps) {
-      const {docSuccess} = this.props.stateProp.userDocs;
-      const {userSuccess} = this.props.stateProp.userState.userCreated;
-      if (userSuccess) $('#createModal').closeModal();
+      const { docSuccess } = this.props.stateProp.userDocs;
       if (!docSuccess) $('#createModal').closeModal();
-
       if (nextProps.stateProp.userDocs.redirect) {
+        this.props.documentActions.DevoidUser();
+        window.localStorage.removeItem('token');
         this.context.router.push('/auth');
       }
     }
-    SharedClick (){
-      this.props.documentActions
-          .getComponentResources(this.props.stateProp.userState.userData,'shar'); 
-          this.context.router.push('/shar');
-    }
-    RoleClick (){
-      this.props.documentActions
-          .getComponentResources(this.props.stateProp.userState.userData,'role'); 
-          this.context.router.push('/role');
-    }
-    DocClick (){
-      this.props.documentActions
-          .getComponentResources(this.props.stateProp.userState.userData,'own'); 
-          this.context.router.push('/docs');
-    }        
 
+    /**
+     * Input change event
+     *
+     * @param {any} event - contains the calling
+     * element and value
+     *
+     * @memberOf AppContainer
+     */
+    onChangeEvent(event) {
+      event.preventDefault();
+      const { name, value } = event.target;
+      this.state.docData[name] = value;
+    }
+
+    /**
+     * Delete document event
+     *
+     * @param {any} event - contains the delete
+     * element and value
+     *
+     * @memberOf AppContainer
+     */
+    deleteDoc(event) {
+      event.preventDefault();
+      const { id: docId } = this.props.stateProp.userDocs.deleteDoc;
+      this.props.documentActions.deleteDocAction(docId);
+      $('#deleteDocModal').closeModal();
+    }
+
+    /**
+     * Delete User event
+     *
+     * @param {any} event - contains the delete
+     * element and value
+     *
+     * @memberOf AppContainer
+     */
+    deleteUser(event) {
+      event.preventDefault();
+      const userId = this.props.stateProp.userState.deleteUser.id;
+      this.props.userActions.deleteUserAction(userId);
+      $('#deleteDocModal').closeModal();
+    }
+
+    /**
+     * Called when the own document
+     * link is clicked. Calls action to get own documents
+     *
+     * @memberOf AppContainer
+     */
+    DocClick() {
+      this.props.documentActions
+        .getComponentResources(this.props.stateProp.userState.userInfo, 'own');
+      this.context.router.push('/docs');
+    }
+
+    /**
+     * Called when the logout
+     * link is clicked.
+     *
+     * @param {any} event
+     *
+     * @memberOf AppContainer
+     */
+    logout(event) {
+      event.preventDefault();
+      window.localStorage.removeItem('token');
+      window.localStorage.clear();
+      this.context.router.push('/auth');
+    }
+    /**
+     * Called when the Role document
+     * link is clicked. Calls action to get role documents
+     *
+     * @memberOf AppContainer
+     */
+    RoleClick() {
+      this.props.documentActions
+        .getComponentResources(this.props.stateProp.userState.userInfo, 'role');
+      this.context.router.push('/role');
+    }
+
+    /**
+     * Called when the search query
+     * is submitted.
+     *
+     * @param {any} event - contains the search
+     * element and value
+     *
+     * @memberOf AppContainer
+     */
     searchDoc(event) {
-      console.log('in search')
-      let searchValue = event.target.value;
-      const roleId = this.props.stateProp.userState.userData.role;
+      const searchValue = event.target.value;
+      const roleId = this.props.stateProp.userState.userInfo.role;
 
       if (event.key === 'Enter') {
-        console.log('search any' ,roleId)
-        this.props.searchActions.searchDocument(searchValue, roleId);
+        this.props.searchActions.searchDoc(searchValue, roleId);
         this.context.router.push({
           pathname: '/docs',
           query: {
-            q: searchValue
-          }
+            q: searchValue,
+          },
         });
       }
     }
 
-    logout(event) {
-      event.preventDefault();
-      window.localStorage.removeItem('token');
-      window.localStorage.clear()
-      window.location.reload();
-      this.context.router.push('/auth');
+    /**
+     * Called when the Public document
+     * link is clicked. Calls action to get public document
+     *
+     * @memberOf AppContainer
+     */
+    SharedClick() {
+      this.props.documentActions
+        .getComponentResources(this.props.stateProp.userState.userInfo, 'shar');
+      this.context.router.push('/shar');
     }
 
-    deleteDoc(event) {
-      event.preventDefault();
-      const {id: docId} = this.props.stateProp.userDocs.deleteDoc;
-      console.log('deletedoc', docId)
-      this.props.documentActions.deleteDocAction(docId);
-      $('#deleteDocModal').closeModal();
-    }
-    deleteUser(event) {
-      event.preventDefault();
-      const userId = this.props.stateProp.userState.deleteUser.id;
-      console.log('deleteUser', userId)
-      this.props.userActions.deleteUserAction(userId);
-      $('#deleteDocModal').closeModal();
-    }    
-
-    onChangeHandler(event) {
-      event.preventDefault();
-      const {name, value} = event.target;
-      this.state.docData[name] = value;
-    }
-
+    /**
+     * Called when user is deleting document
+     *
+     * @param {any} selectedDocumentData -Document data to
+     * be deleted
+     * @param {any} user - Specifying user action
+     *
+     * @memberOf AppContainer
+     */
     confirmDelete(selectedDocumentData, user) {
-      console.log('User please',this.props)
-      if(user != undefined) {
-        this.props.userActions.createModalData(selectedDocumentData);
+      if (user !== undefined) {
+        this.props.userActions.ModalData(selectedDocumentData);
       } else {
-        this.props.documentActions.createModalData(selectedDocumentData);
+        this.props.documentActions.ModalData(selectedDocumentData);
       }
-      
       $('#deleteDocModal').openModal();
     }
 
+    /**
+     * Represents tinymce change
+     * is submitted.
+     *
+     * @param {any} event - contains tinymce
+     * element and value
+     *
+     * @memberOf AppContainer
+     */
     OnchangeTinymce(event) {
       const value = event.target.getContent();
       this.state.docData.content = value;
     }
 
+    /**
+     * Called when user creation modal
+     * is submitted
+     *
+     * @param {any} event - contains form
+     * element and value
+     *
+     * @memberOf AppContainer
+     */
     modalSubmitAction(event) {
       event.preventDefault();
-      const {docData} = this.state;
-      const username = this.props.stateProp.userState.userData.username;
+      const { docData } = this.state;
+      const username = this.props.stateProp.userState.userInfo.username;
 
       docData.access = docData.access.toString();
       this.setState({
         docData: {
           title: '',
           content: '',
-          access: []
-        }
+          access: [],
+        },
       });
 
       this.props.documentActions.createDoc(docData, username);
       event.currentTarget.reset();
     }
 
-
-    onClickCheckBox(event) {
-      const value = event.target.value;
-      const {access} = this.state.docData;
-
-      if (access.indexOf(value) < 0) {
-        access.push(value);
-        return this.state.docData.access = access;
-      }
-
-      access.splice(access.indexOf(value), 1);
-      this.state.docData.access = access;
-    }
-
-    fabClick(event) {
+    /**
+     * Represents the plus Icon click
+     *
+     * @param {any} event - contains the icon
+     * element and value
+     *
+     * @memberOf AppContainer
+     */
+    plusClick(event) {
       event.preventDefault();
       this.setState({
         docData: {
           title: '',
           content: '',
-          access: []
-        }
+          access: [],
+        },
       });
       $('#createModal').openModal();
     }
-    
+
     render() {
-      let User = this.props.stateProp.userState.userData;   
-      status = (Object.keys(User).length > 0);
-      return (
-        <div>
-        <Header 
-          LogoutEvent={this.logout}
-          UserStatus ={status}
-          SearchEvent={this.searchDoc}
-         User={User} />
-        <SideBar 
-        userData={User}
-        SharedClick={this.SharedClick}
-        RoleClick={this.RoleClick}
-        DocClick={this.DocClick}
-        logout={this.logout}/>
-        <ChildComponent
-          deleteDoc={this.deleteDoc}
-          onChangeHandler={this.onChangeHandler}
-          confirmDelete={this.confirmDelete}
-          OnchangeTinymce={this.OnchangeTinymce}
-          modalSubmitAction={this.modalSubmitAction}
-          onClickCheckbox={this.onClickCheckBox}
-          fabClick={this.fabClick}
-          deleteUser={this.deleteUser}
-          {...this.props}/>
-          </div>
+      const User = this.props.stateProp.userState.userInfo;
+      const status = (Object.keys(User).length > 0);
+      return ( 
+        <div >
+          <Header
+            LogoutEvent={this.logout}
+            UserStatus={status}
+            SearchEvent={this.searchDoc}
+            User={User}
+          />
+          <SideBar
+            userInfo={User}
+            SharedClick={this.SharedClick}
+            RoleClick={this.RoleClick}
+            DocClick={this.DocClick}
+            logout={this.logout}
+          />
+          <ChildComponent
+            deleteDoc={this.deleteDoc}
+            onChangeEvent={this.onChangeEvent}
+            confirmDelete={this.confirmDelete}
+            OnchangeTinymce={this.OnchangeTinymce}
+            modalSubmitAction={this.modalSubmitAction}
+            plusClick={this.plusClick}
+            deleteUser={this.deleteUser}
+            {...this.props}
+          />
+        </div>
       );
     }
   }
@@ -227,7 +333,7 @@ export const AppWrapper = (ChildComponent,path) => {
       documentActions: bindActionCreators(DocActions, dispatch),
       userActions: bindActionCreators(UserActions, dispatch),
       searchActions: bindActionCreators(SearchActions, dispatch),
-      roleActions: bindActionCreators(RolesActions, dispatch)
+      roleActions: bindActionCreators(RolesActions, dispatch),
     };
   };
 
@@ -236,8 +342,8 @@ export const AppWrapper = (ChildComponent,path) => {
       stateProp: {
         userState: state.Users,
         userDocs: state.Doc,
-        roles: state.Roles
-      }
+        roles: state.Roles,
+      },
     };
   };
 

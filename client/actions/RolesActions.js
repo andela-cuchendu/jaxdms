@@ -1,10 +1,10 @@
 import * as ActionTypes from './ActionTypes';
-import {BaseApi} from '../api/BaseApi';
+import { BaseApi } from '../api/BaseApi';
 
 export function GetRolesSuccess(RolesData) {
   return {
     type: ActionTypes.LOAD_ROLES_SUCCESS,
-    data: RolesData
+    data: RolesData,
   };
 }
 

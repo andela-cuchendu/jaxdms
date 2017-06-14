@@ -1,6 +1,12 @@
 import React from 'react';
-import {AppWrapper} from './Appwrapper';
+import { AppWrapper } from './AppWrapper';
 
+/**
+ * Represents the NotFound page
+ *
+ * @class NotFound
+ * @extends {React.Component}
+ */
 class NotFound extends React.Component {
   render() {
     return (

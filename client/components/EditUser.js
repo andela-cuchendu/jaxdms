@@ -1,8 +1,13 @@
-import React, {Component, PropTypes} from 'react';
-import {AppWrapper} from './Appwrapper';
+import React, { Component, PropTypes } from 'react';
+import { AppWrapper } from './AppWrapper';
 import EditUserForm from './EditUserForm';
 
-
+/**
+ * Represents the Edit User
+ *
+ * @class EditUser
+ * @extends {Component}
+ */
 export class EditUser extends Component {
   constructor() {
     super();
@@ -11,71 +16,93 @@ export class EditUser extends Component {
       lastname: '',
     };
 
-    this.submitForm             = this.submitForm.bind(this);
-    this.onChangeHandler        = this.onChangeHandler.bind(this);
+    this.submitForm = this.submitForm.bind(this);
+    this.onChangeEvent = this.onChangeEvent.bind(this);
   }
 
-  componentWillMount() { 
-    let seletedUser = this.props.stateProp.userState.editUserData;
-    const {firstname, lastname} = seletedUser;
-    console.log('user will mount', this.props.params)
-    this.props.userActions.updatePageWithEditData(parseInt(this.props.params.id));
-    this.setState({firstname, lastname});
+  /**
+   * componentWillMount
+   *
+   *
+   * @memberOf EditUser
+   */
+  componentWillMount() {
+    const seletedUser = this.props.stateProp.userState.editUserData;
+    const { firstname, lastname } = seletedUser;
+    this.props.userActions.EditData(parseInt(this.props.params.id));
+    this.setState({ firstname, lastname });
   }
 
+  /**
+   * componentWillReceiveProps
+   *
+   * @param {any} nextProps - Props from store
+   *
+   * @memberOf EditUser
+   */
   componentWillReceiveProps(nextProps) {
-    // const {
-    //   editSuccess,
-    //   editUserData
-    // } = nextProps.stateProp.userState;
-const editUserData = nextProps.stateProp.userState.editUserData;
-const editSuccess = nextProps.stateProp.userState.editSuccess;
+    const editUserData = nextProps.stateProp.userState.editUserData;
+    const editSuccess = nextProps.stateProp.userState.editSuccess;
     this.state = {
       firstname: editUserData.firstname,
-      lastname: editUserData.lastname
+      lastname: editUserData.lastname,
     };
 
     if (editSuccess) {
+      this.props.userActions.VoidEditSuccess();
       Materialize.toast('User updated', 4000);
       this.context.router.push('/user');
     }
   }
 
-
-  onChangeHandler(event) {
-    const {name, value} = event.target;
+  /**
+   * onChangeEvent - Called when input
+   * elemets change
+   *
+   * @param {any} event -Dom event
+   *
+   * @memberOf EditUser
+   */
+  onChangeEvent(event) {
+    const { name, value } = event.target;
     this.state[name] = value;
   }
 
+  /**
+   * submitForm - Called when the edit
+   * document form is submited
+   *
+   * @param {any} event -Dom Event
+   *
+   * @memberOf EditUser
+   */
   submitForm(event) {
     event.preventDefault();
     this.props.userActions.upadateUser(this.state, this.props.params.id);
   }
+
   render() {
-    console.log('tired really',this.props.stateProp.userState.editUserData )
-const EditProp = this.props.stateProp.userState.editUserData;  
-const firstname =  EditProp.firstname;
-const lastname = EditProp.lastname;
-  
+    const EditProp = this.props.stateProp.userState.editUserData;
+    const firstname = EditProp.firstname;
+    const lastname = EditProp.lastname;
     const {
       userDocs: {
-        editPreLoader
-      }
+        editPreLoader,
+      },
     } = this.props.stateProp;
-
 
     return (
       <div>
-        <div className='content-container'>
-          <div className='header-class'>Edit Document</div> 
-        <EditUserForm
+        <div className="content-container">
+          <div className="header-class">Edit User</div>
+          <EditUserForm
             preloader={editPreLoader}
             firstname={firstname}
             lastname={lastname}
             submitAction={this.submitForm}
-            changeHandler={this.onChangeHandler}
+            changeEvent={this.onChangeEvent}
             formDefaultData={EditProp}
-          />             
+          />
         </div>
       </div>
     );
@@ -87,7 +114,7 @@ EditUser.contextTypes = {
 };
 
 EditUser.propTypes = {
-  onChangeHandler: PropTypes.func,
+  onChangeEvent: PropTypes.func,
   stateProp: PropTypes.object,
   params: PropTypes.object,
   actions: PropTypes.object,

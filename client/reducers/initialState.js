@@ -1,57 +1,55 @@
 export const InitialState = {
-  success: false,
   error: '',
-  displayLoader: 'hide-element',
-  userCreated: false,
-  createUserError: '',
+  query: '',
+  CreateUser: false,
+  UserError: '',
   shouldRedirect: false,
-  userData: {},
+  userInfo: {},
   users: {},
   adminUser: false,
   selectedUserData: {},
   displayFeedBack: 'none',
-  feedBack: 'Oops!!! An error occured.',
-  feedBackColor: '#dd0404',
+  AppInfo: 'Error occured while proccesing',
+  AppInfoColor: '#D90707',
   editPreLoader: true,
   editFormState: true,
+  success: false,
   docs: [],
-  sharedDocs: {
-    doc: []
+  publicDocs: {
+    doc: [],
   },
   viewDoc: {
     title: '',
     content: '',
     access: '',
-    creator: ''
+    creator: '',
   },
   docSuccess: false,
   editUserData: {
     firstname: '',
-    lastname: ''
+    lastname: '',
   },
-  editDocumentData: {
+  displayLoader: 'hide-element',
+  docEdit: {
     title: '',
     content: '',
-    access: []
+    access: [],
   },
   Deleted: false,
   deleteDoc: {
     title: '',
     content: '',
-    access: []
+    access: [],
   },
   deleteUser: {
     username: '',
-    id: 0
+    id: 0,
   },
   editSuccess: false,
   search: [],
   lazyLoading: false,
-  fullOwnedDoc: false,
   redirect: false,
-  header: 'MY DOCUMENTS',
   roles: [],
   refreshed: true,
   updateSearch: false,
-  searchTerm: ''
 };

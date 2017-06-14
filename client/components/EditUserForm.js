@@ -1,54 +1,65 @@
-import React, {Component, PropTypes} from 'react';
-import CustomSelect from './common/CustomSelect';
+import React, { PropTypes } from 'react';
+import { Input, Row } from 'react-materialize';
 import Preloader from './common/Spinner';
-import {Input, Row} from 'react-materialize';
 
+/**
+ * Represents the Edit User Form
+ *
+ * @return {htmlelement} returns form
+ * element
+ */
 const EditUserForm = ({
   preloader,
   firstname,
   lastname,
   submitAction,
-  changeHandler,
+  changeEvent,
 }) => {
 
   if (firstname.length) {
     return (
-      <div className='edit-doc-form'>
+      <div className="edit-doc-form">
         <form onSubmit={submitAction}>
           <Row>
             <Input
               s={6}
-              name='firstname'
-              id='firstname'
-              label='Firstname'
+              name="firstname"
+              id="firstname"
+              label="Firstname"
               validate
               defaultValue={firstname}
-              onChange={changeHandler}/>
+              onChange={changeEvent}
+            />
           </Row>
-          <Row className='left-padding'>
+          <Row className="left-padding">
             <Input
               s={6}
-              name='lastname'
-              id='lastname'
-              label='Lastname'
+              name="lastname"
+              id="lastname"
+              label="Lastname"
               validate
               defaultValue={lastname}
-              onChange={changeHandler}/>
+              onChange={changeEvent}
+            />
           </Row>
           <span
-            className='edit-user-error'></span>
+            className="edit-user-error"
+          />
           <Preloader
             showLoader={preloader}
-            size='small'
-            position='left'/>
+            size="small"
+            position="left"
+          />
           <button
-            className='btn custom-update-btn right'>Update
+            className="btn custom-update-btn right"
+          >
+            Update
           </button>
         </form>
       </div>
     );
   } else {
-    return (<div></div>);
+    return (<div />);
   }
 };
 
@@ -57,7 +68,7 @@ EditUserForm.propTypes = {
   firstname: PropTypes.string,
   lastname: PropTypes.string,
   submitAction: PropTypes.func,
-  changeHandler: PropTypes.func
+  changeEvent: PropTypes.func
 };
 
 export default EditUserForm;

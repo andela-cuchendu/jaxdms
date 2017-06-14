@@ -1,5 +1,5 @@
 import * as actionTypes from '../actions/ActionTypes';
-import {InitialState} from './InitialState';
+import { InitialState } from './InitialState';
 
 export default function roleReducer(state = InitialState, action) {
   switch (action.type) {

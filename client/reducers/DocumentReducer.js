@@ -1,64 +1,45 @@
-import * as actionTypes from '../actions/ActionTypes.js';
-import {InitialState} from './InitialState';
+import * as actionTypes from '../actions/ActionTypes';
+import { InitialState } from './InitialState';
 
 export default function docReducer(state = InitialState, action) {
   switch (action.type) {
     case actionTypes.DOC_DELETE_SUCCESS:
-      return Object.assign({}, state, action.data);  
+      return Object.assign({}, state, action.data);
     case actionTypes.DOC_DELETE_HANDLED:
-      return Object.assign({}, state, action.data);          
-    case actionTypes.GETTING_USER_DOCS:
+      return Object.assign({}, state, action.data);
+    case actionTypes.USER_GETTING_DOCS:
       return Object.assign({}, state);
-    case actionTypes.USER_DOCS_SUCCESS:
-      return Object.assign({}, state, action.data);
-    case actionTypes.ADD_DOC_DETAILS:
-      return Object.assign({}, state, action.data);
-    case actionTypes.SHARED_DOCUMENTS:
-      return Object.assign({}, state, action.data);
-    case actionTypes.CREATING_DOC:
-      return Object.assign({}, state, action.data);
-    case actionTypes.CREATE_DOC_SUCCESS:
-      return Object.assign({}, state, action.data);
-    case actionTypes.DELETE_DOC_SUCCESS:
-      return Object.assign({}, state, action.data);
-    case actionTypes.PREPARE_EDIT_PAGE:
-      return Object.assign({}, state, action.data);
-    case actionTypes.UPDATE_STORE_WITH_NEW_DOC:
-      return Object.assign({}, state, {
-        docs: [...action.data.newDoc, ...state.docs]
-      }, {
-        docSuccess: action.data.successState
-      });
-
-    case actionTypes.ADDING_MORE_DOC_TO_STORE:
-      return Object.assign({}, state, action.data);
-    case actionTypes.ADD_MORE_SHARED_DOCS:
-      return Object.assign({}, state, {
-          sharedDocs: {
-            doc: [...state.sharedDocs.doc, ...action.data.docs]
-          },
-          lazyLoading: action.data.lazyLoading
-        }
-      );
-    case actionTypes.ADD_MORE_DOC_TO_STORE:
-      return Object.assign({}, state, {
-        docs: [...state.docs, ...action.data.docs]
-      }, {
-        lazyLoading: action.data.lazyLoading
-      });
-    case actionTypes.UPDATE_SEARCH_RESULT:
+    case actionTypes.DOC_SUCCESS_CREATE:
       return Object.assign({}, state, action.data);
     case actionTypes.SEARCH_COMPLETED:
       return Object.assign({}, state, action.data);
-    case actionTypes.UPDATING_DOC_DATA:
+    case actionTypes.DOCS_USER_SUCCESS:
       return Object.assign({}, state, action.data);
-    case actionTypes.UPDATED_DOCUMENT_DATA:
+    case actionTypes.DOC_DETAILS_ADD:
       return Object.assign({}, state, action.data);
-    case actionTypes.REDIRECT_USER:
+    case actionTypes.PUBLIC_DOCUMENTS:
       return Object.assign({}, state, action.data);
-    case actionTypes.CREATE_MODAL_FOR_DELETE:
+    case actionTypes.CREATING_DOC:
+      return Object.assign({}, state, action.data);
+    case actionTypes.EDIT_PAGE:
+      return Object.assign({}, state, action.data);
+    case actionTypes.UPDATE_STORE_WITH_NEW_DOC:
+      return Object.assign({}, state, {
+        docs: [...action.data.newDoc, ...state.docs],
+      }, {
+        docSuccess: action.data.successState,
+      });
+    case actionTypes.MODAL_FOR_DELETE:
       return Object.assign({}, state, action.data);
     case actionTypes.SEARCHING_DOCUMENT:
+      return Object.assign({}, state, action.data);
+    case actionTypes.UPDATE_SEARCH_RESULT:
+      return Object.assign({}, state, action.data);
+    case actionTypes.UPDATING_DOC_DATA:
+      return Object.assign({}, state, action.data);
+    case actionTypes.UPDATED_DOCUMENT:
+      return Object.assign({}, state, action.data);
+    case actionTypes.REDIRECT_USER:
       return Object.assign({}, state, action.data);
     default:
       return state;

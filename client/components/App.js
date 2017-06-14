@@ -1,6 +1,12 @@
-import React, {PropTypes} from 'react';
-import {connect} from 'react-redux';
+import React, { PropTypes } from 'react';
 
+/**
+ *
+ * @class App
+ * @extends {React.Component}
+ * @description Represents the APP.
+ * From here every other componenet is called
+ */
 class App extends React.Component {
   render() {
     return (

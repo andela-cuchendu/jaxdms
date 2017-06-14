@@ -1,4 +1,5 @@
 import * as request from 'superagent';
+
 export function BaseApi(data, type, url, callBack) {
   request[type](url)
     .send(data)
@@ -7,7 +8,6 @@ export function BaseApi(data, type, url, callBack) {
       if (result) {
         return callBack(result.body);
       }
-
       return callBack(result);
     });
 }
