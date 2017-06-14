@@ -1,4 +1,4 @@
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 const Users = require('../models').Users;
 const Documents = require('../models').Documents;
 const _ = require('underscore');

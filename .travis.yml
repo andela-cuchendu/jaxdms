@@ -1,12 +1,21 @@
-language: node_js
-node_js:
+sudo: required
+dist: trusty
+
+language:
+  - node_js
   - "6"
+
+node_js:
+  - node
+
 services:
-  - mongodb
+  - postgresql
+
+before_script:
+  - psql -c 'create database dms;' -U andeladeveloper
+
 script:
-  -  npm test
+  - npm test
+
 after_success:
-  - npm run coverage
-addons:
-    code_climate:
-        repo_token: f5e9741dc694d6296573fc2bcf67456a6f5b832729f364467b8c5c9a7d6ab3b6
+- npm run coveralls

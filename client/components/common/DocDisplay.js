@@ -72,7 +72,7 @@ const DocDisplay = ({
         <span className="card-title grey-text text-darken-4">{cardTitle}
           <i className="material-icons right">close</i>
         </span>
-        <p dangerouslySetInnerHTML={{ __html: cardContent }}/>
+        <p dangerouslySetInnerHTML={{ __html: cardContent }} />
       </div>
     </div>
   );

@@ -3,7 +3,7 @@ import * as Tools from '../controllers/Tools';
 
 describe('Tools: ', () => {
   const expect = require('expect');
-  const bcrypt = require('bcrypt');
+  const bcrypt = require('bcryptjs');
   const jwt = require('jsonwebtoken');
   let token;
   const AppSecret = 'thisisoursecret';
