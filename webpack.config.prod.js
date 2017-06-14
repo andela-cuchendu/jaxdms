@@ -68,7 +68,11 @@ export default {
       {
         test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
         loader: 'url?limit=10000&mimetype=image/svg+xml'
-      }
+      },
+      {
+        test: /\.sass$/,
+        loaders: ['style-loader', 'css-loader', 'sass-loader'],
+      },     
     ]
   }
 };
