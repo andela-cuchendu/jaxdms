@@ -16,9 +16,3 @@ before_script:
   - psql -c 'create database travis;' -U postgres
   - dropdb --if-exists travis && createdb travis
   - NODE_ENV=test npm run migrate:test
-  - npm run coveralls
-after_success:
-- npm run coveralls
-
-after_failure:
-- npm run coveralls
