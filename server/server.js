@@ -13,10 +13,10 @@
     extended: false,
   }));
 
-  // const isProduction = process.env.NODE_ENV === 'development';
+  const isProduction = process.env.NODE_ENV === 'development';
 
-  if (process.env.NODE_ENV === 'development') {
-    require('dotenv').load();
+  if (!isProduction) {
+    require('dotenv').config();
   }
 
   dms.set('superSecret', process.env.SECRET);
