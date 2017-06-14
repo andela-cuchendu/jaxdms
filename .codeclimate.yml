@@ -1,8 +1,12 @@
-languages:
-  JavaScript: true
+engines:
+  duplications:
+    enabled: false
+    config:
+      languages:
+        - javascript
 ratings:
-   paths:
-     - '**.js'
+  paths:
+  - "server/**/*.js"
+  - "client/**/*.js"
 exclude_paths:
-  - 'tests/'
-  - 'tools'
+- tools

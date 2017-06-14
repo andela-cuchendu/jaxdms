@@ -83,7 +83,7 @@ const Header = ({ LogoutEvent, UserStatus, SearchEvent, User }) => {
               </li>
               {User.role === 3 ?
                 <li id="USERS" className="bold edit">
-                  <Link to="/users">
+                  <Link to="/user">
                     <div className="div-neat waves-effect">
                       <span>Users</span>
                     </div>
