@@ -13,9 +13,9 @@
     extended: false,
   }));
 
-  const isProduction = process.env.NODE_ENV === 'development';
+  // const isProduction = process.env.NODE_ENV === 'development';
 
-  if (!isProduction) {
+  if (process.env.NODE_ENV === 'development') {
     require('dotenv').load();
   }
 
