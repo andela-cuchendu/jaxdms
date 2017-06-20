@@ -203,7 +203,6 @@ export function saveUserFailed(ErrorMessage) {
 
 export function checkLoginResult(loginData) {
   return (dispatch) => {
-    console.log('the error', loginData)
     if (loginData.message) {
       dispatch(loginFailed(loginData));
     }
