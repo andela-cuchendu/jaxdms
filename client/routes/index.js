@@ -1,13 +1,13 @@
 import React from 'react';
 import { Route, IndexRoute } from 'react-router';
-import App from '../components/App';
-import Home from '../components/Home';
-import Authentication from '../components/Authentication';
-import Documents from '../components/Documents';
-import EditDoc from '../components/EditDoc';
-import EditUser from '../components/EditUser';
-import Users from '../components/Users';
-import NotFound from '../components/NotFound';
+import App from '../components/App.jsx';
+import Home from '../components/Home.jsx';
+import Authentication from '../components/Authentication.jsx';
+import Documents from '../components/Documents.jsx';
+import EditDoc from '../components/EditDoc.jsx';
+import EditUser from '../components/EditUser.jsx';
+import Users from '../components/Users.jsx';
+import NotFound from '../components/NotFound.jsx';
 
 export default (
   <Route path="/" component={App}>

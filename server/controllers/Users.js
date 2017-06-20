@@ -305,7 +305,12 @@ module.exports = {
         }
       })
       .catch((err) => {
-        next(err.message);
+        res.json({
+          message: err.message,
+          success: false,
+          error: err,
+          status: err.status,
+        });
       });
   },
   /**

@@ -33,7 +33,8 @@ export function editPage(userData) {
 export function EditData(userId) {
   return (dispatch) => {
     const url = `/api/users/${userId}`;
-    return BaseApi(null, 'get', url, function (apiResult) {
+    return BaseApi(null, 'get', url)
+    .then((apiResult) => {
       return dispatch(editPage(apiResult));
     });
   };
@@ -75,7 +76,8 @@ export function upadateUser(newUserData, userId) {
   return (dispatch) => {
     dispatch(updatingUserData());
     const url = `/api/users/${userId}`;
-    return BaseApi(newUserData, 'put', url, function () {
+    return BaseApi(newUserData, 'put', url)
+    .then(() => {
       dispatch(editSuccess());
     });
   };
@@ -201,6 +203,7 @@ export function saveUserFailed(ErrorMessage) {
 
 export function checkLoginResult(loginData) {
   return (dispatch) => {
+    console.log('the error', loginData)
     if (loginData.message) {
       dispatch(loginFailed(loginData));
     }
@@ -215,7 +218,8 @@ export function checkLoginResult(loginData) {
 export function saveUserData(user, login) {
   return (dispatch) => {
     const url = '/api/users/';
-    return BaseApi(user, 'post', url, function (apiResult) {
+    return BaseApi(user, 'post', url)
+    .then((apiResult) => {
       dispatch(createUser(apiResult));
       if (apiResult.success) {
         Materialize.toast('Account successfully created', 4000);
@@ -235,7 +239,8 @@ export function loginUser(userData) {
   return (dispatch) => {
     dispatch(checkingUser());
     const url = '/api/users/login';
-    return BaseApi(userData, 'post', url, function (apiResult) {
+    return BaseApi(userData, 'post', url)
+    .then((apiResult) => {
       dispatch(checkLoginResult(apiResult));
     });
   };
@@ -244,7 +249,8 @@ export function loginUser(userData) {
 export function fetchUsers() {
   return (dispatch) => {
     const url = '/api/users';
-    return BaseApi(null, 'get', url, function (apiResult) {
+    return BaseApi(null, 'get', url)
+    .then((apiResult) => {
       dispatch(UsersSuccess(apiResult));
     });
   };
@@ -262,9 +268,12 @@ export function ModalData(selectedUser) {
 export function deleteUserAction(userId) {
   return (dispatch) => {
     const url = `/api/users/${userId}`;
-    return BaseApi(null, 'delete', url, function (apiResult) {
+    return BaseApi(null, 'delete', url)
+    .then(() => {
       dispatch(UserDeleted());
-      Materialize.toast('Account successfully deleted', 4000);
+      if (global.Materialize !== undefined) {
+        Materialize.toast('Account successfully deleted', 4000);
+      }
       return dispatch(fetchUsers());
     });
   };

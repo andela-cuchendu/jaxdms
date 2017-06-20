@@ -16,7 +16,8 @@ export function searchCompleted(query, searchResult) {
 export function searchDoc(query) {
   return (dispatch) => {
     const url = `/api/search/documents?q=${query}`;
-    BaseApi(null, 'get', url, (apiResult) => {
+    BaseApi(null, 'get', url)
+    .then((apiResult) => {
       dispatch(searchCompleted(query, apiResult));
     });
   };

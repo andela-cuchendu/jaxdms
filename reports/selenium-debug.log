@@ -1,0 +1,749 @@
+15:31:13.102 INFO - Selenium build info: version: '3.3.1', revision: '5234b32'
+15:31:13.102 INFO - Launching a standalone Selenium Server
+2017-06-20 15:31:13.121:INFO::main: Logging initialized @261ms to org.seleniumhq.jetty9.util.log.StdErrLog
+15:31:13.182 INFO - Driver provider org.openqa.selenium.ie.InternetExplorerDriver registration is skipped:
+ registration capabilities Capabilities [{ensureCleanSession=true, browserName=internet explorer, version=, platform=WINDOWS}] does not match the current platform MAC
+15:31:13.182 INFO - Driver provider org.openqa.selenium.edge.EdgeDriver registration is skipped:
+ registration capabilities Capabilities [{browserName=MicrosoftEdge, version=, platform=WINDOWS}] does not match the current platform MAC
+15:31:13.182 INFO - Driver class not found: com.opera.core.systems.OperaDriver
+15:31:13.183 INFO - Driver provider com.opera.core.systems.OperaDriver registration is skipped:
+Unable to create new instances on this machine.
+15:31:13.183 INFO - Driver class not found: com.opera.core.systems.OperaDriver
+15:31:13.183 INFO - Driver provider com.opera.core.systems.OperaDriver is not registered
+2017-06-20 15:31:13.247:INFO:osjs.Server:main: jetty-9.2.20.v20161216
+2017-06-20 15:31:13.282:INFO:osjsh.ContextHandler:main: Started o.s.j.s.ServletContextHandler@77cd7a0{/,null,AVAILABLE}
+2017-06-20 15:31:13.312:INFO:osjs.AbstractConnector:main: Started ServerConnector@1ed4004b{HTTP/1.1,[http/1.1]}{0.0.0.0:4444}
+2017-06-20 15:31:13.313:INFO:osjs.Server:main: Started @453ms
+15:31:13.313 INFO - Selenium Server is up and running
+15:31:13.927 INFO - SessionCleaner initialized with insideBrowserTimeout 0 and clientGoneTimeout 1800000 polling every 180000
+15:31:13.953 INFO - Executing: [new session: Capabilities [{acceptSslCerts=true, name=Documents, browserName=chrome, javascriptEnabled=true, platform=ANY}]])
+15:31:13.967 INFO - Creating a new session for Capabilities [{acceptSslCerts=true, name=Documents, browserName=chrome, javascriptEnabled=true, platform=ANY}]
+Starting ChromeDriver 2.30.477690 (c53f4ad87510ee97b5c3425a14c0e79780cdf262) on port 4583
+Only local connections are allowed.
+15:31:15.244 INFO - Detected dialect: OSS
+15:31:15.269 INFO - Done: [new session: Capabilities [{acceptSslCerts=true, name=Documents, browserName=chrome, javascriptEnabled=true, platform=ANY}]]
+15:31:15.292 INFO - Executing: [get: http://localhost:3444/auth])
+15:31:19.968 INFO - Done: [get: http://localhost:3444/auth]
+15:31:19.989 INFO - Executing: [find elements: By.cssSelector: body])
+15:31:20.030 INFO - Done: [find elements: By.cssSelector: body]
+15:31:20.037 INFO - Executing: [is displayed: 0 [[ChromeDriver: chrome on MAC (dc5d2e82393f2d8a663f3d18ea61011e)] -> css selector: body]])
+15:31:20.058 INFO - Done: [is displayed: 0 [[ChromeDriver: chrome on MAC (dc5d2e82393f2d8a663f3d18ea61011e)] -> css selector: body]]
+15:31:20.066 INFO - Executing: [find element: By.cssSelector: input[id=username-sigin]])
+15:31:20.088 INFO - Done: [find element: By.cssSelector: input[id=username-sigin]]
+15:31:20.097 INFO - Executing: [send keys: 1 [[ChromeDriver: chrome on MAC (dc5d2e82393f2d8a663f3d18ea61011e)] -> css selector: input[id=username-sigin]], [a, d, m, i, n]])
+15:31:20.242 INFO - Done: [send keys: 1 [[ChromeDriver: chrome on MAC (dc5d2e82393f2d8a663f3d18ea61011e)] -> css selector: input[id=username-sigin]], [a, d, m, i, n]]
+15:31:20.249 INFO - Executing: [find element: By.cssSelector: input[id=password-signin]])
+15:31:20.271 INFO - Done: [find element: By.cssSelector: input[id=password-signin]]
+15:31:20.278 INFO - Executing: [send keys: 2 [[ChromeDriver: chrome on MAC (dc5d2e82393f2d8a663f3d18ea61011e)] -> css selector: input[id=password-signin]], [p, a, s, s, w, o, r, d, 1, 2, 3]])
+15:31:20.436 INFO - Done: [send keys: 2 [[ChromeDriver: chrome on MAC (dc5d2e82393f2d8a663f3d18ea61011e)] -> css selector: input[id=password-signin]], [p, a, s, s, w, o, r, d, 1, 2, 3]]
+15:31:20.441 INFO - Executing: [find element: By.cssSelector: button[name=sign-in]])
+15:31:20.460 INFO - Done: [find element: By.cssSelector: button[name=sign-in]]
+15:31:20.466 INFO - Executing: [click: 3 [[ChromeDriver: chrome on MAC (dc5d2e82393f2d8a663f3d18ea61011e)] -> css selector: button[name=sign-in]]])
+15:31:20.554 INFO - Done: [click: 3 [[ChromeDriver: chrome on MAC (dc5d2e82393f2d8a663f3d18ea61011e)] -> css selector: button[name=sign-in]]]
+15:31:20.565 INFO - Executing: [find elements: By.cssSelector: input[type=search]])
+15:31:20.641 INFO - Done: [find elements: By.cssSelector: input[type=search]]
+15:31:21.154 INFO - Executing: [find elements: By.cssSelector: input[type=search]])
+15:31:21.178 INFO - Done: [find elements: By.cssSelector: input[type=search]]
+15:31:21.189 INFO - Executing: [is displayed: 4 [[ChromeDriver: chrome on MAC (dc5d2e82393f2d8a663f3d18ea61011e)] -> css selector: input[type=search]]])
+15:31:21.220 INFO - Done: [is displayed: 4 [[ChromeDriver: chrome on MAC (dc5d2e82393f2d8a663f3d18ea61011e)] -> css selector: input[type=search]]]
+15:31:21.226 INFO - Executing: [get current url])
+15:31:21.236 INFO - Done: [get current url]
+15:31:21.252 INFO - Executing: [get: http://localhost:3444/auth])
+15:31:25.289 INFO - Done: [get: http://localhost:3444/auth]
+15:31:25.298 INFO - Executing: [find elements: By.cssSelector: body])
+15:31:25.311 INFO - Done: [find elements: By.cssSelector: body]
+15:31:25.315 INFO - Executing: [is displayed: 5 [[ChromeDriver: chrome on MAC (dc5d2e82393f2d8a663f3d18ea61011e)] -> css selector: body]])
+15:31:25.332 INFO - Done: [is displayed: 5 [[ChromeDriver: chrome on MAC (dc5d2e82393f2d8a663f3d18ea61011e)] -> css selector: body]]
+15:31:27.344 INFO - Executing: [find element: By.xpath: //*[@id="app"]/div/div/div[2]/div[2]/a/i])
+15:31:27.365 INFO - Done: [find element: By.xpath: //*[@id="app"]/div/div/div[2]/div[2]/a/i]
+15:31:27.369 INFO - Executing: [click: 6 [[ChromeDriver: chrome on MAC (dc5d2e82393f2d8a663f3d18ea61011e)] -> xpath: //*[@id="app"]/div/div/div[2]/div[2]/a/i]])
+15:31:27.577 INFO - Done: [click: 6 [[ChromeDriver: chrome on MAC (dc5d2e82393f2d8a663f3d18ea61011e)] -> xpath: //*[@id="app"]/div/div/div[2]/div[2]/a/i]]
+15:31:27.582 INFO - Executing: [find element: By.cssSelector: input[name=title]])
+15:31:27.610 INFO - Done: [find element: By.cssSelector: input[name=title]]
+15:31:27.616 INFO - Executing: [send keys: 7 [[ChromeDriver: chrome on MAC (dc5d2e82393f2d8a663f3d18ea61011e)] -> css selector: input[name=title]], [i, p, s, a,  , a, b,  , e, t]])
+15:31:27.988 INFO - Done: [send keys: 7 [[ChromeDriver: chrome on MAC (dc5d2e82393f2d8a663f3d18ea61011e)] -> css selector: input[name=title]], [i, p, s, a,  , a, b,  , e, t]]
+15:31:28.000 INFO - Executing: [find element: By.cssSelector: .mce-i-code])
+15:31:28.030 INFO - Done: [find element: By.cssSelector: .mce-i-code]
+15:31:28.033 INFO - Executing: [click: 8 [[ChromeDriver: chrome on MAC (dc5d2e82393f2d8a663f3d18ea61011e)] -> css selector: .mce-i-code]])
+15:31:28.137 INFO - Done: [click: 8 [[ChromeDriver: chrome on MAC (dc5d2e82393f2d8a663f3d18ea61011e)] -> css selector: .mce-i-code]]
+15:31:28.143 INFO - Executing: [find element: By.cssSelector: .mce-textbox])
+15:31:28.170 INFO - Done: [find element: By.cssSelector: .mce-textbox]
+15:31:28.187 INFO - Executing: [send keys: 9 [[ChromeDriver: chrome on MAC (dc5d2e82393f2d8a663f3d18ea61011e)] -> css selector: .mce-textbox], [E, t,  , s, e, d,  , d, u, c, i, m, u, s,  , e, t,  , e, s, t,  , a, r, c, h, i, t, e, c, t, o,  , e, x, e, r, c, i, t, a, t, i, o, n, e, m,  , v, o, l, u, p, t, a, s,  , r, e, r, u, m, .,  , V, e, l,  , l, i, b, e, r, o,  , n, e, s, c, i, u, n, t,  , a, s, s, u, m, e, n, d, a,  , q, u, a, s, i,  , n, i, h, i, l,  , e, s, t,  , v, o, l, u, p, t, a, t, e,  , v, o, l, u, p, t, a, s, .,  , O, d, i, t,  , a, l, i, a, s,  , a, u, t,  , s, a, e, p, e,  , u, n, d, e,  , d, i, c, t, a,  , e, n, i, m, ., 
+,  , , R, e, i, c, i, e, n, d, i, s,  , m, o, l, l, i, t, i, a,  , a, l, i, q, u, i, d,  , u, t,  , r, e, p, e, l, l, a, t, .,  , E, t,  , v, o, l, u, p, t, a, s,  , n, e, s, c, i, u, n, t,  , n, i, h, i, l,  , e, x, p, l, i, c, a, b, o,  , q, u, i, s, .,  , R, e, r, u, m,  , l, a, b, o, r, e,  , d, i, s, t, i, n, c, t, i, o,  , e, x, p, e, d, i, t, a,  , e, x, p, e, d, i, t, a,  , v, o, l, u, p, t, a, t, i, b, u, s, ., 
+,  , , Q, u, i, a,  , v, e, n, i, a, m,  , a, n, i, m, i, .,  , O, m, n, i, s,  , m, a, x, i, m, e,  , i, l, l, u, m,  , e, x,  , q, u, i, a, .,  , E, l, i, g, e, n, d, i,  , i, d,  , q, u, o,  , i, n, v, e, n, t, o, r, e,  , a, c, c, u, s, a, m, u, s,  , c, o, n, s, e, q, u, a, t, u, r,  , i, n, v, e, n, t, o, r, e, .,  , E, t,  , c, u, l, p, a,  , d, o, l, o, r, e, s,  , e, x, p, e, d, i, t, a,  , e, s, t,  , m, a, i, o, r, e, s,  , e, s, t,  , v, e, r, i, t, a, t, i, s,  , p, o, r, r, o, .]])
+15:31:30.609 INFO - Done: [send keys: 9 [[ChromeDriver: chrome on MAC (dc5d2e82393f2d8a663f3d18ea61011e)] -> css selector: .mce-textbox], [E, t,  , s, e, d,  , d, u, c, i, m, u, s,  , e, t,  , e, s, t,  , a, r, c, h, i, t, e, c, t, o,  , e, x, e, r, c, i, t, a, t, i, o, n, e, m,  , v, o, l, u, p, t, a, s,  , r, e, r, u, m, .,  , V, e, l,  , l, i, b, e, r, o,  , n, e, s, c, i, u, n, t,  , a, s, s, u, m, e, n, d, a,  , q, u, a, s, i,  , n, i, h, i, l,  , e, s, t,  , v, o, l, u, p, t, a, t, e,  , v, o, l, u, p, t, a, s, .,  , O, d, i, t,  , a, l, i, a, s,  , a, u, t,  , s, a, e, p, e,  , u, n, d, e,  , d, i, c, t, a,  , e, n, i, m, ., 
+,  , , R, e, i, c, i, e, n, d, i, s,  , m, o, l, l, i, t, i, a,  , a, l, i, q, u, i, d,  , u, t,  , r, e, p, e, l, l, a, t, .,  , E, t,  , v, o, l, u, p, t, a, s,  , n, e, s, c, i, u, n, t,  , n, i, h, i, l,  , e, x, p, l, i, c, a, b, o,  , q, u, i, s, .,  , R, e, r, u, m,  , l, a, b, o, r, e,  , d, i, s, t, i, n, c, t, i, o,  , e, x, p, e, d, i, t, a,  , e, x, p, e, d, i, t, a,  , v, o, l, u, p, t, a, t, i, b, u, s, ., 
+,  , , Q, u, i, a,  , v, e, n, i, a, m,  , a, n, i, m, i, .,  , O, m, n, i, s,  , m, a, x, i, m, e,  , i, l, l, u, m,  , e, x,  , q, u, i, a, .,  , E, l, i, g, e, n, d, i,  , i, d,  , q, u, o,  , i, n, v, e, n, t, o, r, e,  , a, c, c, u, s, a, m, u, s,  , c, o, n, s, e, q, u, a, t, u, r,  , i, n, v, e, n, t, o, r, e, .,  , E, t,  , c, u, l, p, a,  , d, o, l, o, r, e, s,  , e, x, p, e, d, i, t, a,  , e, s, t,  , m, a, i, o, r, e, s,  , e, s, t,  , v, e, r, i, t, a, t, i, s,  , p, o, r, r, o, .]]
+15:31:30.614 INFO - Executing: [find element: By.cssSelector: .mce-floatpanel .mce-container-body button])
+15:31:30.633 INFO - Done: [find element: By.cssSelector: .mce-floatpanel .mce-container-body button]
+15:31:30.638 INFO - Executing: [click: 10 [[ChromeDriver: chrome on MAC (dc5d2e82393f2d8a663f3d18ea61011e)] -> css selector: .mce-floatpanel .mce-container-body button]])
+15:31:30.725 INFO - Done: [click: 10 [[ChromeDriver: chrome on MAC (dc5d2e82393f2d8a663f3d18ea61011e)] -> css selector: .mce-floatpanel .mce-container-body button]]
+15:31:32.734 INFO - Executing: [find element: By.xpath: //*[@id="createModal"]/div[2]/button])
+15:31:32.758 INFO - Done: [find element: By.xpath: //*[@id="createModal"]/div[2]/button]
+15:31:32.762 INFO - Executing: [click: 11 [[ChromeDriver: chrome on MAC (dc5d2e82393f2d8a663f3d18ea61011e)] -> xpath: //*[@id="createModal"]/div[2]/button]])
+15:31:32.854 INFO - Done: [click: 11 [[ChromeDriver: chrome on MAC (dc5d2e82393f2d8a663f3d18ea61011e)] -> xpath: //*[@id="createModal"]/div[2]/button]]
+15:31:32.862 INFO - Executing: [find elements: By.xpath: //*[@id="toast-container"]/div])
+15:31:32.950 INFO - Done: [find elements: By.xpath: //*[@id="toast-container"]/div]
+15:31:32.957 INFO - Executing: [is displayed: 12 [[ChromeDriver: chrome on MAC (dc5d2e82393f2d8a663f3d18ea61011e)] -> xpath: //*[@id="toast-container"]/div]])
+15:31:32.979 INFO - Done: [is displayed: 12 [[ChromeDriver: chrome on MAC (dc5d2e82393f2d8a663f3d18ea61011e)] -> xpath: //*[@id="toast-container"]/div]]
+15:31:32.987 INFO - Executing: [find element: By.xpath: //*[@id="toast-container"]/div])
+15:31:33.030 INFO - Done: [find element: By.xpath: //*[@id="toast-container"]/div]
+15:31:33.039 INFO - Executing: [get text: 12 [[ChromeDriver: chrome on MAC (dc5d2e82393f2d8a663f3d18ea61011e)] -> xpath: //*[@id="toast-container"]/div]])
+15:31:33.102 INFO - Done: [get text: 12 [[ChromeDriver: chrome on MAC (dc5d2e82393f2d8a663f3d18ea61011e)] -> xpath: //*[@id="toast-container"]/div]]
+15:31:33.111 INFO - Executing: [get: http://localhost:3444/auth])
+15:31:34.266 INFO - Done: [get: http://localhost:3444/auth]
+15:31:35.277 INFO - Executing: [find elements: By.cssSelector: body])
+15:31:35.288 INFO - Done: [find elements: By.cssSelector: body]
+15:31:35.291 INFO - Executing: [is displayed: 13 [[ChromeDriver: chrome on MAC (dc5d2e82393f2d8a663f3d18ea61011e)] -> css selector: body]])
+15:31:35.307 INFO - Done: [is displayed: 13 [[ChromeDriver: chrome on MAC (dc5d2e82393f2d8a663f3d18ea61011e)] -> css selector: body]]
+15:31:35.311 INFO - Executing: [find element: By.cssSelector: .e2eview])
+15:31:35.335 INFO - Done: [find element: By.cssSelector: .e2eview]
+15:31:35.350 INFO - Executing: [click: 14 [[ChromeDriver: chrome on MAC (dc5d2e82393f2d8a663f3d18ea61011e)] -> css selector: .e2eview]])
+15:31:35.465 INFO - Done: [click: 14 [[ChromeDriver: chrome on MAC (dc5d2e82393f2d8a663f3d18ea61011e)] -> css selector: .e2eview]]
+15:31:35.471 INFO - Executing: [find element: By.xpath: //*[@id="editDocModal"]/div[2]/span[2]])
+15:31:35.501 INFO - Done: [find element: By.xpath: //*[@id="editDocModal"]/div[2]/span[2]]
+15:31:35.511 INFO - Executing: [get text: 15 [[ChromeDriver: chrome on MAC (dc5d2e82393f2d8a663f3d18ea61011e)] -> xpath: //*[@id="editDocModal"]/div[2]/span[2]]])
+15:31:35.570 INFO - Done: [get text: 15 [[ChromeDriver: chrome on MAC (dc5d2e82393f2d8a663f3d18ea61011e)] -> xpath: //*[@id="editDocModal"]/div[2]/span[2]]]
+15:31:35.576 INFO - Executing: [find element: By.xpath: //*[@id="editDocModal"]/div[2]/a[1]])
+15:31:35.621 INFO - Done: [find element: By.xpath: //*[@id="editDocModal"]/div[2]/a[1]]
+15:31:35.628 INFO - Executing: [click: 16 [[ChromeDriver: chrome on MAC (dc5d2e82393f2d8a663f3d18ea61011e)] -> xpath: //*[@id="editDocModal"]/div[2]/a[1]]])
+15:31:35.718 INFO - Done: [click: 16 [[ChromeDriver: chrome on MAC (dc5d2e82393f2d8a663f3d18ea61011e)] -> xpath: //*[@id="editDocModal"]/div[2]/a[1]]]
+15:31:35.733 INFO - Executing: [get: http://localhost:3444/auth])
+15:31:36.683 INFO - Done: [get: http://localhost:3444/auth]
+15:31:36.690 INFO - Executing: [find elements: By.cssSelector: body])
+15:31:36.703 INFO - Done: [find elements: By.cssSelector: body]
+15:31:36.708 INFO - Executing: [is displayed: 17 [[ChromeDriver: chrome on MAC (dc5d2e82393f2d8a663f3d18ea61011e)] -> css selector: body]])
+15:31:36.729 INFO - Done: [is displayed: 17 [[ChromeDriver: chrome on MAC (dc5d2e82393f2d8a663f3d18ea61011e)] -> css selector: body]]
+15:31:36.739 INFO - Executing: [find element: By.cssSelector: .e2eedit])
+15:31:36.787 INFO - Done: [find element: By.cssSelector: .e2eedit]
+15:31:36.792 INFO - Executing: [click: 18 [[ChromeDriver: chrome on MAC (dc5d2e82393f2d8a663f3d18ea61011e)] -> css selector: .e2eedit]])
+15:31:36.915 INFO - Done: [click: 18 [[ChromeDriver: chrome on MAC (dc5d2e82393f2d8a663f3d18ea61011e)] -> css selector: .e2eedit]]
+15:31:36.923 INFO - Executing: [get current url])
+15:31:37.023 INFO - Done: [get current url]
+15:31:37.028 INFO - Executing: [find element: By.cssSelector: .mce-i-code])
+15:31:37.049 INFO - Done: [find element: By.cssSelector: .mce-i-code]
+15:31:37.055 INFO - Executing: [click: 19 [[ChromeDriver: chrome on MAC (dc5d2e82393f2d8a663f3d18ea61011e)] -> css selector: .mce-i-code]])
+15:31:37.132 INFO - Done: [click: 19 [[ChromeDriver: chrome on MAC (dc5d2e82393f2d8a663f3d18ea61011e)] -> css selector: .mce-i-code]]
+15:31:37.140 INFO - Executing: [find element: By.cssSelector: .mce-textbox])
+15:31:37.162 INFO - Done: [find element: By.cssSelector: .mce-textbox]
+15:31:37.169 INFO - Executing: [clear: 20 [[ChromeDriver: chrome on MAC (dc5d2e82393f2d8a663f3d18ea61011e)] -> css selector: .mce-textbox]])
+15:31:37.207 INFO - Done: [clear: 20 [[ChromeDriver: chrome on MAC (dc5d2e82393f2d8a663f3d18ea61011e)] -> css selector: .mce-textbox]]
+15:31:37.211 INFO - Executing: [find element: By.cssSelector: .mce-textbox])
+15:31:37.224 INFO - Done: [find element: By.cssSelector: .mce-textbox]
+15:31:37.242 INFO - Executing: [send keys: 20 [[ChromeDriver: chrome on MAC (dc5d2e82393f2d8a663f3d18ea61011e)] -> css selector: .mce-textbox], [A, l, i, q, u, i, d,  , r, e, p, r, e, h, e, n, d, e, r, i, t,  , a, d, .,  , N, o, b, i, s,  , s, u, n, t,  , d, o, l, o, r,  , s, e, d,  , n, e, m, o,  , a, l, i, q, u, i, d,  , q, u, o,  , m, i, n, i, m, a, .,  , R, e, r, u, m,  , r, e, r, u, m,  , a,  , a, u, t,  , r, e, p, e, l, l, e, n, d, u, s,  , f, u, g, i, a, t,  , u, t,  , o, c, c, a, e, c, a, t, i,  , a, s, s, u, m, e, n, d, a,  , m, o, l, e, s, t, i, a, e, .,  , T, o, t, a, m,  , s, i, t,  , u, t,  , d, o, l, o, r, e, m, q, u, e,  , q, u, i, s,  , o, m, n, i, s,  , s, e, q, u, i,  , e, a, r, u, m,  , v, o, l, u, p, t, a, t, e, m,  , i, d, .,  , I, p, s, u, m,  , v, o, l, u, p, t, a, t, e, m,  , e, v, e, n, i, e, t,  , u, l, l, a, m,  , d, i, c, t, a,  , l, i, b, e, r, o,  , q, u, a, e,  , c, o, n, s, e, q, u, a, t, u, r, ., 
+,  , , E, a,  , r, e, i, c, i, e, n, d, i, s,  , m, a, i, o, r, e, s,  , c, o, n, s, e, q, u, a, t, u, r,  , c, u, l, p, a,  , c, u, m,  , l, a, u, d, a, n, t, i, u, m,  , i, n, c, i, d, u, n, t,  , e, t,  , v, e, n, i, a, m, .,  , N, i, h, i, l,  , q, u, i,  , i, d, .,  , C, o, n, s, e, q, u, u, n, t, u, r,  , m, o, l, e, s, t, i, a, e,  , s, u, n, t,  , n, o, n,  , l, i, b, e, r, o,  , a, c, c, u, s, a, m, u, s,  , a, s, s, u, m, e, n, d, a,  , s, a, e, p, e,  , o, d, i, t, .,  , R, e, i, c, i, e, n, d, i, s,  , u, t,  , e, x,  , f, u, g, a,  , s, i, t,  , r, e, p, r, e, h, e, n, d, e, r, i, t,  , p, r, a, e, s, e, n, t, i, u, m,  , r, e, p, e, l, l, e, n, d, u, s,  , d, e, l, e, c, t, u, s,  , v, o, l, u, p, t, a, t, e, m, ., 
+,  , , S, i, n, t,  , e, x, p, e, d, i, t, a,  , b, l, a, n, d, i, t, i, i, s,  , r, e, i, c, i, e, n, d, i, s,  , i, n,  , a, m, e, t,  , f, a, c, e, r, e,  , c, o, n, s, e, q, u, u, n, t, u, r, .,  , S, i, t,  , p, o, s, s, i, m, u, s,  , e, i, u, s,  , m, a, g, n, i,  , c, o, n, s, e, q, u, a, t, u, r,  , i, n, .,  , I, m, p, e, d, i, t,  , n, o, n,  , a, m, e, t,  , e, a,  , e, t,  , q, u, i,  , d, o, l, o, r, u, m,  , e, o, s, .,  , O, f, f, i, c, i, a,  , f, u, g, i, t,  , e, t, .]])
+15:31:40.509 INFO - Done: [send keys: 20 [[ChromeDriver: chrome on MAC (dc5d2e82393f2d8a663f3d18ea61011e)] -> css selector: .mce-textbox], [A, l, i, q, u, i, d,  , r, e, p, r, e, h, e, n, d, e, r, i, t,  , a, d, .,  , N, o, b, i, s,  , s, u, n, t,  , d, o, l, o, r,  , s, e, d,  , n, e, m, o,  , a, l, i, q, u, i, d,  , q, u, o,  , m, i, n, i, m, a, .,  , R, e, r, u, m,  , r, e, r, u, m,  , a,  , a, u, t,  , r, e, p, e, l, l, e, n, d, u, s,  , f, u, g, i, a, t,  , u, t,  , o, c, c, a, e, c, a, t, i,  , a, s, s, u, m, e, n, d, a,  , m, o, l, e, s, t, i, a, e, .,  , T, o, t, a, m,  , s, i, t,  , u, t,  , d, o, l, o, r, e, m, q, u, e,  , q, u, i, s,  , o, m, n, i, s,  , s, e, q, u, i,  , e, a, r, u, m,  , v, o, l, u, p, t, a, t, e, m,  , i, d, .,  , I, p, s, u, m,  , v, o, l, u, p, t, a, t, e, m,  , e, v, e, n, i, e, t,  , u, l, l, a, m,  , d, i, c, t, a,  , l, i, b, e, r, o,  , q, u, a, e,  , c, o, n, s, e, q, u, a, t, u, r, ., 
+,  , , E, a,  , r, e, i, c, i, e, n, d, i, s,  , m, a, i, o, r, e, s,  , c, o, n, s, e, q, u, a, t, u, r,  , c, u, l, p, a,  , c, u, m,  , l, a, u, d, a, n, t, i, u, m,  , i, n, c, i, d, u, n, t,  , e, t,  , v, e, n, i, a, m, .,  , N, i, h, i, l,  , q, u, i,  , i, d, .,  , C, o, n, s, e, q, u, u, n, t, u, r,  , m, o, l, e, s, t, i, a, e,  , s, u, n, t,  , n, o, n,  , l, i, b, e, r, o,  , a, c, c, u, s, a, m, u, s,  , a, s, s, u, m, e, n, d, a,  , s, a, e, p, e,  , o, d, i, t, .,  , R, e, i, c, i, e, n, d, i, s,  , u, t,  , e, x,  , f, u, g, a,  , s, i, t,  , r, e, p, r, e, h, e, n, d, e, r, i, t,  , p, r, a, e, s, e, n, t, i, u, m,  , r, e, p, e, l, l, e, n, d, u, s,  , d, e, l, e, c, t, u, s,  , v, o, l, u, p, t, a, t, e, m, ., 
+,  , , S, i, n, t,  , e, x, p, e, d, i, t, a,  , b, l, a, n, d, i, t, i, i, s,  , r, e, i, c, i, e, n, d, i, s,  , i, n,  , a, m, e, t,  , f, a, c, e, r, e,  , c, o, n, s, e, q, u, u, n, t, u, r, .,  , S, i, t,  , p, o, s, s, i, m, u, s,  , e, i, u, s,  , m, a, g, n, i,  , c, o, n, s, e, q, u, a, t, u, r,  , i, n, .,  , I, m, p, e, d, i, t,  , n, o, n,  , a, m, e, t,  , e, a,  , e, t,  , q, u, i,  , d, o, l, o, r, u, m,  , e, o, s, .,  , O, f, f, i, c, i, a,  , f, u, g, i, t,  , e, t, .]]
+15:31:40.526 INFO - Executing: [find element: By.cssSelector: .mce-floatpanel .mce-container-body button])
+15:31:40.546 INFO - Done: [find element: By.cssSelector: .mce-floatpanel .mce-container-body button]
+15:31:40.549 INFO - Executing: [click: 21 [[ChromeDriver: chrome on MAC (dc5d2e82393f2d8a663f3d18ea61011e)] -> css selector: .mce-floatpanel .mce-container-body button]])
+15:31:40.615 INFO - Done: [click: 21 [[ChromeDriver: chrome on MAC (dc5d2e82393f2d8a663f3d18ea61011e)] -> css selector: .mce-floatpanel .mce-container-body button]]
+15:31:42.627 INFO - Executing: [find element: By.xpath: //*[@id="app"]/div/div/div[2]/div/div[2]/form/button])
+15:31:42.646 INFO - Done: [find element: By.xpath: //*[@id="app"]/div/div/div[2]/div/div[2]/form/button]
+15:31:42.649 INFO - Executing: [click: 22 [[ChromeDriver: chrome on MAC (dc5d2e82393f2d8a663f3d18ea61011e)] -> xpath: //*[@id="app"]/div/div/div[2]/div/div[2]/form/button]])
+15:31:42.726 INFO - Done: [click: 22 [[ChromeDriver: chrome on MAC (dc5d2e82393f2d8a663f3d18ea61011e)] -> xpath: //*[@id="app"]/div/div/div[2]/div/div[2]/form/button]]
+15:31:42.733 INFO - Executing: [find elements: By.xpath: //*[@id="toast-container"]/div])
+15:31:43.093 INFO - Done: [find elements: By.xpath: //*[@id="toast-container"]/div]
+15:31:43.097 INFO - Executing: [is displayed: 23 [[ChromeDriver: chrome on MAC (dc5d2e82393f2d8a663f3d18ea61011e)] -> xpath: //*[@id="toast-container"]/div]])
+15:31:43.131 INFO - Done: [is displayed: 23 [[ChromeDriver: chrome on MAC (dc5d2e82393f2d8a663f3d18ea61011e)] -> xpath: //*[@id="toast-container"]/div]]
+15:31:43.138 INFO - Executing: [find element: By.xpath: //*[@id="toast-container"]/div])
+15:31:43.175 INFO - Done: [find element: By.xpath: //*[@id="toast-container"]/div]
+15:31:43.182 INFO - Executing: [get text: 23 [[ChromeDriver: chrome on MAC (dc5d2e82393f2d8a663f3d18ea61011e)] -> xpath: //*[@id="toast-container"]/div]])
+15:31:43.214 INFO - Done: [get text: 23 [[ChromeDriver: chrome on MAC (dc5d2e82393f2d8a663f3d18ea61011e)] -> xpath: //*[@id="toast-container"]/div]]
+15:31:43.221 INFO - Executing: [get: http://localhost:3444/auth])
+15:31:44.022 INFO - Done: [get: http://localhost:3444/auth]
+15:31:44.029 INFO - Executing: [find elements: By.cssSelector: body])
+15:31:44.048 INFO - Done: [find elements: By.cssSelector: body]
+15:31:44.062 INFO - Executing: [is displayed: 24 [[ChromeDriver: chrome on MAC (dc5d2e82393f2d8a663f3d18ea61011e)] -> css selector: body]])
+15:31:44.094 INFO - Done: [is displayed: 24 [[ChromeDriver: chrome on MAC (dc5d2e82393f2d8a663f3d18ea61011e)] -> css selector: body]]
+15:31:44.101 INFO - Executing: [find element: By.cssSelector: .e2edelete])
+15:31:44.146 INFO - Done: [find element: By.cssSelector: .e2edelete]
+15:31:44.149 INFO - Executing: [click: 25 [[ChromeDriver: chrome on MAC (dc5d2e82393f2d8a663f3d18ea61011e)] -> css selector: .e2edelete]])
+15:31:44.249 INFO - Done: [click: 25 [[ChromeDriver: chrome on MAC (dc5d2e82393f2d8a663f3d18ea61011e)] -> css selector: .e2edelete]]
+15:31:45.259 INFO - Executing: [find element: By.xpath: //*[@id="deleteDocModal"]/div[2]/a[2]])
+15:31:45.291 INFO - Done: [find element: By.xpath: //*[@id="deleteDocModal"]/div[2]/a[2]]
+15:31:45.295 INFO - Executing: [click: 26 [[ChromeDriver: chrome on MAC (dc5d2e82393f2d8a663f3d18ea61011e)] -> xpath: //*[@id="deleteDocModal"]/div[2]/a[2]]])
+15:31:45.364 INFO - Done: [click: 26 [[ChromeDriver: chrome on MAC (dc5d2e82393f2d8a663f3d18ea61011e)] -> xpath: //*[@id="deleteDocModal"]/div[2]/a[2]]]
+15:31:45.369 INFO - Executing: [find elements: By.xpath: //*[@id="toast-container"]/div])
+15:31:45.478 INFO - Done: [find elements: By.xpath: //*[@id="toast-container"]/div]
+15:31:45.483 INFO - Executing: [is displayed: 27 [[ChromeDriver: chrome on MAC (dc5d2e82393f2d8a663f3d18ea61011e)] -> xpath: //*[@id="toast-container"]/div]])
+15:31:45.562 INFO - Done: [is displayed: 27 [[ChromeDriver: chrome on MAC (dc5d2e82393f2d8a663f3d18ea61011e)] -> xpath: //*[@id="toast-container"]/div]]
+15:31:45.590 INFO - Executing: [find element: By.xpath: //*[@id="toast-container"]/div])
+15:31:45.614 INFO - Done: [find element: By.xpath: //*[@id="toast-container"]/div]
+15:31:45.620 INFO - Executing: [get text: 27 [[ChromeDriver: chrome on MAC (dc5d2e82393f2d8a663f3d18ea61011e)] -> xpath: //*[@id="toast-container"]/div]])
+15:31:45.660 INFO - Done: [get text: 27 [[ChromeDriver: chrome on MAC (dc5d2e82393f2d8a663f3d18ea61011e)] -> xpath: //*[@id="toast-container"]/div]]
+15:31:45.664 INFO - Executing: [delete session: ddf8ac12-5838-477b-bf62-4c0c289ba444])
+15:31:45.752 INFO - Done: [delete session: ddf8ac12-5838-477b-bf62-4c0c289ba444]
+15:31:45.781 INFO - Executing: [new session: Capabilities [{acceptSslCerts=true, name=Search, browserName=chrome, javascriptEnabled=true, platform=ANY}]])
+15:31:45.782 INFO - Creating a new session for Capabilities [{acceptSslCerts=true, name=Search, browserName=chrome, javascriptEnabled=true, platform=ANY}]
+Starting ChromeDriver 2.30.477690 (c53f4ad87510ee97b5c3425a14c0e79780cdf262) on port 8768
+Only local connections are allowed.
+15:31:46.646 INFO - Detected dialect: OSS
+15:31:46.649 INFO - Done: [new session: Capabilities [{acceptSslCerts=true, name=Search, browserName=chrome, javascriptEnabled=true, platform=ANY}]]
+15:31:46.659 INFO - Executing: [get: http://localhost:3444/auth])
+15:31:51.025 INFO - Done: [get: http://localhost:3444/auth]
+15:31:51.037 INFO - Executing: [find elements: By.cssSelector: body])
+15:31:51.064 INFO - Done: [find elements: By.cssSelector: body]
+15:31:51.067 INFO - Executing: [is displayed: 0 [[ChromeDriver: chrome on MAC (30d3d1d895e0a01e4969d3bcf3349673)] -> css selector: body]])
+15:31:51.084 INFO - Done: [is displayed: 0 [[ChromeDriver: chrome on MAC (30d3d1d895e0a01e4969d3bcf3349673)] -> css selector: body]]
+15:31:51.091 INFO - Executing: [find element: By.cssSelector: input[id=username-sigin]])
+15:31:51.113 INFO - Done: [find element: By.cssSelector: input[id=username-sigin]]
+15:31:51.119 INFO - Executing: [send keys: 1 [[ChromeDriver: chrome on MAC (30d3d1d895e0a01e4969d3bcf3349673)] -> css selector: input[id=username-sigin]], [a, d, m, i, n]])
+15:31:51.271 INFO - Done: [send keys: 1 [[ChromeDriver: chrome on MAC (30d3d1d895e0a01e4969d3bcf3349673)] -> css selector: input[id=username-sigin]], [a, d, m, i, n]]
+15:31:51.277 INFO - Executing: [find element: By.cssSelector: input[id=password-signin]])
+15:31:51.302 INFO - Done: [find element: By.cssSelector: input[id=password-signin]]
+15:31:51.307 INFO - Executing: [send keys: 2 [[ChromeDriver: chrome on MAC (30d3d1d895e0a01e4969d3bcf3349673)] -> css selector: input[id=password-signin]], [p, a, s, s, w, o, r, d, 1, 2, 3]])
+15:31:51.487 INFO - Done: [send keys: 2 [[ChromeDriver: chrome on MAC (30d3d1d895e0a01e4969d3bcf3349673)] -> css selector: input[id=password-signin]], [p, a, s, s, w, o, r, d, 1, 2, 3]]
+15:31:51.491 INFO - Executing: [find element: By.cssSelector: button[name=sign-in]])
+15:31:51.512 INFO - Done: [find element: By.cssSelector: button[name=sign-in]]
+15:31:51.517 INFO - Executing: [click: 3 [[ChromeDriver: chrome on MAC (30d3d1d895e0a01e4969d3bcf3349673)] -> css selector: button[name=sign-in]]])
+15:31:51.605 INFO - Done: [click: 3 [[ChromeDriver: chrome on MAC (30d3d1d895e0a01e4969d3bcf3349673)] -> css selector: button[name=sign-in]]]
+15:31:51.612 INFO - Executing: [find elements: By.cssSelector: input[type=search]])
+15:31:51.639 INFO - Done: [find elements: By.cssSelector: input[type=search]]
+15:31:52.148 INFO - Executing: [find elements: By.cssSelector: input[type=search]])
+15:31:52.168 INFO - Done: [find elements: By.cssSelector: input[type=search]]
+15:31:52.176 INFO - Executing: [is displayed: 4 [[ChromeDriver: chrome on MAC (30d3d1d895e0a01e4969d3bcf3349673)] -> css selector: input[type=search]]])
+15:31:52.207 INFO - Done: [is displayed: 4 [[ChromeDriver: chrome on MAC (30d3d1d895e0a01e4969d3bcf3349673)] -> css selector: input[type=search]]]
+15:31:52.212 INFO - Executing: [get current url])
+15:31:52.218 INFO - Done: [get current url]
+15:31:52.224 INFO - Executing: [get: http://localhost:3444/auth])
+15:31:53.470 INFO - Done: [get: http://localhost:3444/auth]
+15:31:53.479 INFO - Executing: [find elements: By.cssSelector: body])
+15:31:53.491 INFO - Done: [find elements: By.cssSelector: body]
+15:31:53.501 INFO - Executing: [is displayed: 5 [[ChromeDriver: chrome on MAC (30d3d1d895e0a01e4969d3bcf3349673)] -> css selector: body]])
+15:31:53.536 INFO - Done: [is displayed: 5 [[ChromeDriver: chrome on MAC (30d3d1d895e0a01e4969d3bcf3349673)] -> css selector: body]]
+15:31:53.540 INFO - Executing: [find element: By.xpath: .//*[@id="search"]])
+15:31:53.571 INFO - Done: [find element: By.xpath: .//*[@id="search"]]
+15:31:53.576 INFO - Executing: [click: 6 [[ChromeDriver: chrome on MAC (30d3d1d895e0a01e4969d3bcf3349673)] -> xpath: .//*[@id="search"]]])
+15:31:53.657 INFO - Done: [click: 6 [[ChromeDriver: chrome on MAC (30d3d1d895e0a01e4969d3bcf3349673)] -> xpath: .//*[@id="search"]]]
+15:31:53.661 INFO - Executing: [find element: By.xpath: .//*[@id="search"]])
+15:31:53.673 INFO - Done: [find element: By.xpath: .//*[@id="search"]]
+15:31:53.678 INFO - Executing: [send keys: 6 [[ChromeDriver: chrome on MAC (30d3d1d895e0a01e4969d3bcf3349673)] -> xpath: .//*[@id="search"]], [t, h, i, s]])
+15:31:53.767 INFO - Done: [send keys: 6 [[ChromeDriver: chrome on MAC (30d3d1d895e0a01e4969d3bcf3349673)] -> xpath: .//*[@id="search"]], [t, h, i, s]]
+15:31:53.775 INFO - Executing: [find element: By.xpath: .//*[@id="search"]])
+15:31:53.792 INFO - Done: [find element: By.xpath: .//*[@id="search"]]
+15:31:53.799 INFO - Executing: [send keys: 6 [[ChromeDriver: chrome on MAC (30d3d1d895e0a01e4969d3bcf3349673)] -> xpath: .//*[@id="search"]], []])
+15:31:53.889 INFO - Done: [send keys: 6 [[ChromeDriver: chrome on MAC (30d3d1d895e0a01e4969d3bcf3349673)] -> xpath: .//*[@id="search"]], []]
+15:31:53.894 INFO - Executing: [find element: By.xpath: //*[@id="app"]/div/div/div[2]/div[1]/div[2]/div/a])
+15:31:53.923 INFO - Done: [find element: By.xpath: //*[@id="app"]/div/div/div[2]/div[1]/div[2]/div/a]
+15:31:53.927 INFO - Executing: [get text: 7 [[ChromeDriver: chrome on MAC (30d3d1d895e0a01e4969d3bcf3349673)] -> xpath: //*[@id="app"]/div/div/div[2]/div[1]/div[2]/div/a]])
+15:31:53.951 INFO - Done: [get text: 7 [[ChromeDriver: chrome on MAC (30d3d1d895e0a01e4969d3bcf3349673)] -> xpath: //*[@id="app"]/div/div/div[2]/div[1]/div[2]/div/a]]
+15:31:53.956 INFO - Executing: [delete session: 17e50888-383d-45be-9ed7-e6404cea5655])
+15:31:54.041 INFO - Done: [delete session: 17e50888-383d-45be-9ed7-e6404cea5655]
+15:31:54.060 INFO - Executing: [new session: Capabilities [{acceptSslCerts=true, name=Signin, browserName=chrome, javascriptEnabled=true, platform=ANY}]])
+15:31:54.064 INFO - Creating a new session for Capabilities [{acceptSslCerts=true, name=Signin, browserName=chrome, javascriptEnabled=true, platform=ANY}]
+Starting ChromeDriver 2.30.477690 (c53f4ad87510ee97b5c3425a14c0e79780cdf262) on port 20713
+Only local connections are allowed.
+15:31:55.022 INFO - Detected dialect: OSS
+15:31:55.025 INFO - Done: [new session: Capabilities [{acceptSslCerts=true, name=Signin, browserName=chrome, javascriptEnabled=true, platform=ANY}]]
+15:31:55.031 INFO - Executing: [get: http://localhost:3444/auth])
+15:31:59.273 INFO - Done: [get: http://localhost:3444/auth]
+15:31:59.284 INFO - Executing: [find elements: By.cssSelector: body])
+15:31:59.305 INFO - Done: [find elements: By.cssSelector: body]
+15:31:59.309 INFO - Executing: [is displayed: 0 [[ChromeDriver: chrome on MAC (425d7947f3d3a2a74bf6162da4139d37)] -> css selector: body]])
+15:31:59.326 INFO - Done: [is displayed: 0 [[ChromeDriver: chrome on MAC (425d7947f3d3a2a74bf6162da4139d37)] -> css selector: body]]
+15:31:59.330 INFO - Executing: [find element: By.cssSelector: input[id=username-sigin]])
+15:31:59.352 INFO - Done: [find element: By.cssSelector: input[id=username-sigin]]
+15:31:59.356 INFO - Executing: [send keys: 1 [[ChromeDriver: chrome on MAC (425d7947f3d3a2a74bf6162da4139d37)] -> css selector: input[id=username-sigin]], []])
+15:31:59.406 INFO - Done: [send keys: 1 [[ChromeDriver: chrome on MAC (425d7947f3d3a2a74bf6162da4139d37)] -> css selector: input[id=username-sigin]], []]
+15:31:59.411 INFO - Executing: [find element: By.cssSelector: input[id=password-signin]])
+15:31:59.431 INFO - Done: [find element: By.cssSelector: input[id=password-signin]]
+15:31:59.435 INFO - Executing: [send keys: 2 [[ChromeDriver: chrome on MAC (425d7947f3d3a2a74bf6162da4139d37)] -> css selector: input[id=password-signin]], []])
+15:31:59.493 INFO - Done: [send keys: 2 [[ChromeDriver: chrome on MAC (425d7947f3d3a2a74bf6162da4139d37)] -> css selector: input[id=password-signin]], []]
+15:31:59.498 INFO - Executing: [find element: By.cssSelector: button[name=sign-in]])
+15:31:59.526 INFO - Done: [find element: By.cssSelector: button[name=sign-in]]
+15:31:59.530 INFO - Executing: [click: 3 [[ChromeDriver: chrome on MAC (425d7947f3d3a2a74bf6162da4139d37)] -> css selector: button[name=sign-in]]])
+15:31:59.649 INFO - Done: [click: 3 [[ChromeDriver: chrome on MAC (425d7947f3d3a2a74bf6162da4139d37)] -> css selector: button[name=sign-in]]]
+15:31:59.654 INFO - Executing: [find element: By.cssSelector: #sigin-toggle])
+15:31:59.705 INFO - Done: [find element: By.cssSelector: #sigin-toggle]
+15:31:59.713 INFO - Executing: [get text: 4 [[ChromeDriver: chrome on MAC (425d7947f3d3a2a74bf6162da4139d37)] -> css selector: #sigin-toggle]])
+15:31:59.757 INFO - Done: [get text: 4 [[ChromeDriver: chrome on MAC (425d7947f3d3a2a74bf6162da4139d37)] -> css selector: #sigin-toggle]]
+15:31:59.762 INFO - Executing: [get current url])
+15:31:59.778 INFO - Done: [get current url]
+15:31:59.788 INFO - Executing: [get: http://localhost:3444/auth])
+15:32:01.141 INFO - Done: [get: http://localhost:3444/auth]
+15:32:01.148 INFO - Executing: [find elements: By.cssSelector: body])
+15:32:01.181 INFO - Done: [find elements: By.cssSelector: body]
+15:32:01.184 INFO - Executing: [is displayed: 5 [[ChromeDriver: chrome on MAC (425d7947f3d3a2a74bf6162da4139d37)] -> css selector: body]])
+15:32:01.216 INFO - Done: [is displayed: 5 [[ChromeDriver: chrome on MAC (425d7947f3d3a2a74bf6162da4139d37)] -> css selector: body]]
+15:32:01.220 INFO - Executing: [find element: By.cssSelector: input[id=username-sigin]])
+15:32:01.276 INFO - Done: [find element: By.cssSelector: input[id=username-sigin]]
+15:32:01.282 INFO - Executing: [send keys: 6 [[ChromeDriver: chrome on MAC (425d7947f3d3a2a74bf6162da4139d37)] -> css selector: input[id=username-sigin]], [k, j, h, d, k, j, h, d, k, j, g, d]])
+15:32:01.482 INFO - Done: [send keys: 6 [[ChromeDriver: chrome on MAC (425d7947f3d3a2a74bf6162da4139d37)] -> css selector: input[id=username-sigin]], [k, j, h, d, k, j, h, d, k, j, g, d]]
+15:32:01.490 INFO - Executing: [find element: By.cssSelector: input[id=password-signin]])
+15:32:01.502 INFO - Done: [find element: By.cssSelector: input[id=password-signin]]
+15:32:01.509 INFO - Executing: [send keys: 7 [[ChromeDriver: chrome on MAC (425d7947f3d3a2a74bf6162da4139d37)] -> css selector: input[id=password-signin]], [n, o, t, h, i, n, g, p, a, s, s, w, o, r, d]])
+15:32:01.716 INFO - Done: [send keys: 7 [[ChromeDriver: chrome on MAC (425d7947f3d3a2a74bf6162da4139d37)] -> css selector: input[id=password-signin]], [n, o, t, h, i, n, g, p, a, s, s, w, o, r, d]]
+15:32:01.721 INFO - Executing: [find element: By.cssSelector: button[name=sign-in]])
+15:32:01.729 INFO - Done: [find element: By.cssSelector: button[name=sign-in]]
+15:32:01.733 INFO - Executing: [click: 8 [[ChromeDriver: chrome on MAC (425d7947f3d3a2a74bf6162da4139d37)] -> css selector: button[name=sign-in]]])
+15:32:01.828 INFO - Done: [click: 8 [[ChromeDriver: chrome on MAC (425d7947f3d3a2a74bf6162da4139d37)] -> css selector: button[name=sign-in]]]
+15:32:01.834 INFO - Executing: [find element: By.cssSelector: .signinform])
+15:32:01.879 INFO - Done: [find element: By.cssSelector: .signinform]
+15:32:01.883 INFO - Executing: [get text: 9 [[ChromeDriver: chrome on MAC (425d7947f3d3a2a74bf6162da4139d37)] -> css selector: .signinform]])
+15:32:01.910 INFO - Done: [get text: 9 [[ChromeDriver: chrome on MAC (425d7947f3d3a2a74bf6162da4139d37)] -> css selector: .signinform]]
+15:32:01.919 INFO - Executing: [get: http://localhost:3444/auth])
+15:32:02.517 INFO - Done: [get: http://localhost:3444/auth]
+15:32:02.523 INFO - Executing: [find elements: By.cssSelector: body])
+15:32:02.540 INFO - Done: [find elements: By.cssSelector: body]
+15:32:02.543 INFO - Executing: [is displayed: 10 [[ChromeDriver: chrome on MAC (425d7947f3d3a2a74bf6162da4139d37)] -> css selector: body]])
+15:32:02.574 INFO - Done: [is displayed: 10 [[ChromeDriver: chrome on MAC (425d7947f3d3a2a74bf6162da4139d37)] -> css selector: body]]
+15:32:02.578 INFO - Executing: [find element: By.cssSelector: input[id=username-sigin]])
+15:32:02.590 INFO - Done: [find element: By.cssSelector: input[id=username-sigin]]
+15:32:02.596 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (425d7947f3d3a2a74bf6162da4139d37)] -> css selector: input[id=username-sigin]], [a, d, m, i, n]])
+15:32:02.696 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (425d7947f3d3a2a74bf6162da4139d37)] -> css selector: input[id=username-sigin]], [a, d, m, i, n]]
+15:32:02.700 INFO - Executing: [find element: By.cssSelector: input[id=password-signin]])
+15:32:02.710 INFO - Done: [find element: By.cssSelector: input[id=password-signin]]
+15:32:02.714 INFO - Executing: [send keys: 12 [[ChromeDriver: chrome on MAC (425d7947f3d3a2a74bf6162da4139d37)] -> css selector: input[id=password-signin]], [p, a, s, s, w, o, r, d, 1, 2, 3]])
+15:32:02.892 INFO - Done: [send keys: 12 [[ChromeDriver: chrome on MAC (425d7947f3d3a2a74bf6162da4139d37)] -> css selector: input[id=password-signin]], [p, a, s, s, w, o, r, d, 1, 2, 3]]
+15:32:02.901 INFO - Executing: [find element: By.cssSelector: button[name=sign-in]])
+15:32:02.912 INFO - Done: [find element: By.cssSelector: button[name=sign-in]]
+15:32:02.924 INFO - Executing: [click: 13 [[ChromeDriver: chrome on MAC (425d7947f3d3a2a74bf6162da4139d37)] -> css selector: button[name=sign-in]]])
+15:32:03.007 INFO - Done: [click: 13 [[ChromeDriver: chrome on MAC (425d7947f3d3a2a74bf6162da4139d37)] -> css selector: button[name=sign-in]]]
+15:32:03.014 INFO - Executing: [find elements: By.cssSelector: input[type=search]])
+15:32:03.041 INFO - Done: [find elements: By.cssSelector: input[type=search]]
+15:32:03.549 INFO - Executing: [find elements: By.cssSelector: input[type=search]])
+15:32:03.595 INFO - Done: [find elements: By.cssSelector: input[type=search]]
+15:32:03.600 INFO - Executing: [is displayed: 14 [[ChromeDriver: chrome on MAC (425d7947f3d3a2a74bf6162da4139d37)] -> css selector: input[type=search]]])
+15:32:03.645 INFO - Done: [is displayed: 14 [[ChromeDriver: chrome on MAC (425d7947f3d3a2a74bf6162da4139d37)] -> css selector: input[type=search]]]
+15:32:03.651 INFO - Executing: [get current url])
+15:32:03.663 INFO - Done: [get current url]
+15:32:03.668 INFO - Executing: [delete session: ad55652d-1fbd-4cc0-abfd-64673c3aa776])
+15:32:03.747 INFO - Done: [delete session: ad55652d-1fbd-4cc0-abfd-64673c3aa776]
+15:32:03.763 INFO - Executing: [new session: Capabilities [{acceptSslCerts=true, name=Signup, browserName=chrome, javascriptEnabled=true, platform=ANY}]])
+15:32:03.766 INFO - Creating a new session for Capabilities [{acceptSslCerts=true, name=Signup, browserName=chrome, javascriptEnabled=true, platform=ANY}]
+Starting ChromeDriver 2.30.477690 (c53f4ad87510ee97b5c3425a14c0e79780cdf262) on port 19866
+Only local connections are allowed.
+15:32:04.567 INFO - Detected dialect: OSS
+15:32:04.569 INFO - Done: [new session: Capabilities [{acceptSslCerts=true, name=Signup, browserName=chrome, javascriptEnabled=true, platform=ANY}]]
+15:32:04.575 INFO - Executing: [get: http://localhost:3444/auth])
+15:32:08.765 INFO - Done: [get: http://localhost:3444/auth]
+15:32:08.773 INFO - Executing: [find elements: By.cssSelector: body])
+15:32:08.799 INFO - Done: [find elements: By.cssSelector: body]
+15:32:08.803 INFO - Executing: [is displayed: 0 [[ChromeDriver: chrome on MAC (244b3e1cdab9e62df58ecf357679dba5)] -> css selector: body]])
+15:32:08.820 INFO - Done: [is displayed: 0 [[ChromeDriver: chrome on MAC (244b3e1cdab9e62df58ecf357679dba5)] -> css selector: body]]
+15:32:08.823 INFO - Executing: [find element: By.cssSelector: #sigin-toggle])
+15:32:08.845 INFO - Done: [find element: By.cssSelector: #sigin-toggle]
+15:32:08.849 INFO - Executing: [click: 1 [[ChromeDriver: chrome on MAC (244b3e1cdab9e62df58ecf357679dba5)] -> css selector: #sigin-toggle]])
+15:32:08.947 INFO - Done: [click: 1 [[ChromeDriver: chrome on MAC (244b3e1cdab9e62df58ecf357679dba5)] -> css selector: #sigin-toggle]]
+15:32:08.954 INFO - Executing: [find element: By.cssSelector: input[name=firstname]])
+15:32:08.976 INFO - Done: [find element: By.cssSelector: input[name=firstname]]
+15:32:08.982 INFO - Executing: [send keys: 2 [[ChromeDriver: chrome on MAC (244b3e1cdab9e62df58ecf357679dba5)] -> css selector: input[name=firstname]], []])
+15:32:09.977 WARN - Exception thrown
+org.openqa.selenium.ElementNotVisibleException: element not visible
+  (Session info: chrome=58.0.3029.110)
+  (Driver info: chromedriver=2.30.477690 (c53f4ad87510ee97b5c3425a14c0e79780cdf262),platform=Mac OS X 10.12.4 x86_64) (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 41 milliseconds
+Build info: version: '3.3.1', revision: '5234b32', time: '2017-03-10 09:04:52 -0800'
+System info: host: 'Andela-Jax.local', ip: '172.16.25.39', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.12.4', java.version: '1.8.0_131'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities [{applicationCacheEnabled=false, rotatable=false, mobileEmulationEnabled=false, networkConnectionEnabled=false, chrome={chromedriverVersion=2.30.477690 (c53f4ad87510ee97b5c3425a14c0e79780cdf262), userDataDir=/var/folders/cq/7x155wyn4n913z09g3b32s4r0000gn/T/.org.chromium.Chromium.R4OZmn}, takesHeapSnapshot=true, pageLoadStrategy=normal, databaseEnabled=false, handlesAlerts=true, hasTouchScreen=false, version=58.0.3029.110, platform=MAC, browserConnectionEnabled=false, nativeEvents=true, acceptSslCerts=true, locationContextEnabled=true, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, cssSelectorsEnabled=true, unexpectedAlertBehaviour=}]
+Session ID: 244b3e1cdab9e62df58ecf357679dba5
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
+	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:216)
+	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:168)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:638)
+	at org.openqa.selenium.remote.RemoteWebElement.execute(RemoteWebElement.java:274)
+	at org.openqa.selenium.remote.RemoteWebElement.sendKeys(RemoteWebElement.java:98)
+	at sun.reflect.GeneratedMethodAccessor13.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.openqa.selenium.support.events.EventFiringWebDriver$EventFiringWebElement$1.invoke(EventFiringWebDriver.java:332)
+	at com.sun.proxy.$Proxy5.sendKeys(Unknown Source)
+	at org.openqa.selenium.support.events.EventFiringWebDriver$EventFiringWebElement.sendKeys(EventFiringWebDriver.java:355)
+	at sun.reflect.GeneratedMethodAccessor13.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.openqa.selenium.remote.server.KnownElements$1.invoke(KnownElements.java:64)
+	at com.sun.proxy.$Proxy6.sendKeys(Unknown Source)
+	at org.openqa.selenium.remote.server.handler.SendKeys.call(SendKeys.java:50)
+	at org.openqa.selenium.remote.server.handler.SendKeys.call(SendKeys.java:29)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at org.openqa.selenium.remote.server.DefaultSession$1.run(DefaultSession.java:176)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:748)
+15:32:09.979 WARN - Exception: element not visible
+  (Session info: chrome=58.0.3029.110)
+  (Driver info: chromedriver=2.30.477690 (c53f4ad87510ee97b5c3425a14c0e79780cdf262),platform=Mac OS X 10.12.4 x86_64) (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 41 milliseconds
+Build info: version: '3.3.1', revision: '5234b32', time: '2017-03-10 09:04:52 -0800'
+System info: host: 'Andela-Jax.local', ip: '172.16.25.39', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.12.4', java.version: '1.8.0_131'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities [{applicationCacheEnabled=false, rotatable=false, mobileEmulationEnabled=false, networkConnectionEnabled=false, chrome={chromedriverVersion=2.30.477690 (c53f4ad87510ee97b5c3425a14c0e79780cdf262), userDataDir=/var/folders/cq/7x155wyn4n913z09g3b32s4r0000gn/T/.org.chromium.Chromium.R4OZmn}, takesHeapSnapshot=true, pageLoadStrategy=normal, databaseEnabled=false, handlesAlerts=true, hasTouchScreen=false, version=58.0.3029.110, platform=MAC, browserConnectionEnabled=false, nativeEvents=true, acceptSslCerts=true, locationContextEnabled=true, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, cssSelectorsEnabled=true, unexpectedAlertBehaviour=}]
+Session ID: 244b3e1cdab9e62df58ecf357679dba5
+15:32:10.046 INFO - Executing: [find element: By.cssSelector: input[name=lastname]])
+15:32:10.065 INFO - Done: [find element: By.cssSelector: input[name=lastname]]
+15:32:10.068 INFO - Executing: [send keys: 3 [[ChromeDriver: chrome on MAC (244b3e1cdab9e62df58ecf357679dba5)] -> css selector: input[name=lastname]], [p, a, u, l]])
+15:32:10.281 INFO - Done: [send keys: 3 [[ChromeDriver: chrome on MAC (244b3e1cdab9e62df58ecf357679dba5)] -> css selector: input[name=lastname]], [p, a, u, l]]
+15:32:10.286 INFO - Executing: [find element: By.cssSelector: input[name=email]])
+15:32:10.310 INFO - Done: [find element: By.cssSelector: input[name=email]]
+15:32:10.316 INFO - Executing: [send keys: 4 [[ChromeDriver: chrome on MAC (244b3e1cdab9e62df58ecf357679dba5)] -> css selector: input[name=email]], [p, a, u, l, @, p, g, b, a, ., c, o, m]])
+15:32:10.945 INFO - Done: [send keys: 4 [[ChromeDriver: chrome on MAC (244b3e1cdab9e62df58ecf357679dba5)] -> css selector: input[name=email]], [p, a, u, l, @, p, g, b, a, ., c, o, m]]
+15:32:10.953 INFO - Executing: [find element: By.cssSelector: input[name=username]])
+15:32:10.995 INFO - Done: [find element: By.cssSelector: input[name=username]]
+15:32:11.002 INFO - Executing: [send keys: 5 [[ChromeDriver: chrome on MAC (244b3e1cdab9e62df58ecf357679dba5)] -> css selector: input[name=username]], [p, a, u, l, p, o, g, b, a]])
+15:32:11.321 INFO - Done: [send keys: 5 [[ChromeDriver: chrome on MAC (244b3e1cdab9e62df58ecf357679dba5)] -> css selector: input[name=username]], [p, a, u, l, p, o, g, b, a]]
+15:32:11.326 INFO - Executing: [find element: By.cssSelector: input[name=password]])
+15:32:11.348 INFO - Done: [find element: By.cssSelector: input[name=password]]
+15:32:11.354 INFO - Executing: [send keys: 6 [[ChromeDriver: chrome on MAC (244b3e1cdab9e62df58ecf357679dba5)] -> css selector: input[name=password]], [p, a, s, s, w, o, r, d, 1, 2, 3]])
+15:32:12.002 INFO - Done: [send keys: 6 [[ChromeDriver: chrome on MAC (244b3e1cdab9e62df58ecf357679dba5)] -> css selector: input[name=password]], [p, a, s, s, w, o, r, d, 1, 2, 3]]
+15:32:12.018 INFO - Executing: [find element: By.cssSelector: input[name=confirmPassword]])
+15:32:12.158 INFO - Done: [find element: By.cssSelector: input[name=confirmPassword]]
+15:32:12.184 INFO - Executing: [send keys: 7 [[ChromeDriver: chrome on MAC (244b3e1cdab9e62df58ecf357679dba5)] -> css selector: input[name=confirmPassword]], [p, a, s, s, w, o, r, d, 1, 2, 3]])
+15:32:12.643 INFO - Done: [send keys: 7 [[ChromeDriver: chrome on MAC (244b3e1cdab9e62df58ecf357679dba5)] -> css selector: input[name=confirmPassword]], [p, a, s, s, w, o, r, d, 1, 2, 3]]
+15:32:12.647 INFO - Executing: [find element: By.cssSelector: button[name=sign-up]])
+15:32:12.666 INFO - Done: [find element: By.cssSelector: button[name=sign-up]]
+15:32:12.669 INFO - Executing: [click: 8 [[ChromeDriver: chrome on MAC (244b3e1cdab9e62df58ecf357679dba5)] -> css selector: button[name=sign-up]]])
+15:32:12.727 INFO - Done: [click: 8 [[ChromeDriver: chrome on MAC (244b3e1cdab9e62df58ecf357679dba5)] -> css selector: button[name=sign-up]]]
+15:32:12.730 INFO - Executing: [find element: By.cssSelector: #sigin-toggle])
+15:32:12.738 INFO - Done: [find element: By.cssSelector: #sigin-toggle]
+15:32:12.741 INFO - Executing: [get text: 1 [[ChromeDriver: chrome on MAC (244b3e1cdab9e62df58ecf357679dba5)] -> css selector: #sigin-toggle]])
+15:32:12.764 INFO - Done: [get text: 1 [[ChromeDriver: chrome on MAC (244b3e1cdab9e62df58ecf357679dba5)] -> css selector: #sigin-toggle]]
+15:32:12.769 INFO - Executing: [get current url])
+15:32:12.778 INFO - Done: [get current url]
+15:32:12.785 INFO - Executing: [get: http://localhost:3444/auth])
+15:32:13.706 INFO - Done: [get: http://localhost:3444/auth]
+15:32:13.711 INFO - Executing: [find elements: By.cssSelector: body])
+15:32:13.730 INFO - Done: [find elements: By.cssSelector: body]
+15:32:13.733 INFO - Executing: [is displayed: 9 [[ChromeDriver: chrome on MAC (244b3e1cdab9e62df58ecf357679dba5)] -> css selector: body]])
+15:32:13.750 INFO - Done: [is displayed: 9 [[ChromeDriver: chrome on MAC (244b3e1cdab9e62df58ecf357679dba5)] -> css selector: body]]
+15:32:13.753 INFO - Executing: [find element: By.cssSelector: #sigin-toggle])
+15:32:13.764 INFO - Done: [find element: By.cssSelector: #sigin-toggle]
+15:32:13.767 INFO - Executing: [click: 10 [[ChromeDriver: chrome on MAC (244b3e1cdab9e62df58ecf357679dba5)] -> css selector: #sigin-toggle]])
+15:32:13.830 INFO - Done: [click: 10 [[ChromeDriver: chrome on MAC (244b3e1cdab9e62df58ecf357679dba5)] -> css selector: #sigin-toggle]]
+15:32:13.833 INFO - Executing: [find element: By.cssSelector: input[name=firstname]])
+15:32:13.841 INFO - Done: [find element: By.cssSelector: input[name=firstname]]
+15:32:13.846 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (244b3e1cdab9e62df58ecf357679dba5)] -> css selector: input[name=firstname]], [p, a, u, l]])
+15:32:13.969 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (244b3e1cdab9e62df58ecf357679dba5)] -> css selector: input[name=firstname]], [p, a, u, l]]
+15:32:13.973 INFO - Executing: [find element: By.cssSelector: input[name=lastname]])
+15:32:13.984 INFO - Done: [find element: By.cssSelector: input[name=lastname]]
+15:32:13.988 INFO - Executing: [send keys: 12 [[ChromeDriver: chrome on MAC (244b3e1cdab9e62df58ecf357679dba5)] -> css selector: input[name=lastname]], [p, o, g, b, a]])
+15:32:14.136 INFO - Done: [send keys: 12 [[ChromeDriver: chrome on MAC (244b3e1cdab9e62df58ecf357679dba5)] -> css selector: input[name=lastname]], [p, o, g, b, a]]
+15:32:14.139 INFO - Executing: [find element: By.cssSelector: input[name=email]])
+15:32:14.150 INFO - Done: [find element: By.cssSelector: input[name=email]]
+15:32:14.154 INFO - Executing: [send keys: 13 [[ChromeDriver: chrome on MAC (244b3e1cdab9e62df58ecf357679dba5)] -> css selector: input[name=email]], [p, a, u, l]])
+15:32:14.313 INFO - Done: [send keys: 13 [[ChromeDriver: chrome on MAC (244b3e1cdab9e62df58ecf357679dba5)] -> css selector: input[name=email]], [p, a, u, l]]
+15:32:14.316 INFO - Executing: [find element: By.cssSelector: input[name=username]])
+15:32:14.324 INFO - Done: [find element: By.cssSelector: input[name=username]]
+15:32:14.328 INFO - Executing: [send keys: 14 [[ChromeDriver: chrome on MAC (244b3e1cdab9e62df58ecf357679dba5)] -> css selector: input[name=username]], [p, a, u, l, p, o, g, b, a]])
+15:32:14.513 INFO - Done: [send keys: 14 [[ChromeDriver: chrome on MAC (244b3e1cdab9e62df58ecf357679dba5)] -> css selector: input[name=username]], [p, a, u, l, p, o, g, b, a]]
+15:32:14.516 INFO - Executing: [find element: By.cssSelector: input[name=password]])
+15:32:14.525 INFO - Done: [find element: By.cssSelector: input[name=password]]
+15:32:14.532 INFO - Executing: [send keys: 15 [[ChromeDriver: chrome on MAC (244b3e1cdab9e62df58ecf357679dba5)] -> css selector: input[name=password]], [p, a, s, s, w, o, r, d, 1, 2, 3]])
+15:32:14.862 INFO - Done: [send keys: 15 [[ChromeDriver: chrome on MAC (244b3e1cdab9e62df58ecf357679dba5)] -> css selector: input[name=password]], [p, a, s, s, w, o, r, d, 1, 2, 3]]
+15:32:14.865 INFO - Executing: [find element: By.cssSelector: input[name=confirmPassword]])
+15:32:14.874 INFO - Done: [find element: By.cssSelector: input[name=confirmPassword]]
+15:32:14.877 INFO - Executing: [send keys: 16 [[ChromeDriver: chrome on MAC (244b3e1cdab9e62df58ecf357679dba5)] -> css selector: input[name=confirmPassword]], [p, a, s, s, w, o, r, d, 1, 2, 3]])
+15:32:15.222 INFO - Done: [send keys: 16 [[ChromeDriver: chrome on MAC (244b3e1cdab9e62df58ecf357679dba5)] -> css selector: input[name=confirmPassword]], [p, a, s, s, w, o, r, d, 1, 2, 3]]
+15:32:15.226 INFO - Executing: [find element: By.cssSelector: button[name=sign-up]])
+15:32:15.234 INFO - Done: [find element: By.cssSelector: button[name=sign-up]]
+15:32:15.237 INFO - Executing: [click: 17 [[ChromeDriver: chrome on MAC (244b3e1cdab9e62df58ecf357679dba5)] -> css selector: button[name=sign-up]]])
+15:32:15.304 INFO - Done: [click: 17 [[ChromeDriver: chrome on MAC (244b3e1cdab9e62df58ecf357679dba5)] -> css selector: button[name=sign-up]]]
+15:32:15.309 INFO - Executing: [find element: By.xpath: //*[@id="sign-up"]/div[2]/div[1]/span])
+15:32:15.330 INFO - Done: [find element: By.xpath: //*[@id="sign-up"]/div[2]/div[1]/span]
+15:32:15.333 INFO - Executing: [get text: 18 [[ChromeDriver: chrome on MAC (244b3e1cdab9e62df58ecf357679dba5)] -> xpath: //*[@id="sign-up"]/div[2]/div[1]/span]])
+15:32:15.356 INFO - Done: [get text: 18 [[ChromeDriver: chrome on MAC (244b3e1cdab9e62df58ecf357679dba5)] -> xpath: //*[@id="sign-up"]/div[2]/div[1]/span]]
+15:32:15.362 INFO - Executing: [get: http://localhost:3444/auth])
+15:32:16.219 INFO - Done: [get: http://localhost:3444/auth]
+15:32:16.224 INFO - Executing: [find elements: By.cssSelector: body])
+15:32:16.240 INFO - Done: [find elements: By.cssSelector: body]
+15:32:16.243 INFO - Executing: [is displayed: 19 [[ChromeDriver: chrome on MAC (244b3e1cdab9e62df58ecf357679dba5)] -> css selector: body]])
+15:32:16.260 INFO - Done: [is displayed: 19 [[ChromeDriver: chrome on MAC (244b3e1cdab9e62df58ecf357679dba5)] -> css selector: body]]
+15:32:16.263 INFO - Executing: [find element: By.cssSelector: #sigin-toggle])
+15:32:16.272 INFO - Done: [find element: By.cssSelector: #sigin-toggle]
+15:32:16.275 INFO - Executing: [click: 20 [[ChromeDriver: chrome on MAC (244b3e1cdab9e62df58ecf357679dba5)] -> css selector: #sigin-toggle]])
+15:32:16.335 INFO - Done: [click: 20 [[ChromeDriver: chrome on MAC (244b3e1cdab9e62df58ecf357679dba5)] -> css selector: #sigin-toggle]]
+15:32:16.339 INFO - Executing: [find element: By.cssSelector: input[name=firstname]])
+15:32:16.347 INFO - Done: [find element: By.cssSelector: input[name=firstname]]
+15:32:16.351 INFO - Executing: [send keys: 21 [[ChromeDriver: chrome on MAC (244b3e1cdab9e62df58ecf357679dba5)] -> css selector: input[name=firstname]], [p, a, u, l]])
+15:32:16.490 INFO - Done: [send keys: 21 [[ChromeDriver: chrome on MAC (244b3e1cdab9e62df58ecf357679dba5)] -> css selector: input[name=firstname]], [p, a, u, l]]
+15:32:16.498 INFO - Executing: [find element: By.cssSelector: input[name=lastname]])
+15:32:16.508 INFO - Done: [find element: By.cssSelector: input[name=lastname]]
+15:32:16.512 INFO - Executing: [send keys: 22 [[ChromeDriver: chrome on MAC (244b3e1cdab9e62df58ecf357679dba5)] -> css selector: input[name=lastname]], [p, o, g, b, a]])
+15:32:16.654 INFO - Done: [send keys: 22 [[ChromeDriver: chrome on MAC (244b3e1cdab9e62df58ecf357679dba5)] -> css selector: input[name=lastname]], [p, o, g, b, a]]
+15:32:16.658 INFO - Executing: [find element: By.cssSelector: input[name=email]])
+15:32:16.667 INFO - Done: [find element: By.cssSelector: input[name=email]]
+15:32:16.672 INFO - Executing: [send keys: 23 [[ChromeDriver: chrome on MAC (244b3e1cdab9e62df58ecf357679dba5)] -> css selector: input[name=email]], [p, a, u, l, @, p, o, g, b, a, ., c, o, m]])
+15:32:17.057 INFO - Done: [send keys: 23 [[ChromeDriver: chrome on MAC (244b3e1cdab9e62df58ecf357679dba5)] -> css selector: input[name=email]], [p, a, u, l, @, p, o, g, b, a, ., c, o, m]]
+15:32:17.060 INFO - Executing: [find element: By.cssSelector: input[name=username]])
+15:32:17.068 INFO - Done: [find element: By.cssSelector: input[name=username]]
+15:32:17.072 INFO - Executing: [send keys: 24 [[ChromeDriver: chrome on MAC (244b3e1cdab9e62df58ecf357679dba5)] -> css selector: input[name=username]], [p, a, u, l, p, o, g, b, a]])
+15:32:17.239 INFO - Done: [send keys: 24 [[ChromeDriver: chrome on MAC (244b3e1cdab9e62df58ecf357679dba5)] -> css selector: input[name=username]], [p, a, u, l, p, o, g, b, a]]
+15:32:17.243 INFO - Executing: [find element: By.cssSelector: input[name=password]])
+15:32:17.252 INFO - Done: [find element: By.cssSelector: input[name=password]]
+15:32:17.255 INFO - Executing: [send keys: 25 [[ChromeDriver: chrome on MAC (244b3e1cdab9e62df58ecf357679dba5)] -> css selector: input[name=password]], [p, a, s, s]])
+15:32:17.384 INFO - Done: [send keys: 25 [[ChromeDriver: chrome on MAC (244b3e1cdab9e62df58ecf357679dba5)] -> css selector: input[name=password]], [p, a, s, s]]
+15:32:17.387 INFO - Executing: [find element: By.cssSelector: input[name=confirmPassword]])
+15:32:17.395 INFO - Done: [find element: By.cssSelector: input[name=confirmPassword]]
+15:32:17.400 INFO - Executing: [send keys: 26 [[ChromeDriver: chrome on MAC (244b3e1cdab9e62df58ecf357679dba5)] -> css selector: input[name=confirmPassword]], [p, a, s, s, w, o, r, d, 1, 2, 3]])
+15:32:17.691 INFO - Done: [send keys: 26 [[ChromeDriver: chrome on MAC (244b3e1cdab9e62df58ecf357679dba5)] -> css selector: input[name=confirmPassword]], [p, a, s, s, w, o, r, d, 1, 2, 3]]
+15:32:17.694 INFO - Executing: [find element: By.cssSelector: button[name=sign-up]])
+15:32:17.702 INFO - Done: [find element: By.cssSelector: button[name=sign-up]]
+15:32:17.705 INFO - Executing: [click: 27 [[ChromeDriver: chrome on MAC (244b3e1cdab9e62df58ecf357679dba5)] -> css selector: button[name=sign-up]]])
+15:32:17.762 INFO - Done: [click: 27 [[ChromeDriver: chrome on MAC (244b3e1cdab9e62df58ecf357679dba5)] -> css selector: button[name=sign-up]]]
+15:32:17.765 INFO - Executing: [find element: By.xpath: //*[@id="sign-up"]/div[3]/div[2]/span])
+15:32:17.787 INFO - Done: [find element: By.xpath: //*[@id="sign-up"]/div[3]/div[2]/span]
+15:32:17.791 INFO - Executing: [get text: 28 [[ChromeDriver: chrome on MAC (244b3e1cdab9e62df58ecf357679dba5)] -> xpath: //*[@id="sign-up"]/div[3]/div[2]/span]])
+15:32:17.814 INFO - Done: [get text: 28 [[ChromeDriver: chrome on MAC (244b3e1cdab9e62df58ecf357679dba5)] -> xpath: //*[@id="sign-up"]/div[3]/div[2]/span]]
+15:32:17.819 INFO - Executing: [get: http://localhost:3444/auth])
+15:32:18.338 INFO - Done: [get: http://localhost:3444/auth]
+15:32:18.345 INFO - Executing: [find elements: By.cssSelector: body])
+15:32:18.355 INFO - Done: [find elements: By.cssSelector: body]
+15:32:18.357 INFO - Executing: [is displayed: 29 [[ChromeDriver: chrome on MAC (244b3e1cdab9e62df58ecf357679dba5)] -> css selector: body]])
+15:32:18.373 INFO - Done: [is displayed: 29 [[ChromeDriver: chrome on MAC (244b3e1cdab9e62df58ecf357679dba5)] -> css selector: body]]
+15:32:18.377 INFO - Executing: [find element: By.cssSelector: #sigin-toggle])
+15:32:18.386 INFO - Done: [find element: By.cssSelector: #sigin-toggle]
+15:32:18.390 INFO - Executing: [click: 30 [[ChromeDriver: chrome on MAC (244b3e1cdab9e62df58ecf357679dba5)] -> css selector: #sigin-toggle]])
+15:32:18.468 INFO - Done: [click: 30 [[ChromeDriver: chrome on MAC (244b3e1cdab9e62df58ecf357679dba5)] -> css selector: #sigin-toggle]]
+15:32:18.472 INFO - Executing: [find element: By.cssSelector: input[name=firstname]])
+15:32:18.487 INFO - Done: [find element: By.cssSelector: input[name=firstname]]
+15:32:18.492 INFO - Executing: [send keys: 31 [[ChromeDriver: chrome on MAC (244b3e1cdab9e62df58ecf357679dba5)] -> css selector: input[name=firstname]], [p, a, u, l]])
+15:32:18.626 INFO - Done: [send keys: 31 [[ChromeDriver: chrome on MAC (244b3e1cdab9e62df58ecf357679dba5)] -> css selector: input[name=firstname]], [p, a, u, l]]
+15:32:18.629 INFO - Executing: [find element: By.cssSelector: input[name=lastname]])
+15:32:18.637 INFO - Done: [find element: By.cssSelector: input[name=lastname]]
+15:32:18.641 INFO - Executing: [send keys: 32 [[ChromeDriver: chrome on MAC (244b3e1cdab9e62df58ecf357679dba5)] -> css selector: input[name=lastname]], [p, o, g, b, a]])
+15:32:18.772 INFO - Done: [send keys: 32 [[ChromeDriver: chrome on MAC (244b3e1cdab9e62df58ecf357679dba5)] -> css selector: input[name=lastname]], [p, o, g, b, a]]
+15:32:18.775 INFO - Executing: [find element: By.cssSelector: input[name=email]])
+15:32:18.783 INFO - Done: [find element: By.cssSelector: input[name=email]]
+15:32:18.786 INFO - Executing: [send keys: 33 [[ChromeDriver: chrome on MAC (244b3e1cdab9e62df58ecf357679dba5)] -> css selector: input[name=email]], [p, a, u, l, @, p, o, g, b, a, ., c, o, m]])
+15:32:19.179 INFO - Done: [send keys: 33 [[ChromeDriver: chrome on MAC (244b3e1cdab9e62df58ecf357679dba5)] -> css selector: input[name=email]], [p, a, u, l, @, p, o, g, b, a, ., c, o, m]]
+15:32:19.183 INFO - Executing: [find element: By.cssSelector: input[name=username]])
+15:32:19.192 INFO - Done: [find element: By.cssSelector: input[name=username]]
+15:32:19.196 INFO - Executing: [send keys: 34 [[ChromeDriver: chrome on MAC (244b3e1cdab9e62df58ecf357679dba5)] -> css selector: input[name=username]], [p, a, u, l, p, o, g, b, a]])
+15:32:19.388 INFO - Done: [send keys: 34 [[ChromeDriver: chrome on MAC (244b3e1cdab9e62df58ecf357679dba5)] -> css selector: input[name=username]], [p, a, u, l, p, o, g, b, a]]
+15:32:19.392 INFO - Executing: [find element: By.cssSelector: input[name=password]])
+15:32:19.414 INFO - Done: [find element: By.cssSelector: input[name=password]]
+15:32:19.418 INFO - Executing: [send keys: 35 [[ChromeDriver: chrome on MAC (244b3e1cdab9e62df58ecf357679dba5)] -> css selector: input[name=password]], [p, a, s, s, w, o, r, d, 1, 2, 3]])
+15:32:19.706 INFO - Done: [send keys: 35 [[ChromeDriver: chrome on MAC (244b3e1cdab9e62df58ecf357679dba5)] -> css selector: input[name=password]], [p, a, s, s, w, o, r, d, 1, 2, 3]]
+15:32:19.709 INFO - Executing: [find element: By.cssSelector: input[name=confirmPassword]])
+15:32:19.717 INFO - Done: [find element: By.cssSelector: input[name=confirmPassword]]
+15:32:19.720 INFO - Executing: [send keys: 36 [[ChromeDriver: chrome on MAC (244b3e1cdab9e62df58ecf357679dba5)] -> css selector: input[name=confirmPassword]], [p, a, s, s, w, o, r, d]])
+15:32:19.923 INFO - Done: [send keys: 36 [[ChromeDriver: chrome on MAC (244b3e1cdab9e62df58ecf357679dba5)] -> css selector: input[name=confirmPassword]], [p, a, s, s, w, o, r, d]]
+15:32:19.926 INFO - Executing: [find element: By.cssSelector: button[name=sign-up]])
+15:32:19.934 INFO - Done: [find element: By.cssSelector: button[name=sign-up]]
+15:32:19.937 INFO - Executing: [click: 37 [[ChromeDriver: chrome on MAC (244b3e1cdab9e62df58ecf357679dba5)] -> css selector: button[name=sign-up]]])
+15:32:19.994 INFO - Done: [click: 37 [[ChromeDriver: chrome on MAC (244b3e1cdab9e62df58ecf357679dba5)] -> css selector: button[name=sign-up]]]
+15:32:19.998 INFO - Executing: [find element: By.xpath: //*[@id="sign-up"]/div[4]/div/span])
+15:32:20.015 INFO - Done: [find element: By.xpath: //*[@id="sign-up"]/div[4]/div/span]
+15:32:20.019 INFO - Executing: [get text: 38 [[ChromeDriver: chrome on MAC (244b3e1cdab9e62df58ecf357679dba5)] -> xpath: //*[@id="sign-up"]/div[4]/div/span]])
+15:32:20.039 INFO - Done: [get text: 38 [[ChromeDriver: chrome on MAC (244b3e1cdab9e62df58ecf357679dba5)] -> xpath: //*[@id="sign-up"]/div[4]/div/span]]
+15:32:20.047 INFO - Executing: [get: http://localhost:3444/auth])
+15:32:20.554 INFO - Done: [get: http://localhost:3444/auth]
+15:32:20.559 INFO - Executing: [find elements: By.cssSelector: body])
+15:32:20.570 INFO - Done: [find elements: By.cssSelector: body]
+15:32:20.572 INFO - Executing: [is displayed: 39 [[ChromeDriver: chrome on MAC (244b3e1cdab9e62df58ecf357679dba5)] -> css selector: body]])
+15:32:20.590 INFO - Done: [is displayed: 39 [[ChromeDriver: chrome on MAC (244b3e1cdab9e62df58ecf357679dba5)] -> css selector: body]]
+15:32:20.594 INFO - Executing: [find element: By.cssSelector: #sigin-toggle])
+15:32:20.616 INFO - Done: [find element: By.cssSelector: #sigin-toggle]
+15:32:20.618 INFO - Executing: [click: 40 [[ChromeDriver: chrome on MAC (244b3e1cdab9e62df58ecf357679dba5)] -> css selector: #sigin-toggle]])
+15:32:20.674 INFO - Done: [click: 40 [[ChromeDriver: chrome on MAC (244b3e1cdab9e62df58ecf357679dba5)] -> css selector: #sigin-toggle]]
+15:32:20.677 INFO - Executing: [find element: By.cssSelector: input[name=firstname]])
+15:32:20.685 INFO - Done: [find element: By.cssSelector: input[name=firstname]]
+15:32:20.689 INFO - Executing: [send keys: 41 [[ChromeDriver: chrome on MAC (244b3e1cdab9e62df58ecf357679dba5)] -> css selector: input[name=firstname]], [p, a, u, l]])
+15:32:20.810 INFO - Done: [send keys: 41 [[ChromeDriver: chrome on MAC (244b3e1cdab9e62df58ecf357679dba5)] -> css selector: input[name=firstname]], [p, a, u, l]]
+15:32:20.814 INFO - Executing: [find element: By.cssSelector: input[name=lastname]])
+15:32:20.868 INFO - Done: [find element: By.cssSelector: input[name=lastname]]
+15:32:20.873 INFO - Executing: [send keys: 42 [[ChromeDriver: chrome on MAC (244b3e1cdab9e62df58ecf357679dba5)] -> css selector: input[name=lastname]], [p, o, g, b, a]])
+15:32:20.995 INFO - Done: [send keys: 42 [[ChromeDriver: chrome on MAC (244b3e1cdab9e62df58ecf357679dba5)] -> css selector: input[name=lastname]], [p, o, g, b, a]]
+15:32:20.998 INFO - Executing: [find element: By.cssSelector: input[name=email]])
+15:32:21.011 INFO - Done: [find element: By.cssSelector: input[name=email]]
+15:32:21.018 INFO - Executing: [send keys: 43 [[ChromeDriver: chrome on MAC (244b3e1cdab9e62df58ecf357679dba5)] -> css selector: input[name=email]], [J, u, n, e, ., T, h, o, m, p, s, o, n, 1, 2, @, y, a, h, o, o, ., c, o, m]])
+15:32:21.768 INFO - Done: [send keys: 43 [[ChromeDriver: chrome on MAC (244b3e1cdab9e62df58ecf357679dba5)] -> css selector: input[name=email]], [J, u, n, e, ., T, h, o, m, p, s, o, n, 1, 2, @, y, a, h, o, o, ., c, o, m]]
+15:32:21.771 INFO - Executing: [find element: By.cssSelector: input[name=firstname]])
+15:32:21.780 INFO - Done: [find element: By.cssSelector: input[name=firstname]]
+15:32:21.783 INFO - Executing: [send keys: 41 [[ChromeDriver: chrome on MAC (244b3e1cdab9e62df58ecf357679dba5)] -> css selector: input[name=firstname]], [p, a, u, l]])
+15:32:21.882 INFO - Done: [send keys: 41 [[ChromeDriver: chrome on MAC (244b3e1cdab9e62df58ecf357679dba5)] -> css selector: input[name=firstname]], [p, a, u, l]]
+15:32:21.885 INFO - Executing: [find element: By.cssSelector: input[name=username]])
+15:32:21.903 INFO - Done: [find element: By.cssSelector: input[name=username]]
+15:32:21.906 INFO - Executing: [send keys: 44 [[ChromeDriver: chrome on MAC (244b3e1cdab9e62df58ecf357679dba5)] -> css selector: input[name=username]], [R, o, s, e, l, y, n, _, J, o, h, n, s, o, n]])
+15:32:22.160 INFO - Done: [send keys: 44 [[ChromeDriver: chrome on MAC (244b3e1cdab9e62df58ecf357679dba5)] -> css selector: input[name=username]], [R, o, s, e, l, y, n, _, J, o, h, n, s, o, n]]
+15:32:22.163 INFO - Executing: [find element: By.cssSelector: input[name=password]])
+15:32:22.172 INFO - Done: [find element: By.cssSelector: input[name=password]]
+15:32:22.175 INFO - Executing: [send keys: 45 [[ChromeDriver: chrome on MAC (244b3e1cdab9e62df58ecf357679dba5)] -> css selector: input[name=password]], [p, a, s, s, w, o, r, d, 1, 2, 3]])
+15:32:22.452 INFO - Done: [send keys: 45 [[ChromeDriver: chrome on MAC (244b3e1cdab9e62df58ecf357679dba5)] -> css selector: input[name=password]], [p, a, s, s, w, o, r, d, 1, 2, 3]]
+15:32:22.455 INFO - Executing: [find element: By.cssSelector: input[name=lastname]])
+15:32:22.463 INFO - Done: [find element: By.cssSelector: input[name=lastname]]
+15:32:22.467 INFO - Executing: [send keys: 42 [[ChromeDriver: chrome on MAC (244b3e1cdab9e62df58ecf357679dba5)] -> css selector: input[name=lastname]], [p, o, g, b, a]])
+15:32:22.564 INFO - Done: [send keys: 42 [[ChromeDriver: chrome on MAC (244b3e1cdab9e62df58ecf357679dba5)] -> css selector: input[name=lastname]], [p, o, g, b, a]]
+15:32:22.567 INFO - Executing: [find element: By.cssSelector: input[name=confirmPassword]])
+15:32:22.577 INFO - Done: [find element: By.cssSelector: input[name=confirmPassword]]
+15:32:22.582 INFO - Executing: [send keys: 46 [[ChromeDriver: chrome on MAC (244b3e1cdab9e62df58ecf357679dba5)] -> css selector: input[name=confirmPassword]], [p, a, s, s, w, o, r, d, 1, 2, 3]])
+15:32:22.907 INFO - Done: [send keys: 46 [[ChromeDriver: chrome on MAC (244b3e1cdab9e62df58ecf357679dba5)] -> css selector: input[name=confirmPassword]], [p, a, s, s, w, o, r, d, 1, 2, 3]]
+15:32:22.911 INFO - Executing: [find element: By.cssSelector: button[name=sign-up]])
+15:32:22.921 INFO - Done: [find element: By.cssSelector: button[name=sign-up]]
+15:32:22.924 INFO - Executing: [click: 47 [[ChromeDriver: chrome on MAC (244b3e1cdab9e62df58ecf357679dba5)] -> css selector: button[name=sign-up]]])
+15:32:22.999 INFO - Done: [click: 47 [[ChromeDriver: chrome on MAC (244b3e1cdab9e62df58ecf357679dba5)] -> css selector: button[name=sign-up]]]
+15:32:23.003 INFO - Executing: [find elements: By.xpath: //*[@id="search"]])
+15:32:23.021 INFO - Done: [find elements: By.xpath: //*[@id="search"]]
+15:32:23.530 INFO - Executing: [find elements: By.xpath: //*[@id="search"]])
+15:32:23.542 INFO - Done: [find elements: By.xpath: //*[@id="search"]]
+15:32:23.545 INFO - Executing: [is displayed: 48 [[ChromeDriver: chrome on MAC (244b3e1cdab9e62df58ecf357679dba5)] -> xpath: //*[@id="search"]]])
+15:32:23.566 INFO - Done: [is displayed: 48 [[ChromeDriver: chrome on MAC (244b3e1cdab9e62df58ecf357679dba5)] -> xpath: //*[@id="search"]]]
+15:32:23.569 INFO - Executing: [get current url])
+15:32:23.576 INFO - Done: [get current url]
+15:32:23.579 INFO - Executing: [delete session: 546a07d1-e4f2-4f26-9aa6-847d9045be39])
+15:32:23.716 INFO - Done: [delete session: 546a07d1-e4f2-4f26-9aa6-847d9045be39]
+15:32:23.735 INFO - Executing: [new session: Capabilities [{acceptSslCerts=true, name=Users, browserName=chrome, javascriptEnabled=true, platform=ANY}]])
+15:32:23.737 INFO - Creating a new session for Capabilities [{acceptSslCerts=true, name=Users, browserName=chrome, javascriptEnabled=true, platform=ANY}]
+Starting ChromeDriver 2.30.477690 (c53f4ad87510ee97b5c3425a14c0e79780cdf262) on port 20661
+Only local connections are allowed.
+15:32:24.610 INFO - Detected dialect: OSS
+15:32:24.611 INFO - Done: [new session: Capabilities [{acceptSslCerts=true, name=Users, browserName=chrome, javascriptEnabled=true, platform=ANY}]]
+15:32:24.615 INFO - Executing: [get: http://localhost:3444/auth])
+15:32:28.299 INFO - Done: [get: http://localhost:3444/auth]
+15:32:28.333 INFO - Executing: [find elements: By.cssSelector: body])
+15:32:28.352 INFO - Done: [find elements: By.cssSelector: body]
+15:32:28.355 INFO - Executing: [is displayed: 0 [[ChromeDriver: chrome on MAC (1657ba25a3eb0c00b0f908b505d5ed7f)] -> css selector: body]])
+15:32:28.372 INFO - Done: [is displayed: 0 [[ChromeDriver: chrome on MAC (1657ba25a3eb0c00b0f908b505d5ed7f)] -> css selector: body]]
+15:32:28.377 INFO - Executing: [find element: By.cssSelector: input[id=username-sigin]])
+15:32:28.399 INFO - Done: [find element: By.cssSelector: input[id=username-sigin]]
+15:32:28.404 INFO - Executing: [send keys: 1 [[ChromeDriver: chrome on MAC (1657ba25a3eb0c00b0f908b505d5ed7f)] -> css selector: input[id=username-sigin]], [a, d, m, i, n]])
+15:32:28.551 INFO - Done: [send keys: 1 [[ChromeDriver: chrome on MAC (1657ba25a3eb0c00b0f908b505d5ed7f)] -> css selector: input[id=username-sigin]], [a, d, m, i, n]]
+15:32:28.555 INFO - Executing: [find element: By.cssSelector: input[id=password-signin]])
+15:32:28.575 INFO - Done: [find element: By.cssSelector: input[id=password-signin]]
+15:32:28.579 INFO - Executing: [send keys: 2 [[ChromeDriver: chrome on MAC (1657ba25a3eb0c00b0f908b505d5ed7f)] -> css selector: input[id=password-signin]], [p, a, s, s, w, o, r, d, 1, 2, 3]])
+15:32:28.743 INFO - Done: [send keys: 2 [[ChromeDriver: chrome on MAC (1657ba25a3eb0c00b0f908b505d5ed7f)] -> css selector: input[id=password-signin]], [p, a, s, s, w, o, r, d, 1, 2, 3]]
+15:32:28.746 INFO - Executing: [find element: By.cssSelector: button[name=sign-in]])
+15:32:28.771 INFO - Done: [find element: By.cssSelector: button[name=sign-in]]
+15:32:28.775 INFO - Executing: [click: 3 [[ChromeDriver: chrome on MAC (1657ba25a3eb0c00b0f908b505d5ed7f)] -> css selector: button[name=sign-in]]])
+15:32:28.861 INFO - Done: [click: 3 [[ChromeDriver: chrome on MAC (1657ba25a3eb0c00b0f908b505d5ed7f)] -> css selector: button[name=sign-in]]]
+15:32:28.871 INFO - Executing: [find elements: By.cssSelector: input[type=search]])
+15:32:28.940 INFO - Done: [find elements: By.cssSelector: input[type=search]]
+15:32:29.448 INFO - Executing: [find elements: By.cssSelector: input[type=search]])
+15:32:29.466 INFO - Done: [find elements: By.cssSelector: input[type=search]]
+15:32:29.475 INFO - Executing: [is displayed: 4 [[ChromeDriver: chrome on MAC (1657ba25a3eb0c00b0f908b505d5ed7f)] -> css selector: input[type=search]]])
+15:32:29.504 INFO - Done: [is displayed: 4 [[ChromeDriver: chrome on MAC (1657ba25a3eb0c00b0f908b505d5ed7f)] -> css selector: input[type=search]]]
+15:32:29.512 INFO - Executing: [get current url])
+15:32:29.528 INFO - Done: [get current url]
+15:32:29.533 INFO - Executing: [get: http://localhost:3444/user])
+15:32:31.468 INFO - Done: [get: http://localhost:3444/user]
+15:32:31.474 INFO - Executing: [find element: By.cssSelector: .e2edeleteu])
+15:32:31.503 INFO - Done: [find element: By.cssSelector: .e2edeleteu]
+15:32:31.506 INFO - Executing: [click: 5 [[ChromeDriver: chrome on MAC (1657ba25a3eb0c00b0f908b505d5ed7f)] -> css selector: .e2edeleteu]])
+15:32:31.607 INFO - Done: [click: 5 [[ChromeDriver: chrome on MAC (1657ba25a3eb0c00b0f908b505d5ed7f)] -> css selector: .e2edeleteu]]
+15:32:32.617 INFO - Executing: [find element: By.xpath: //*[@id="deleteDocModal"]/div[2]/a[2]])
+15:32:32.637 INFO - Done: [find element: By.xpath: //*[@id="deleteDocModal"]/div[2]/a[2]]
+15:32:32.640 INFO - Executing: [click: 6 [[ChromeDriver: chrome on MAC (1657ba25a3eb0c00b0f908b505d5ed7f)] -> xpath: //*[@id="deleteDocModal"]/div[2]/a[2]]])
+15:32:32.698 INFO - Done: [click: 6 [[ChromeDriver: chrome on MAC (1657ba25a3eb0c00b0f908b505d5ed7f)] -> xpath: //*[@id="deleteDocModal"]/div[2]/a[2]]]
+15:32:32.705 INFO - Executing: [find elements: By.xpath: //*[@id="toast-container"]/div])
+15:32:32.891 INFO - Done: [find elements: By.xpath: //*[@id="toast-container"]/div]
+15:32:32.895 INFO - Executing: [is displayed: 7 [[ChromeDriver: chrome on MAC (1657ba25a3eb0c00b0f908b505d5ed7f)] -> xpath: //*[@id="toast-container"]/div]])
+15:32:32.922 INFO - Done: [is displayed: 7 [[ChromeDriver: chrome on MAC (1657ba25a3eb0c00b0f908b505d5ed7f)] -> xpath: //*[@id="toast-container"]/div]]
+15:32:32.930 INFO - Executing: [find element: By.xpath: //*[@id="toast-container"]/div])
+15:32:32.991 INFO - Done: [find element: By.xpath: //*[@id="toast-container"]/div]
+15:32:32.994 INFO - Executing: [get text: 7 [[ChromeDriver: chrome on MAC (1657ba25a3eb0c00b0f908b505d5ed7f)] -> xpath: //*[@id="toast-container"]/div]])
+15:32:33.021 INFO - Done: [get text: 7 [[ChromeDriver: chrome on MAC (1657ba25a3eb0c00b0f908b505d5ed7f)] -> xpath: //*[@id="toast-container"]/div]]
+15:32:33.028 INFO - Executing: [get: http://localhost:3444/user])
+15:32:33.738 INFO - Done: [get: http://localhost:3444/user]
+15:32:33.743 INFO - Executing: [find element: By.xpath: //*[@id="app"]/div/div/div[2]/div[1]/div[2]/div[3]/div[2]/a/i])
+15:32:33.958 INFO - Done: [find element: By.xpath: //*[@id="app"]/div/div/div[2]/div[1]/div[2]/div[3]/div[2]/a/i]
+15:32:33.966 INFO - Executing: [click: 8 [[ChromeDriver: chrome on MAC (1657ba25a3eb0c00b0f908b505d5ed7f)] -> xpath: //*[@id="app"]/div/div/div[2]/div[1]/div[2]/div[3]/div[2]/a/i]])
+15:32:34.079 INFO - Done: [click: 8 [[ChromeDriver: chrome on MAC (1657ba25a3eb0c00b0f908b505d5ed7f)] -> xpath: //*[@id="app"]/div/div/div[2]/div[1]/div[2]/div[3]/div[2]/a/i]]
+15:32:34.083 INFO - Executing: [get current url])
+15:32:34.116 INFO - Done: [get current url]
+15:32:34.122 INFO - Executing: [find element: By.xpath: //*[@id="firstname"]])
+15:32:34.150 INFO - Done: [find element: By.xpath: //*[@id="firstname"]]
+15:32:34.154 INFO - Executing: [send keys: 9 [[ChromeDriver: chrome on MAC (1657ba25a3eb0c00b0f908b505d5ed7f)] -> xpath: //*[@id="firstname"]], [C, l, a, u, d, i, e]])
+15:32:34.249 INFO - Done: [send keys: 9 [[ChromeDriver: chrome on MAC (1657ba25a3eb0c00b0f908b505d5ed7f)] -> xpath: //*[@id="firstname"]], [C, l, a, u, d, i, e]]
+15:32:34.252 INFO - Executing: [find element: By.xpath: //*[@id="lastname"]])
+15:32:34.274 INFO - Done: [find element: By.xpath: //*[@id="lastname"]]
+15:32:34.277 INFO - Executing: [send keys: 10 [[ChromeDriver: chrome on MAC (1657ba25a3eb0c00b0f908b505d5ed7f)] -> xpath: //*[@id="lastname"]], [G, o, o, d, w, i, n]])
+15:32:34.395 INFO - Done: [send keys: 10 [[ChromeDriver: chrome on MAC (1657ba25a3eb0c00b0f908b505d5ed7f)] -> xpath: //*[@id="lastname"]], [G, o, o, d, w, i, n]]
+15:32:34.398 INFO - Executing: [find element: By.xpath: //*[@id="app"]/div/div/div[2]/div/div[2]/form/button])
+15:32:34.418 INFO - Done: [find element: By.xpath: //*[@id="app"]/div/div/div[2]/div/div[2]/form/button]
+15:32:34.422 INFO - Executing: [click: 11 [[ChromeDriver: chrome on MAC (1657ba25a3eb0c00b0f908b505d5ed7f)] -> xpath: //*[@id="app"]/div/div/div[2]/div/div[2]/form/button]])
+15:32:34.492 INFO - Done: [click: 11 [[ChromeDriver: chrome on MAC (1657ba25a3eb0c00b0f908b505d5ed7f)] -> xpath: //*[@id="app"]/div/div/div[2]/div/div[2]/form/button]]
+15:32:34.497 INFO - Executing: [find elements: By.xpath: //*[@id="toast-container"]/div])
+15:32:34.713 INFO - Done: [find elements: By.xpath: //*[@id="toast-container"]/div]
+15:32:34.717 INFO - Executing: [is displayed: 12 [[ChromeDriver: chrome on MAC (1657ba25a3eb0c00b0f908b505d5ed7f)] -> xpath: //*[@id="toast-container"]/div]])
+15:32:34.743 INFO - Done: [is displayed: 12 [[ChromeDriver: chrome on MAC (1657ba25a3eb0c00b0f908b505d5ed7f)] -> xpath: //*[@id="toast-container"]/div]]
+15:32:34.748 INFO - Executing: [find element: By.xpath: //*[@id="toast-container"]/div])
+15:32:34.762 INFO - Done: [find element: By.xpath: //*[@id="toast-container"]/div]
+15:32:34.768 INFO - Executing: [get text: 12 [[ChromeDriver: chrome on MAC (1657ba25a3eb0c00b0f908b505d5ed7f)] -> xpath: //*[@id="toast-container"]/div]])
+15:32:34.806 INFO - Done: [get text: 12 [[ChromeDriver: chrome on MAC (1657ba25a3eb0c00b0f908b505d5ed7f)] -> xpath: //*[@id="toast-container"]/div]]
+15:32:34.814 INFO - Executing: [delete session: 1e7ad920-388d-4bbf-9971-d061b5dc08ba])
+15:32:34.951 INFO - Done: [delete session: 1e7ad920-388d-4bbf-9971-d061b5dc08ba]
+15:32:34.962 INFO - Executing: [new session: Capabilities [{acceptSslCerts=true, name=Users, browserName=chrome, javascriptEnabled=true, platform=ANY}]])
+15:32:34.963 INFO - Creating a new session for Capabilities [{acceptSslCerts=true, name=Users, browserName=chrome, javascriptEnabled=true, platform=ANY}]
+Starting ChromeDriver 2.30.477690 (c53f4ad87510ee97b5c3425a14c0e79780cdf262) on port 43405
+Only local connections are allowed.
+15:32:35.866 INFO - Detected dialect: OSS
+15:32:35.868 INFO - Done: [new session: Capabilities [{acceptSslCerts=true, name=Users, browserName=chrome, javascriptEnabled=true, platform=ANY}]]
+15:32:35.873 INFO - Executing: [get: http://localhost:3444/auth])
+15:32:40.738 INFO - Done: [get: http://localhost:3444/auth]
+15:32:40.744 INFO - Executing: [find element: By.cssSelector: input[id=username-sigin]])
+15:32:40.774 INFO - Done: [find element: By.cssSelector: input[id=username-sigin]]
+15:32:40.777 INFO - Executing: [send keys: 0 [[ChromeDriver: chrome on MAC (22b56038e375c4aa1e584bb6d2e1a76d)] -> css selector: input[id=username-sigin]], [a, d, m, i, n]])
+15:32:40.896 INFO - Done: [send keys: 0 [[ChromeDriver: chrome on MAC (22b56038e375c4aa1e584bb6d2e1a76d)] -> css selector: input[id=username-sigin]], [a, d, m, i, n]]
+15:32:40.900 INFO - Executing: [find element: By.cssSelector: input[id=password-signin]])
+15:32:40.921 INFO - Done: [find element: By.cssSelector: input[id=password-signin]]
+15:32:40.924 INFO - Executing: [send keys: 1 [[ChromeDriver: chrome on MAC (22b56038e375c4aa1e584bb6d2e1a76d)] -> css selector: input[id=password-signin]], [p, a, s, s, w, o, r, d, 1, 2, 3]])
+15:32:41.083 INFO - Done: [send keys: 1 [[ChromeDriver: chrome on MAC (22b56038e375c4aa1e584bb6d2e1a76d)] -> css selector: input[id=password-signin]], [p, a, s, s, w, o, r, d, 1, 2, 3]]
+15:32:41.087 INFO - Executing: [find element: By.cssSelector: button[name=sign-in]])
+15:32:41.107 INFO - Done: [find element: By.cssSelector: button[name=sign-in]]
+15:32:41.110 INFO - Executing: [click: 2 [[ChromeDriver: chrome on MAC (22b56038e375c4aa1e584bb6d2e1a76d)] -> css selector: button[name=sign-in]]])
+15:32:41.192 INFO - Done: [click: 2 [[ChromeDriver: chrome on MAC (22b56038e375c4aa1e584bb6d2e1a76d)] -> css selector: button[name=sign-in]]]
+15:32:41.196 INFO - Executing: [get: http://localhost:3444/user])
+15:32:44.021 INFO - Done: [get: http://localhost:3444/user]
+15:32:44.027 INFO - Executing: [find elements: By.cssSelector: body])
+15:32:44.056 INFO - Done: [find elements: By.cssSelector: body]
+15:32:44.063 INFO - Executing: [is displayed: 3 [[ChromeDriver: chrome on MAC (22b56038e375c4aa1e584bb6d2e1a76d)] -> css selector: body]])
+15:32:44.083 INFO - Done: [is displayed: 3 [[ChromeDriver: chrome on MAC (22b56038e375c4aa1e584bb6d2e1a76d)] -> css selector: body]]
+15:32:46.099 INFO - Executing: [find element: By.xpath: //*[@id="app"]/div/div/div[2]/div[2]/a/i])
+15:32:46.118 INFO - Done: [find element: By.xpath: //*[@id="app"]/div/div/div[2]/div[2]/a/i]
+15:32:46.121 INFO - Executing: [click: 4 [[ChromeDriver: chrome on MAC (22b56038e375c4aa1e584bb6d2e1a76d)] -> xpath: //*[@id="app"]/div/div/div[2]/div[2]/a/i]])
+15:32:46.275 INFO - Done: [click: 4 [[ChromeDriver: chrome on MAC (22b56038e375c4aa1e584bb6d2e1a76d)] -> xpath: //*[@id="app"]/div/div/div[2]/div[2]/a/i]]
+15:32:46.283 INFO - Executing: [find element: By.cssSelector: input[name=firstname]])
+15:32:46.326 INFO - Done: [find element: By.cssSelector: input[name=firstname]]
+15:32:46.330 INFO - Executing: [send keys: 5 [[ChromeDriver: chrome on MAC (22b56038e375c4aa1e584bb6d2e1a76d)] -> css selector: input[name=firstname]], [p, a, u, l]])
+15:32:46.764 INFO - Done: [send keys: 5 [[ChromeDriver: chrome on MAC (22b56038e375c4aa1e584bb6d2e1a76d)] -> css selector: input[name=firstname]], [p, a, u, l]]
+15:32:46.767 INFO - Executing: [find element: By.cssSelector: input[name=lastname]])
+15:32:46.790 INFO - Done: [find element: By.cssSelector: input[name=lastname]]
+15:32:46.793 INFO - Executing: [send keys: 6 [[ChromeDriver: chrome on MAC (22b56038e375c4aa1e584bb6d2e1a76d)] -> css selector: input[name=lastname]], [p, o, g, b, a]])
+15:32:47.106 INFO - Done: [send keys: 6 [[ChromeDriver: chrome on MAC (22b56038e375c4aa1e584bb6d2e1a76d)] -> css selector: input[name=lastname]], [p, o, g, b, a]]
+15:32:47.111 INFO - Executing: [find element: By.cssSelector: input[name=email]])
+15:32:47.134 INFO - Done: [find element: By.cssSelector: input[name=email]]
+15:32:47.139 INFO - Executing: [send keys: 7 [[ChromeDriver: chrome on MAC (22b56038e375c4aa1e584bb6d2e1a76d)] -> css selector: input[name=email]], [H, o, l, l, i, s, ., W, a, r, d, 1, 2, @, h, o, t, m, a, i, l, ., c, o, m]])
+15:32:49.466 INFO - Done: [send keys: 7 [[ChromeDriver: chrome on MAC (22b56038e375c4aa1e584bb6d2e1a76d)] -> css selector: input[name=email]], [H, o, l, l, i, s, ., W, a, r, d, 1, 2, @, h, o, t, m, a, i, l, ., c, o, m]]
+15:32:49.471 INFO - Executing: [find element: By.cssSelector: input[name=firstname]])
+15:32:49.494 INFO - Done: [find element: By.cssSelector: input[name=firstname]]
+15:32:49.498 INFO - Executing: [send keys: 5 [[ChromeDriver: chrome on MAC (22b56038e375c4aa1e584bb6d2e1a76d)] -> css selector: input[name=firstname]], [p, a, u, l]])
+15:32:49.705 INFO - Done: [send keys: 5 [[ChromeDriver: chrome on MAC (22b56038e375c4aa1e584bb6d2e1a76d)] -> css selector: input[name=firstname]], [p, a, u, l]]
+15:32:49.710 INFO - Executing: [find element: By.cssSelector: input[name=username]])
+15:32:49.743 INFO - Done: [find element: By.cssSelector: input[name=username]]
+15:32:49.748 INFO - Executing: [send keys: 8 [[ChromeDriver: chrome on MAC (22b56038e375c4aa1e584bb6d2e1a76d)] -> css selector: input[name=username]], [E, l, s, i, e, _, A, r, m, s, t, r, o, n, g, 1]])
+15:32:50.556 INFO - Done: [send keys: 8 [[ChromeDriver: chrome on MAC (22b56038e375c4aa1e584bb6d2e1a76d)] -> css selector: input[name=username]], [E, l, s, i, e, _, A, r, m, s, t, r, o, n, g, 1]]
+15:32:50.559 INFO - Executing: [find element: By.cssSelector: input[name=password]])
+15:32:50.587 INFO - Done: [find element: By.cssSelector: input[name=password]]
+15:32:50.590 INFO - Executing: [send keys: 9 [[ChromeDriver: chrome on MAC (22b56038e375c4aa1e584bb6d2e1a76d)] -> css selector: input[name=password]], [p, a, s, s, w, o, r, d, 1, 2, 3]])
+15:32:51.573 INFO - Done: [send keys: 9 [[ChromeDriver: chrome on MAC (22b56038e375c4aa1e584bb6d2e1a76d)] -> css selector: input[name=password]], [p, a, s, s, w, o, r, d, 1, 2, 3]]
+15:32:51.596 INFO - Executing: [find element: By.cssSelector: input[name=lastname]])
+15:32:51.603 INFO - Done: [find element: By.cssSelector: input[name=lastname]]
+15:32:51.607 INFO - Executing: [send keys: 6 [[ChromeDriver: chrome on MAC (22b56038e375c4aa1e584bb6d2e1a76d)] -> css selector: input[name=lastname]], [p, o, g, b, a]])
+15:32:51.858 INFO - Done: [send keys: 6 [[ChromeDriver: chrome on MAC (22b56038e375c4aa1e584bb6d2e1a76d)] -> css selector: input[name=lastname]], [p, o, g, b, a]]
+15:32:51.863 INFO - Executing: [find element: By.cssSelector: input[name=confirmPassword]])
+15:32:51.886 INFO - Done: [find element: By.cssSelector: input[name=confirmPassword]]
+15:32:51.891 INFO - Executing: [send keys: 10 [[ChromeDriver: chrome on MAC (22b56038e375c4aa1e584bb6d2e1a76d)] -> css selector: input[name=confirmPassword]], [p, a, s, s, w, o, r, d, 1, 2, 3]])
+15:32:52.823 INFO - Done: [send keys: 10 [[ChromeDriver: chrome on MAC (22b56038e375c4aa1e584bb6d2e1a76d)] -> css selector: input[name=confirmPassword]], [p, a, s, s, w, o, r, d, 1, 2, 3]]
+15:32:52.829 INFO - Executing: [find element: By.xpath: //*[@id="sign-up"]/button])
+15:32:52.873 INFO - Done: [find element: By.xpath: //*[@id="sign-up"]/button]
+15:32:52.877 INFO - Executing: [click: 11 [[ChromeDriver: chrome on MAC (22b56038e375c4aa1e584bb6d2e1a76d)] -> xpath: //*[@id="sign-up"]/button]])
+15:32:52.940 INFO - Done: [click: 11 [[ChromeDriver: chrome on MAC (22b56038e375c4aa1e584bb6d2e1a76d)] -> xpath: //*[@id="sign-up"]/button]]
+15:32:52.945 INFO - Executing: [find elements: By.xpath: //*[@id="toast-container"]/div])
+15:32:52.975 INFO - Done: [find elements: By.xpath: //*[@id="toast-container"]/div]
+15:32:53.484 INFO - Executing: [find elements: By.xpath: //*[@id="toast-container"]/div])
+15:32:53.495 INFO - Done: [find elements: By.xpath: //*[@id="toast-container"]/div]
+15:32:53.498 INFO - Executing: [is displayed: 12 [[ChromeDriver: chrome on MAC (22b56038e375c4aa1e584bb6d2e1a76d)] -> xpath: //*[@id="toast-container"]/div]])
+15:32:53.514 INFO - Done: [is displayed: 12 [[ChromeDriver: chrome on MAC (22b56038e375c4aa1e584bb6d2e1a76d)] -> xpath: //*[@id="toast-container"]/div]]
+15:32:53.518 INFO - Executing: [find element: By.xpath: //*[@id="toast-container"]/div])
+15:32:53.541 INFO - Done: [find element: By.xpath: //*[@id="toast-container"]/div]
+15:32:53.545 INFO - Executing: [get text: 12 [[ChromeDriver: chrome on MAC (22b56038e375c4aa1e584bb6d2e1a76d)] -> xpath: //*[@id="toast-container"]/div]])
+15:32:53.576 INFO - Done: [get text: 12 [[ChromeDriver: chrome on MAC (22b56038e375c4aa1e584bb6d2e1a76d)] -> xpath: //*[@id="toast-container"]/div]]
+15:32:53.580 INFO - Executing: [delete session: 65abaf08-f21f-49a5-ad1f-95d4f1c9758a])
+15:32:53.669 INFO - Done: [delete session: 65abaf08-f21f-49a5-ad1f-95d4f1c9758a]

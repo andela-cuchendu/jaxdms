@@ -1,4 +1,7 @@
 /* eslint-disable global-require */
+import path from 'path';
+import swagger from './routes/swagger';
+
 (function () {
   const express = require('express');
   const logger = require('morgan');
@@ -37,6 +40,14 @@
   }));
 
   dms.use(require('./routes'));
+
+  if (process.env.NODE_ENV !== 'production') {
+    dms.use('/dms', express.static(path.join(__dirname, './dms/')));
+  } else {
+    dms.use('/dms', express.static(
+      path.join(__dirname, '../../server/dms/')));
+  }
+  swagger(dms);
 
   module.exports = {
     api: dms,

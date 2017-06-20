@@ -10,3 +10,5 @@ ratings:
   - "client/**/*.js"
 exclude_paths:
 - tools
+- tools/TestSetup.js
+- server/dms

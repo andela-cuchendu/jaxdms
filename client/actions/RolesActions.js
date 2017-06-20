@@ -11,7 +11,8 @@ export function GetRolesSuccess(RolesData) {
 export function GetRoles() {
   return (dispatch) => {
     const url = '/api/roles?access=1';
-    BaseApi(null, 'get', url, (ApiResult) => {
+    return BaseApi(null, 'get', url)
+    .then((ApiResult) => {
       dispatch(GetRolesSuccess(ApiResult));
     });
   };

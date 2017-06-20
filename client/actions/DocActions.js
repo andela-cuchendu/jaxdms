@@ -28,12 +28,6 @@ export function getSharedDocSuccess(publicDocs) {
   };
 }
 
-export function fetchingUserDocs() {
-  return {
-    type: ActionTypes.USER_GETTING_DOCS,
-  };
-}
-
 export function DocsSuccess(docs) {
   return {
     type: ActionTypes.DOCS_USER_SUCCESS,
@@ -90,9 +84,9 @@ export function editPage(docData) {
 
 export function getUserDocs(userId, type) {
   return (dispatch) => {
-    dispatch(fetchingUserDocs());
     const url = `/api/documents/${userId}/${type}`;
-    return BaseApi(null, 'get', url, function (apiResult) {
+    return BaseApi(null, 'get', url)
+    .then((apiResult) => {
       dispatch(DocsSuccess(apiResult));
     });
   };
@@ -174,11 +168,11 @@ export function DevoidUser() {
 
 export function getPublicDocument(userInfo, type) {
   return (dispatch) => {
-    dispatch(fetchingUserDocs());
     const url = `/api/documents/${userInfo.id}/${type}`;
-    return BaseApi(null, 'get', url, function (apiResult) {
+    return BaseApi(null, 'get', url)
+    .then((apiResult) => {
       dispatch(getSharedDocSuccess(apiResult));
-      return dispatch(getUserDocs(parseInt(userInfo.id, 10), type));
+      return dispatch(DocsSuccess(apiResult));
     });
   };
 }
@@ -196,7 +190,8 @@ export function updatedSPublicDocs(newDocs) {
 export function validateUser(type) {
   return (dispatch) => {
     const url = '/api/users/data/data';
-    return BaseApi(null, 'get', url, function (apiResult) {
+    return BaseApi(null, 'get', url)
+    .then((apiResult) => {
       if (apiResult.id) {
         dispatch(storeUSerData(apiResult));
         return dispatch(getComponentResources(apiResult, type));
@@ -219,7 +214,8 @@ export function getComponentResources(userInfo, type) {
 export function deleteDocAction(docId) {
   return (dispatch) => {
     const url = `/api/documents/${docId}`;
-    return BaseApi(null, 'delete', url, function (apiResult) {
+    return BaseApi(null, 'delete', url)
+    .then(() => {
       dispatch(DocumentDeleted());
       return dispatch(getComponentResources({}, 'own'));
     });
@@ -231,8 +227,11 @@ export function createDoc(docData, creatorData) {
     dispatch(savingDoc());
     const url = '/api/documents/';
     docData.creator = creatorData;
-    return BaseApi(docData, 'post', url, function (apiResult) {
-      Materialize.toast('Document Created successfully', 4000);
+    return BaseApi(docData, 'post', url)
+    .then((apiResult) => {
+      if (global.Materialize !== undefined) {
+        global.Materialize.toast('Document Created successfully', 4000);
+      }
       dispatch(newDoc(apiResult));
     });
   };
@@ -252,7 +251,8 @@ export function upadateDoc(newDocData, docId) {
   return (dispatch) => {
     dispatch(updatingDoc());
     const url = `/api/documents/${docId}`;
-    return BaseApi(newDocData, 'put', url, function () {
+    return BaseApi(newDocData, 'put', url)
+    .then(() => {
       dispatch(getComponentResources({}, 'own'));
       dispatch(editDocSuccess());
     });
@@ -263,7 +263,8 @@ export function upadateDoc(newDocData, docId) {
 export function EditData(docId) {
   return (dispatch) => {
     const url = `/api/documents/${docId}`;
-    return BaseApi(null, 'get', url, function (apiResult) {
+    return BaseApi(null, 'get', url)
+    .then((apiResult) => {
       return dispatch(editPage(apiResult));
     });
   };
