@@ -7,6 +7,7 @@
 [![Code Climate](https://codeclimate.com/github/andela-cuchendu/jaxdms/badges/gpa.svg)](https://codeclimate.com/github/codeclimate/codeclimate)
 [![Build Status](https://travis-ci.org/andela-cuchendu/jaxdms.svg?branch=develop)](https://travis-ci.org/andela-cuchendu/jaxdms)
 
+Jaxdms is your best electronic filing cabinets that provide a framework for organizing all documents applying access roles as to who views your document
 
 Jaxdms is a fullstack application which helps users create and manage documents, and the same time, set who can view or access the document.
 
@@ -46,6 +47,9 @@ GET /search/documents/?q={doctitle} | Search for a doc.
 EndPoint | Functionality
 -------- | -------------
 GET /roles/ | List all roles.
+
+## More documentation
+[API DOCUMENTATION](https://jaxdms.herokuapp.com/dms)
 
 ### Features
   - Create and manage Documents.
