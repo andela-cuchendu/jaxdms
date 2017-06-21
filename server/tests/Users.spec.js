@@ -48,15 +48,15 @@ describe('Users API Spec: ', () => {
         });
     });
 
-    it('should return all roles', (done) => {
+    it('should return all users', (done) => {
       request.get('/api/users')
         .set('x-access-token', token)
         .set('Accept', 'application/json')
         .end((err, res) => {
           expect(res.statusCode).toBe(200);
           expect(err).toBe(null);
-          expect(res.body[0].username).toEqual('chibujax');
-          expect(res.body[0].loggedin).toBe(true);
+          expect(res.body.rows[0].username).toEqual('chibujax');
+          expect(res.body.rows[0].loggedin).toBe(true);
           done();
         });
     });

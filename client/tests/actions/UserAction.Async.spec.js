@@ -10,14 +10,15 @@ const mockStore = configureMockStore(middlewares);
 expect.extend(enzymify());
 let originalEnd;
 
-describe('Roles Actions Spec: ', () => {
+describe('User Actions Spec: ', () => {
   before(() => {
     originalEnd = request.Request.prototype.end;
     request.Request.prototype.end = (cb) => {
       cb(null, {
         status: 200,
         body: {
-          users: [{
+          count: 1,
+          rows: [{
             id: 1,
             firstname: 'firstname',
             lastname: 'lastname',
@@ -62,12 +63,14 @@ describe('Roles Actions Spec: ', () => {
   });
 
   it('should fail creating user', () => {
-    const expected = [{ data: { users: [{ email: 'email',
-      firstname: 'firstname',
-      id: 1,
-      lastname: 'lastname',
-      role: 1,
-      surname: 'surname' }] },
+    const expected = [{ data: {
+      count: 1,
+      rows: [{ email: 'email',
+        firstname: 'firstname',
+        id: 1,
+        lastname: 'lastname',
+        role: 1,
+        surname: 'surname' }] },
       type: 'CREATE_USER' },
     { data: { UserError: undefined, displayLoader: 'hide-element' },
       type: 'USER_CREATE_FAILED' }];
@@ -91,7 +94,6 @@ describe('Roles Actions Spec: ', () => {
 
   it('should dispatch fetch user user', () => {
     const expected = [{ data: { users:
-    { users:
     [{
       id: 1,
       firstname: 'firstname',
@@ -100,7 +102,7 @@ describe('Roles Actions Spec: ', () => {
       email: 'email',
       role: 1,
     }],
-    },
+      usersCount: 1,
     },
       type: 'FETCH_USERS_SUCCESS' }];
     const store = mockStore();
@@ -114,7 +116,7 @@ describe('Roles Actions Spec: ', () => {
   it('should dispatch delete user', () => {
     const expected = [{ data: { Deleted: true },
       type: 'USER_DELETE_SUCCESS' },
-    { data: { users: {
+    { data: {
       users: [{
         id: 1,
         firstname: 'firstname',
@@ -123,7 +125,8 @@ describe('Roles Actions Spec: ', () => {
         email: 'email',
         role: 1,
       }],
-    } },
+      usersCount: 1,
+      },
       type: 'FETCH_USERS_SUCCESS' }];
     const store = mockStore();
 

@@ -14,6 +14,17 @@ describe('Document: ', () => {
     UserId: 5,
   }];
 
+  const docsCount = {
+    rows: [{
+      id: 1,
+      title: 'title',
+      content: 'content',
+      access: -1,
+      UserId: 5,
+    }],
+    count: 1,
+  };
+
   const doc = {
     id: 1,
     title: 'title',
@@ -74,10 +85,11 @@ describe('Document: ', () => {
       data: {
         docSuccess: true,
         docs,
+        docCount: 1,
         editSuccess: false,
       },
     };
-    const action = DocActions.DocsSuccess(docs);
+    const action = DocActions.DocsSuccess(docsCount);
     expect(action).toEqual(ExpectedResult);
     done();
   });

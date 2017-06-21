@@ -95,8 +95,6 @@ export const AppWrapper = (ChildComponent) => {
      * @memberOf AppContainer
      */
     onChangeEvent(event) {
-      console.log('on change', event.target)
-      console.log('on state', this.state)
       event.preventDefault();
       const { name, value } = event.target;
       this.state.docData[name] = value;
@@ -251,7 +249,6 @@ export const AppWrapper = (ChildComponent) => {
       event.preventDefault();
       const { docData } = this.state;
       const username = this.props.stateProp.userState.userInfo.username;
-      console.log('submit', docData)
       this.setState({
         docData: {
           title: '',

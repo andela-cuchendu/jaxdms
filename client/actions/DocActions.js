@@ -213,7 +213,6 @@ export function deleteDocAction(docId) {
 }
 
 export function createDoc(docData, creatorData) {
-  console.log(' new doc', docData)
   return (dispatch) => {
     dispatch(savingDoc());
     const url = '/api/documents/';

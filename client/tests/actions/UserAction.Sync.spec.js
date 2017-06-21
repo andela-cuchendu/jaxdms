@@ -5,7 +5,7 @@ import enzymify from 'expect-enzyme';
 import * as ActionTypes from '../../actions/ActionTypes';
 import * as UserAction from '../../actions/UserAction';
 
-describe('Document: ', () => {
+describe('User: ', () => {
   const users = [{
     id: 1,
     firstname: 'firstname',
@@ -13,6 +13,16 @@ describe('Document: ', () => {
     username: 'username',
     role: 1,
   }];
+  const usersCount = {
+    rows: [{
+      id: 1,
+      firstname: 'firstname',
+      lastname: 'lastname',
+      username: 'username',
+      role: 1,
+    }],
+    count: 1,
+  };
 
   const user = {
     id: 1,
@@ -148,10 +158,11 @@ describe('Document: ', () => {
     const ExpectedResult = {
       type: ActionTypes.FETCH_USERS_SUCCESS,
       data: {
-        users: users,
+        users,
+        usersCount: 1,
       },
     };
-    const action = UserAction.UsersSuccess(users);
+    const action = UserAction.UsersSuccess(usersCount);
     expect(action).toEqual(ExpectedResult);
     done();
   });

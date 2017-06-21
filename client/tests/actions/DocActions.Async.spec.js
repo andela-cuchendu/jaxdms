@@ -17,13 +17,14 @@ describe('DocActions Spec: ', () => {
       cb(null, {
         status: 200,
         body: {
-          docs: [{
+          rows: [{
             id: 1,
             title: 'title',
             content: 'content',
             access: 1,
             UserId: 1,
           }],
+          count: 1,
         },
       });
     };
@@ -37,30 +38,15 @@ describe('DocActions Spec: ', () => {
     const expected = [
       {
         data: {
-          publicDocs: {
-            docs: [{
-              id: 1,
-              title: 'title',
-              content: 'content',
-              access: 1,
-              UserId: 1,
-            }],
-          },
-        },
-        type: 'PUBLIC_DOCUMENTS',
-      },
-      {
-        data: {
           docSuccess: true,
-          docs: {
-            docs: [{
-              id: 1,
-              title: 'title',
-              content: 'content',
-              access: 1,
-              UserId: 1,
-            }],
-          },
+          docs: [{
+            id: 1,
+            title: 'title',
+            content: 'content',
+            access: 1,
+            UserId: 1,
+          }],
+          docCount: 1,
           editSuccess: false,
         },
         type: 'DOCS_USER_SUCCESS',
@@ -102,7 +88,8 @@ describe('DocActions Spec: ', () => {
     const expected = [{
       data: { docSuccess: false }, type: 'CREATING_DOC' },
     { data: { newDoc: [{
-      docs: [{
+      count: 1,
+      rows: [{
         id: 1,
         title: 'title',
         content: 'content',
