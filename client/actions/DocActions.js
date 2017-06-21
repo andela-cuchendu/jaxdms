@@ -33,7 +33,8 @@ export function DocsSuccess(docs) {
     type: ActionTypes.DOCS_USER_SUCCESS,
     data: {
       docSuccess: true,
-      docs,
+      docs: docs.rows,
+      docCount: docs.count,
       editSuccess: false,
     },
   };
@@ -79,16 +80,6 @@ export function editPage(docData) {
     data: {
       docEdit: editData,
     },
-  };
-}
-
-export function getUserDocs(userId, type) {
-  return (dispatch) => {
-    const url = `/api/documents/${userId}/${type}`;
-    return BaseApi(null, 'get', url)
-    .then((apiResult) => {
-      dispatch(DocsSuccess(apiResult));
-    });
   };
 }
 
@@ -166,12 +157,11 @@ export function DevoidUser() {
   };
 }
 
-export function getPublicDocument(userInfo, type) {
+export function getPublicDocument(userInfo, type, offset, limit) {
   return (dispatch) => {
-    const url = `/api/documents/${userInfo.id}/${type}`;
+    const url = `/api/documents/${userInfo.id}/${type}?offset=${offset}&limit=${limit}`;
     return BaseApi(null, 'get', url)
     .then((apiResult) => {
-      dispatch(getSharedDocSuccess(apiResult));
       return dispatch(DocsSuccess(apiResult));
     });
   };
@@ -194,17 +184,17 @@ export function validateUser(type) {
     .then((apiResult) => {
       if (apiResult.id) {
         dispatch(storeUSerData(apiResult));
-        return dispatch(getComponentResources(apiResult, type));
+        return dispatch(getComponentResources(apiResult, type, 0, 9));
       }
       return dispatch(voidUser());
     });
   };
 }
 
-export function getComponentResources(userInfo, type) {
+export function getComponentResources(userInfo, type, offset, limit) {
   return (dispatch) => {
     if (Object.keys(userInfo).length) {
-      return dispatch(getPublicDocument(userInfo, type));
+      return dispatch(getPublicDocument(userInfo, type, offset, limit));
     }
     return dispatch(validateUser(type));
   };
@@ -217,12 +207,13 @@ export function deleteDocAction(docId) {
     return BaseApi(null, 'delete', url)
     .then(() => {
       dispatch(DocumentDeleted());
-      return dispatch(getComponentResources({}, 'own'));
+      return dispatch(getComponentResources({}, 'own', 0, 9));
     });
   };
 }
 
 export function createDoc(docData, creatorData) {
+  console.log(' new doc', docData)
   return (dispatch) => {
     dispatch(savingDoc());
     const url = '/api/documents/';
@@ -253,7 +244,7 @@ export function upadateDoc(newDocData, docId) {
     const url = `/api/documents/${docId}`;
     return BaseApi(newDocData, 'put', url)
     .then(() => {
-      dispatch(getComponentResources({}, 'own'));
+      dispatch(getComponentResources({}, 'own', 0, 9));
       dispatch(editDocSuccess());
     });
   };

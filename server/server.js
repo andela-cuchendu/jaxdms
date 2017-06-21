@@ -1,6 +1,7 @@
 /* eslint-disable global-require */
 import path from 'path';
 import swagger from './routes/swagger';
+import routes from './routes';
 
 (function () {
   const express = require('express');
@@ -39,13 +40,14 @@ import swagger from './routes/swagger';
     ],
   }));
 
-  dms.use(require('./routes'));
+  dms.use(routes);
 
   if (process.env.NODE_ENV !== 'production') {
     dms.use('/dms', express.static(path.join(__dirname, './dms/')));
   } else {
+    console.log('path', path.join(__dirname, '/dms/'));
     dms.use('/dms', express.static(
-      path.join(__dirname, '../../server/dms/')));
+      path.join(__dirname, '/dms/')));
   }
   swagger(dms);
 

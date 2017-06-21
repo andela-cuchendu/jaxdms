@@ -1,5 +1,7 @@
 import React, { PropTypes, Component } from 'react';
 import moment from 'moment';
+import Pagination from 'rc-pagination';
+import 'rc-pagination/assets/index.css';
 import { AppWrapper } from './AppWrapper.jsx';
 import UsersCard from './common/UsersCard.jsx';
 import SignUpForm from './common/SignUpForm.jsx';
@@ -25,6 +27,7 @@ export class Users extends Component {
       confirmPasswordError: false,
       passwordError: false,
       submitResult: false,
+      current: 1,
     };
 
     this.onChangeEvent = this.onChangeEvent.bind(this);
@@ -35,6 +38,7 @@ export class Users extends Component {
     this.saveUser = this.saveUser.bind(this);
     this.validatePassword = this.validatePassword.bind(this);
     this.getSelectedUserForDelete = this.getSelectedUserForDelete.bind(this);
+    this.onChange = this.onChange.bind(this);
   }
 
   /**
@@ -43,7 +47,7 @@ export class Users extends Component {
    * @memberOf Users
    */
   componentWillMount() {
-    this.props.userActions.fetchUsers();    
+    this.props.userActions.fetchUsers(0, 9);
   }
 
   /**
@@ -59,6 +63,19 @@ export class Users extends Component {
     this.setState({ user: this.state.user });
   }
 
+  /**
+   * -Used for pagination
+   *
+   * @param {number} page
+   *
+   * @memberOf Users
+   */
+  onChange(page) {
+    this.setState({
+      current: page,
+    });
+    this.props.userActions.fetchUsers((page * 9) - 9, 9);
+  }
   /**
    * getSelectedUserForDelete - Gets the
    * user data to be deleted
@@ -239,6 +256,7 @@ export class Users extends Component {
     const roles = this.props.stateProp.roles.roles;
     const displayLoader = this.props.stateProp.userState.displayLoader;
     const userSuccess = this.props.stateProp.userState.CreateUser;
+    const total = this.props.stateProp.userState.usersCount;
     if (userSuccess) {
       $('#createModal').closeModal();
       this.props.userActions.DefaultUserSuccess();
@@ -273,6 +291,12 @@ export class Users extends Component {
           <div style={{ clear: 'both', overflow: 'auto' }}>
             {cards}
           </div>
+          <Pagination
+            onChange={this.onChange}
+            current={this.state.current}
+            pageSize={9}
+            total={total}
+          />
         </div>
         <div className="plus">
           <a

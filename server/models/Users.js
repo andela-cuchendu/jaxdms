@@ -3,19 +3,19 @@ module.exports = (sequelize, DataTypes) => {
     firstname: {
       type: DataTypes.STRING,
       allowNull: false,
-      trim: true
+      trim: true,
     },
     lastname: {
       type: DataTypes.STRING,
       allowNull: false,
-      trim: true
+      trim: true,
     },
     email: {
       type: DataTypes.STRING,
       allowNull: false,
       unique: true,
       sparse: true,
-      trim: true
+      trim: true,
     },
     username: {
       type: DataTypes.STRING,
@@ -23,29 +23,29 @@ module.exports = (sequelize, DataTypes) => {
       unique: true,
       required: true,
       lowercase: true,
-      trim: true
+      trim: true,
     },
     password: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
     },
     role: {
       type: DataTypes.NUMERIC,
-      default: 1
+      default: 1,
     },
     loggedin: {
       type: DataTypes.BOOLEAN,
-      default: false
-    }
+      default: false,
+    },
   }, {
     classMethods: {
       associate: (models) => {
         Users.hasMany(models.Documents, {
           foreignKey: 'UserId',
-          as: 'UserIDocuments'
+          as: 'UserIDocuments',
         });
-      }
-    }
+      },
+    },
   });
   return Users;
 };

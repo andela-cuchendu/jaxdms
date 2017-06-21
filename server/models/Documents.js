@@ -3,30 +3,30 @@ module.exports = (sequelize, DataTypes) => {
     title: {
       type: DataTypes.STRING,
       trim: true,
-      required: true
+      required: true,
     },
     creator: {
       type: DataTypes.STRING,
       trim: true,
-      required: true
-    },    
+      required: true,
+    },
     content: {
       type: DataTypes.STRING,
-      trim: true
+      trim: true,
     },
     access: {
       type: DataTypes.INTEGER,
-      default: 1
-    }
+      default: 1,
+    },
   }, {
     classMethods: {
       associate: (models) => {
         Documents.belongsTo(models.Users, {
           foreignKey: 'UserId',
-          onDelete: 'CASCADE'
+          onDelete: 'CASCADE',
         });
-      }
-    }
+      },
+    },
   });
   return Documents;
 };

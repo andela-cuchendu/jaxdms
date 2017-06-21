@@ -3,16 +3,14 @@ module.exports = (sequelize, DataTypes) => {
     title: {
       type: DataTypes.STRING,
       trim: true,
-      required: true
+      required: true,
     },
     access: {
       type: DataTypes.INTEGER,
-      default: 1
-    }
+      default: 1,
+    },
   }, {
-    classMethods: {
-
-    }
+    classMethods: {},
   });
   return Roles;
 };

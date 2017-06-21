@@ -1,4 +1,10 @@
-(function() {
+import Middleware from '../controllers/Middleware';
+
+const Users = require('../controllers/Users');
+const express = require('express');
+
+const router = express.Router();
+(() => {
   /**
    * @swagger
    * definition:
@@ -25,9 +31,6 @@
    *        role:
    *            type: number
    */
-  const Users = require('../controllers/Users');
-  const express = require('express');
-  const router = express.Router();
 
 /**
  * @swagger
@@ -103,8 +106,8 @@
  *         schema:
  *           $ref: '#/definitions/Document'
  */
-  router.get('/users/', Users.verify, Users.list);
-  router.get('/users/data/data', Users.verify, Users.GetData);
+  router.get('/users/', Middleware.verifyUser, Users.list);
+  router.get('/users/data/data', Middleware.verifyUser, Users.GetData);
 
 /**
  * @swagger
@@ -132,7 +135,7 @@
  *         schema:
  *           $ref: '#/definitions/User'
  */
-  router.get('/users/:id', Users.verify, Users.GetUser);
+  router.get('/users/:id', Middleware.verifyUser, Users.GetUser);
 
   /**
  * @swagger
@@ -175,7 +178,7 @@
  *         schema:
  *           $ref: '#/definitions/User'
  */
-  router.put('/users/:id', Users.verify, Users.UpdateUser);
+  router.put('/users/:id', Middleware.verifyUser, Users.UpdateUser);
 
 /**
  * @swagger
@@ -259,7 +262,7 @@
  *         schema:
  *           $ref: '#/definitions/User'
  */
-  router.delete('/users/:id', Users.verify, Users.delete);
+  router.delete('/users/:id', Middleware.verifyUser, Users.delete);
 
 /**
  * @swagger
@@ -288,7 +291,5 @@
  *           type: object
  */
   router.get('/users/:id/documents', Users.GetDocs);
-
-  module.exports = router;
-}());
-
+})();
+export default router;

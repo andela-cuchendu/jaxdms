@@ -1,4 +1,11 @@
-(function () {
+import Middleware from '../controllers/Middleware';
+
+const Documents = require('../controllers/Documents');
+const express = require('express');
+
+const router = express.Router();
+
+(() => {
   /**
    * @swagger
    * definition:
@@ -19,9 +26,6 @@
    *        UserId:
    *            type: number
    */
-  const Documents = require('../controllers/Documents');
-  const express = require('express');
-  const router = express.Router();
 
 /**
  * @swagger
@@ -64,7 +68,7 @@
  *         schema:
  *           $ref: '#/definitions/Document'
  */
-  router.post('/documents', Documents.verify, Documents.create);
+  router.post('/documents', Middleware.verifyDoc, Documents.create);
 
 /**
  * @swagger
@@ -87,7 +91,7 @@
  *         schema:
  *           $ref: '#/definitions/Document'
  */
-  router.get('/documents', Documents.verify, Documents.list);
+  router.get('/documents', Middleware.verifyDoc, Documents.list);
 
 /**
  * @swagger
@@ -115,7 +119,7 @@
  *         schema:
  *           $ref: '#/definitions/Document'
  */
-  router.get('/documents/:id', Documents.verify, Documents.GetDocument);
+  router.get('/documents/:id', Middleware.verifyDoc, Documents.GetDocument);
 
 /**
  * @swagger
@@ -153,7 +157,7 @@
  *         schema:
  *           $ref: '#/definitions/Document'
  */
-  router.put('/documents/:id', Documents.verify, Documents.UpdateDocument);
+  router.put('/documents/:id', Middleware.verifyDoc, Documents.UpdateDocument);
 
 /**
  * @swagger
@@ -181,7 +185,7 @@
  *         schema:
  *           $ref: '#/definitions/Document'
  */
-  router.delete('/documents/:id', Documents.verify, Documents.DeleteDocument);
+  router.delete('/documents/:id', Middleware.verifyDoc, Documents.DeleteDocument);
 
 /**
  * @swagger
@@ -214,6 +218,6 @@
  *         schema:
  *           $ref: '#/definitions/Document'
  */
-  router.get('/documents/:id/:type', Documents.verify, Documents.GetShared);
-  module.exports = router;
-}());
+  router.get('/documents/:id/:type', Middleware.verifyDoc, Documents.GetShared);
+})();
+export default router;

@@ -1,19 +1,21 @@
+import express from 'express';
+import Roles from './Roles';
+import Users from './Users';
+import Documents from './Documents';
+import Search from './Search';
 
-(function() {
-  'use strict';
-  const express = require('express');
-  const router = express.Router();
 
-  router.get('/api', function(req, res) {
+const router = express.Router();
+(() => {
+  router.get('/api', (req, res) => {
     res.send('Jax Document management system');
   });
 
   // Lists all routes
-  router.use('/api', require('./Users'));
-  router.use('/api', require('./Documents'));
-  router.use('/api', require('./Roles'));
-  router.use('/api', require('./Search'));
-
-  module.exports = router;
-
-}());
+  router.use('/api', Users);
+  router.use('/api', Documents);
+  router.use('/api', Roles);
+  router.use('/api', Search);
+  // module.exports = router;
+})();
+export default router;

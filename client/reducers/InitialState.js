@@ -6,6 +6,7 @@ export const InitialState = {
   shouldRedirect: false,
   userInfo: {},
   users: {},
+  usersCount: 0,
   adminUser: false,
   selectedUserData: {},
   displayFeedBack: 'none',
@@ -15,6 +16,7 @@ export const InitialState = {
   editFormState: true,
   success: false,
   docs: [],
+  docCount: 0,
   publicDocs: {
     doc: [],
   },

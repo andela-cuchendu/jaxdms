@@ -1,9 +1,7 @@
 /* eslint-disable global-require */
 (() => {
   const Documents = require('../models').Documents;
-  const ExtractUser = require('./Tools').ExtractUser;
   const Error = require('./Tools').Error;
-  const jwt = require('jsonwebtoken');
 
   module.exports = {
     /**
@@ -17,8 +15,7 @@
       const required = ['title', 'content'];
       if (!required.every(field => field in req.body)) {
         const err = new Error(
-          'title and content fields are mandatory'
-        );
+          'title and content fields are mandatory');
         err.status = 400;
         next(err);
       } else {
@@ -112,7 +109,7 @@
         case 'role':
           query = {
             where: {
-              access: parseInt(req.params.id, 10),
+              access: parseInt(req.parcel.role, 10),
             },
           };
           break;
@@ -128,9 +125,17 @@
           message: 'No ID found',
         });
       } else {
+        const offset = parseInt(req.query.offset, 10) || 0;
+        const limit = parseInt(req.query.limit, 10) || 0;
+        if (offset > 0) {
+          query.offset = offset;
+        }
+        if (limit > 0) {
+          query.limit = limit;
+        }
         return Documents
-          .findAll(query)
-          .then(document => {
+          .findAndCountAll(query)
+          .then((document) => {
             if (!document) {
               return res.status(404).send({
                 message: 'Document Not Found',
@@ -157,7 +162,7 @@
       } else {
         return Documents
           .findById(req.params.id)
-          .then(document => {
+          .then((document) => {
             if (!document) {
               return res.status(404).send({
                 message: 'Document Not Found',
@@ -186,10 +191,10 @@
     UpdateDocument(req, res) {
       return Documents
         .findById(req.params.id)
-        .then(document => {
+        .then((document) => {
           if (!document) {
             return res.status(404).send({
-              message: 'Document Not Found'
+              message: 'Document Not Found',
             });
           } else {
             if (req.parcel.id === document.UserId || (req.parcel.role === 3)) {
@@ -203,12 +208,12 @@
                 .catch((error) => res.status(400).send(error));
             } else {
               res.status(403).json({
-                error: 'Unauthorized Access'
+                error: 'Unauthorized Access',
               });
             }
           }
         })
-        .catch((error) => res.status(400).send(error));
+        .catch((error) => { res.status(400).send(error); });
     },
     /**
      * Deletes a document using the ID
@@ -224,7 +229,7 @@
         .then(document => {
           if (!document) {
             return res.status(404).send({
-              message: 'Document Not Found'
+              message: 'Document Not Found',
             });
           } else {
             if (req.parcel.id === document.UserId || (req.parcel.role === 3)) {
@@ -242,41 +247,6 @@
           }
         })
         .catch((error) => res.status(400).send(error));
-    },
-  /**
-   * Verify user by checking for token and logged in
-   * before perfomring any operation on dicument
-   *
-   * @param {any} req - Request Object from express
-   * @param {any} res - Response Object from express
-   * @param {any} next - Middleware
-   */
-    verify(req, res, next) {
-      const token = req.body.token || req.headers['x-access-token'];
-      if (token) {
-        const user = ExtractUser(token);
-        if (!user.loggedin) {
-          res.status(401).json({
-            error: 'Unauthorized Access.'
-          });
-        } else {
-          jwt.verify(token, req.app.get('superSecret'), (err, parcel) => {
-            if (err) {
-              res.status(401).json({
-                error: 'Authentication Failed'
-              });
-            } else {
-              req.parcel = parcel;
-              req.parcel.password = null;
-              next();
-            }
-          });
-        }
-      } else {
-        res.status(403).send({
-          error: 'No token found.'
-        });
-      }
     },
   };
 })();

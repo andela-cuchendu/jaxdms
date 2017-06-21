@@ -19,7 +19,6 @@ import Header from './common/Header.jsx';
  * to the store via this wrapper
  */
 export const AppWrapper = (ChildComponent) => {
-
   /**
    *
    * @class AppContainer
@@ -34,7 +33,7 @@ export const AppWrapper = (ChildComponent) => {
         docData: {
           title: '',
           content: '',
-          access: [],
+          access: -1,
         },
         query: '',
       };
@@ -65,8 +64,6 @@ export const AppWrapper = (ChildComponent) => {
         if (DocType.includes('docs')) {
           DocType = 'own';
         }
-        this.props.documentActions
-          .getComponentResources(this.props.stateProp.userState.userInfo, DocType);
       } else {
         this.context.router.push('/auth');
       }
@@ -98,6 +95,8 @@ export const AppWrapper = (ChildComponent) => {
      * @memberOf AppContainer
      */
     onChangeEvent(event) {
+      console.log('on change', event.target)
+      console.log('on state', this.state)
       event.preventDefault();
       const { name, value } = event.target;
       this.state.docData[name] = value;
@@ -141,7 +140,7 @@ export const AppWrapper = (ChildComponent) => {
      */
     DocClick() {
       this.props.documentActions
-        .getComponentResources(this.props.stateProp.userState.userInfo, 'own');
+        .getComponentResources(this.props.stateProp.userState.userInfo, 'own', 0, 9);
       this.context.router.push('/docs');
     }
 
@@ -167,7 +166,7 @@ export const AppWrapper = (ChildComponent) => {
      */
     RoleClick() {
       this.props.documentActions
-        .getComponentResources(this.props.stateProp.userState.userInfo, 'role');
+        .getComponentResources(this.props.stateProp.userState.userInfo, 'role', 0, 9);
       this.context.router.push('/role');
     }
 
@@ -203,7 +202,7 @@ export const AppWrapper = (ChildComponent) => {
      */
     SharedClick() {
       this.props.documentActions
-        .getComponentResources(this.props.stateProp.userState.userInfo, 'shar');
+        .getComponentResources(this.props.stateProp.userState.userInfo, 'shar', 0, 9);
       this.context.router.push('/shar');
     }
 
@@ -252,13 +251,12 @@ export const AppWrapper = (ChildComponent) => {
       event.preventDefault();
       const { docData } = this.state;
       const username = this.props.stateProp.userState.userInfo.username;
-
-      docData.access = docData.access.toString();
+      console.log('submit', docData)
       this.setState({
         docData: {
           title: '',
           content: '',
-          access: [],
+          access: -1,
         },
       });
 
@@ -280,7 +278,7 @@ export const AppWrapper = (ChildComponent) => {
         docData: {
           title: '',
           content: '',
-          access: [],
+          access: -1,
         },
       });
       $('#createModal').openModal();

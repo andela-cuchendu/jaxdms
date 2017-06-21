@@ -1,12 +1,10 @@
-(function() {
-  'use strict';
+import Middleware from '../controllers/Middleware';
 
+const Search = require('../controllers/Search');
+const express = require('express');
 
-  const Search = require('../controllers/Search');
-  const Users = require('../controllers/Users');
-  const express = require('express');
-  const router = express.Router();
-
+const router = express.Router();
+(() => {
   /**
    * @swagger
    * /api/search/documents?q={documentTitle}:
@@ -33,7 +31,7 @@
    *          schema:
    *            type: object
    */
-  router.get('/search/documents', Users.verify, Search.FindDocuments);
+  router.get('/search/documents', Middleware.verifyUser, Search.FindDocuments);
 
   /**
    * @swagger
@@ -61,9 +59,6 @@
    *          schema:
    *            type: object
    */
-  router.get('/search/users', Users.verify, Search.FindUsers);
-
-
-  module.exports = router;
-
-}());
+  router.get('/search/users', Middleware.verifyUser, Search.FindUsers);
+})();
+export default router;

@@ -34,7 +34,7 @@ module.exports = {
         errorObject: err,
         error: err.message,
         status: err.status,
-      });      
+      });
     } else {
       if (!req.body.role) {
         req.body.role = 1;
@@ -57,8 +57,8 @@ module.exports = {
           });
           user.password = null;
           res.status(201).json({
-            user: user,
-            token: token,
+            user,
+            token,
             success: true,
           });
         })
@@ -73,7 +73,7 @@ module.exports = {
             errorObject: err,
             error: err.message,
             status: err.status,
-          });   
+          });
         });
     }
     return true;
@@ -85,13 +85,12 @@ module.exports = {
    *
    * @param {any} req - Request Object from express
    * @param {any} res - Response Object from express
-   * @returns {jsonObject} - This maybe error json Object 
+   * @returns {jsonObject} - This maybe error json Object
    */
   list(req, res) {
     if (req.decoded.role !== 3) {
       res.status(403).json({
-        error: 'Unauthorized Access'
-      });
+        error: 'Unauthorized Access' });
     } else {
       let QueryOption = {
         limit: 0,
@@ -106,8 +105,8 @@ module.exports = {
         delete QueryOption.limit;
       }
       return Users
-        .findAll(QueryOption)
-        .then(Users => res.status(200).send(Users))
+        .findAndCountAll(QueryOption)
+        .then(users => res.status(200).send(users))
         .catch(error => res.status(400).send(error));
     }
     return true;
@@ -406,45 +405,5 @@ module.exports = {
     .catch((err) => {
       res.json(err);
     });
-  },
-  /**
-   * Verify user by checking for token and logged in
-   *
-   * @param {any} req - Request Object from express
-   * @param {any} res - Response Object from express
-   * @param {any} next - Middleware
-   * @returns {responseObject} - json Object
-   */
-  verify(req, res, next) {
-    // Check for the token from the header or from the request body
-    const token = req.body.token || req.headers['x-access-token'];
-
-    if (token) {
-      let user = ExtractUser(token);
-      if (!user.loggedin) {
-        res.status(401).json({
-          error: 'Unauthorized Access. Please login first'
-        });
-      } else {
-        // Check authenticity of the token
-        jwt.verify(token, req.app.get('superSecret'), (err, decoded) => {
-          if (err) {
-            res.status(401).json({
-              error: 'Failed to authenticate token.'
-            });
-          } else {
-            decoded.password = null;
-            req.decoded = decoded;
-            next();
-          }
-        });
-      }
-
-    } else {
-      // No token found
-      res.status(403).send({
-        error: 'No token provided.'
-      });
-    }
   },
 };

@@ -13,7 +13,7 @@ const swaggerDefinition = {
     description: 'API documentation to create, manage and edit documents',
   },
   host: hostUrl,
-  basePath: '/'
+  basePath: '/',
 };
 
 // options for the swagger docs

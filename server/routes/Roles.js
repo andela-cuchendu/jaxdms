@@ -1,5 +1,8 @@
-(function() {
-  'use strict';
+const Roles = require('../controllers/Roles');
+const express = require('express');
+
+const router = express.Router();
+(() => {
 /**
  * @swagger
  * definition:
@@ -10,9 +13,7 @@
  *       acess:
  *         type: string
  */
-  const Roles = require('../controllers/Roles');
-  const express = require('express');
-  const router = express.Router();
+
 
 /**
  * @swagger
@@ -30,7 +31,5 @@
  *           $ref: '#/definitions/Roles'
  */
   router.get('/roles', Roles.list);
-
-  module.exports = router;
-
-}());
+})();
+export default router;

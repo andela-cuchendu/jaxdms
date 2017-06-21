@@ -1,5 +1,7 @@
 import React, { PropTypes, Component } from 'react';
 import moment from 'moment';
+import Pagination from 'rc-pagination';
+import 'rc-pagination/assets/index.css';
 import DocumentForm from './DocumentForm.jsx';
 import { AppWrapper } from './AppWrapper.jsx';
 import DocImage from '../images/auth.jpg';
@@ -20,11 +22,14 @@ export class Documents extends Component {
    */
   constructor() {
     super();
-
+    this.state = {
+      current: 1,
+    };
     this.viewDocEvent = this.viewDocEvent.bind(this);
     this.prepareStoreForEdit = this.prepareStoreForEdit.bind(this);
     this.getSelectedDocForDelete = this.getSelectedDocForDelete.bind(this);
     this.goBack = this.goBack.bind(this);
+    this.onChange = this.onChange.bind(this);
   }
 
   /**
@@ -40,7 +45,7 @@ export class Documents extends Component {
     }
     this.props.documentActions
       .getComponentResources(this.props.stateProp.userState.userInfo,
-      DocType);
+      DocType, 0, 9);
   }
 
   /**
@@ -50,7 +55,6 @@ export class Documents extends Component {
    */
   componentDidMount() {
     this.props.documentActions.editDocSuccess();
-    $(window).scroll(this.addMoreDocs);
     $(document).ready(function () {
       const sideNavDom = $('.button-collapse');
       $('.documents').addClass('current-menu');
@@ -67,9 +71,26 @@ export class Documents extends Component {
    */
   componentWillUnmount() {
     $('.documents').removeClass('current-menu');
-    $(window).unbind('scroll');
   }
-
+  /**
+   * -Used for pagination
+   *
+   * @param {number} page
+   *
+   * @memberOf Documents
+   */
+  onChange(page) {
+    this.setState({
+      current: page,
+    });
+    let DocType = this.props.location.pathname.substring(1, 5);
+    if (DocType.includes('docs')) {
+      DocType = 'own';
+    }
+    this.props.documentActions
+      .getComponentResources(this.props.stateProp.userState.userInfo,
+      DocType, (page * 9) - 9, 9);
+  }
   /**
    * getSelectedDocForDelete - Gets the data
    * of the document to be deleted
@@ -153,6 +174,7 @@ export class Documents extends Component {
       roles: Props.roles.roles,
       userInfo: Props.userState.userInfo,
     };
+    let total = this.props.stateProp.userDocs.docCount;
     if (DidSearch) {
       DocProps.docs = search;
       SearchHeader = (
@@ -162,6 +184,7 @@ export class Documents extends Component {
           <a onClick={this.goBack}>Go Back</a>
         </div>
        );
+      total = 0;
     }
     let cards = '';
     if (DocProps.docs.length) {
@@ -204,6 +227,12 @@ export class Documents extends Component {
           <div style={{ clear: 'both', overflow: 'auto' }}>
             {cards}
           </div>
+          <Pagination
+            onChange={this.onChange}
+            current={this.state.current}
+            pageSize={9}
+            total={total}
+          />
           <Spinner
             showLoader={!DocProps.lazyLoading}
           />

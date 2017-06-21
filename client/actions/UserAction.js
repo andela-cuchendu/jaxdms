@@ -131,7 +131,8 @@ export function UsersSuccess(Users) {
   return {
     type: ActionTypes.FETCH_USERS_SUCCESS,
     data: {
-      users: Users,
+      users: Users.rows,
+      usersCount: Users.count,
     },
   };
 }
@@ -223,7 +224,7 @@ export function saveUserData(user, login) {
       if (apiResult.success) {
         Materialize.toast('Account successfully created', 4000);
         if (login === 'true') {
-          dispatch(fetchUsers());
+          dispatch(fetchUsers(0, 9));
           return dispatch(saveUserSuccess(dispatch));
         } else {
           return dispatch(loginUser(user));
@@ -245,9 +246,9 @@ export function loginUser(userData) {
   };
 }
 
-export function fetchUsers() {
+export function fetchUsers(offset, limit) {
   return (dispatch) => {
-    const url = '/api/users';
+    const url = `/api/users?offset=${offset}&limit=${limit}`;
     return BaseApi(null, 'get', url)
     .then((apiResult) => {
       dispatch(UsersSuccess(apiResult));
@@ -273,7 +274,7 @@ export function deleteUserAction(userId) {
       if (global.Materialize !== undefined) {
         Materialize.toast('Account successfully deleted', 4000);
       }
-      return dispatch(fetchUsers());
+      return dispatch(fetchUsers(0, 9));
     });
   };
 }
