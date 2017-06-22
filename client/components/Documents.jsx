@@ -272,12 +272,15 @@ export class Documents extends Component {
             >
               Close
             </a>
-            <a
-              id={DocProps.viewDoc.index} onClick={this.prepareStoreForEdit}
-              className="modal-action waves-effect btn-flat"
-            >
-              Edit
-            </a>
+            {DocProps.viewDoc.UserId === DocProps.userInfo.id ?
+              <a
+                id={DocProps.viewDoc.index} onClick={this.prepareStoreForEdit}
+                className="modal-action waves-effect btn-flat"
+              >
+                Edit
+              </a>
+            : ''
+            }
           </div>
         </div>
         <div id="deleteDocModal" className="modal modal-fixed-footer">
