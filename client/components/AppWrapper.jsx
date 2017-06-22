@@ -154,7 +154,6 @@ export const AppWrapper = (ChildComponent) => {
       event.preventDefault();
       window.localStorage.removeItem('token');
       window.localStorage.clear();
-      window.location.reload();
       this.context.router.push('/auth');
     }
     /**
