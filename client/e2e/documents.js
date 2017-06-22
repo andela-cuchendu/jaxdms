@@ -21,7 +21,7 @@ module.exports = {
     browser
       .url(docUrl)
       .waitForElementVisible('body', config.waitFor)
-      .pause(2000)
+      .pause(2500)
       .useXpath()
       .click('//*[@id="app"]/div/div/div[2]/div[2]/a/i')
       .useCss()

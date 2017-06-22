@@ -5,9 +5,9 @@
 
   <testsuite name="signup"
     errors="0" failures="0" hostname="" id="" package="signup" skipped="0"
-    tests="5" time="19.96" timestamp="Tue, 20 Jun 2017 14:32:03 GMT">
+    tests="5" time="21.64" timestamp="Thu, 22 Jun 2017 14:06:33 GMT">
   
-    <testcase name="User sign up without firstname" classname="signup" time="9.023" assertions="3">
+    <testcase name="User sign up without firstname" classname="signup" time="7.984" assertions="3">
 
     
 
@@ -16,28 +16,28 @@
     
     </testcase>
   
-    <testcase name="User sign up with invalid email" classname="signup" time="2.578" assertions="2">
+    <testcase name="User sign up with invalid email" classname="signup" time="3.104" assertions="2">
 
     
 
     
     </testcase>
   
-    <testcase name="User sign up with less password keys" classname="signup" time="2.457" assertions="2">
+    <testcase name="User sign up with less password keys" classname="signup" time="2.756" assertions="2">
 
     
 
     
     </testcase>
   
-    <testcase name="User sign up with inconsistent password" classname="signup" time="2.225" assertions="2">
+    <testcase name="User sign up with inconsistent password" classname="signup" time="3.416" assertions="2">
 
     
 
     
     </testcase>
   
-    <testcase name="User successfully signs up" classname="signup" time="3.679" assertions="3">
+    <testcase name="User successfully signs up" classname="signup" time="4.383" assertions="3">
 
     
 

@@ -5,9 +5,9 @@
 
   <testsuite name="signin"
     errors="0" failures="0" hostname="" id="" package="signin" skipped="0"
-    tests="3" time="9.694" timestamp="Tue, 20 Jun 2017 14:31:54 GMT">
+    tests="3" time="8.596" timestamp="Thu, 22 Jun 2017 14:06:24 GMT">
   
-    <testcase name="User sign in without credentials" classname="signin" time="5.727" assertions="3">
+    <testcase name="User sign in without credentials" classname="signin" time="5.230" assertions="3">
 
     
 
@@ -16,14 +16,14 @@
     
     </testcase>
   
-    <testcase name="User sign in with wrong credentials" classname="signin" time="2.131" assertions="2">
+    <testcase name="User sign in with wrong credentials" classname="signin" time="1.734" assertions="2">
 
     
 
     
     </testcase>
   
-    <testcase name="User sign in success" classname="signin" time="1.836" assertions="3">
+    <testcase name="User sign in success" classname="signin" time="1.632" assertions="3">
 
     
 

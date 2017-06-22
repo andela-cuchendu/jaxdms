@@ -21,7 +21,10 @@ module.exports = {
       .setValue('input[id=username-sigin]', 'kjhdkjhdkjgd')
       .setValue('input[id=password-signin]', 'nothingpassword')
       .click('button[name=sign-in]')
-      .assert.containsText('.signinform', 'Authentication failed. Invalid login.');
+      .useXpath()
+      .assert.containsText('//*[@id="app"]/div/div/div/div[1]/div[2]/form/div[4]',
+        'Authentication failed. Invalid login.')
+      .useCss();
   },
 
   'User sign in success': (browser) => {

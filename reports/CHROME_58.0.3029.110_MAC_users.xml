@@ -5,9 +5,9 @@
 
   <testsuite name="users"
     errors="0" failures="0" hostname="" id="" package="users" skipped="0"
-    tests="4" time="29.94" timestamp="Tue, 20 Jun 2017 14:32:23 GMT">
+    tests="4" time="27.62" timestamp="Thu, 22 Jun 2017 14:06:54 GMT">
   
-    <testcase name="User sign in success" classname="users" time="5.799" assertions="3">
+    <testcase name="User sign in success" classname="users" time="5.686" assertions="3">
 
     
 
@@ -16,14 +16,14 @@
     
     </testcase>
   
-    <testcase name="Delete user" classname="users" time="3.494" assertions="2">
+    <testcase name="Delete user" classname="users" time="3.350" assertions="2">
 
     
 
     
     </testcase>
   
-    <testcase name="Edit User" classname="users" time="1.930" assertions="3">
+    <testcase name="Edit User" classname="users" time="1.996" assertions="3">
 
     
 
@@ -32,7 +32,7 @@
     
     </testcase>
   
-    <testcase name="Admin create user" classname="users" time="18.72" assertions="3">
+    <testcase name="Admin create user" classname="users" time="16.59" assertions="3">
 
     
 

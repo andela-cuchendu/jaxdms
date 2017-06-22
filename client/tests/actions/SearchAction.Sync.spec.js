@@ -1,7 +1,7 @@
 import expect from 'expect';
 import enzymify from 'expect-enzyme';
-import * as SearchAction from '../actions/SearchAction';
-import * as ActionTypes from '../actions/ActionTypes';
+import * as SearchAction from '../../actions/SearchAction';
+import * as ActionTypes from '../../actions/ActionTypes';
 
 expect.extend(enzymify());
 

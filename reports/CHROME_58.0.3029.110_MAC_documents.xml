@@ -5,9 +5,9 @@
 
   <testsuite name="documents"
     errors="0" failures="0" hostname="" id="" package="documents" skipped="0"
-    tests="5" time="31.99" timestamp="Tue, 20 Jun 2017 14:31:13 GMT">
+    tests="5" time="34.93" timestamp="Thu, 22 Jun 2017 14:05:40 GMT">
   
-    <testcase name="User sign in success" classname="documents" time="7.471" assertions="3">
+    <testcase name="User sign in success" classname="documents" time="7.324" assertions="3">
 
     
 
@@ -16,7 +16,7 @@
     
     </testcase>
   
-    <testcase name="User create doc" classname="documents" time="11.87" assertions="3">
+    <testcase name="User create doc" classname="documents" time="11.92" assertions="3">
 
     
 
@@ -25,14 +25,14 @@
     
     </testcase>
   
-    <testcase name="View Document" classname="documents" time="2.614" assertions="2">
+    <testcase name="View Document" classname="documents" time="2.914" assertions="2">
 
     
 
     
     </testcase>
   
-    <testcase name="Update Document" classname="documents" time="7.495" assertions="4">
+    <testcase name="Update Document" classname="documents" time="9.593" assertions="4">
 
     
 
@@ -43,7 +43,7 @@
     
     </testcase>
   
-    <testcase name="Delete Document" classname="documents" time="2.541" assertions="3">
+    <testcase name="Delete Document" classname="documents" time="3.187" assertions="3">
 
     
 
