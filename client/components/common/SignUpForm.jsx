@@ -63,6 +63,7 @@ const SignUpForm = ({
           onChangeEvent={changeEvent}
           disabled="Choose your role"
           label="Role"
+          CheckType={''}
         />
       </div>
       <div className="row">

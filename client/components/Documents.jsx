@@ -30,6 +30,7 @@ export class Documents extends Component {
     this.getSelectedDocForDelete = this.getSelectedDocForDelete.bind(this);
     this.goBack = this.goBack.bind(this);
     this.onChange = this.onChange.bind(this);
+    this.onPagination = this.onPagination.bind(this);
   }
 
   /**
@@ -90,6 +91,14 @@ export class Documents extends Component {
     this.props.documentActions
       .getComponentResources(this.props.stateProp.userState.userInfo,
       DocType, (page * 9) - 9, 9);
+  }
+  onPagination(total, range) {
+    let pageSummary;
+    pageSummary = `${range[0]} - ${range[1]} of ${total} items`;
+    if (range[0] > total) {
+      pageSummary = `1 - ${range[1]} of ${total} items`;
+    }
+    return pageSummary;
   }
   /**
    * getSelectedDocForDelete - Gets the data
@@ -228,6 +237,7 @@ export class Documents extends Component {
             {cards}
           </div>
           <Pagination
+            showTotal={this.onPagination}
             onChange={this.onChange}
             current={this.state.current}
             pageSize={9}
@@ -317,11 +327,11 @@ Documents.propTypes = {
   stateProp: PropTypes.object,
   documentActions: PropTypes.object,
   logoutEvent: PropTypes.func,
-  modalSubmitAction: PropTypes.func
+  modalSubmitAction: PropTypes.func,
 };
 
 Documents.contextTypes = {
-  router: PropTypes.object
+  router: PropTypes.object,
 };
 
 export default AppWrapper(Documents);

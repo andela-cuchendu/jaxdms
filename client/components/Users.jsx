@@ -292,6 +292,7 @@ export class Users extends Component {
             {cards}
           </div>
           <Pagination
+            showTotal={(total, range) => `${range[0]} - ${range[1]} of ${total} items`}
             onChange={this.onChange}
             current={this.state.current}
             pageSize={9}

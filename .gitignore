@@ -8,3 +8,4 @@ lcov.info
 .chrome
 .vscode
 coverage
+npm-debug.log

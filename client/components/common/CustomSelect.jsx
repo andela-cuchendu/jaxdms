@@ -29,11 +29,7 @@ const CustomSelect = ({
         {
           selectData.map((item) => {
             let selectedOption;
-            if (CheckType !== undefined) {
-              selectedOption = parseInt(selectedValue, 10) === item.access ? 'selected' : false;
-            } else {
-              selectedOption = parseInt(selectedValue, 10) === item.id ? 'selected' : false;
-            }
+
             return (
               <option
                 selected={selectedOption}

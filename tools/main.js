@@ -11,7 +11,7 @@ const port = process.env.PORT;
 const compiler = webpack(config);
 const app = express();
 
-app.use(api);
+app.use(api); 
 
 app.use(require('webpack-dev-middleware')(compiler, {
   noInfo: true,
