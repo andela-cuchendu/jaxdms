@@ -5,12 +5,8 @@ import { Documents } from '../../components/Documents';
 
 const props = {
   documentActions: {
-    editDocSuccess: function () {
-      return true;
-    },
-    getComponentResources: function () {
-      return true;
-    },
+    editDocSuccess: (() => true),
+    getComponentResources: (() => true),
   },
   location: {
     pathname: 'own',
@@ -19,10 +15,8 @@ const props = {
 
   context: {
     router: {
-      push: function () {
-        return true;
-      }
-    }
+      push: (() => true),
+    },
   },
   stateProp: {
     userState: {

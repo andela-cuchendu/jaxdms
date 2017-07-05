@@ -79,8 +79,6 @@ describe('Document API Spec: ', () => {
           userid: id,
         })
         .end((err, res) => {
-          console.log('statusCode', res.body)
-          console.log('token', token)
           expect(res.statusCode).toBe(201);
           expect(err).toBe(null);
           expect(res.body.title).toEqual('doc title');

@@ -17,13 +17,9 @@ const props = {
       roles: [],
     },
   },
-  toggleSignUp: function () {
-    return true;
-  },
+  toggleSignUp: (() => true),
   userActions: {
-    loginUser: function (userData) {
-      return userData;
-    },
+    loginUser: (userData => userData),
   },
 };
 
