@@ -109,4 +109,4 @@ Contributors are welcome to further enhance the features of this API by contribu
 
 ### License
 
-This project was created by Chibueze Uchendu and is licensed for personal use, modification and distribution is under the MIT license, see [License File](/LICENSE) for more information. Feel free to share it!
+This project was created by Chibueze Uchendu and is licensed for personal use, modification and distribution is under the MIT license, see [License File](/License) for more information. Feel free to share it!
