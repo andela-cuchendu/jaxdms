@@ -94,7 +94,7 @@ npm run e2e-setup
 # Run end to end test
 npm run test-e2e
 ```
-###Limitations:
+### Limitations:
 
 The limitations 0f this application includes:
 
@@ -103,7 +103,7 @@ Users cannot share documents with people, but can make document public to make i
 Real file types are not supportd
 Roles cannot be added
 
-###Contributing
+### Contributing
 
 Contributors are welcome to further enhance the features of this API by contributing to its development.
 
