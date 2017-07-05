@@ -79,12 +79,6 @@ class CustomTextInput extends Component {
     );
   }
 }
-CustomTextInput.defaultProps = {
-  newClass: PropTypes.string,
-  errorMessage: PropTypes.string,
-  validateFunction: PropTypes.func,
-  value: PropTypes.string,
-};
 
 CustomTextInput.propTypes = {
   name: PropTypes.string.isRequired,
@@ -92,9 +86,9 @@ CustomTextInput.propTypes = {
   label: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
   onChangeEvent: PropTypes.func.isRequired,
-  newClass: PropTypes.string,
+  newClass: PropTypes.string.isRequired,
   errorMessage: PropTypes.string,
-  validateFunction: PropTypes.func,
+  validateFunction: PropTypes.func.isRequired,
   value: PropTypes.string,
 };
 

@@ -77,33 +77,19 @@ const DocDisplay = ({
     </div>
   );
 };
-DocDisplay.defaultProps = {
-  id: PropTypes.number,
-  docDate: PropTypes.string,
-  cardCorver: PropTypes.string,
-  confirmDelete: PropTypes.func,
-  docIndex: PropTypes.number,
-  currentUserId: PropTypes.number,
-  cardTitle: PropTypes.string.isRequired,
-  cardCreator: PropTypes.object.isRequired,
-  cardContent: PropTypes.string.isRequired,
-  viewDoc: PropTypes.string,
-  RoleID: PropTypes.number,
-  cardUserID: PropTypes.number,
-};
 DocDisplay.propTypes = {
-  id: PropTypes.number,
-  docDate: PropTypes.string,
-  cardCorver: PropTypes.string,
-  confirmDelete: PropTypes.func,
-  docIndex: PropTypes.number,
-  currentUserId: PropTypes.number,
+  id: PropTypes.number.isRequired,
+  docDate: PropTypes.string.isRequired,
+  cardCorver: PropTypes.string.isRequired,
+  confirmDelete: PropTypes.func.isRequired,
+  docIndex: PropTypes.number.isRequired,
+  currentUserId: PropTypes.number.isRequired,
   cardTitle: PropTypes.string.isRequired,
   cardCreator: PropTypes.string.isRequired,
   cardContent: PropTypes.string.isRequired,
-  viewDoc: PropTypes.string,
-  RoleID: PropTypes.number,
-  cardUserID: PropTypes.number,
+  viewDoc: PropTypes.string.isRequired,
+  RoleID: PropTypes.number.isRequired,
+  cardUserID: PropTypes.number.isRequired,
 };
 
 export default DocDisplay;

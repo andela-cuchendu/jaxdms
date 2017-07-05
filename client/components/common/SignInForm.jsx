@@ -56,9 +56,8 @@ const SignInForm = ({
 SignInForm.propTypes = {
   changeEvent: PropTypes.func.isRequired,
   signInAction: PropTypes.func.isRequired,
-  showLoader: PropTypes.string,
-  errorMessage: PropTypes.string,
-  displayForm: PropTypes.bool
+  showLoader: PropTypes.string.isRequired,
+  errorMessage: PropTypes.string.isRequired,
 };
 
 export default SignInForm;

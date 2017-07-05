@@ -40,15 +40,10 @@ const AuthContent = ({ toggleSignUp, userActions, stateProp }) => {
     </div>
   );
 };
-AuthContent.defaultProps = {
-  userActions: PropTypes.string,
-  stateProp: PropTypes.string,
-  toggleSignUp: PropTypes.string,
-};
 AuthContent.propTypes = {
-  userActions: PropTypes.string,
-  stateProp: PropTypes.string,
-  toggleSignUp: PropTypes.string,
+  userActions: PropTypes.object,
+  stateProp: PropTypes.object,
+  toggleSignUp: PropTypes.func.isRequired,
 };
 
 export default AuthContent;

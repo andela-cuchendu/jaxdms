@@ -106,17 +106,11 @@ const Header = ({ LogoutEvent, UserStatus, SearchEvent, User }) => {
     </div>
   );
 };
-Header.defaultProps = {
-  User: PropTypes.string,
-  UserStatus: PropTypes.bool,
-  LogoutEvent: PropTypes.string,
-  SearchEvent: PropTypes.string,
-};
 Header.propTypes = {
-  User: PropTypes.string,
-  UserStatus: PropTypes.bool,
-  LogoutEvent: PropTypes.string,
-  SearchEvent: PropTypes.string,
+  User: PropTypes.string.isRequired,
+  UserStatus: PropTypes.bool.isRequired,
+  LogoutEvent: PropTypes.string.isRequired,
+  SearchEvent: PropTypes.string.isRequired,
 };
 
 Header.contextTypes = {

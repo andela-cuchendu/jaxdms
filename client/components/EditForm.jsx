@@ -78,23 +78,14 @@ const EditDocumentForm = ({
     return (<div />);
   }
 };
-EditDocumentForm.defaultProps = {
-  changeEvent: PropTypes.func,
-  tinymceEvent: PropTypes.func,
-  preloader: PropTypes.bool,
-  formDefaultData: PropTypes.object,
-  docRoles: PropTypes.array,
-  submitAction: PropTypes.func,
-  DocRole: PropTypes.string,
-};
 EditDocumentForm.propTypes = {
-  changeEvent: PropTypes.func,
-  tinymceEvent: PropTypes.func,
-  preloader: PropTypes.bool,
-  formDefaultData: PropTypes.string,
-  docRoles: PropTypes.string,
-  submitAction: PropTypes.func,
-  DocRole: PropTypes.string,
+  changeEvent: PropTypes.func.isRequired,
+  tinymceEvent: PropTypes.func.isRequired,
+  preloader: PropTypes.bool.isRequired,
+  formDefaultData: PropTypes.string.isRequired,
+  docRoles: PropTypes.string.isRequired,
+  submitAction: PropTypes.func.isRequired,
+  DocRole: PropTypes.string.isRequired,
 };
 
 export default EditDocumentForm;

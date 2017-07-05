@@ -328,14 +328,14 @@ export const AppWrapper = (ChildComponent) => {
   };
 
   AppContainer.propTypes = {
-    stateProp: PropTypes.string.isRequired,
-    documentActions: PropTypes.string.isRequired,
-    userActions: PropTypes.string.isRequired,
-    searchActions: PropTypes.string.isRequired,
-    searchDoc: PropTypes.string.isRequired,
-    searchUsers: PropTypes.string.isRequired,
-    pathname: PropTypes.string.isRequired,
-    location: PropTypes.string.isRequired,
+    stateProp: PropTypes.object.isRequired,
+    documentActions: PropTypes.object,
+    userActions: PropTypes.object,
+    searchActions: PropTypes.object,
+    searchDoc: PropTypes.func,
+    searchUsers: PropTypes.func,
+    pathname: PropTypes.string,
+    location: PropTypes.string,
   };
 
   const mapDispatchToProps = (dispatch) => {

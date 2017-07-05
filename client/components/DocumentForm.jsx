@@ -87,14 +87,11 @@ const NewDocumentForm = ({
     </form>
   );
 };
-NewDocumentForm.defaultProps = {
-  showLoader: PropTypes.bool,
-};
 NewDocumentForm.propTypes = {
   changeEvent: PropTypes.func.isRequired,
   userRole: PropTypes.string.isRequired,
   submitAction: PropTypes.func.isRequired,
-  showLoader: PropTypes.bool,
+  showLoader: PropTypes.bool.isRequired,
   tinymceEvent: PropTypes.func.isRequired,
 };
 

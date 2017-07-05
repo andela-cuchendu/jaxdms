@@ -193,7 +193,7 @@ export class SignUp extends Component {
           />
           Existing user?
           <a
-            className="btn custom-doc-form custom-blue custom-toggle"
+            className="custom-link"
             onClick={this.toggleDisplay}
           >
           Sign in
@@ -203,16 +203,12 @@ export class SignUp extends Component {
     );
   }
 }
-SignUp.defaultProps = {
-  stateProp: PropTypes.string,
-  roles: PropTypes.string,
-};
 
 SignUp.propTypes = {
   toggleSignUp: PropTypes.func.isRequired,
   userActions: PropTypes.string.isRequired,
-  stateProp: PropTypes.string,
-  roles: PropTypes.string,
+  stateProp: PropTypes.string.isRequired,
+  roles: PropTypes.string.isRequired,
 };
 
 export default SignUp;

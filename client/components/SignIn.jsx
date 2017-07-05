@@ -101,7 +101,7 @@ export class SignIn extends Component {
         />
          New user?
         <a
-          className="btn custom-doc-form custom-blue custom-toggle"
+          className="custom-link"
           id="sigin-toggle"
           onClick={this.toggleSignIn}
         >
@@ -111,13 +111,10 @@ export class SignIn extends Component {
     );
   }
 }
-SignIn.defaultProps = {
-  stateProp: PropTypes.string,
-};
 SignIn.propTypes = {
   toggleSignUp: PropTypes.func.isRequired,
   userActions: PropTypes.string.isRequired,
-  stateProp: PropTypes.string,
+  stateProp: PropTypes.string.isRequired,
 };
 
 SignIn.contextTypes = {

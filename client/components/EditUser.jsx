@@ -119,17 +119,11 @@ export class EditUser extends Component {
 EditUser.contextTypes = {
   router: PropTypes.object,
 };
-EditUser.defaultProps = {
-  stateProp: PropTypes.string,
-  params: PropTypes.string,
-  userActions: PropTypes.string,
-  EditData: PropTypes.string,
-};
 EditUser.propTypes = {
-  stateProp: PropTypes.string,
-  params: PropTypes.string,
-  userActions: PropTypes.string,
-  EditData: PropTypes.string,
+  stateProp: PropTypes.string.isRequired,
+  params: PropTypes.string.isRequired,
+  userActions: PropTypes.string.isRequired,
+  EditData: PropTypes.string.isRequired,
 };
 
 export default AppWrapper(EditUser);

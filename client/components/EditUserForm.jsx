@@ -78,23 +78,14 @@ const EditUserForm = ({
     return (<div />);
   }
 };
-EditUserForm.defaultProps = {
-  preloader: PropTypes.bool,
-  firstname: PropTypes.string,
-  lastname: PropTypes.string,
-  submitAction: PropTypes.string,
-  changeEvent: PropTypes.string,
-  roles: PropTypes.string,
-  selectedRole: PropTypes.string,
-};
 EditUserForm.propTypes = {
-  preloader: PropTypes.bool,
-  firstname: PropTypes.string,
-  lastname: PropTypes.string,
-  submitAction: PropTypes.string,
-  changeEvent: PropTypes.string,
-  roles: PropTypes.string,
-  selectedRole: PropTypes.string,
+  preloader: PropTypes.bool.isRequired,
+  firstname: PropTypes.string.isRequired,
+  lastname: PropTypes.string.isRequired,
+  submitAction: PropTypes.string.isRequired,
+  changeEvent: PropTypes.string.isRequired,
+  roles: PropTypes.string.isRequired,
+  selectedRole: PropTypes.string.isRequired,
 };
 
 export default EditUserForm;

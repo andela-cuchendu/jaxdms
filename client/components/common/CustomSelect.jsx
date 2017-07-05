@@ -45,23 +45,14 @@ const CustomSelect = ({
     </Row>
   );
 };
-CustomSelect.defaultProps = {
-  selectData: [],
-  size: 6,
-  addedClass: '',
-  selectedValue: -1,
-  name: PropTypes.string,
-  label: PropTypes.string,
-  CheckType: PropTypes.string,
-};
 CustomSelect.propTypes = {
-  selectData: PropTypes.string.isRequired,
-  size: PropTypes.number,
-  addedClass: PropTypes.string,
-  selectedValue: PropTypes.number,
-  onChangeEvent: PropTypes.string.isRequired,
-  name: PropTypes.string,
-  label: PropTypes.string,
+  selectData: PropTypes.array.isRequired,
+  size: PropTypes.number.isRequired,
+  addedClass: PropTypes.string.isRequired,
+  selectedValue: PropTypes.number.isRequired,
+  onChangeEvent: PropTypes.func.isRequired,
+  name: PropTypes.string.isRequired,
+  label: PropTypes.string.isRequired,
   CheckType: PropTypes.string,
 };
 

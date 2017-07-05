@@ -391,34 +391,17 @@ export class Users extends Component {
     );
   }
 }
-Users.defaultProps = {
-  deleteDoc: PropTypes.func,
-  onChangeEvent: PropTypes.func,
-  plusClick: PropTypes.func,
-  OnchangeTinymce: PropTypes.func,
-  confirmDelete: PropTypes.func,
-  stateProp: PropTypes.object,
-  documentActions: PropTypes.object,
-  logoutEvent: PropTypes.func,
-  modalSubmitAction: PropTypes.func,
-  userActions: PropTypes.string,
-  fetchUsers: PropTypes.string,
-  CreateUserData: PropTypes.string,
-  deleteUser: PropTypes.string,
-  location: PropTypes.string,
-  query: PropTypes.string,
-};
 Users.propTypes = {
-  plusClick: PropTypes.func,
-  confirmDelete: PropTypes.func,
-  stateProp: PropTypes.string,
-  documentActions: PropTypes.string,
-  userActions: PropTypes.string,
-  fetchUsers: PropTypes.string,
-  CreateUserData: PropTypes.string,
-  deleteUser: PropTypes.string,
-  location: PropTypes.string,
-  query: PropTypes.string,
+  plusClick: PropTypes.func.isRequired,
+  confirmDelete: PropTypes.func.isRequired,
+  stateProp: PropTypes.string.isRequired,
+  documentActions: PropTypes.string.isRequired,
+  userActions: PropTypes.string.isRequired,
+  fetchUsers: PropTypes.string.isRequired,
+  CreateUserData: PropTypes.string.isRequired,
+  deleteUser: PropTypes.string.isRequired,
+  location: PropTypes.string.isRequired,
+  query: PropTypes.string.isRequired,
 };
 
 Users.contextTypes = {

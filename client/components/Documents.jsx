@@ -324,32 +324,18 @@ export class Documents extends Component {
     );
   }
 }
-Documents.defaultProps = {
-  deleteDoc: PropTypes.string,
-  onChangeEvent: PropTypes.string,
-  plusClick: PropTypes.string,
-  OnchangeTinymce: PropTypes.string,
-  confirmDelete: PropTypes.string,
-  stateProp: PropTypes.string,
-  documentActions: PropTypes.string,
-  logoutEvent: PropTypes.string,
-  modalSubmitAction: PropTypes.string,
-  location: PropTypes.string,
-  pathname: PropTypes.string,
-  query: PropTypes.string,
-};
 Documents.propTypes = {
-  deleteDoc: PropTypes.string,
-  onChangeEvent: PropTypes.string,
-  plusClick: PropTypes.string,
-  OnchangeTinymce: PropTypes.string,
-  confirmDelete: PropTypes.string,
-  stateProp: PropTypes.string,
-  documentActions: PropTypes.string,
-  modalSubmitAction: PropTypes.string,
-  location: PropTypes.string,
-  pathname: PropTypes.string,
-  query: PropTypes.string,
+  deleteDoc: PropTypes.string.isRequired,
+  onChangeEvent: PropTypes.string.isRequired,
+  plusClick: PropTypes.string.isRequired,
+  OnchangeTinymce: PropTypes.string.isRequired,
+  confirmDelete: PropTypes.string.isRequired,
+  stateProp: PropTypes.string.isRequired,
+  documentActions: PropTypes.string.isRequired,
+  modalSubmitAction: PropTypes.string.isRequired,
+  location: PropTypes.string.isRequired,
+  pathname: PropTypes.string.isRequired,
+  query: PropTypes.string.isRequired,
 };
 
 Documents.contextTypes = {

@@ -156,15 +156,10 @@ export class EditDoc extends Component {
 EditDoc.contextTypes = {
   router: PropTypes.object,
 };
-EditDoc.defaultProps = {
-  stateProp: PropTypes.string,
-  params: PropTypes.string,
-  documentActions: PropTypes.string,
-};
 EditDoc.propTypes = {
-  stateProp: PropTypes.string,
-  params: PropTypes.string,
-  documentActions: PropTypes.string,
+  stateProp: PropTypes.string.isRequired,
+  params: PropTypes.string.isRequired,
+  documentActions: PropTypes.string.isRequired,
 };
 
 export default AppWrapper(EditDoc);

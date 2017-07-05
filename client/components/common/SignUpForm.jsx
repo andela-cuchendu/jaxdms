@@ -117,10 +117,6 @@ const SignUpForm = ({
     </form>
   );
 };
-SignUpForm.defaultProps = {
-  errorMessage: PropTypes.string,
-  admin: PropTypes.string,
-};
 SignUpForm.propTypes = {
   changeEvent: PropTypes.func.isRequired,
   showLoader: PropTypes.string.isRequired,
@@ -132,8 +128,8 @@ SignUpForm.propTypes = {
   matchError: PropTypes.bool.isRequired,
   matchPassword: PropTypes.func.isRequired,
   roles: PropTypes.string.isRequired,
-  errorMessage: PropTypes.string,
-  admin: PropTypes.string,
+  errorMessage: PropTypes.string.isRequired,
+  admin: PropTypes.string.isRequired,
 };
 
 export default SignUpForm;
