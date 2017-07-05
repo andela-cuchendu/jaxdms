@@ -1,6 +1,12 @@
 import * as ActionTypes from './ActionTypes';
-import { BaseApi } from '../api/BaseApi';
+import ApiCall from '../api/BaseApi';
 
+/**
+ * DocumentDeleted - Dispatches
+ * DocumentDeleted action
+ *
+ * @returns {object}
+ */
 export function DocumentDeleted() {
   return {
     type: ActionTypes.DOC_DELETE_SUCCESS,
@@ -10,6 +16,12 @@ export function DocumentDeleted() {
   };
 }
 
+/**
+ * DocumentDeletedHandled - Dispatches
+ * DocumentDeletedHandled action
+ *
+ * @returns {object}
+ */
 export function DocumentDeletedHandled() {
   return {
     type: ActionTypes.DOC_DELETE_HANDLED,
@@ -19,6 +31,13 @@ export function DocumentDeletedHandled() {
   };
 }
 
+/**
+ * getSharedDocSuccess - Dispatches
+ * getSharedDocSuccess action
+ *
+ * @param {object} publicDocs
+ * @returns {object}
+ */
 export function getSharedDocSuccess(publicDocs) {
   return {
     type: ActionTypes.PUBLIC_DOCUMENTS,
@@ -28,6 +47,13 @@ export function getSharedDocSuccess(publicDocs) {
   };
 }
 
+/**
+ * DocsSuccess - Dispatches
+ * DocsSuccess action
+ *
+ * @param {object} docs
+ * @returns {object}
+ */
 export function DocsSuccess(docs) {
   return {
     type: ActionTypes.DOCS_USER_SUCCESS,
@@ -40,6 +66,12 @@ export function DocsSuccess(docs) {
   };
 }
 
+/**
+ * savingDoc - Dispatches
+ * savingDoc action
+ *
+ * @returns {object}
+ */
 export function savingDoc() {
   return {
     type: ActionTypes.CREATING_DOC,
@@ -49,7 +81,14 @@ export function savingDoc() {
   };
 }
 
-export function ModalData(selectedDoc) {
+/**
+ * DeleteModalData - Dispatches
+ * DeleteModalData action
+ *
+ * @param {object} selectedDoc
+ * @returns {object}
+ */
+export function DeleteModalData(selectedDoc) {
   return {
     type: ActionTypes.MODAL_FOR_DELETE,
     data: {
@@ -58,7 +97,13 @@ export function ModalData(selectedDoc) {
   };
 }
 
-
+/**
+ * newDoc - Dispatches
+ * newDoc action
+ *
+ * @param {object} docData
+ * @returns {object}
+ */
 export function newDoc(docData) {
   return {
     type: ActionTypes.UPDATE_STORE_WITH_NEW_DOC,
@@ -69,6 +114,13 @@ export function newDoc(docData) {
   };
 }
 
+/**
+ * editPage - Dispatches
+ * editPage action
+ *
+ * @param {object} docData
+ * @returns {object}
+ */
 export function editPage(docData) {
   const editData = {
     title: docData.title,
@@ -83,6 +135,13 @@ export function editPage(docData) {
   };
 }
 
+/**
+ * docDeleted - Dispatches
+ * docDeleted action
+ *
+ * @param {object} docsInState
+ * @returns {object}
+ */
 export function docDeleted(docsInState) {
   return {
     type: ActionTypes.DOC_DELETE_SUCCESS,
@@ -92,6 +151,12 @@ export function docDeleted(docsInState) {
   };
 }
 
+/**
+ * updatingDoc - Dispatches
+ * updatingDoc action
+ *
+ * @returns {object}
+ */
 export function updatingDoc() {
   return {
     type: ActionTypes.UPDATING_DOC_DATA,
@@ -101,6 +166,12 @@ export function updatingDoc() {
   };
 }
 
+/**
+ * createDocSuccess - Dispatches
+ * createDocSuccess action
+ *
+ * @returns {object}
+ */
 export function createDocSuccess() {
   return {
     type: ActionTypes.DOC_SUCCESS_CREATE,
@@ -110,6 +181,13 @@ export function createDocSuccess() {
   };
 }
 
+/**
+ * storeUSerData - Dispatches
+ * storeUSerData action
+ *
+ * @param {object} - storeUSerData
+ * @returns {object}
+ */
 export function storeUSerData(userInfo) {
   return {
     type: ActionTypes.UPDATE_STORE_WITH_USER_DATA,
@@ -117,6 +195,12 @@ export function storeUSerData(userInfo) {
   };
 }
 
+/**
+ * editDocSuccess - Dispatches
+ * editDocSuccess action
+ *
+ * @returns {object}
+ */
 export function editDocSuccess() {
   return {
     type: ActionTypes.UPDATED_DOCUMENT,
@@ -132,6 +216,12 @@ export function editDocSuccess() {
   };
 }
 
+/**
+ * Searching - Dispatches
+ * Searching action
+ *
+ * @returns {object}
+ */
 export function Searching() {
   return {
     type: ActionTypes.UPDATE_SEARCH_RESULT,
@@ -141,6 +231,12 @@ export function Searching() {
   };
 }
 
+/**
+ * voidUser - Dispatches
+ * voidUser action
+ *
+ * @returns {object}
+ */
 export function voidUser() {
   return {
     type: ActionTypes.REDIRECT_USER,
@@ -148,6 +244,12 @@ export function voidUser() {
   };
 }
 
+/**
+ * DevoidUser - Dispatches
+ * DevoidUser action
+ *
+ * @returns {object}
+ */
 export function DevoidUser() {
   return (dispatch) => {
     dispatch({
@@ -157,16 +259,31 @@ export function DevoidUser() {
   };
 }
 
+/**
+ * getPublicDocument - Dispatches
+ * getPublicDocument action
+ * @export
+ * @param {object} userInfo
+ * @param {string} type
+ * @param {number} offset
+ * @param {number} limit
+ * @returns {object}
+ */
 export function getPublicDocument(userInfo, type, offset, limit) {
   return (dispatch) => {
     const url = `/api/documents/${userInfo.id}/${type}?offset=${offset}&limit=${limit}`;
-    return BaseApi(null, 'get', url)
-    .then((apiResult) => {
-      return dispatch(DocsSuccess(apiResult));
-    });
+    return ApiCall(null, 'get', url)
+    .then(apiResult => dispatch(DocsSuccess(apiResult)));
   };
 }
 
+/**
+ * updatedSPublicDocs - Dispatches
+ * updatedSPublicDocs action
+ *
+ * @param {object} newDocs
+ * @returns {object}
+ */
 export function updatedSPublicDocs(newDocs) {
   return {
     type: ActionTypes.ADD_MORE_SHARED_DOCS,
@@ -177,10 +294,17 @@ export function updatedSPublicDocs(newDocs) {
   };
 }
 
+/**
+ * validateUser - Dispatches
+ * validateUser action
+ *
+ * @param {string} type
+ * @returns {object}
+ */
 export function validateUser(type) {
   return (dispatch) => {
     const url = '/api/users/data/data';
-    return BaseApi(null, 'get', url)
+    return ApiCall(null, 'get', url)
     .then((apiResult) => {
       if (apiResult.id) {
         dispatch(storeUSerData(apiResult));
@@ -191,6 +315,16 @@ export function validateUser(type) {
   };
 }
 
+/**
+ * getComponentResources - Dispatches
+ * getComponentResources action
+ *
+ * @param {object} userInfo
+ * @param {string} type
+ * @param {number} offset
+ * @param {number} limit
+ * @returns {object}
+ */
 export function getComponentResources(userInfo, type, offset, limit) {
   return (dispatch) => {
     if (Object.keys(userInfo).length) {
@@ -200,11 +334,17 @@ export function getComponentResources(userInfo, type, offset, limit) {
   };
 }
 
-
+/**
+ * deleteDocAction - Dispatches
+ * deleteDocAction action
+ *
+ * @param {number} docId
+ * @returns {object}
+ */
 export function deleteDocAction(docId) {
   return (dispatch) => {
     const url = `/api/documents/${docId}`;
-    return BaseApi(null, 'delete', url)
+    return ApiCall(null, 'delete', url)
     .then(() => {
       dispatch(DocumentDeleted());
       return dispatch(getComponentResources({}, 'own', 0, 9));
@@ -212,12 +352,21 @@ export function deleteDocAction(docId) {
   };
 }
 
+/**
+ * createDoc - Dispatches
+ * createDoc action
+ *
+ * @param {object} docData
+ * @param {string} creatorData
+ * @returns {object}
+ */
 export function createDoc(docData, creatorData) {
   return (dispatch) => {
     dispatch(savingDoc());
     const url = '/api/documents/';
-    docData.creator = creatorData;
-    return BaseApi(docData, 'post', url)
+    const newDocData = docData;
+    newDocData.creator = creatorData;
+    return ApiCall(newDocData, 'post', url)
     .then((apiResult) => {
       if (global.Materialize !== undefined) {
         global.Materialize.toast('Document Created successfully', 4000);
@@ -227,6 +376,14 @@ export function createDoc(docData, creatorData) {
   };
 }
 
+/**
+ * prepareStoreForDocDetails - Dispatches
+ * prepareStoreForDocDetails action
+ *
+ * @export
+ * @param {object} newDocs
+ * @returns {object}
+ */
 export function prepareStoreForDocDetails(newDocs) {
   return {
     type: ActionTypes.DOC_DETAILS_ADD,
@@ -237,11 +394,19 @@ export function prepareStoreForDocDetails(newDocs) {
   };
 }
 
+/**
+ * upadateDoc - Dispatches
+ * upadateDoc action
+ *
+ * @param {object} - newDocData
+ * @param {nmber} = document ID
+ * @returns {object}
+ */
 export function upadateDoc(newDocData, docId) {
   return (dispatch) => {
     dispatch(updatingDoc());
     const url = `/api/documents/${docId}`;
-    return BaseApi(newDocData, 'put', url)
+    return ApiCall(newDocData, 'put', url)
     .then(() => {
       dispatch(getComponentResources({}, 'own', 0, 9));
       dispatch(editDocSuccess());
@@ -249,14 +414,18 @@ export function upadateDoc(newDocData, docId) {
   };
 }
 
-
+/**
+ * EditData - Dispatches
+ * EditData action
+ *
+ * @param {number} - docId - document ID
+ * @returns {object}
+ */
 export function EditData(docId) {
   return (dispatch) => {
     const url = `/api/documents/${docId}`;
-    return BaseApi(null, 'get', url)
-    .then((apiResult) => {
-      return dispatch(editPage(apiResult));
-    });
+    return ApiCall(null, 'get', url)
+    .then(apiResult => dispatch(editPage(apiResult)));
   };
 }
 

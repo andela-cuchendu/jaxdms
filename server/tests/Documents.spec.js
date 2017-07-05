@@ -10,15 +10,6 @@ describe('Document API Spec: ', () => {
   let token;
   let id;
   let DocId;
-  const user = {
-    username: 'uname3',
-    firstname: 'fname3',
-    lastname: 'lname3',
-    email: 'email3@email.com',
-    password: 'password123',
-    loggedin: true,
-    role: 3,
-  };
 
   after(() => {
     Users.truncate({
@@ -54,9 +45,10 @@ describe('Document API Spec: ', () => {
           lastname: 'mightguy',
           email: 'fantasy@movies.com',
           password: 'password123',
+          loggedin: true,
           role: 3,
         })
-        .end((err, res) => {
+        .end(() => {
           request.post('/api/users/login')
             .set('x-access-token', null)
             .set('Accept', 'application/json')
@@ -64,9 +56,9 @@ describe('Document API Spec: ', () => {
               username: 'chibujax',
               password: 'password123',
             })
-            .end((err, res) => {
-              token = res.body.token;
-              id = res.body.userData;
+            .end((err, response) => {
+              token = response.body.token;
+              id = response.body.userData.id;
               done();
             });
         });
@@ -87,6 +79,8 @@ describe('Document API Spec: ', () => {
           userid: id,
         })
         .end((err, res) => {
+          console.log('statusCode', res.body)
+          console.log('token', token)
           expect(res.statusCode).toBe(201);
           expect(err).toBe(null);
           expect(res.body.title).toEqual('doc title');
@@ -102,8 +96,8 @@ describe('Document API Spec: ', () => {
         .end((err, res) => {
           expect(res.statusCode).toBe(200);
           expect(err).toBe(null);
-          expect(res.body[0].title).toEqual('doc title');
-          expect(res.body.length).toBe(1);
+          expect(res.body.documents[0].title).toEqual('doc title');
+          expect(res.body.documents.length).toBe(1);
           done();
         });
     });
@@ -157,6 +151,5 @@ describe('Document API Spec: ', () => {
           done();
         });
     });
-
   });
 });

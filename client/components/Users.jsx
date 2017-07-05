@@ -1,10 +1,11 @@
+/* global $ */
 import React, { PropTypes, Component } from 'react';
 import moment from 'moment';
 import Pagination from 'rc-pagination';
 import 'rc-pagination/assets/index.css';
-import { AppWrapper } from './AppWrapper.jsx';
-import UsersCard from './common/UsersCard.jsx';
-import SignUpForm from './common/SignUpForm.jsx';
+import { AppWrapper } from './AppWrapper';
+import UsersCard from './common/UsersCard';
+import SignUpForm from './common/SignUpForm';
 
 /**
  * Represents the User
@@ -39,6 +40,7 @@ export class Users extends Component {
     this.validatePassword = this.validatePassword.bind(this);
     this.getSelectedUserForDelete = this.getSelectedUserForDelete.bind(this);
     this.onChange = this.onChange.bind(this);
+    this.goBack = this.goBack.bind(this);
   }
 
   /**
@@ -54,7 +56,7 @@ export class Users extends Component {
    * onChangeEvent - Called when input
    * elemets change
    *
-   * @param {any} event -Dom event
+   * @param {Object} event -Dom event
    *
    * @memberOf Users
    */
@@ -80,7 +82,7 @@ export class Users extends Component {
    * getSelectedUserForDelete - Gets the
    * user data to be deleted
    *
-   * @param {any} event -Dom event
+   * @param {Object} event -Dom event
    *
    * @memberOf Users
    */
@@ -91,7 +93,20 @@ export class Users extends Component {
     const selectedUserData = users[userIndex];
     this.props.confirmDelete(selectedUserData, 'user');
   }
-
+  /**
+   * goBack -Pushes back to document
+   * page after a search result
+   *
+   * @memberOf Users
+   */
+  goBack() {
+    const {
+      userDocs: {
+        searchUrl,
+      },
+    } = this.props.stateProp;
+    this.context.router.push(searchUrl);
+  }
  /**
    * isValidEmail - Checks if the email
    * follows a valid patter
@@ -128,7 +143,7 @@ export class Users extends Component {
  * validateEmail -Calls isValidEmail
  * to validate email
  *
- * @param {any} event -Dom
+ * @param {Object} event -Dom
  * @returns {boolean}
  *
  * @memberOf Users
@@ -163,7 +178,7 @@ export class Users extends Component {
    * validatePassword - checks to see if
    * is up to 6 characters
    *
-   * @param {any} event
+   * @param {Object} event
    * @returns {state}
    *
    * @memberOf Users
@@ -182,7 +197,7 @@ export class Users extends Component {
   /**
    * saveUser - Save the user
    *
-   * @param {any} event
+   * @param {Object} event
    * @returns {boolean}
    *
    * @memberOf Users
@@ -192,13 +207,13 @@ export class Users extends Component {
     if (!this.isFormValid()) {
       return false;
     }
-    return this.props.userActions.saveUserData(this.state.user, 'true');
+    return this.props.userActions.CreateUserData(this.state.user, 'true');
   }
 
   /**
    * Represents the plus Icon click
    *
-   * @param {any} event - contains the icon
+   * @param {Object} event - contains the icon
    * element and value
    *
    * @memberOf Users
@@ -219,7 +234,7 @@ export class Users extends Component {
   /**
    * viewUserEvent - function to view user details
    *
-   * @param {any} event -Dom
+   * @param {Object} event -Dom
    *
    * @memberOf Users
    */
@@ -235,7 +250,7 @@ export class Users extends Component {
 /**
  * prepareStoreForEdit prepares for editing user data
  *
- * @param {any} event -Dom
+ * @param {Object} event -Dom
  *
  * @memberOf Users
  */
@@ -245,18 +260,39 @@ export class Users extends Component {
 
     $('#editDocModal').closeModal();
     this.context.router.push({
-      pathname: `/docs/edit/${selectedDocumentData.id}`
+      pathname: `/docs/edit/${selectedDocumentData.id}`,
     });
   }
 
   render() {
     const DeleteUserProp = this.props.stateProp.userState.deleteUser;
-    const UsersProps = this.props.stateProp.userState.users;
+    let UsersProps = this.props.stateProp.userState.users;
     const UserError = this.props.stateProp.userState.UserError;
     const roles = this.props.stateProp.roles.roles;
     const displayLoader = this.props.stateProp.userState.displayLoader;
     const userSuccess = this.props.stateProp.userState.CreateUser;
-    const total = this.props.stateProp.userState.usersCount;
+    let total = this.props.stateProp.userState.usersCount;
+    const {
+      userDocs: {
+        search,
+      },
+    } = this.props.stateProp;
+    const { query: { q } } = this.props.location;
+    const DidSearch = q === undefined ? false : true;
+    let SearchHeader;
+
+    if (DidSearch) {
+      UsersProps = search;
+      SearchHeader = (
+        <div className="header-class">
+          {`Found ${search.length} Result(s) for "${q}"`}
+          <br />
+          <a onClick={this.goBack}>Go Back</a>
+        </div>
+       );
+      total = search.length;
+    }
+
     if (userSuccess) {
       $('#createModal').closeModal();
       this.props.userActions.DefaultUserSuccess();
@@ -288,11 +324,14 @@ export class Users extends Component {
           <div className="header-class">
             Users
           </div>
+          <div className="header-class">
+            {SearchHeader}
+          </div>
           <div style={{ clear: 'both', overflow: 'auto' }}>
             {cards}
           </div>
           <Pagination
-            showTotal={(total, range) => `${range[0]} - ${range[1]} of ${total} items`}
+            showTotal={(totals, range) => `${range[0]} - ${range[1]} of ${totals} items`}
             onChange={this.onChange}
             current={this.state.current}
             pageSize={9}
@@ -307,7 +346,7 @@ export class Users extends Component {
             <i className="material-icons">add</i>
           </a>
         </div>
-        <div id="createModal" className="modal modal-fixed-footer">
+        <div id="createModal" className="modal modal-fixed-footer custom-modal">
           <div className="modal-content">
             <SignUpForm
               changeEvent={this.onChangeEvent}
@@ -321,11 +360,12 @@ export class Users extends Component {
               showLoader={displayLoader}
               roles={roles}
               matchPassword={this.confirmPassword}
+              admin={'admin'}
             />
           </div>
         </div>
 
-        <div id="deleteDocModal" className="modal modal-fixed-footer">
+        <div id="deleteDocModal" className="modal modal-fixed-footer custom-modal">
           <div className="modal-content">
             <h4 className="custom-blue-text">
               Are you sure you want to detele: {DeleteUserProp.username}?
@@ -351,8 +391,7 @@ export class Users extends Component {
     );
   }
 }
-
-Users.propTypes = {
+Users.defaultProps = {
   deleteDoc: PropTypes.func,
   onChangeEvent: PropTypes.func,
   plusClick: PropTypes.func,
@@ -361,7 +400,25 @@ Users.propTypes = {
   stateProp: PropTypes.object,
   documentActions: PropTypes.object,
   logoutEvent: PropTypes.func,
-  modalSubmitAction: PropTypes.func
+  modalSubmitAction: PropTypes.func,
+  userActions: PropTypes.string,
+  fetchUsers: PropTypes.string,
+  CreateUserData: PropTypes.string,
+  deleteUser: PropTypes.string,
+  location: PropTypes.string,
+  query: PropTypes.string,
+};
+Users.propTypes = {
+  plusClick: PropTypes.func,
+  confirmDelete: PropTypes.func,
+  stateProp: PropTypes.string,
+  documentActions: PropTypes.string,
+  userActions: PropTypes.string,
+  fetchUsers: PropTypes.string,
+  CreateUserData: PropTypes.string,
+  deleteUser: PropTypes.string,
+  location: PropTypes.string,
+  query: PropTypes.string,
 };
 
 Users.contextTypes = {

@@ -30,7 +30,6 @@ describe('Test the signUpForm component', () => {
     wrapper.find('button').simulate('click');
     expect(wrapper.state()).toBe(null);
   });
-
 });
 
 describe('Test the sign in functions', () => {
@@ -43,12 +42,8 @@ describe('Test the sign in functions', () => {
       roles: { roles: [] },
     },
     userActions: {
-      saveUser: function (userData) {
-        return userData;
-      },
-      saveUserData: function (userData) {
-        return userData;
-      },      
+      saveUser: (userData => userData),
+      CreateUserData: (userData => userData),
     },
   };
   let signUp;
@@ -70,19 +65,19 @@ describe('Test the sign in functions', () => {
         value: 'userinput',
         name: 'username',
       },
-    });
+      });
     signUp.find('#first_name').simulate('change',
       { target: {
         value: 'firstnameinput',
         name: 'firstname',
       },
       });
-      expect(signUp.state().user.username).toBe('userinput');
-      expect(signUp.state().user.firstname).toBe('firstnameinput');
+    expect(signUp.state().user.username).toBe('userinput');
+    expect(signUp.state().user.firstname).toBe('firstnameinput');
   });
 
   it('SHould render form errors', () => {
-    let submitSpy = spy(secondProp.userActions, 'saveUser');
+    const submitSpy = spy(secondProp.userActions, 'saveUser');
     signUp.find('#email').simulate('keyUp',
       {
         target: {
@@ -97,7 +92,7 @@ describe('Test the sign in functions', () => {
   });
 
   it('Should submit form on correct input', () => {
-    let submitSpy = spy(secondProp.userActions, 'saveUser');
+    const submitSpy = spy(secondProp.userActions, 'saveUser');
     signUp.find('#username').simulate('change', {
       target: { value: 'usernameinput', name: 'username' } });
     signUp.find('#password').simulate('keyUp', {

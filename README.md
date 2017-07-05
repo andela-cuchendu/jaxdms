@@ -72,6 +72,8 @@ cd jaxdms
 # Create .env file in the root directory
 touch .env
 
+# Copy .env.example to .env and edit with your parameters
+
 # add your SECRET, PORT, DATABASE_URL, and TEST_DATABASE_URL keys
 
 # Install Package dependencies
@@ -92,6 +94,18 @@ npm run e2e-setup
 # Run end to end test
 npm run test-e2e
 ```
+###Limitations:
+
+The limitations 0f this application includes:
+
+Users can only create textual documents and retrieve same when needed.
+Users cannot share documents with people, but can make document public to make it available to other users in the application.
+Real file types are not supportd
+Roles cannot be added
+
+###Contributing
+
+Contributors are welcome to further enhance the features of this API by contributing to its development.
 
 ### License
 

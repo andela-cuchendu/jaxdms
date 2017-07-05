@@ -1,9 +1,10 @@
+/* global $ */
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as RolesActions from '../actions/RolesActions';
 import * as UserActions from '../actions/UserAction';
-import AuthContent from './AuthContent.jsx';
+import AuthContent from './AuthContent';
 
 /**
  * Represents the Login and SignUp pages
@@ -39,12 +40,12 @@ export class Authentication extends Component {
    * toggleSignUp - Toggles between signin
    * and signup pages
    *
-   * @param {any} dom 
+   * @param {Object} dom
    *
    * @memberOf Authentication
    */
   toggleSignUp(dom) {
-    $(dom).slideUp('slow', function () {
+    $(dom).slideUp('slow', () => {
       if (dom.className === 'signin-container') {
         return $('.signup-container').slideDown('fast');
       }
@@ -69,7 +70,7 @@ export class Authentication extends Component {
   }
 }
 Authentication.contextTypes = {
-  router: PropTypes.object
+  router: PropTypes.string,
 };
 
 

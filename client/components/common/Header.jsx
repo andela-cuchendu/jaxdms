@@ -68,7 +68,7 @@ const Header = ({ LogoutEvent, UserStatus, SearchEvent, User }) => {
                 </Link>
               </li>
               <li id="SHARED_DOCUMENTS" className="bold shared">
-                <Link to="/shar">
+                <Link to="/public">
                   <div className="div-neat waves-effect">
                     <span>Public Documents</span>
                   </div>
@@ -83,7 +83,7 @@ const Header = ({ LogoutEvent, UserStatus, SearchEvent, User }) => {
               </li>
               {User.role === 3 ?
                 <li id="USERS" className="bold edit">
-                  <Link to="/user">
+                  <Link to="/users">
                     <div className="div-neat waves-effect">
                       <span>Users</span>
                     </div>
@@ -106,20 +106,21 @@ const Header = ({ LogoutEvent, UserStatus, SearchEvent, User }) => {
     </div>
   );
 };
-
-Header.propTypes = {
-  clickEvent: PropTypes.func,
-  User: PropTypes.object,
+Header.defaultProps = {
+  User: PropTypes.string,
   UserStatus: PropTypes.bool,
-  signInEvent: PropTypes.func,
-  searchActions: PropTypes.object
+  LogoutEvent: PropTypes.string,
+  SearchEvent: PropTypes.string,
+};
+Header.propTypes = {
+  User: PropTypes.string,
+  UserStatus: PropTypes.bool,
+  LogoutEvent: PropTypes.string,
+  SearchEvent: PropTypes.string,
 };
 
 Header.contextTypes = {
-  router: PropTypes.object
+  router: PropTypes.object,
 };
 
 export default Header;
-
-
-

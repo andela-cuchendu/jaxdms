@@ -1,12 +1,13 @@
+/* global $ */
 import React, { PropTypes, Component } from 'react';
 import moment from 'moment';
 import Pagination from 'rc-pagination';
 import 'rc-pagination/assets/index.css';
-import DocumentForm from './DocumentForm.jsx';
-import { AppWrapper } from './AppWrapper.jsx';
+import DocumentForm from './DocumentForm';
+import { AppWrapper } from './AppWrapper';
 import DocImage from '../images/auth.jpg';
-import DocDisplay from './common/DocDisplay.jsx';
-import Spinner from './common/Spinner.jsx';
+import DocDisplay from './common/DocDisplay';
+import Spinner from './common/Spinner';
 
 /**
  * Represents a document
@@ -104,7 +105,7 @@ export class Documents extends Component {
    * getSelectedDocForDelete - Gets the data
    * of the document to be deleted
    *
-   * @param {any} event
+   * @param {Object} event
    *
    * @memberOf Documents
    */
@@ -122,13 +123,18 @@ export class Documents extends Component {
    * @memberOf Documents
    */
   goBack() {
-    this.context.router.push('/docs');
+    const {
+      userDocs: {
+        searchUrl,
+      },
+    } = this.props.stateProp;
+    this.context.router.push(searchUrl);
   }
 
   /**
    * prepareStoreForEdit
    *
-   * @param {any} event
+   * @param {Object} event
    *
    * @memberOf Documents
    *
@@ -140,14 +146,14 @@ export class Documents extends Component {
 
     $('#editDocModal').closeModal();
     this.context.router.push({
-      pathname: `/docs/edit/'${selectedDocumentData.id}`,
+      pathname: `/docs/edit/${selectedDocumentData.id}`,
     });
   }
 
   /**
    * viewDocEvent - Event that handles document viewing
    *
-   * @param {any} event
+   * @param {Object} event
    *
    * @memberOf Documents
    */
@@ -162,7 +168,7 @@ export class Documents extends Component {
 
   render() {
     if (this.props.stateProp.userDocs.Deleted) {
-      Materialize.toast('Document deleted', 4000);
+      global.Materialize.toast('Document deleted', 4000);
       this.props.documentActions.DocumentDeletedHandled();
     }
     const {
@@ -193,7 +199,7 @@ export class Documents extends Component {
           <a onClick={this.goBack}>Go Back</a>
         </div>
        );
-      total = 0;
+      total = search.length;
     }
     let cards = '';
     if (DocProps.docs.length) {
@@ -215,6 +221,7 @@ export class Documents extends Component {
             currentUserId={DocProps.userInfo.id}
             confirmDelete={this.getSelectedDocForDelete}
             cardContent={content}
+            RoleID={DocProps.userInfo.role}
           />
         );
       });
@@ -263,7 +270,7 @@ export class Documents extends Component {
           showLoader={DocProps.docSuccess}
           userRole={DocProps.userInfo.role}
         />
-        <div id="editDocModal" className="modal modal-fixed-footer">
+        <div id="editDocModal" className="modal custom-modal modal-fixed-footer">
           <div className="modal-content">
             <h4 className="custom-blue-text">{DocProps.viewDoc.title}</h4>
             <p dangerouslySetInnerHTML={{ __html: DocProps.viewDoc.content }} />
@@ -293,7 +300,7 @@ export class Documents extends Component {
             }
           </div>
         </div>
-        <div id="deleteDocModal" className="modal modal-fixed-footer">
+        <div id="deleteDocModal" className="modal modal-fixed-footer custom-modal">
           <div className="modal-content">
             <h4 className="custom-blue-text">
               Are you sure you want to detele: {DocProps.deleteDoc.title}?</h4>
@@ -317,17 +324,32 @@ export class Documents extends Component {
     );
   }
 }
-
+Documents.defaultProps = {
+  deleteDoc: PropTypes.string,
+  onChangeEvent: PropTypes.string,
+  plusClick: PropTypes.string,
+  OnchangeTinymce: PropTypes.string,
+  confirmDelete: PropTypes.string,
+  stateProp: PropTypes.string,
+  documentActions: PropTypes.string,
+  logoutEvent: PropTypes.string,
+  modalSubmitAction: PropTypes.string,
+  location: PropTypes.string,
+  pathname: PropTypes.string,
+  query: PropTypes.string,
+};
 Documents.propTypes = {
-  deleteDoc: PropTypes.func,
-  onChangeEvent: PropTypes.func,
-  plusClick: PropTypes.func,
-  OnchangeTinymce: PropTypes.func,
-  confirmDelete: PropTypes.func,
-  stateProp: PropTypes.object,
-  documentActions: PropTypes.object,
-  logoutEvent: PropTypes.func,
-  modalSubmitAction: PropTypes.func,
+  deleteDoc: PropTypes.string,
+  onChangeEvent: PropTypes.string,
+  plusClick: PropTypes.string,
+  OnchangeTinymce: PropTypes.string,
+  confirmDelete: PropTypes.string,
+  stateProp: PropTypes.string,
+  documentActions: PropTypes.string,
+  modalSubmitAction: PropTypes.string,
+  location: PropTypes.string,
+  pathname: PropTypes.string,
+  query: PropTypes.string,
 };
 
 Documents.contextTypes = {

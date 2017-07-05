@@ -13,8 +13,8 @@ let originalEnd;
 describe('DocActions Spec: ', () => {
   before(() => {
     originalEnd = request.Request.prototype.end;
-    request.Request.prototype.end = function (cb) {
-      cb(null, {
+    request.Request.prototype.end = (callBack) => {
+      callBack(null, {
         status: 200,
         body: {
           rows: [{

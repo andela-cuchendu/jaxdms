@@ -30,6 +30,7 @@ export const InitialState = {
   editUserData: {
     firstname: '',
     lastname: '',
+    role: '',
   },
   displayLoader: 'hide-element',
   docEdit: {
@@ -54,4 +55,5 @@ export const InitialState = {
   roles: [],
   refreshed: true,
   updateSearch: false,
+  searchUrl: '',
 };

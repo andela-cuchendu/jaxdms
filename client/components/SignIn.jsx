@@ -1,5 +1,5 @@
 import React, { PropTypes, Component } from 'react';
-import SignInForm from './common/SignInForm.jsx';
+import SignInForm from './common/SignInForm';
 
 /**
  * Represents the Signin
@@ -29,7 +29,7 @@ export class SignIn extends Component {
   /**
    * componentWillReceiveProps
    *
-   * @param {any} nextProps - Props from store
+   * @param {object} nextProps - Props from store
    *
    * @memberOf SignIn
    */
@@ -43,7 +43,7 @@ export class SignIn extends Component {
    * onChangeEvent - Called when input
    * elemets change
    *
-   * @param {any} event -Dom event
+   * @param {Object} event -Dom event
    *
    * @memberOf SignIn
    */
@@ -56,7 +56,7 @@ export class SignIn extends Component {
    * signIn - Called when signin
    * form has been submitted
    *
-   * @param {any} event -Dom event
+   * @param {Object} event -Dom event
    *
    * @memberOf SignIn
    */
@@ -69,7 +69,7 @@ export class SignIn extends Component {
    * toggleSignUp - Toggles between signin
    * and signup pages
    *
-   * @param {any} event -Dom event
+   * @param {Object} event -Dom event
    *
    * @memberOf SignIn
    */
@@ -99,26 +99,29 @@ export class SignIn extends Component {
           signInAction={this.signIn}
           showLoader={displayLoader}
         />
+         New user?
         <a
-          className="custom-link"
+          className="btn custom-doc-form custom-blue custom-toggle"
           id="sigin-toggle"
           onClick={this.toggleSignIn}
         >
-          New user? Sign up
+        Sign up
         </a>
       </div>
     );
   }
 }
-
+SignIn.defaultProps = {
+  stateProp: PropTypes.string,
+};
 SignIn.propTypes = {
   toggleSignUp: PropTypes.func.isRequired,
-  userActions: PropTypes.object.isRequired,
-  stateProp: PropTypes.object
+  userActions: PropTypes.string.isRequired,
+  stateProp: PropTypes.string,
 };
 
 SignIn.contextTypes = {
-  router: PropTypes.object
+  router: PropTypes.object,
 };
 
 export default SignIn;

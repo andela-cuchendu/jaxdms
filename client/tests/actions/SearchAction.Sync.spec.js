@@ -6,7 +6,6 @@ import * as ActionTypes from '../../actions/ActionTypes';
 expect.extend(enzymify());
 
 describe('Search Actions Spec: ', () => {
-
   it('should update state with search completed', (done) => {
     const ExpectedResult = {
       type: ActionTypes.SEARCH_COMPLETED,
@@ -14,10 +13,11 @@ describe('Search Actions Spec: ', () => {
         updateSearch: false,
         refreshed: false,
         search: [],
+        searchUrl: 'http://',
         query: 'this',
       },
     };
-    const action = SearchAction.searchCompleted('this', []);
+    const action = SearchAction.searchCompleted('this', [], 'http://');
     expect(action).toEqual(ExpectedResult);
     done();
   });
@@ -30,7 +30,7 @@ describe('Search Actions Spec: ', () => {
         lazyLoading: false,
       },
     };
-    const action = SearchAction.updatedSearch({ doc: [] });
+    const action = SearchAction.updatedSearch({ doc: [], });
     expect(action).toEqual(ExpectedResult);
     done();
   });

@@ -1,5 +1,11 @@
 {
   "extends": "airbnb",
+  "env": {
+    "node": true,
+    "es6": true,
+    "mocha": true,
+    "browser": true
+  },
   "plugins": [
       "react",
       "jsx-a11y",

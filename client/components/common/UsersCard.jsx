@@ -52,11 +52,17 @@ const UsersCard = ({
     </div>
   );
 };
-
-UsersCard.propTypes = {
+UsersCard.defaultProps = {
   id: PropTypes.number,
   docIndex: PropTypes.number,
   user: PropTypes.object,
+  userDate: PropTypes.string,
+  confirmDelete: PropTypes.function,
+};
+UsersCard.propTypes = {
+  id: PropTypes.number,
+  docIndex: PropTypes.number,
+  user: PropTypes.string,
   userDate: PropTypes.string,
   confirmDelete: PropTypes.function,
 };

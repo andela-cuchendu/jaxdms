@@ -11,11 +11,9 @@ const router = express.Router();
     res.send('Jax Document management system');
   });
 
-  // Lists all routes
-  router.use('/api', Users);
-  router.use('/api', Documents);
-  router.use('/api', Roles);
-  router.use('/api', Search);
-  // module.exports = router;
+  router.use('/api/users', Users);
+  router.use('/api/documents', Documents);
+  router.use('/api/roles', Roles);
+  router.use('/api/search', Search);
 })();
 export default router;

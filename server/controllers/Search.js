@@ -10,9 +10,9 @@ module.exports = {
    * user and result returned is based on
    * access rights
    *
-   * @param {any} req - Request Object from express
-   * @param {any} res - Response Object from express
-   * @returns {jsonObject} - This maybe error json Object
+   * @param {Object} req - Request Object from express
+   * @param {Object} res - Response Object from express
+   * @returns {Object} - This maybe error json Object
    */
   FindDocuments(req, res) {
     const query = req.query.q.trim();
@@ -24,7 +24,7 @@ module.exports = {
       if (req.decoded.role === 3) {
         DocumentAccess = [-1, -2, 1, 2, 3];
       }
-      let QueryOption = {
+      const QueryOption = {
         where: {
           $and: [{
             $or: [{
@@ -61,41 +61,39 @@ module.exports = {
 
       return Documents
         .findAll(QueryOption)
-        .then(documents => {
+        .then((documents) => {
           if (!documents) {
             return res.status(404).send({
-              message: 'No Document Found'
+              message: 'No Document Found',
             });
-          } else {
-            res.status(200).send(documents);
           }
+          return res.status(200).send(documents);
         })
         .catch(error => res.status(400).send(error));
-    } else {
-      return res.status(404).send({
-        message: 'No Query found'
-      });
     }
+    return res.status(404).send({
+      message: 'No Query found',
+    });
   },
   /**
    * Find Users. This can be done any
    * only admin
    *
-   * @param {any} req - Request Object from express
-   * @param {any} res - Response Object from express
-   * @returns {jsonObject} - This maybe error json Object
+   * @param {Object} req - Request Object from express
+   * @param {Object} res - Response Object from express
+   * @returns {Object} - This maybe error json Object
    */
   FindUsers(req, res) {
     const query = req.query.q.trim();
     if (query != null && query.length > 0) {
       const offset = parseInt(req.query.offset, 10) || 0;
       const limit = parseInt(req.query.limit, 10) || 0;
-      let QueryOption = {
+      const QueryOption = {
         limit,
         offset,
         where: {
           username: {
-            $ilike:  `%${query}%`,         
+            $ilike: `%${query}%`,
           },
         },
       };
@@ -109,17 +107,14 @@ module.exports = {
         .then((users) => {
           if (!users) {
             return res.status(404).send({
-              message: 'No Document Found'
+              message: 'No Users Found',
             });
-          } else {
-            res.status(200).send(users);
           }
+          return res.status(200).send(users);
         })
-        .catch(error => res.status(400).send(error));
-    } else {
-      return res.status(404).send({
-        message: 'No Query found'
-      });
+        .catch((error) => {
+          res.status(400).send(error);
+        });
     }
   },
 };

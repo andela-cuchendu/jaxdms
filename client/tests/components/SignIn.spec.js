@@ -50,7 +50,7 @@ describe('Signin component', () => {
 
   it('Should render signup link', () => {
     expect(sign.find('a').length).toBe(1);
-    expect(sign.find('a').text()).toBe('New user? Sign up');
+    expect(sign.find('a').text()).toBe('Sign up');
   });
 
   it('Should change prop state', () => {

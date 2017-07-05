@@ -24,12 +24,9 @@ describe('<Header />', () => {
     header = mount(<Header {...props} />);
   });
 
-  it('Should have two links', () => {
-    expect(header.find('a').length).toBe(2);
+  it('Should have seven links', () => {
+    expect(header.find('a').length).toBe(7);
     expect(header.find('a').first().text()).toBe('Jaxdms');
-    expect(header.find('a').last().text()).toBe('menu');    
+    expect(header.find('a').last().text()).toBe('Logout');
   });
-
-
-
 });

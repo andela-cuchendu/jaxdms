@@ -1,5 +1,5 @@
 import React, { PropTypes, Component } from 'react';
-import SignUpForm from './common/SignUpForm.jsx';
+import SignUpForm from './common/SignUpForm';
 
 /**
  * Represents Signup
@@ -37,7 +37,7 @@ export class SignUp extends Component {
    * onChangeEvent - Called when input
    * elemets change
    *
-   * @param {any} event -Dom event
+   * @param {Object} event -Dom event
    *
    * @memberOf SignUp
    */
@@ -50,7 +50,7 @@ export class SignUp extends Component {
    * toggleSignUp - Toggles between signin
    * and signup pages
    *
-   * @param {any} event -Dom event
+   * @param {Object} event -Dom event
    *
    * @memberOf SignUp
    */
@@ -95,7 +95,7 @@ export class SignUp extends Component {
  * validateEmail -Calls isValidEmail
  * to validate email
  *
- * @param {any} event -Dom
+ * @param {Object} event -Dom
  * @returns {boolean}
  *
  * @memberOf SignUp
@@ -130,7 +130,7 @@ export class SignUp extends Component {
    * validatePassword - checks to see if
    * is up to 6 characters
    *
-   * @param {any} event
+   * @param {Object} event
    * @returns {state}
    *
    * @memberOf SignUp
@@ -149,7 +149,7 @@ export class SignUp extends Component {
   /**
    * saveUser - Save the user
    *
-   * @param {any} event
+   * @param {Object} event
    * @returns {boolean}
    *
    * @memberOf SignUp
@@ -160,7 +160,7 @@ export class SignUp extends Component {
       return false;
     }
 
-    return this.props.userActions.saveUserData(this.state.user, event);
+    return this.props.userActions.CreateUserData(this.state.user, event);
   }
 
   render() {
@@ -191,23 +191,28 @@ export class SignUp extends Component {
             roles={NewRoles}
             matchPassword={this.confirmPassword}
           />
+          Existing user?
           <a
-            className="custom-link"
+            className="btn custom-doc-form custom-blue custom-toggle"
             onClick={this.toggleDisplay}
           >
-            Existing user? Sign in
+          Sign in
           </a>
         </div>
       </div>
     );
   }
 }
+SignUp.defaultProps = {
+  stateProp: PropTypes.string,
+  roles: PropTypes.string,
+};
 
 SignUp.propTypes = {
   toggleSignUp: PropTypes.func.isRequired,
-  userActions: PropTypes.object.isRequired,
-  stateProp: PropTypes.object,
-  roles: PropTypes.array
+  userActions: PropTypes.string.isRequired,
+  stateProp: PropTypes.string,
+  roles: PropTypes.string,
 };
 
 export default SignUp;

@@ -28,11 +28,16 @@ const Spinner = ({ showLoader, size, position }) => {
     </div>
   );
 };
+Spinner.defaultProps = {
+  showLoader: PropTypes.bool.isRequired,
+  position: PropTypes.string,
+  size: PropTypes.string,
+};
 
 Spinner.propTypes = {
   showLoader: PropTypes.bool.isRequired,
   position: PropTypes.string,
-  size: PropTypes.string
+  size: PropTypes.string,
 };
 
 export default Spinner;

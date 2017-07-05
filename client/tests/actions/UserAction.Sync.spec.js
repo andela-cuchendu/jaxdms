@@ -72,6 +72,7 @@ describe('User: ', () => {
     const editData = {
       firstname: user.firstname,
       lastname: user.lastname,
+      role: 1,
     };
     const ExpectedResult = {
       type: ActionTypes.EDIT_PAGE,
@@ -93,6 +94,7 @@ describe('User: ', () => {
         editUserData: {
           firstname: '',
           lastname: '',
+          role: '',
         },
       },
     };

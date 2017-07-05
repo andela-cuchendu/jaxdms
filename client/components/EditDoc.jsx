@@ -1,6 +1,7 @@
+/* global Materialize */
 import React, { Component, PropTypes } from 'react';
-import { AppWrapper } from './AppWrapper.jsx';
-import EditForm from './EditForm.jsx';
+import { AppWrapper } from './AppWrapper';
+import EditForm from './EditForm';
 
 /**
  * Represents Document Edit
@@ -47,7 +48,7 @@ export class EditDoc extends Component {
   /**
    * componentWillReceiveProps
    *
-   * @param {any} nextProps - Props from store
+   * @param {Object} nextProps - Props from store
    *
    * @memberOf EditDoc
    */
@@ -73,7 +74,7 @@ export class EditDoc extends Component {
    * onChangeEvent - Called when input
    * elemets change
    *
-   * @param {any} event -Dom event
+   * @param {Object} event -Dom event
    *
    * @memberOf EditDoc
    */
@@ -86,7 +87,7 @@ export class EditDoc extends Component {
    * submitForm - Called when the edit
    * document form is submited
    *
-   * @param {any} event -Dom Event
+   * @param {Object} event -Dom Event
    *
    * @memberOf EditDoc
    */
@@ -100,7 +101,7 @@ export class EditDoc extends Component {
    * textEditorChangeEvent - Called when the
    * text editor changes
    *
-   * @param {any} event -Dom Event
+   * @param {Object} event -Dom Event
    *
    * @memberOf EditDoc
    */
@@ -153,16 +154,17 @@ export class EditDoc extends Component {
 }
 
 EditDoc.contextTypes = {
-  router: PropTypes.object
+  router: PropTypes.object,
 };
-
+EditDoc.defaultProps = {
+  stateProp: PropTypes.string,
+  params: PropTypes.string,
+  documentActions: PropTypes.string,
+};
 EditDoc.propTypes = {
-  onChangeEvent: PropTypes.func,
-  stateProp: PropTypes.object,
-  params: PropTypes.object,
-  actions: PropTypes.object,
-  logoutEvent: PropTypes.func,
-  documentActions: PropTypes.object
+  stateProp: PropTypes.string,
+  params: PropTypes.string,
+  documentActions: PropTypes.string,
 };
 
 export default AppWrapper(EditDoc);

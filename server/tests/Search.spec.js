@@ -26,7 +26,7 @@ describe('Search API Spec: ', () => {
     });
   });
 
-  describe('App Api', () => {
+  describe('Api', () => {
     it('should create and login user', (done) => {
       request.post('/api/users')
         .set('x-access-token', null)
@@ -55,7 +55,7 @@ describe('Search API Spec: ', () => {
         });
     });
 
-    it('should be able to create a document and return id', (done) => {
+    it('should create a document and return id', (done) => {
       request.post('/api/documents')
         .set('x-access-token', token)
         .set('Accept', 'application/json')

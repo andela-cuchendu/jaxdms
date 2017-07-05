@@ -63,12 +63,14 @@ const router = express.Router();
  *         required: true
  *         type: number
  *     responses:
- *       201:
- *         description: Document Object created
+ *       200:
+ *         description: Document object created
  *         schema:
  *           $ref: '#/definitions/Document'
+ *         examples:
+ *           application/json: { id: 38, title: "T-shirt", content: "example" }
  */
-  router.post('/documents', Middleware.verifyDoc, Documents.create);
+  router.post('/', Middleware.verifyDoc, Documents.create);
 
 /**
  * @swagger
@@ -87,11 +89,13 @@ const router = express.Router();
  *         type: string
  *     responses:
  *       200:
- *         description: Document List
+ *         description: Document list created
  *         schema:
  *           $ref: '#/definitions/Document'
+ *         examples:
+ *           application/json: [{ id: 38, title: "T-shirt", content: "example" }]
  */
-  router.get('/documents', Middleware.verifyDoc, Documents.list);
+  router.get('/', Middleware.verifyDoc, Documents.list);
 
 /**
  * @swagger
@@ -115,11 +119,13 @@ const router = express.Router();
  *         type: number
  *     responses:
  *       200:
- *         description: Document List
+ *         description: Document retrieved.
  *         schema:
  *           $ref: '#/definitions/Document'
+ *         examples:
+ *           application/json: { id: 38, title: "T-shirt", content: "example" }
  */
-  router.get('/documents/:id', Middleware.verifyDoc, Documents.GetDocument);
+  router.get('/:id', Middleware.verifyDoc, Documents.GetDocument);
 
 /**
  * @swagger
@@ -152,12 +158,14 @@ const router = express.Router();
  *         required: true
  *         type: string
  *     responses:
- *       200:
- *         description: Document Object updated
+ *       201:
+ *         description: Document object updated
  *         schema:
  *           $ref: '#/definitions/Document'
+ *         examples:
+ *           application/json: { id: 38, title: "T-shirt", content: "example" }
  */
-  router.put('/documents/:id', Middleware.verifyDoc, Documents.UpdateDocument);
+  router.put('/:id', Middleware.verifyDoc, Documents.UpdateDocument);
 
 /**
  * @swagger
@@ -180,12 +188,14 @@ const router = express.Router();
  *         required: true
  *         type: number
  *     responses:
- *       200:
+ *       204:
  *         description: Document deleted successfully
  *         schema:
  *           $ref: '#/definitions/Document'
+ *         examples:
+ *           application/json: {}
  */
-  router.delete('/documents/:id', Middleware.verifyDoc, Documents.DeleteDocument);
+  router.delete('/:id', Middleware.verifyDoc, Documents.DeleteDocument);
 
 /**
  * @swagger
@@ -214,10 +224,12 @@ const router = express.Router();
  *         type: string
  *     responses:
  *       200:
- *         description: Lists Documents
+ *         description: Document list created
  *         schema:
  *           $ref: '#/definitions/Document'
+ *         examples:
+ *           application/json: [{ id: 38, title: "T-shirt", content: "example" }]
  */
-  router.get('/documents/:id/:type', Middleware.verifyDoc, Documents.GetShared);
+  router.get('/:id/:type', Middleware.verifyDoc, Documents.GetPublic);
 })();
 export default router;

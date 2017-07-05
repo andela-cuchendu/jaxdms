@@ -1,6 +1,13 @@
 import * as request from 'superagent';
 
-export function BaseApi(data, type, url) {
+/**
+ * ApiCall - The base for all API call
+ * @param {object} data
+ * @param {string} type
+ * @param {string} url
+ * @returns {object}
+ */
+export default function ApiCall(data, type, url) {
   let token = null;
   if (window.localStorage !== undefined) {
     token = window.localStorage.getItem('token');

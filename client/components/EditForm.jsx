@@ -1,8 +1,8 @@
 import TinyMCE from 'react-tinymce';
 import React, { PropTypes } from 'react';
 import { Input, Row } from 'react-materialize';
-import CustomSelect from './common/CustomSelect.jsx';
-import Preloader from './common/Spinner.jsx';
+import CustomSelect from './common/CustomSelect';
+import Preloader from './common/Spinner';
 
 /**
  * Represents Document Edit form
@@ -78,15 +78,23 @@ const EditDocumentForm = ({
     return (<div />);
   }
 };
-
-EditDocumentForm.propTypes = {
+EditDocumentForm.defaultProps = {
   changeEvent: PropTypes.func,
   tinymceEvent: PropTypes.func,
-  displayFeedBack: PropTypes.bool,
   preloader: PropTypes.bool,
   formDefaultData: PropTypes.object,
   docRoles: PropTypes.array,
-  submitAction: PropTypes.func
+  submitAction: PropTypes.func,
+  DocRole: PropTypes.string,
+};
+EditDocumentForm.propTypes = {
+  changeEvent: PropTypes.func,
+  tinymceEvent: PropTypes.func,
+  preloader: PropTypes.bool,
+  formDefaultData: PropTypes.string,
+  docRoles: PropTypes.string,
+  submitAction: PropTypes.func,
+  DocRole: PropTypes.string,
 };
 
 export default EditDocumentForm;

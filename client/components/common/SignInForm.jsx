@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react';
-import CustomTextInput from './CustomTextInput.jsx';
+import CustomTextInput from './CustomTextInput';
 
 /**
  * Represents the Signin Form

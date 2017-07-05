@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
-import CustomSelect from './CustomSelect.jsx';
-import CustomTextInput from './CustomTextInput.jsx';
+import CustomSelect from './CustomSelect';
+import CustomTextInput from './CustomTextInput';
 
 /**
  * Represents the Signup Form
@@ -21,6 +21,7 @@ const SignUpForm = ({
   matchPassword,
   showLoader,
   errorMessage,
+  admin,
 }) => {
   return (
     <form onSubmit={saveEvent} id="sign-up" className="col s12 form-container-space">
@@ -108,12 +109,18 @@ const SignUpForm = ({
         className="btn waves-effect waves-light custom-blue custom-btn submit-button-spacing"
         name="sign-up"
       >
-        SIGN UP
+        {admin !== undefined ?
+          <span>Create Users</span> :
+          <span>SIGN UP</span>
+        }
       </button>
     </form>
   );
 };
-
+SignUpForm.defaultProps = {
+  errorMessage: PropTypes.string,
+  admin: PropTypes.string,
+};
 SignUpForm.propTypes = {
   changeEvent: PropTypes.func.isRequired,
   showLoader: PropTypes.string.isRequired,
@@ -124,7 +131,9 @@ SignUpForm.propTypes = {
   passwordHasError: PropTypes.bool.isRequired,
   matchError: PropTypes.bool.isRequired,
   matchPassword: PropTypes.func.isRequired,
-  roles: PropTypes.array.isRequired
+  roles: PropTypes.string.isRequired,
+  errorMessage: PropTypes.string,
+  admin: PropTypes.string,
 };
 
 export default SignUpForm;

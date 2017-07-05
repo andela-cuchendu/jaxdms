@@ -8,14 +8,14 @@ module.exports = {
    * List all Roles. This can be done by
    * any user
    *
-   * @param {any} req - Request Object from express
-   * @param {any} res - Response Object from express
-   * @returns {jsonObject} - This maybe error json Object
+   * @param {Object} req - Request Object from express
+   * @param {Object} res - Response Object from express
+   * @returns {Object} - This maybe error json Object
    */
   list(req, res) {
-    let QueryOption = {};
+    const QueryOption = {};
     if (req.query.access !== undefined) {
-      let access = parseInt(req.query.access, 10);
+      const access = parseInt(req.query.access, 10);
       if (access === 1) {
         QueryOption.where = { access: {
           $gt: 0,
@@ -31,7 +31,8 @@ module.exports = {
     Roles
       .findAll(QueryOption)
       .then(roles => res.status(200).send(roles))
-      .catch(error => {
-        res.status(400).send(error)});
+      .catch((error) => {
+        res.status(400).send(error);
+      });
   },
 };

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites errors="0"
+            failures="0"
+            tests="3">
+
+  <testsuite name="signin"
+    errors="0" failures="0" hostname="" id="" package="signin" skipped="0"
+    tests="3" time="7.510" timestamp="Wed, 05 Jul 2017 09:28:43 GMT">
+  
+    <testcase name="User sign in without credentials" classname="signin" time="3.786" assertions="3">
+
+    
+
+    
+
+    
+    </testcase>
+  
+    <testcase name="User sign in with wrong credentials" classname="signin" time="1.750" assertions="2">
+
+    
+
+    
+    </testcase>
+  
+    <testcase name="User sign in success" classname="signin" time="1.974" assertions="3">
+
+    
+
+    
+
+    
+    </testcase>
+  
+
+  
+
+  
+  </testsuite>
+</testsuites>

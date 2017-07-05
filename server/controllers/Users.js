@@ -14,10 +14,10 @@ module.exports = {
   /**
    * Create new User
    *
-   * @param {any} req - Request Object from express
-   * @param {any} res - Response Object from express
-   * @param {any} next - Middleware
-   * @returns {responseObject} This maybe error json Object
+   * @param {Object} req - Request Object from express
+   * @param {Object} res - Response Object from express
+   * @param {Object} next - Middleware
+   * @returns {Object} This maybe error json Object
    * or result json Object
    */
   create(req, res) {
@@ -55,24 +55,29 @@ module.exports = {
           const token = jwt.sign(TokenUser, AppSecret, {
             expiresIn: 43200,
           });
-          user.password = null;
+          const newUser = user.dataValues;
+          delete newUser.password;
+          delete newUser.loggedin;
+          delete newUser.createdAt;
+          delete newUser.updatedAt;
           res.status(201).json({
-            user,
+            newUser,
             token,
             success: true,
           });
         })
         .catch((err) => {
-          if (err.name === 'SequelizeUniqueConstraintError') {
-            err.status = 500;
-            err.message = err.original.message;
+          const newErr = err;
+          if (newErr.name === 'SequelizeUniqueConstraintError') {
+            newErr.status = 500;
+            newErr.message = err.original.message;
           }
           res.json({
-            message: err.message,
+            message: newErr.message,
             success: false,
-            errorObject: err,
-            error: err.message,
-            status: err.status,
+            errorObject: newErr,
+            error: newErr.message,
+            status: newErr.status,
           });
         });
     }
@@ -83,21 +88,26 @@ module.exports = {
    * List all users. This can be done only by Admin
    * It also checks if there is limit or offset query
    *
-   * @param {any} req - Request Object from express
-   * @param {any} res - Response Object from express
-   * @returns {jsonObject} - This maybe error json Object
+   * @param {Object} req - Request Object from express
+   * @param {Object} res - Response Object from express
+   * @returns {Object} - This maybe error json Object
    */
   list(req, res) {
     if (req.decoded.role !== 3) {
       res.status(403).json({
         error: 'Unauthorized Access' });
     } else {
-      let QueryOption = {
+      const QueryOption = {
         limit: 0,
         offset: 0,
+        order: '"id" DESC',
+        attributes: ['id', 'firstname', 'lastname', 'email',
+          'username', 'role', 'createdAt'],
       };
       QueryOption.offset = parseInt(req.query.offset, 10) || 0;
       QueryOption.limit = parseInt(req.query.limit, 10) || 0;
+      const offset = QueryOption.offset;
+      const limit = QueryOption.limit;
       if (QueryOption.offset < 1) {
         delete QueryOption.offset;
       }
@@ -106,7 +116,12 @@ module.exports = {
       }
       return Users
         .findAndCountAll(QueryOption)
-        .then(users => res.status(200).send(users))
+        .then((users) => {
+          const newUsers = users;
+          newUsers.offset = offset;
+          newUsers.limit = limit;
+          res.status(200).send(users);
+        })
         .catch(error => res.status(400).send(error));
     }
     return true;
@@ -115,57 +130,64 @@ module.exports = {
    * Gets a user with ID. Only the account owner
    * or the admin can perfom this action.
    *
-   * @param {any} req - Request Object from express
-   * @param {any} res - Response Object from express
-   * @returns {jsonObject} - This maybe error json Object
+   * @param {Object} req - Request Object from express
+   * @param {Object} res - Response Object from express
+   * @returns {Object} - This maybe error json Object
    */
   GetData(req, res) {
     return Users
       .findById(req.decoded.id)
-      .then(User => {
+      .then((User) => {
         if (!User) {
           return res.status(404).send({
-            message: 'User Not Found'
+            message: 'User Not Found',
           });
         }
-        User.password = null;
-        return res.status(200).send(User);
+        const newUser = User.dataValues;
+        delete newUser.password;
+        delete newUser.loggedin;
+        delete newUser.createdAt;
+        delete newUser.updatedAt;
+        return res.status(200).send(newUser);
       })
-      .catch(error => {
-        res.status(400).send(error)});
+      .catch((error) => { res.status(400).send(error); });
   },
   /**
    * Gets a user with ID. Only the account owner
    * or the admin can perfom this action.
    *
-   * @param {any} req - Request Object from express
-   * @param {any} res - Response Object from express
-   * @returns {jsonObject} - This maybe error json Object
+   * @param {Object} req - Request Object from express
+   * @param {Object} res - Response Object from express
+   * @returns {Object} - This maybe error json Object
    */
   GetUser(req, res) {
     if (req.decoded.id.toString() === req.params.id ||
       req.decoded.role === 3) {
       if (req.params.id == null) {
-        return res.status(404).send({
-          message: 'No ID found'
+        res.status(404).send({
+          message: 'No ID found',
         });
       } else {
         return Users
           .findById(req.params.id)
-          .then(User => {
+          .then((User) => {
             if (!User) {
               return res.status(404).send({
-                message: 'User Not Found'
+                message: 'User Not Found',
               });
             }
-            User.password = null;
+            const newUser = User.dataValues;
+            delete newUser.password;
+            delete newUser.loggedin;
+            delete newUser.createdAt;
+            delete newUser.updatedAt;
             return res.status(200).send(User);
           })
           .catch(error => res.status(400).send(error));
       }
     } else {
       res.status(403).json({
-        error: 'Unauthorized Access'
+        error: 'Unauthorized Access',
       });
     }
     return true;
@@ -174,17 +196,17 @@ module.exports = {
    * Deletes a User specified in the ID param.
    * This can only be done by the Admin
    *
-   * @param {any} req - Request Object from express
-   * @param {any} res - Response Object from express
-   * @param {any} next - Middleware
-   * @returns {responseObject} json Object
+   * @param {Object} req - Request Object from express
+   * @param {Object} res - Response Object from express
+   * @param {Object} next - Middleware
+   * @returns {Object} json Object
    */
   DeleteUser(req, res, next) {
-    if (req.decoded._id === req.params.id ||
+    if (req.decoded.id === req.params.id ||
       req.decoded.role.title === 'admin') {
       Users.findOneAndRemove({
-          _id: req.params.id
-        })
+        id: req.params.id,
+      })
         .exec()
         .then(() => {
           res.sendStatus(204);
@@ -194,7 +216,7 @@ module.exports = {
         });
     } else {
       res.status(403).json({
-        error: 'Unauthorized Access'
+        error: 'Unauthorized Access',
       });
     }
   },
@@ -203,52 +225,54 @@ module.exports = {
    * Updates user using the ID and parameters
    * provided. Also check for token and logged in
    *
-   * @param {any} req - Request Object from express
-   * @param {any} res - Response Object from express
-   * @returns {responseObject} json Object
+   * @param {Object} req - Request Object from express
+   * @param {Object} res - Response Object from express
+   * @returns {Object} json Object
    */
   UpdateUser(req, res) {
     if (req.decoded.id.toString() === req.params.id ||
       req.decoded.role === 3) {
-      return Users
+      Users
         .findById(req.params.id)
-        .then(User => {
+        .then((User) => {
           if (!User) {
-            return res.status(404).send({
-              message: 'User Not Found'
+            res.status(404).send({
+              message: 'User Not Found',
             });
           } else {
             delete req.body.email;
             delete req.body.username;
             return User
               .update(req.body, {
-                fields: Object.keys(req.body)
+                fields: Object.keys(req.body),
               })
               .then(() => {
-                User.password = null;
-                return res.status(200).send(User);
+                const newUser = User.dataValues;
+                delete newUser.password;
+                delete newUser.loggedin;
+                delete newUser.updatedAt;
+                return res.status(200).send(newUser);
               })
-              .catch((error) => res.status(400).send(error));
+              .catch(error => res.status(400).send(error));
           }
-
+          return true;
         })
-        .catch((error) => res.status(400).send(error));
-
+        .catch(error => res.status(400).send(error));
     } else {
       res.status(403).json({
-        error: 'Unauthorized Access'
+        error: 'Unauthorized Access',
       });
     }
+    return true;
   },
   /**
    * Login a user and retrun a token for the user
    *
-   * @param {any} req - Request Object from express
-   * @param {any} res - Response Object from express
-   * @param {any} next - Middleware
-   * @returns {responseObject} - json Object
+   * @param {Object} req - Request Object from express
+   * @param {Object} res - Response Object from express
+   * @returns {Object} - json Object
    */
-  login(req, res, next) {
+  login(req, res) {
     Users.find({
       where: {
         username: req.body.username,
@@ -265,43 +289,47 @@ module.exports = {
           try {
             ValidPassword = ComparePassword(req.body.password, User.password);
           } catch (e) {
-            let err;
-            err = new Error(e);
-            err.status = 404;
-            throw err;
+            let newerr = null;
+            newerr = new Error(e);
+            newerr.status = 404;
+            throw newerr;
           }
           if (!ValidPassword) {
             err = new Error('Authentication failed. Invalid login.');
             err.status = 401;
-              res.json({
-                message: err.message,
-                success: false,
-                error: err,
-                status: err.status,
-              });
+            res.json({
+              message: err.message,
+              success: false,
+              error: err,
+              status: err.status,
+            });
           } else {
             return User
               .update({
-                loggedin: true
+                loggedin: true,
               })
-              .then((User) => {
-                User.password = null;
-                let UserToken = {
-                  id: User.id,
-                  role: User.role,
-                  loggedin: User.loggedin
+              .then((user) => {
+                const newUser = user.dataValues;
+                delete newUser.password;
+                delete newUser.updatedAt;
+                const UserToken = {
+                  id: newUser.id,
+                  role: newUser.role,
+                  loggedin: newUser.loggedin,
                 };
-                let token = jwt.sign(UserToken, req.app.get('superSecret'), {
-                  expiresIn: 43200
+                const token = jwt.sign(UserToken, req.app.get('superSecret'), {
+                  expiresIn: 43200,
                 });
+                delete newUser.loggedin;
                 res.json({
-                  userData: User,
-                  token: token
+                  userData: newUser,
+                  token,
                 });
               })
-              .catch((error) => res.status(400).send(error));
+              .catch(error => res.status(400).send(error));
           }
         }
+        return true;
       })
       .catch((err) => {
         res.json({
@@ -315,47 +343,47 @@ module.exports = {
   /**
    * Logout a user by setting the loggin to false
    *
-   * @param {any} req - Request Object from express
-   * @param {any} res - Response Object from express
-   * @param {any} next - Middleware
-   * @returns {responseObject} - json Object
+   * @param {Object} req - Request Object from express
+   * @param {Object} res - Response Object from express
+   * @param {Object} next - Middleware
+   * @returns {Object} - json Object
    */
-  logout(req, res, next) {
+  logout(req, res) {
     const token = req.headers['x-access-token'];
     if (!token) {
-      let err;
+      let err = null;
       err = new Error('No token found');
-      err.status = 500;
+      err.status = 404;
       throw err;
     } else {
       const OldUser = ExtractUser(token);
       Users.findById(OldUser.id)
         .then((User) => {
-          return User
+          User
             .update({
-              loggedin: false
+              loggedin: false,
             })
             .then(() => {
               res.json({
-                message: 'Successfully logged out'
+                message: 'Successfully logged out',
               });
             })
             .catch((err) => {
-              next(err);
+              res.json({ err });
             });
         })
         .catch((err) => {
-          next(err);
+          res.json({ err });
         });
     }
   },
   /**
    * Delete a user and its documents
    *
-   * @param {any} req - Request Object from express
-   * @param {any} res - Response Object from express
-   * @param {any} next - Middleware
-   * @returns {responseObject} - json Object
+   * @param {Object} req - Request Object from express
+   * @param {Object} res - Response Object from express
+   * @param {Object} next - Middleware
+   * @returns {Object} - json Object
    */
   delete(req, res, next) {
     if (req.decoded.id.toString() === req.params.id ||
@@ -380,16 +408,16 @@ module.exports = {
         });
     } else {
       res.status(403).json({
-        error: 'Unauthorized Access'
+        error: 'Unauthorized Access',
       });
     }
   },
   /**
    * Gets document associated with the user
    *
-   * @param {any} req - Request Object from express
-   * @param {any} res - Response Object from express
-   * @param {any} next - Middleware
+   * @param {Object} req - Request Object from express
+   * @param {Object} res - Response Object from express
+   * @param {Object} next - Middleware
    * @returns {responseObject} - json Object
    */
   GetDocs(req, res) {

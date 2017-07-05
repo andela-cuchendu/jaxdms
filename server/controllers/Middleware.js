@@ -5,9 +5,9 @@ const jwt = require('jsonwebtoken');
    * Verify user by checking for token and logged in
    * before perfomring any operation on dicument
    *
-   * @param {any} req - Request Object from express
-   * @param {any} res - Response Object from express
-   * @param {any} next - Middleware
+   * @param {object} req - Request Object from express
+   * @param {object} res - Response Object from express
+   * @param {object} next - Middleware
    */
 const verifyDoc = (req, res, next) => {
   const token = req.body.token || req.headers['x-access-token'];
@@ -15,13 +15,13 @@ const verifyDoc = (req, res, next) => {
     const user = ExtractUser(token);
     if (!user.loggedin) {
       res.status(401).json({
-        error: 'Unauthorized Access.'
+        error: 'Unauthorized Access.',
       });
     } else {
       jwt.verify(token, req.app.get('superSecret'), (err, parcel) => {
         if (err) {
           res.status(401).json({
-            error: 'Authentication Failed'
+            error: 'Authentication Failed',
           });
         } else {
           req.parcel = parcel;
@@ -32,7 +32,7 @@ const verifyDoc = (req, res, next) => {
     }
   } else {
     res.status(403).send({
-      error: 'No token found.'
+      error: 'No token found.',
     });
   }
 };
@@ -40,40 +40,37 @@ const verifyDoc = (req, res, next) => {
   /**
    * Verify user by checking for token and logged in
    *
-   * @param {any} req - Request Object from express
-   * @param {any} res - Response Object from express
-   * @param {any} next - Middleware
+   * @param {object} req - Request Object from express
+   * @param {object} res - Response Object from express
+   * @param {object} next - Middleware
    * @returns {responseObject} - json Object
    */
 const verifyUser = (req, res, next) => {
-  // Check for the token from the header or from the request body
   const token = req.body.token || req.headers['x-access-token'];
 
   if (token) {
-    let user = ExtractUser(token);
+    const user = ExtractUser(token);
     if (!user.loggedin) {
       res.status(401).json({
-        error: 'Unauthorized Access. Please login first'
+        error: 'Unauthorized Access. Please login first',
       });
     } else {
-      // Check authenticity of the token
       jwt.verify(token, req.app.get('superSecret'), (err, decoded) => {
         if (err) {
           res.status(401).json({
-            error: 'Failed to authenticate token.'
+            error: 'Failed to authenticate token.',
           });
         } else {
-          decoded.password = null;
-          req.decoded = decoded;
+          const NEwDecoded = decoded;
+          NEwDecoded.password = null;
+          req.decoded = NEwDecoded;
           next();
         }
       });
     }
-
   } else {
-    // No token found
     res.status(403).send({
-      error: 'No token provided.'
+      error: 'No token provided.',
     });
   }
 };

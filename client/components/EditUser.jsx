@@ -1,6 +1,7 @@
+/* global Materialize */
 import React, { Component, PropTypes } from 'react';
-import { AppWrapper } from './AppWrapper.jsx';
-import EditUserForm from './EditUserForm.jsx';
+import { AppWrapper } from './AppWrapper';
+import EditUserForm from './EditUserForm';
 
 /**
  * Represents the Edit User
@@ -14,6 +15,7 @@ export class EditUser extends Component {
     this.state = {
       firstname: '',
       lastname: '',
+      role: '',
     };
 
     this.submitForm = this.submitForm.bind(this);
@@ -28,15 +30,15 @@ export class EditUser extends Component {
    */
   componentWillMount() {
     const seletedUser = this.props.stateProp.userState.editUserData;
-    const { firstname, lastname } = seletedUser;
-    this.props.userActions.EditData(parseInt(this.props.params.id));
-    this.setState({ firstname, lastname });
+    const { firstname, lastname, role } = seletedUser;
+    this.props.userActions.EditData(parseInt(this.props.params.id, 10));
+    this.setState({ firstname, lastname, role });
   }
 
   /**
    * componentWillReceiveProps
    *
-   * @param {any} nextProps - Props from store
+   * @param {Object} nextProps - Props from store
    *
    * @memberOf EditUser
    */
@@ -46,12 +48,13 @@ export class EditUser extends Component {
     this.state = {
       firstname: editUserData.firstname,
       lastname: editUserData.lastname,
+      role: editUserData.role,
     };
 
     if (editSuccess) {
       this.props.userActions.VoidEditSuccess();
       Materialize.toast('User updated', 4000);
-      this.context.router.push('/user');
+      this.context.router.push('/users');
     }
   }
 
@@ -59,7 +62,7 @@ export class EditUser extends Component {
    * onChangeEvent - Called when input
    * elemets change
    *
-   * @param {any} event -Dom event
+   * @param {Object} event -Dom event
    *
    * @memberOf EditUser
    */
@@ -72,7 +75,7 @@ export class EditUser extends Component {
    * submitForm - Called when the edit
    * document form is submited
    *
-   * @param {any} event -Dom Event
+   * @param {Object} event -Dom Event
    *
    * @memberOf EditUser
    */
@@ -85,6 +88,8 @@ export class EditUser extends Component {
     const EditProp = this.props.stateProp.userState.editUserData;
     const firstname = EditProp.firstname;
     const lastname = EditProp.lastname;
+    const selectedRole = EditProp.role;
+    const roles = this.props.stateProp.roles.roles;
     const {
       userDocs: {
         editPreLoader,
@@ -99,6 +104,8 @@ export class EditUser extends Component {
             preloader={editPreLoader}
             firstname={firstname}
             lastname={lastname}
+            roles={roles}
+            selectedRole={selectedRole}
             submitAction={this.submitForm}
             changeEvent={this.onChangeEvent}
             formDefaultData={EditProp}
@@ -110,16 +117,19 @@ export class EditUser extends Component {
 }
 
 EditUser.contextTypes = {
-  router: PropTypes.object
+  router: PropTypes.object,
 };
-
+EditUser.defaultProps = {
+  stateProp: PropTypes.string,
+  params: PropTypes.string,
+  userActions: PropTypes.string,
+  EditData: PropTypes.string,
+};
 EditUser.propTypes = {
-  onChangeEvent: PropTypes.func,
-  stateProp: PropTypes.object,
-  params: PropTypes.object,
-  actions: PropTypes.object,
-  logoutEvent: PropTypes.func,
-  documentActions: PropTypes.object
+  stateProp: PropTypes.string,
+  params: PropTypes.string,
+  userActions: PropTypes.string,
+  EditData: PropTypes.string,
 };
 
 export default AppWrapper(EditUser);

@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react';
 import { Input, Row } from 'react-materialize';
-import Preloader from './common/Spinner.jsx';
+import Preloader from './common/Spinner';
+import CustomSelect from './common/CustomSelect';
 
 /**
  * Represents the Edit User Form
@@ -12,6 +13,8 @@ const EditUserForm = ({
   preloader,
   firstname,
   lastname,
+  roles,
+  selectedRole,
   submitAction,
   changeEvent,
 }) => {
@@ -42,6 +45,19 @@ const EditUserForm = ({
               onChange={changeEvent}
             />
           </Row>
+          <Row>
+            <CustomSelect
+              addedClass="custom-select row"
+              name="role"
+              size={6}
+              selectedValue={selectedRole}
+              selectData={roles}
+              onChangeEvent={changeEvent}
+              disabled="Choose your role"
+              label="Role"
+              CheckType={''}
+            />
+          </Row>
           <span
             className="edit-user-error"
           />
@@ -62,13 +78,23 @@ const EditUserForm = ({
     return (<div />);
   }
 };
-
+EditUserForm.defaultProps = {
+  preloader: PropTypes.bool,
+  firstname: PropTypes.string,
+  lastname: PropTypes.string,
+  submitAction: PropTypes.string,
+  changeEvent: PropTypes.string,
+  roles: PropTypes.string,
+  selectedRole: PropTypes.string,
+};
 EditUserForm.propTypes = {
   preloader: PropTypes.bool,
   firstname: PropTypes.string,
   lastname: PropTypes.string,
-  submitAction: PropTypes.func,
-  changeEvent: PropTypes.func
+  submitAction: PropTypes.string,
+  changeEvent: PropTypes.string,
+  roles: PropTypes.string,
+  selectedRole: PropTypes.string,
 };
 
 export default EditUserForm;

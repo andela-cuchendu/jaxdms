@@ -42,11 +42,6 @@ const router = express.Router();
  *     produces:
  *       - application/json
  *     parameters:
- *       - name: token
- *         description: request x-access-token
- *         in: header
- *         required: true
- *         type: string
  *       - name: firstname
  *         description: firstname of user
  *         in: form
@@ -79,11 +74,14 @@ const router = express.Router();
  *         type: number
  *     responses:
  *       201:
- *         description: User Object created
+ *         description: User object created
  *         schema:
  *           $ref: '#/definitions/User'
+ *         examples:
+ *           application/json: { id: 38, firstname: "T-shirt",
+ * lastname: "example", username: "uname", createdAt: "189027897" }
  */
-  router.post('/users', Users.create);
+  router.post('/', Users.create);
 
 /**
  * @swagger
@@ -102,12 +100,15 @@ const router = express.Router();
  *         type: string
  *     responses:
  *       200:
- *         description: Users List
+ *         description: Users list
  *         schema:
- *           $ref: '#/definitions/Document'
+ *           $ref: '#/definitions/User'
+ *         examples:
+ *           application/json: [{ id: 38, firstname: "T-shirt",
+ * lastname: "example", username: "uname", createdAt: "189027897" }]
  */
-  router.get('/users/', Middleware.verifyUser, Users.list);
-  router.get('/users/data/data', Middleware.verifyUser, Users.GetData);
+  router.get('/', Middleware.verifyUser, Users.list);
+  router.get('/data/data', Middleware.verifyUser, Users.GetData);
 
 /**
  * @swagger
@@ -131,11 +132,14 @@ const router = express.Router();
  *         type: number
  *     responses:
  *       200:
- *         description: User
+ *         description: Get User
  *         schema:
  *           $ref: '#/definitions/User'
+ *         examples:
+ *           application/json: { id: 38, firstname: "T-shirt",
+ * lastname: "example", username: "uname", createdAt: "189027897" }
  */
-  router.get('/users/:id', Middleware.verifyUser, Users.GetUser);
+  router.get('/:id', Middleware.verifyUser, Users.GetUser);
 
   /**
  * @swagger
@@ -173,12 +177,15 @@ const router = express.Router();
  *         required: false
  *         type: string
  *     responses:
- *       200:
- *         description: User Object updated
+ *       201:
+ *         description: User object updated
  *         schema:
  *           $ref: '#/definitions/User'
+ *         examples:
+ *           application/json: { id: 38, firstname: "T-shirt",
+ * lastname: "example", username: "uname", createdAt: "189027897" }
  */
-  router.put('/users/:id', Middleware.verifyUser, Users.UpdateUser);
+  router.put('/:id', Middleware.verifyUser, Users.UpdateUser);
 
 /**
  * @swagger
@@ -206,12 +213,16 @@ const router = express.Router();
  *         required: true
  *         type: string
  *     responses:
- *       200:
- *         description: Logged in User
+ *       201:
+ *         description: User login successful
  *         schema:
  *           $ref: '#/definitions/User'
+ *         examples:
+ *           application/json: {userData: { id: 38, firstname: "T-shirt",
+ * lastname: "example", username: "uname", createdAt: "189027897" },
+ * token: {JGJGJhjfjh78585rJMK78R7DGD}}
  */
-  router.post('/users/login', Users.login);
+  router.post('/login', Users.login);
 
 /**
  * @swagger
@@ -230,11 +241,13 @@ const router = express.Router();
  *         type: string
  *     responses:
  *       200:
- *         description: Logged out
+ *         description: User logout
  *         schema:
  *           $ref: '#/definitions/User'
+ *         examples:
+ *           application/json: {}
  */
-  router.post('/users/logout', Users.logout);
+  router.post('/logout', Users.logout);
 
 /**
  * @swagger
@@ -257,12 +270,14 @@ const router = express.Router();
  *         required: true
  *         type: number
  *     responses:
- *       200:
- *         description: user deleted successfully
+ *       204:
+ *         description: User object deleted
  *         schema:
  *           $ref: '#/definitions/User'
+ *         examples:
+ *           application/json: {}
  */
-  router.delete('/users/:id', Middleware.verifyUser, Users.delete);
+  router.delete('/:id', Middleware.verifyUser, Users.delete);
 
 /**
  * @swagger
@@ -285,11 +300,11 @@ const router = express.Router();
  *         required: true
  *         type: number
  *     responses:
- *       200:
- *         description: User Documents
- *         schema:
- *           type: object
+ *       201:
+ *         description: User documents
+ *         examples:
+ *           application/json: [{ id: 38, title: "T-shirt", content: "example" }]
  */
-  router.get('/users/:id/documents', Users.GetDocs);
+  router.get('/:id/documents', Users.GetDocs);
 })();
 export default router;

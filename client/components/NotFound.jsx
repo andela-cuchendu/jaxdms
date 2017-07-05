@@ -1,5 +1,5 @@
 import React from 'react';
-import { AppWrapper } from './AppWrapper.jsx';
+import { AppWrapper } from './AppWrapper';
 
 /**
  * Represents the NotFound page

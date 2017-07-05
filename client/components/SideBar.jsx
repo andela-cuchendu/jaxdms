@@ -11,7 +11,7 @@ const SideBar = ({
   logout,
   SharedClick,
   RoleClick,
-  DocClick
+  DocClick,
 }) => {
   const firstname = userInfo.firstname;
   const lastname = userInfo.lastname;
@@ -48,7 +48,7 @@ const SideBar = ({
         </Link>
       </li>
       <li id="SHARED_DOCUMENTS" className="bold shared">
-        <Link onClick={SharedClick} to="/shar">
+        <Link onClick={SharedClick} to="/public">
           <div className="div-neat waves-effect">
             <span>Public Documents</span>
           </div>
@@ -63,7 +63,7 @@ const SideBar = ({
       </li>
       {role === 3 ?
         <li id="USERS" className="bold edit">
-          <Link to="/user">
+          <Link to="/users">
             <div className="div-neat waves-effect">
               <span>Users</span>
             </div>
@@ -83,7 +83,11 @@ const SideBar = ({
 };
 
 SideBar.propTypes = {
-  userInfo: PropTypes.object.isRequired
+  userInfo: PropTypes.string.isRequired,
+  logout: PropTypes.string.isRequired,
+  SharedClick: PropTypes.string.isRequired,
+  RoleClick: PropTypes.string.isRequired,
+  DocClick: PropTypes.string.isRequired,
 };
 
 export default SideBar;

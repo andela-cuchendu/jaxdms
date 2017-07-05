@@ -27,11 +27,11 @@ const router = express.Router();
    *          type: string
    *      responses:
    *        200:
-   *          description: Document
-   *          schema:
-   *            type: object
+   *          description: Documents
+   *          examples:
+   *            application/json: [{ id: 38, title: "T-shirt", content: "example" }]
    */
-  router.get('/search/documents', Middleware.verifyUser, Search.FindDocuments);
+  router.get('/documents', Middleware.verifyUser, Search.FindDocuments);
 
   /**
    * @swagger
@@ -55,10 +55,11 @@ const router = express.Router();
    *          type: string
    *      responses:
    *        200:
-   *          description: user
-   *          schema:
-   *            type: object
+   *          description: Users
+   *          examples:
+   *            application/json: [{ id: 38, firstname: "T-shirt",
+   * lastname: "example", username: "uname", createdAt: "189027897" }]
    */
-  router.get('/search/users', Middleware.verifyUser, Search.FindUsers);
+  router.get('/users', Middleware.verifyUser, Search.FindUsers);
 })();
 export default router;

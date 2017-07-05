@@ -5,9 +5,7 @@ import { Users } from '../../components/Users';
 
 const props = {
   userActions: {
-    fetchUsers: function () {
-      return true;
-    },
+    fetchUsers: () => true,
   },
   location: {
     pathname: 'own',
@@ -16,10 +14,8 @@ const props = {
 
   context: {
     router: {
-      push: function () {
-        return true;
-      }
-    }
+      push: () => true,
+    },
   },
   stateProp: {
     userState: {
@@ -100,7 +96,7 @@ describe('User component', () => {
 
   it('Should render Signup button for create', () => {
     expect(users.find('button').length).toBe(1);
-    expect(users.find('button').text()).toBe('SIGN UP');
+    expect(users.find('button').text()).toBe('Create Users');
   });
 
   it('Should render create form form element', () => {
@@ -108,7 +104,7 @@ describe('User component', () => {
   });
 
   it('Should render one header title', () => {
-    expect(users.find('.header-class').length).toBe(1);
+    expect(users.find('.header-class').length).toBe(2);
   });
 
   it('Should contain a FAB icon', () => {

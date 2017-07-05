@@ -28,11 +28,11 @@ const CustomSelect = ({
       >
         {
           selectData.map((item) => {
-            let selectedOption;
-
+            const selectedOption = selectedValue === item.access;
             return (
               <option
                 selected={selectedOption}
+                defaultValue={selectedValue}
                 key={item.id}
                 value={item.access}
               >
@@ -55,11 +55,11 @@ CustomSelect.defaultProps = {
   CheckType: PropTypes.string,
 };
 CustomSelect.propTypes = {
-  selectData: PropTypes.array.isRequired,
+  selectData: PropTypes.string.isRequired,
   size: PropTypes.number,
   addedClass: PropTypes.string,
   selectedValue: PropTypes.number,
-  onChangeEvent: PropTypes.func,
+  onChangeEvent: PropTypes.string.isRequired,
   name: PropTypes.string,
   label: PropTypes.string,
   CheckType: PropTypes.string,

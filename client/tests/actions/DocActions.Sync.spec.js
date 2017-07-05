@@ -113,7 +113,7 @@ describe('Document: ', () => {
         deleteDoc: doc,
       },
     };
-    const action = DocActions.ModalData(doc);
+    const action = DocActions.DeleteModalData(doc);
     expect(action).toEqual(ExpectedResult);
     done();
   });

@@ -1,3 +1,4 @@
+/* global $ */
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -5,8 +6,8 @@ import * as RolesActions from '../actions/RolesActions';
 import * as UserActions from '../actions/UserAction';
 import * as DocActions from '../actions/DocActions';
 import * as SearchActions from '../actions/SearchAction';
-import SideBar from './SideBar.jsx';
-import Header from './common/Header.jsx';
+import SideBar from './SideBar';
+import Header from './common/Header';
 
 
 /**
@@ -59,12 +60,7 @@ export const AppWrapper = (ChildComponent) => {
      * @memberOf AppContainer
      */
     componentWillMount() {
-      if (window.localStorage.getItem('token')) {
-        let DocType = this.props.location.pathname.substring(1, 5);
-        if (DocType.includes('docs')) {
-          DocType = 'own';
-        }
-      } else {
+      if (!window.localStorage.getItem('token')) {
         this.context.router.push('/auth');
       }
     }
@@ -72,7 +68,7 @@ export const AppWrapper = (ChildComponent) => {
     /**
      * componentWillReceiveProps - Called
      * when the compoenent is reciving props.
-     * @param {any} nextProps - Props from the store
+     * @param {Object} nextProps - Props from the store
      *
      * @memberOf AppContainer
      */
@@ -89,7 +85,7 @@ export const AppWrapper = (ChildComponent) => {
     /**
      * Input change event
      *
-     * @param {any} event - contains the calling
+     * @param {Object} event - contains the calling
      * element and value
      *
      * @memberOf AppContainer
@@ -103,7 +99,7 @@ export const AppWrapper = (ChildComponent) => {
     /**
      * Delete document event
      *
-     * @param {any} event - contains the delete
+     * @param {Object} event - contains the delete
      * element and value
      *
      * @memberOf AppContainer
@@ -118,7 +114,7 @@ export const AppWrapper = (ChildComponent) => {
     /**
      * Delete User event
      *
-     * @param {any} event - contains the delete
+     * @param {Object} event - contains the delete
      * element and value
      *
      * @memberOf AppContainer
@@ -146,7 +142,7 @@ export const AppWrapper = (ChildComponent) => {
      * Called when the logout
      * link is clicked.
      *
-     * @param {any} event
+     * @param {Object} event
      *
      * @memberOf AppContainer
      */
@@ -173,7 +169,7 @@ export const AppWrapper = (ChildComponent) => {
      * Called when the search query
      * is submitted.
      *
-     * @param {any} event - contains the search
+     * @param {Object} event - contains the search
      * element and value
      *
      * @memberOf AppContainer
@@ -181,15 +177,27 @@ export const AppWrapper = (ChildComponent) => {
     searchDoc(event) {
       const searchValue = event.target.value;
       const roleId = this.props.stateProp.userState.userInfo.role;
-
       if (event.key === 'Enter') {
-        this.props.searchActions.searchDoc(searchValue, roleId);
-        this.context.router.push({
-          pathname: '/docs',
-          query: {
-            q: searchValue,
-          },
-        });
+        if (searchValue.length < 1) {
+          if (global.Materialize !== undefined) {
+            global.Materialize.toast('No search value entered', 1000);
+          }
+        } else {
+          const myUrl = this.props.location.pathname;
+          let myPath = '/docs';
+          if (myUrl.includes('users')){
+            this.props.searchActions.searchUsers(searchValue, myUrl);
+            myPath = '/users';
+          } else {
+            this.props.searchActions.searchDoc(searchValue, roleId, myUrl);
+          }
+          this.context.router.push({
+            pathname: myPath,
+            query: {
+              q: searchValue,
+            },
+          });
+        }
       }
     }
 
@@ -202,23 +210,23 @@ export const AppWrapper = (ChildComponent) => {
     SharedClick() {
       this.props.documentActions
         .getComponentResources(this.props.stateProp.userState.userInfo, 'shar', 0, 9);
-      this.context.router.push('/shar');
+      this.context.router.push('/public');
     }
 
     /**
      * Called when user is deleting document
      *
-     * @param {any} selectedDocumentData -Document data to
+     * @param {Object} selectedDocumentData -Document data to
      * be deleted
-     * @param {any} user - Specifying user action
+     * @param {Object} user - Specifying user action
      *
      * @memberOf AppContainer
      */
     confirmDelete(selectedDocumentData, user) {
       if (user !== undefined) {
-        this.props.userActions.ModalData(selectedDocumentData);
+        this.props.userActions.DeleteModalData(selectedDocumentData);
       } else {
-        this.props.documentActions.ModalData(selectedDocumentData);
+        this.props.documentActions.DeleteModalData(selectedDocumentData);
       }
       $('#deleteDocModal').openModal();
     }
@@ -227,7 +235,7 @@ export const AppWrapper = (ChildComponent) => {
      * Represents tinymce change
      * is submitted.
      *
-     * @param {any} event - contains tinymce
+     * @param {Object} event - contains tinymce
      * element and value
      *
      * @memberOf AppContainer
@@ -241,7 +249,7 @@ export const AppWrapper = (ChildComponent) => {
      * Called when user creation modal
      * is submitted
      *
-     * @param {any} event - contains form
+     * @param {Object} event - contains form
      * element and value
      *
      * @memberOf AppContainer
@@ -265,7 +273,7 @@ export const AppWrapper = (ChildComponent) => {
     /**
      * Represents the plus Icon click
      *
-     * @param {any} event - contains the icon
+     * @param {Object} event - contains the icon
      * element and value
      *
      * @memberOf AppContainer
@@ -285,7 +293,7 @@ export const AppWrapper = (ChildComponent) => {
     render() {
       const User = this.props.stateProp.userState.userInfo;
       const status = (Object.keys(User).length > 0);
-      return ( 
+      return (
         <div >
           <Header
             LogoutEvent={this.logout}
@@ -316,12 +324,18 @@ export const AppWrapper = (ChildComponent) => {
   }
 
   AppContainer.contextTypes = {
-    router: PropTypes.object
+    router: PropTypes.object,
   };
 
   AppContainer.propTypes = {
-    stateProp: PropTypes.object.isRequired,
-    documentActions: PropTypes.object.isRequired
+    stateProp: PropTypes.string.isRequired,
+    documentActions: PropTypes.string.isRequired,
+    userActions: PropTypes.string.isRequired,
+    searchActions: PropTypes.string.isRequired,
+    searchDoc: PropTypes.string.isRequired,
+    searchUsers: PropTypes.string.isRequired,
+    pathname: PropTypes.string.isRequired,
+    location: PropTypes.string.isRequired,
   };
 
   const mapDispatchToProps = (dispatch) => {

@@ -1,4 +1,3 @@
-'use strict';
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 /**
@@ -29,12 +28,10 @@ module.exports = {
    */
   ExtractUser: (token) => {
     const ExtractedUser = jwt.decode(token, {
-      complete: true
+      complete: true,
     });
     return ExtractedUser.payload;
   },
   Error: CustomError,
-  ComparePassword: (password, compare) => {
-    return bcrypt.compareSync(password, compare);
-  },
+  ComparePassword: (password, compare) => bcrypt.compareSync(password, compare),
 };

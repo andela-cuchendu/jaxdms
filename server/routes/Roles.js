@@ -30,6 +30,6 @@ const router = express.Router();
  *         schema:
  *           $ref: '#/definitions/Roles'
  */
-  router.get('/roles', Roles.list);
+  router.get('/', Roles.list);
 })();
 export default router;

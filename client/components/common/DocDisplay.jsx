@@ -16,14 +16,14 @@ const DocDisplay = ({
   cardCreator,
   cardUserID,
   docDate,
-  cardType,
   confirmDelete,
   docIndex,
   currentUserId,
-  cardContent
+  cardContent,
+  RoleID,
 }) => {
   let deleteButton;
-  if (cardUserID === currentUserId) {
+  if (cardUserID === currentUserId || RoleID === 3) {
     deleteButton = (
       <i
         id={docIndex}
@@ -38,7 +38,7 @@ const DocDisplay = ({
   return (
     <div key={id} className="card hoverable document-cards">
       <div className="card-image waves-effect waves-block waves-light">
-        <img className="zapper" src={cardCorver} />
+        <img alt="" className="zapper" src={cardCorver} />
       </div>
       <div className="card-content custom-doc-card">
         <span className="card-title zapper truncate custom-blue-text ">
@@ -77,18 +77,33 @@ const DocDisplay = ({
     </div>
   );
 };
-DocDisplay.propTypes = {
+DocDisplay.defaultProps = {
   id: PropTypes.number,
   docDate: PropTypes.string,
-  cardType: PropTypes.string,
   cardCorver: PropTypes.string,
   confirmDelete: PropTypes.func,
   docIndex: PropTypes.number,
   currentUserId: PropTypes.number,
   cardTitle: PropTypes.string.isRequired,
   cardCreator: PropTypes.object.isRequired,
-  docdate: PropTypes.string,
   cardContent: PropTypes.string.isRequired,
+  viewDoc: PropTypes.string,
+  RoleID: PropTypes.number,
+  cardUserID: PropTypes.number,
+};
+DocDisplay.propTypes = {
+  id: PropTypes.number,
+  docDate: PropTypes.string,
+  cardCorver: PropTypes.string,
+  confirmDelete: PropTypes.func,
+  docIndex: PropTypes.number,
+  currentUserId: PropTypes.number,
+  cardTitle: PropTypes.string.isRequired,
+  cardCreator: PropTypes.string.isRequired,
+  cardContent: PropTypes.string.isRequired,
+  viewDoc: PropTypes.string,
+  RoleID: PropTypes.number,
+  cardUserID: PropTypes.number,
 };
 
 export default DocDisplay;

@@ -25,9 +25,9 @@ describe('Users API Spec: ', () => {
         .end((err, res) => {
           expect(res.statusCode).toBe(201);
           expect(err).toBe(null);
-          expect(res.body.user.username).toEqual('chibujax');
+          expect(res.body.newUser.username).toEqual('chibujax');
           expect(res.body.token).toExist();
-          id = res.body.user.id;
+          id = res.body.newUser.id;
           done();
         });
     });
@@ -56,7 +56,6 @@ describe('Users API Spec: ', () => {
           expect(res.statusCode).toBe(200);
           expect(err).toBe(null);
           expect(res.body.rows[0].username).toEqual('chibujax');
-          expect(res.body.rows[0].loggedin).toBe(true);
           done();
         });
     });
@@ -69,10 +68,9 @@ describe('Users API Spec: ', () => {
           expect(res.statusCode).toBe(200);
           expect(err).toBe(null);
           expect(res.body.username).toEqual('chibujax');
-          expect(res.body.loggedin).toBe(true);
           done();
         });
-    }); 
+    });
 
     it('should get user with id', (done) => {
       request.get(`/api/users/${id}`)
@@ -82,7 +80,6 @@ describe('Users API Spec: ', () => {
           expect(res.statusCode).toBe(200);
           expect(err).toBe(null);
           expect(res.body.username).toEqual('chibujax');
-          expect(res.body.loggedin).toBe(true);
           done();
         });
     });
@@ -111,7 +108,7 @@ describe('Users API Spec: ', () => {
           expect(res.body.length).toEqual(0);
           done();
         });
-    }); 
+    });
 
     it('should be able logout', (done) => {
       request.post('/api/users/logout')
@@ -123,7 +120,7 @@ describe('Users API Spec: ', () => {
           expect(res.body.message).toEqual('Successfully logged out');
           done();
         });
-    }); 
+    });
 
     it('should be able to delete user', (done) => {
       request.post('/api/users/login')
@@ -133,7 +130,7 @@ describe('Users API Spec: ', () => {
           username: 'chibujax',
           password: 'password123',
         })
-        .end((err, res) => {
+        .end(() => {
         });
       request.delete(`/api/users/${id}`)
         .set('x-access-token', token)
@@ -144,6 +141,5 @@ describe('Users API Spec: ', () => {
           done();
         });
     });
-
   });
 });

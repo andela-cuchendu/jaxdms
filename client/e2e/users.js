@@ -2,7 +2,7 @@ const config = require('./config/config');
 const faker = require('faker');
 
 const loginUrl = `${config.url}auth`;
-const userUrl = `${config.url}user`;
+const userUrl = `${config.url}users`;
 const alias = faker.internet;
 const user = faker.name;
 module.exports = {
@@ -33,7 +33,7 @@ module.exports = {
     browser
       .url(userUrl)
       .useXpath()
-      .click('//*[@id="app"]/div/div/div[2]/div[1]/div[2]/div[3]/div[2]/a/i')
+      .click('//*[@id="app"]/div/div/div[2]/div[1]/div[3]/div[1]/div[2]/a/i')
       .assert.urlContains('edit')
       .setValue('//*[@id="firstname"]', user.firstName())
       .setValue('//*[@id="lastname"]', user.lastName())

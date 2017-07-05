@@ -1,8 +1,8 @@
 import TinyMCE from 'react-tinymce';
 import React, { PropTypes } from 'react';
 import { Input, Row } from 'react-materialize';
-import Spinner from './common/Spinner.jsx';
-import CustomSelect from './common/CustomSelect.jsx';
+import Spinner from './common/Spinner';
+import CustomSelect from './common/CustomSelect';
 
 /**
  * Represents Document form
@@ -15,7 +15,6 @@ const NewDocumentForm = ({
   tinymceEvent,
   submitAction,
   showLoader,
-  docRoles,
   userRole,
 }) => {
   const access = [
@@ -37,7 +36,7 @@ const NewDocumentForm = ({
   ];
   return (
     <form onSubmit={submitAction}>
-      <div id="createModal" className="modal modal-fixed-footer">
+      <div id="createModal" className="modal modal-fixed-footer custom-modal">
         <div className="modal-content">
           <h4 className="custom-blue-text">Create new document</h4>
           <Row>
@@ -88,13 +87,15 @@ const NewDocumentForm = ({
     </form>
   );
 };
-
+NewDocumentForm.defaultProps = {
+  showLoader: PropTypes.bool,
+};
 NewDocumentForm.propTypes = {
   changeEvent: PropTypes.func.isRequired,
-  docRoles: PropTypes.array.isRequired,
+  userRole: PropTypes.string.isRequired,
   submitAction: PropTypes.func.isRequired,
   showLoader: PropTypes.bool,
-  tinymceEvent: PropTypes.func.isRequired
+  tinymceEvent: PropTypes.func.isRequired,
 };
 
 export default NewDocumentForm;

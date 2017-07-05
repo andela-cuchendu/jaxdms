@@ -4,7 +4,7 @@ import { InitialState } from './InitialState';
 export default function roleReducer(state = InitialState, action) {
   switch (action.type) {
     case ActionTypes.LOAD_ROLES_SUCCESS:
-      return Object.assign({}, state, { roles: action.data });
+      return { ...state, roles: action.data };
     default:
       return state;
   }

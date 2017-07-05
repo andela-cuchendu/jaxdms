@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
-import SignUp from './SignUp.jsx';
-import SignIn from './SignIn.jsx';
+import SignUp from './SignUp';
+import SignIn from './SignIn';
 
 const LoginImage = require('../images/auth.jpg');
 
@@ -40,11 +40,15 @@ const AuthContent = ({ toggleSignUp, userActions, stateProp }) => {
     </div>
   );
 };
-
+AuthContent.defaultProps = {
+  userActions: PropTypes.string,
+  stateProp: PropTypes.string,
+  toggleSignUp: PropTypes.string,
+};
 AuthContent.propTypes = {
-  userActions: PropTypes.object,
-  stateProp: PropTypes.object,
-  toggleSignUp: PropTypes.func,
+  userActions: PropTypes.string,
+  stateProp: PropTypes.string,
+  toggleSignUp: PropTypes.string,
 };
 
 export default AuthContent;

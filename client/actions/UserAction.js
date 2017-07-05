@@ -1,6 +1,13 @@
 import * as ActionTypes from './ActionTypes';
-import { BaseApi } from '../api/BaseApi';
+import CallApi from '../api/BaseApi';
 
+/**
+ * createUser - Dispatches
+ * createUser action
+ *
+ * @param {object} user
+ * @returns {object}
+ */
 export function createUser(user) {
   return {
     type: ActionTypes.CREATE_USER,
@@ -8,6 +15,12 @@ export function createUser(user) {
   };
 }
 
+/**
+ * UserDeleted - Dispatches
+ * UserDeleted action
+ *
+ * @returns {object}
+ */
 export function UserDeleted() {
   return {
     type: ActionTypes.USER_DELETE_SUCCESS,
@@ -17,10 +30,18 @@ export function UserDeleted() {
   };
 }
 
+/**
+ * editPage - Dispatches
+ * editPage action
+ *
+ * @param {object} userData
+ * @returns {object}
+ */
 export function editPage(userData) {
   const editData = {
     firstname: userData.firstname,
     lastname: userData.lastname,
+    role: userData.role,
   };
   return {
     type: ActionTypes.EDIT_PAGE,
@@ -30,16 +51,27 @@ export function editPage(userData) {
   };
 }
 
+/**
+ * EditData - Dispatches
+ * editPage action
+ *
+ * @param {object} userId
+ * @returns {object}
+ */
 export function EditData(userId) {
   return (dispatch) => {
     const url = `/api/users/${userId}`;
-    return BaseApi(null, 'get', url)
-    .then((apiResult) => {
-      return dispatch(editPage(apiResult));
-    });
+    return CallApi(null, 'get', url)
+    .then(apiResult => dispatch(editPage(apiResult)));
   };
 }
 
+/**
+ * VoidEditSuccess - Dispatches
+ * VoidEditSuccess action
+ *
+ * @returns {object}
+ */
 export function VoidEditSuccess() {
   return (dispatch) => {
     dispatch({
@@ -49,6 +81,12 @@ export function VoidEditSuccess() {
   };
 }
 
+/**
+ * editSuccess - Dispatches
+ * editSuccess action
+ *
+ * @returns {object}
+ */
 export function editSuccess() {
   return {
     type: ActionTypes.UPDATED_USER_DATA,
@@ -58,11 +96,18 @@ export function editSuccess() {
       editUserData: {
         firstname: '',
         lastname: '',
+        role: '',
       },
     },
   };
 }
 
+/**
+ * updatingUserData - Dispatches
+ * updatingUserData action
+ *
+ * @returns {object}
+ */
 export function updatingUserData() {
   return {
     type: ActionTypes.UPDATING_USER_DATA,
@@ -72,18 +117,31 @@ export function updatingUserData() {
   };
 }
 
+/**
+ * upadateUser - Dispatches
+ * upadateUser action
+ *
+ * @param {object} - newUserData
+ * @param {number} - userId
+ * @returns {object}
+ */
 export function upadateUser(newUserData, userId) {
   return (dispatch) => {
     dispatch(updatingUserData());
     const url = `/api/users/${userId}`;
-    return BaseApi(newUserData, 'put', url)
+    return CallApi(newUserData, 'put', url)
     .then(() => {
       dispatch(editSuccess());
     });
   };
 }
 
-
+/**
+ * savingUser - Dispatches
+ * savingUser action
+ *
+ * @returns {object}
+ */
 export function savingUser() {
   return {
     type: ActionTypes.SAVING_USER,
@@ -93,6 +151,12 @@ export function savingUser() {
   };
 }
 
+/**
+ * savedUser - Dispatches
+ * savedUser action
+ *
+ * @returns {object}
+ */
 export function savedUser() {
   return {
     type: ActionTypes.USER_SUCCESS,
@@ -104,6 +168,13 @@ export function savedUser() {
   };
 }
 
+/**
+ * saveUserSuccess - Dispatches
+ * saveUserSuccess action
+ *
+ * @param {object} dispatch
+ * @returns {object}
+ */
 export function saveUserSuccess(dispatch) {
   dispatch(savingUser);
   return {
@@ -116,6 +187,12 @@ export function saveUserSuccess(dispatch) {
   };
 }
 
+/**
+ * DefaultUserSuccess - Dispatches
+ * DefaultUserSuccess action
+ *
+ * @returns {object}
+ */
 export function DefaultUserSuccess() {
   return {
     type: ActionTypes.USER_SUCCESS,
@@ -127,6 +204,13 @@ export function DefaultUserSuccess() {
   };
 }
 
+/**
+ * UsersSuccess - Dispatches
+ * UsersSuccess action
+ *
+ * @param {object} Users
+ * @returns {object}
+ */
 export function UsersSuccess(Users) {
   return {
     type: ActionTypes.FETCH_USERS_SUCCESS,
@@ -137,6 +221,12 @@ export function UsersSuccess(Users) {
   };
 }
 
+/**
+ * checkingUser - Dispatches
+ * checkingUser action
+ *
+ * @returns {object}
+ */
 export function checkingUser() {
   return {
     type: ActionTypes.LOGIN_USER,
@@ -146,6 +236,13 @@ export function checkingUser() {
   };
 }
 
+/**
+ * loginSuccess - Dispatches
+ * loginSuccess action
+ *
+ * @param {object} loginResult
+ * @returns {object}
+ */
 export function loginSuccess(loginResult) {
   return {
     type: ActionTypes.LOGIN_SUCCESS,
@@ -157,6 +254,13 @@ export function loginSuccess(loginResult) {
   };
 }
 
+/**
+ * userUpdated - Dispatches
+ * userUpdated action
+ *
+ * @param {object} newUserData
+ * @returns {object}
+ */
 export function userUpdated(newUserData) {
   return {
     type: ActionTypes.UPDATED_USER_DATA,
@@ -170,6 +274,12 @@ export function userUpdated(newUserData) {
   };
 }
 
+/**
+ * updateFailed - Dispatches
+ * updateFailed action
+ *
+ * @returns {object}
+ */
 export function updateFailed() {
   return {
     type: ActionTypes.USER_FAILED,
@@ -182,6 +292,13 @@ export function updateFailed() {
   };
 }
 
+/**
+ * loginFailed - Dispatches
+ * loginFailed action
+ *
+ * @param {object} loginResult
+ * @returns {object}
+ */
 export function loginFailed(loginResult) {
   return {
     type: ActionTypes.LOGIN_FAIL,
@@ -192,6 +309,13 @@ export function loginFailed(loginResult) {
   };
 }
 
+/**
+ * saveUserFailed - Dispatches
+ * saveUserFailed action
+ *
+ * @param {string} ErrorMessage
+ * @returns {object}
+ */
 export function saveUserFailed(ErrorMessage) {
   return {
     type: ActionTypes.USER_CREATE_FAILED,
@@ -202,6 +326,13 @@ export function saveUserFailed(ErrorMessage) {
   };
 }
 
+/**
+ * checkLoginResult - Dispatches
+ * checkLoginResult action
+ *
+ * @param {object} loginData
+ * @returns {object}
+ */
 export function checkLoginResult(loginData) {
   return (dispatch) => {
     if (loginData.message) {
@@ -215,19 +346,27 @@ export function checkLoginResult(loginData) {
   };
 }
 
-export function saveUserData(user, login) {
+/**
+ * CreateUserData - Dispatches
+ * CreateUserData action
+ *
+ * @param {object} user
+ * @param {string} login
+ * @returns {object}
+ */
+export function CreateUserData(user, login) {
   return (dispatch) => {
     const url = '/api/users/';
-    return BaseApi(user, 'post', url)
+    return CallApi(user, 'post', url)
     .then((apiResult) => {
       dispatch(createUser(apiResult));
       if (apiResult.success) {
-        Materialize.toast('Account successfully created', 4000);
+        global.Materialize.toast('Account successfully created', 4000);
         if (login === 'true') {
           dispatch(fetchUsers(0, 9));
           return dispatch(saveUserSuccess(dispatch));
         } else {
-          return dispatch(loginUser(user));
+          dispatch(loginUser(user));
         }
       }
       return dispatch(saveUserFailed(apiResult.message));
@@ -235,28 +374,50 @@ export function saveUserData(user, login) {
   };
 }
 
+/**
+ * loginUser - Dispatches
+ * loginUser action
+ *
+ * @param {object} userData
+ * @returns {object}
+ */
 export function loginUser(userData) {
   return (dispatch) => {
     dispatch(checkingUser());
     const url = '/api/users/login';
-    return BaseApi(userData, 'post', url)
+    return CallApi(userData, 'post', url)
     .then((apiResult) => {
       dispatch(checkLoginResult(apiResult));
     });
   };
 }
 
+/**
+ * fetchUsers - Dispatches
+ * fetchUsers action
+ *
+ * @param {number} offset
+ * @param {number} limit
+ * @returns {object}
+ */
 export function fetchUsers(offset, limit) {
   return (dispatch) => {
     const url = `/api/users?offset=${offset}&limit=${limit}`;
-    return BaseApi(null, 'get', url)
+    return CallApi(null, 'get', url)
     .then((apiResult) => {
       dispatch(UsersSuccess(apiResult));
     });
   };
 }
 
-export function ModalData(selectedUser) {
+/**
+ * DeleteModalData - Dispatches
+ * DeleteModalData action
+ *
+ * @param {object} selectedUser
+ * @returns {object}
+ */
+export function DeleteModalData(selectedUser) {
   return {
     type: ActionTypes.MODAL_FOR_DELETE,
     data: {
@@ -265,14 +426,21 @@ export function ModalData(selectedUser) {
   };
 }
 
+/**
+ * deleteUserAction - Dispatches
+ * deleteUserAction action
+ *
+ * @param {number} userId
+ * @returns {object}
+ */
 export function deleteUserAction(userId) {
   return (dispatch) => {
     const url = `/api/users/${userId}`;
-    return BaseApi(null, 'delete', url)
+    return CallApi(null, 'delete', url)
     .then(() => {
       dispatch(UserDeleted());
       if (global.Materialize !== undefined) {
-        Materialize.toast('Account successfully deleted', 4000);
+        global.Materialize.toast('Account successfully deleted', 4000);
       }
       return dispatch(fetchUsers(0, 9));
     });

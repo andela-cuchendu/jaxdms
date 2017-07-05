@@ -13,8 +13,8 @@ let originalEnd;
 describe('User Actions Spec: ', () => {
   before(() => {
     originalEnd = request.Request.prototype.end;
-    request.Request.prototype.end = (cb) => {
-      cb(null, {
+    request.Request.prototype.end = (callBack) => {
+      callBack(null, {
         status: 200,
         body: {
           count: 1,
@@ -37,7 +37,8 @@ describe('User Actions Spec: ', () => {
 
   it('should dispatch Edit data', () => {
     const expected = [{ data: { editUserData: { firstname: undefined,
-      lastname: undefined } },
+      lastname: undefined,
+      role: undefined } },
       type: 'EDIT_PAGE',
     }];
     const store = mockStore();
@@ -52,7 +53,7 @@ describe('User Actions Spec: ', () => {
     const expected = [{ data: { editPreLoader: false },
       type: 'UPDATING_USER_DATA' }, { data: { editPreLoader: true,
         editSuccess: true,
-        editUserData: { firstname: '', lastname: '' } },
+        editUserData: { firstname: '', lastname: '', role: '' } },
         type: 'UPDATED_USER_DATA' }];
     const store = mockStore();
 
@@ -62,7 +63,7 @@ describe('User Actions Spec: ', () => {
       });
   });
 
-  it('should fail creating user', () => {
+  it('should fail creating user with incomplete parameters', () => {
     const expected = [{ data: {
       count: 1,
       rows: [{ email: 'email',
@@ -76,7 +77,7 @@ describe('User Actions Spec: ', () => {
       type: 'USER_CREATE_FAILED' }];
     const store = mockStore();
 
-    return store.dispatch(UserAction.saveUserData({}, 'true'))
+    return store.dispatch(UserAction.CreateUserData({}, 'true'))
       .then(() => {
         expect(store.getActions()).toEqual(expected);
       });
