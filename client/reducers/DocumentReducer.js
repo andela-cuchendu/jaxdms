@@ -13,6 +13,10 @@ export default function docReducer(state = InitialState, action) {
       return { ...state, ...action.data };
     case actionTypes.SEARCH_COMPLETED:
       return { ...state, ...action.data };
+    case actionTypes.UPDATE_STORE_WITH_USER_DATA:
+    console.log('state',state);
+    console.log('action.data',action.data);
+      return { ...state, ...action.data };
     case actionTypes.DOCS_USER_SUCCESS:
       return { ...state, ...action.data };
     case actionTypes.DOC_DETAILS_ADD:

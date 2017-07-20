@@ -18,6 +18,7 @@ const SideBar = ({
   const username = userInfo.username;
   const role = userInfo.role;
   const email = userInfo.email;
+  const EditUser = `/users/edit/${userInfo.id}`;
 
   return (
     <ul id="nav-mobile" className="side-nav fixed">
@@ -58,6 +59,13 @@ const SideBar = ({
         <Link onClick={RoleClick} to="/role">
           <div className="div-neat waves-effect">
             <span>Role Documents</span>
+          </div>
+        </Link>
+      </li>
+      <li id="USERS" className="bold edit">
+        <Link to={EditUser}>
+          <div className="div-neat waves-effect">
+            <span>Edit Profile</span>
           </div>
         </Link>
       </li>

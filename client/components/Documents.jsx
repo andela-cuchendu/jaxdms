@@ -35,12 +35,11 @@ export class Documents extends Component {
   }
 
   /**
-   * componentWillMount
-   *
+   * componentDidMount
    *
    * @memberOf Documents
    */
-  componentWillMount() {
+  componentDidMount() {
     let DocType = this.props.location.pathname.substring(1, 5);
     if (DocType.includes('docs')) {
       DocType = 'own';
@@ -48,14 +47,6 @@ export class Documents extends Component {
     this.props.documentActions
       .getComponentResources(this.props.stateProp.userState.userInfo,
       DocType, 0, 9);
-  }
-
-  /**
-   * componentDidMount
-   *
-   * @memberOf Documents
-   */
-  componentDidMount() {
     this.props.documentActions.editDocSuccess();
     $(document).ready(function () {
       const sideNavDom = $('.button-collapse');
@@ -169,7 +160,7 @@ export class Documents extends Component {
   render() {
     if (this.props.stateProp.userDocs.Deleted) {
       global.Materialize.toast('Document deleted', 4000);
-      this.props.documentActions.DocumentDeletedHandled();
+      this.props.documentActions.documentDeletedHandled();
     }
     const {
       userDocs: {

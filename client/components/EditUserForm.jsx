@@ -18,7 +18,11 @@ const EditUserForm = ({
   submitAction,
   changeEvent,
 }) => {
-
+  let newRoles = roles;
+  if (selectedRole < 3) {
+    newRoles = [...roles];
+    newRoles.splice(0, 1);
+  }
   if (firstname.length) {
     return (
       <div className="edit-doc-form">
@@ -51,7 +55,7 @@ const EditUserForm = ({
               name="role"
               size={6}
               selectedValue={selectedRole}
-              selectData={roles}
+              selectData={newRoles}
               onChangeEvent={changeEvent}
               disabled="Choose your role"
               label="Role"

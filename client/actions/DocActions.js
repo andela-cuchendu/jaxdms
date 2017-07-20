@@ -2,12 +2,12 @@ import * as ActionTypes from './ActionTypes';
 import ApiCall from '../api/BaseApi';
 
 /**
- * DocumentDeleted - Dispatches
- * DocumentDeleted action
+ * documentDeleted - Dispatches action
+ * when a document has been deleted successfully
  *
  * @returns {object}
  */
-export function DocumentDeleted() {
+export function documentDeleted() {
   return {
     type: ActionTypes.DOC_DELETE_SUCCESS,
     data: {
@@ -17,12 +17,13 @@ export function DocumentDeleted() {
 }
 
 /**
- * DocumentDeletedHandled - Dispatches
- * DocumentDeletedHandled action
+ * documentDeletedHandled - Dispatches data to
+ * inform the store to reset to pre delete document
+ * state
  *
  * @returns {object}
  */
-export function DocumentDeletedHandled() {
+export function documentDeletedHandled() {
   return {
     type: ActionTypes.DOC_DELETE_HANDLED,
     data: {
@@ -32,8 +33,8 @@ export function DocumentDeletedHandled() {
 }
 
 /**
- * getSharedDocSuccess - Dispatches
- * getSharedDocSuccess action
+ * getSharedDocSuccess - Dispatches action when to
+ * store public documents in the store
  *
  * @param {object} publicDocs
  * @returns {object}
@@ -48,13 +49,13 @@ export function getSharedDocSuccess(publicDocs) {
 }
 
 /**
- * DocsSuccess - Dispatches
- * DocsSuccess action
+ * docsSuccess - Dispatches action when
+ * document has been loadded succsesfully
  *
  * @param {object} docs
  * @returns {object}
  */
-export function DocsSuccess(docs) {
+export function docsSuccess(docs) {
   return {
     type: ActionTypes.DOCS_USER_SUCCESS,
     data: {
@@ -67,8 +68,8 @@ export function DocsSuccess(docs) {
 }
 
 /**
- * savingDoc - Dispatches
- * savingDoc action
+ * savingDoc - Dispatches action getting the store
+ * ready to save new document to the database
  *
  * @returns {object}
  */
@@ -82,13 +83,13 @@ export function savingDoc() {
 }
 
 /**
- * DeleteModalData - Dispatches
- * DeleteModalData action
+ * deleteModalData - Dispatches actions on
+ * deleting document data on the modal form
  *
  * @param {object} selectedDoc
  * @returns {object}
  */
-export function DeleteModalData(selectedDoc) {
+export function deleteModalData(selectedDoc) {
   return {
     type: ActionTypes.MODAL_FOR_DELETE,
     data: {
@@ -98,8 +99,8 @@ export function DeleteModalData(selectedDoc) {
 }
 
 /**
- * newDoc - Dispatches
- * newDoc action
+ * newDoc - Dispatches this action when a new
+ * document has been created
  *
  * @param {object} docData
  * @returns {object}
@@ -115,14 +116,14 @@ export function newDoc(docData) {
 }
 
 /**
- * editPage - Dispatches
- * editPage action
+ * editPage - Prepares the store for
+ * document editing
  *
  * @param {object} docData
  * @returns {object}
  */
 export function editPage(docData) {
-  const editData = {
+  const editDocData = {
     title: docData.title,
     content: docData.content,
     access: docData.access,
@@ -130,14 +131,14 @@ export function editPage(docData) {
   return {
     type: ActionTypes.EDIT_PAGE,
     data: {
-      docEdit: editData,
+      docEdit: editDocData,
     },
   };
 }
 
 /**
- * docDeleted - Dispatches
- * docDeleted action
+ * docDeleted - informs the store that the
+ * document was successfully deleted
  *
  * @param {object} docsInState
  * @returns {object}
@@ -152,7 +153,22 @@ export function docDeleted(docsInState) {
 }
 
 /**
- * updatingDoc - Dispatches
+ * updateStoreUserData - Update store with user data after editing
+ *
+ * @param {object} - storeUSerData
+ * @returns {object}
+ */
+export function updateStoreUSerData(userInfo) {
+  return (dispatch) => {
+    dispatch({
+      type: ActionTypes.UPDATE_STORE_WITH_USER_DATA,
+      data: { userInfo },
+    });
+  };
+}
+
+/**
+ * updatingDoc - Prepares store for document editing
  * updatingDoc action
  *
  * @returns {object}
@@ -167,8 +183,8 @@ export function updatingDoc() {
 }
 
 /**
- * createDocSuccess - Dispatches
- * createDocSuccess action
+ * createDocSuccess - Dispatches actions indicating creation
+ * of new document
  *
  * @returns {object}
  */
@@ -182,8 +198,7 @@ export function createDocSuccess() {
 }
 
 /**
- * storeUSerData - Dispatches
- * storeUSerData action
+ * storeUSerData - Updates store with user data
  *
  * @param {object} - storeUSerData
  * @returns {object}
@@ -196,8 +211,8 @@ export function storeUSerData(userInfo) {
 }
 
 /**
- * editDocSuccess - Dispatches
- * editDocSuccess action
+ * editDocSuccess - Resets document state after document
+ * has been edited successfully.
  *
  * @returns {object}
  */
@@ -217,8 +232,7 @@ export function editDocSuccess() {
 }
 
 /**
- * Searching - Dispatches
- * Searching action
+ * Searching - Tells store to update with search result
  *
  * @returns {object}
  */
@@ -232,7 +246,8 @@ export function Searching() {
 }
 
 /**
- * voidUser - Dispatches
+ * voidUser - Void user authentification. Redirect user
+ * to login page.
  * voidUser action
  *
  * @returns {object}
@@ -245,12 +260,11 @@ export function voidUser() {
 }
 
 /**
- * DevoidUser - Dispatches
- * DevoidUser action
+ * devoidUser - Devoid user authentification
  *
  * @returns {object}
  */
-export function DevoidUser() {
+export function devoidUser() {
   return (dispatch) => {
     dispatch({
       type: ActionTypes.REDIRECT_USER,
@@ -260,8 +274,8 @@ export function DevoidUser() {
 }
 
 /**
- * getPublicDocument - Dispatches
- * getPublicDocument action
+ * getPublicDocument - Gets public document and update store
+ * with the documents
  * @export
  * @param {object} userInfo
  * @param {string} type
@@ -273,18 +287,18 @@ export function getPublicDocument(userInfo, type, offset, limit) {
   return (dispatch) => {
     const url = `/api/documents/${userInfo.id}/${type}?offset=${offset}&limit=${limit}`;
     return ApiCall(null, 'get', url)
-    .then(apiResult => dispatch(DocsSuccess(apiResult)));
+    .then(apiResult => dispatch(docsSuccess(apiResult)));
   };
 }
 
 /**
- * updatedSPublicDocs - Dispatches
- * updatedSPublicDocs action
+ * updatedPublicDocs - Dispatches action informing
+ * the store that document has been updated
  *
  * @param {object} newDocs
  * @returns {object}
  */
-export function updatedSPublicDocs(newDocs) {
+export function updatedPublicDocs(newDocs) {
   return {
     type: ActionTypes.ADD_MORE_SHARED_DOCS,
     data: {
@@ -295,7 +309,8 @@ export function updatedSPublicDocs(newDocs) {
 }
 
 /**
- * validateUser - Dispatches
+ * validateUser - Validates User authentification
+ * then redirect user to login if not validated
  * validateUser action
  *
  * @param {string} type
@@ -316,8 +331,8 @@ export function validateUser(type) {
 }
 
 /**
- * getComponentResources - Dispatches
- * getComponentResources action
+ * getComponentResources - Gets all documents for the component (User)
+ * This action dispatches getPublicDocument
  *
  * @param {object} userInfo
  * @param {string} type
@@ -335,8 +350,8 @@ export function getComponentResources(userInfo, type, offset, limit) {
 }
 
 /**
- * deleteDocAction - Dispatches
- * deleteDocAction action
+ * deleteDocAction - Deletes document by calling the right API, this
+ * action dispatches document deleted and getComponent resources
  *
  * @param {number} docId
  * @returns {object}
@@ -346,15 +361,14 @@ export function deleteDocAction(docId) {
     const url = `/api/documents/${docId}`;
     return ApiCall(null, 'delete', url)
     .then(() => {
-      dispatch(DocumentDeleted());
+      dispatch(documentDeleted());
       return dispatch(getComponentResources({}, 'own', 0, 9));
     });
   };
 }
 
 /**
- * createDoc - Dispatches
- * createDoc action
+ * createDoc - Creates new document. This action dispatches newDocument action
  *
  * @param {object} docData
  * @param {string} creatorData
@@ -377,8 +391,7 @@ export function createDoc(docData, creatorData) {
 }
 
 /**
- * prepareStoreForDocDetails - Dispatches
- * prepareStoreForDocDetails action
+ * prepareStoreForDocDetails - Prepares store for viewing document
  *
  * @export
  * @param {object} newDocs
@@ -395,8 +408,8 @@ export function prepareStoreForDocDetails(newDocs) {
 }
 
 /**
- * upadateDoc - Dispatches
- * upadateDoc action
+ * upadateDoc - This action updates document by calling the API,
+ * then dispatches getComponentResources and editDocSuccess
  *
  * @param {object} - newDocData
  * @param {nmber} = document ID
@@ -415,13 +428,13 @@ export function upadateDoc(newDocData, docId) {
 }
 
 /**
- * EditData - Dispatches
- * EditData action
+ * editDocData - Edits a document by calling the API
+ * then dispatching editPage action
  *
  * @param {number} - docId - document ID
  * @returns {object}
  */
-export function EditData(docId) {
+export function editDocData(docId) {
   return (dispatch) => {
     const url = `/api/documents/${docId}`;
     return ApiCall(null, 'get', url)

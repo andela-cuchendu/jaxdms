@@ -47,7 +47,7 @@ describe('Document: ', () => {
           Deleted: true,
         },
       };
-      const action = DocActions.DocumentDeleted();
+      const action = DocActions.documentDeleted();
       expect(action).toEqual(ExpectedResult);
       done();
     });
@@ -74,7 +74,7 @@ describe('Document: ', () => {
         Deleted: false,
       },
     };
-    const action = DocActions.DocumentDeletedHandled();
+    const action = DocActions.documentDeletedHandled();
     expect(action).toEqual(ExpectedResult);
     done();
   });
@@ -89,7 +89,7 @@ describe('Document: ', () => {
         editSuccess: false,
       },
     };
-    const action = DocActions.DocsSuccess(docsCount);
+    const action = DocActions.docsSuccess(docsCount);
     expect(action).toEqual(ExpectedResult);
     done();
   });
@@ -113,7 +113,7 @@ describe('Document: ', () => {
         deleteDoc: doc,
       },
     };
-    const action = DocActions.DeleteModalData(doc);
+    const action = DocActions.deleteModalData(doc);
     expect(action).toEqual(ExpectedResult);
     done();
   });
@@ -133,7 +133,7 @@ describe('Document: ', () => {
   });
 
   it('should prepare page for edit', (done) => {
-    const editData = {
+    const editDocData = {
       title: doc.title,
       content: doc.content,
       access: doc.access,
@@ -141,7 +141,7 @@ describe('Document: ', () => {
     const ExpectedResult = {
       type: ActionTypes.EDIT_PAGE,
       data: {
-        docEdit: editData,
+        docEdit: editDocData,
       },
     };
     const action = DocActions.editPage(doc);

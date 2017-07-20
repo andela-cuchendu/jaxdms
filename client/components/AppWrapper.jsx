@@ -76,7 +76,7 @@ export const AppWrapper = (ChildComponent) => {
       const { docSuccess } = this.props.stateProp.userDocs;
       if (!docSuccess) $('#createModal').closeModal();
       if (nextProps.stateProp.userDocs.redirect) {
-        this.props.documentActions.DevoidUser();
+        this.props.documentActions.devoidUser();
         window.localStorage.removeItem('token');
         this.context.router.push('/auth');
       }
@@ -133,6 +133,7 @@ export const AppWrapper = (ChildComponent) => {
      * @memberOf AppContainer
      */
     DocClick() {
+      $('#createModal').closeModal();
       this.props.documentActions
         .getComponentResources(this.props.stateProp.userState.userInfo, 'own', 0, 9);
       this.context.router.push('/docs');
@@ -160,6 +161,7 @@ export const AppWrapper = (ChildComponent) => {
      * @memberOf AppContainer
      */
     RoleClick() {
+      $('#createModal').closeModal();
       this.props.documentActions
         .getComponentResources(this.props.stateProp.userState.userInfo, 'role', 0, 9);
       this.context.router.push('/role');
@@ -175,6 +177,7 @@ export const AppWrapper = (ChildComponent) => {
      * @memberOf AppContainer
      */
     searchDoc(event) {
+      $('#createModal').closeModal();
       const searchValue = event.target.value;
       const roleId = this.props.stateProp.userState.userInfo.role;
       if (event.key === 'Enter') {
@@ -208,6 +211,7 @@ export const AppWrapper = (ChildComponent) => {
      * @memberOf AppContainer
      */
     SharedClick() {
+      $('#createModal').closeModal();
       this.props.documentActions
         .getComponentResources(this.props.stateProp.userState.userInfo, 'shar', 0, 9);
       this.context.router.push('/public');
@@ -224,9 +228,9 @@ export const AppWrapper = (ChildComponent) => {
      */
     confirmDelete(selectedDocumentData, user) {
       if (user !== undefined) {
-        this.props.userActions.DeleteModalData(selectedDocumentData);
+        this.props.userActions.deleteModalData(selectedDocumentData);
       } else {
-        this.props.documentActions.DeleteModalData(selectedDocumentData);
+        this.props.documentActions.deleteModalData(selectedDocumentData);
       }
       $('#deleteDocModal').openModal();
     }

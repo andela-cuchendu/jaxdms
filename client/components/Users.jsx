@@ -44,11 +44,11 @@ export class Users extends Component {
   }
 
   /**
-   * componentWillMount
+   * componentDidMount
    *
    * @memberOf Users
    */
-  componentWillMount() {
+  componentDidMount() {
     this.props.userActions.fetchUsers(0, 9);
   }
 
@@ -207,7 +207,7 @@ export class Users extends Component {
     if (!this.isFormValid()) {
       return false;
     }
-    return this.props.userActions.CreateUserData(this.state.user, 'true');
+    return this.props.userActions.createUserData(this.state.user, 'true');
   }
 
   /**
@@ -398,7 +398,7 @@ Users.propTypes = {
   documentActions: PropTypes.string.isRequired,
   userActions: PropTypes.string.isRequired,
   fetchUsers: PropTypes.string.isRequired,
-  CreateUserData: PropTypes.string.isRequired,
+  createUserData: PropTypes.string.isRequired,
   deleteUser: PropTypes.string.isRequired,
   location: PropTypes.string.isRequired,
   query: PropTypes.string.isRequired,

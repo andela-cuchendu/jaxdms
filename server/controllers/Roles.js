@@ -10,7 +10,7 @@ module.exports = {
    *
    * @param {Object} req - Request Object from express
    * @param {Object} res - Response Object from express
-   * @returns {Object} - This maybe error json Object
+   * @returns {array} - array of roles object.
    */
   list(req, res) {
     const QueryOption = {};

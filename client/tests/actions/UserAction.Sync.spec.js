@@ -63,13 +63,13 @@ describe('User: ', () => {
         Deleted: true,
       },
     };
-    const action = UserAction.UserDeleted();
+    const action = UserAction.userDeleted();
     expect(action).toEqual(ExpectedResult);
     done();
   });
 
   it('should set prepare page for edit user', (done) => {
-    const editData = {
+    const editUserData = {
       firstname: user.firstname,
       lastname: user.lastname,
       role: 1,
@@ -77,7 +77,7 @@ describe('User: ', () => {
     const ExpectedResult = {
       type: ActionTypes.EDIT_PAGE,
       data: {
-        editUserData: editData,
+        editUserData,
       },
     };
     const action = UserAction.editPage(user);
@@ -164,7 +164,7 @@ describe('User: ', () => {
         usersCount: 1,
       },
     };
-    const action = UserAction.UsersSuccess(usersCount);
+    const action = UserAction.usersSuccess(usersCount);
     expect(action).toEqual(ExpectedResult);
     done();
   });

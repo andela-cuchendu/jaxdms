@@ -29,19 +29,19 @@ export class EditDoc extends Component {
   }
 
   /**
-   * componentWillMount
+   * componentDidMount
    *
    *
    * @memberOf EditDoc
    */
-  componentWillMount() {
+  componentDidMount() {
     const seletedDoc = this.props.stateProp.userDocs.docEdit;
     const { title, access, content } = seletedDoc;
     if (!window.localStorage.getItem('token')) {
       this.context.router.push('/auth');
     }
 
-    this.props.documentActions.EditData(this.props.params.id);
+    this.props.documentActions.editDocData(this.props.params.id);
     this.setState({ title, content, access });
   }
 

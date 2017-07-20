@@ -105,7 +105,47 @@ Roles cannot be added
 
 ### Contributing
 
-Contributors are welcome to further enhance the features of this API by contributing to its development.
+If you are interested in contributing to development of Jaxdms,
+
+Follow the instructions below to contribute.
+
+- Fork the repository
+
+- Make your change
+
+- Commit your change to your forked repository 
+
+- Provide a detailed commit description 
+
+- Create a pull request
+
+NOTE: Be sure to merge the latest from "upstream" before making a pull request! Airbnb style guide is the standard for this project. Follow the commit guidline below: 
+
+## Git Commit Guidelines
+
+We have very precise rules over how our git commit messages can be formatted.  This leads to **more
+readable messages** that are easy to follow when looking through the **project history**.  
+
+The commit message formatting can be added using a typical git workflow or through the use of a CLI
+wizard ([Commitizen](https://github.com/commitizen/cz-cli)). To use the wizard, run `yarn run commit`
+in your terminal after staging your changes in git.
+
+## Commit Message Format
+Each commit message consists of a **header**, a **body** and a **footer**.  The header has a special
+format that includes a **type**, a **scope** and a **subject**:
+
+```
+<type>(<scope>): <subject>
+<BLANK LINE>
+<body>
+<BLANK LINE>
+<footer>
+```
+
+The **header** is mandatory and the **scope** of the header is optional.
+
+Any line of the commit message cannot be longer 100 characters! This allows the message to be easier
+to read on GitHub as well as in various git tools.
 
 ### License
 

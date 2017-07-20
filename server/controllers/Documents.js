@@ -1,5 +1,6 @@
 const Documents = require('../models').Documents;
 const Error = require('./Tools').Error;
+const NotFoundResponse = require('./Tools').NotFoundResponse;
 
 (() => {
   module.exports = {
@@ -10,18 +11,18 @@ const Error = require('./Tools').Error;
      * @param {Object} res - Response Object from express
      * @returns {Object} - This maybe error json Object
      */
-    create: (req, res, next) => {
-      const required = ['title', 'content'];
+    createDocument: (req, res) => {
+      const required = ['title'];
       if (!required.every(field => field in req.body)) {
         const err = new Error(
           'title and content fields are mandatory');
         err.status = 400;
-        next(err);
+        return err;
       } else {
         return Documents
           .create({
             title: req.body.title,
-            content: req.body.content,
+            content: req.body.content || '',
             creator: req.body.creator || req.parcel.id,
             access: parseInt(req.body.access, 10) || -2,
             UserId: req.parcel.id,
@@ -29,9 +30,7 @@ const Error = require('./Tools').Error;
           .then((newDocument) => {
             res.status(201).json(newDocument);
           })
-          .catch((err) => {
-            next(err);
-          });
+          .catch(err => err);
       }
       return true;
     },
@@ -41,9 +40,9 @@ const Error = require('./Tools').Error;
      *
      * @param {Object} req - Request Object from express
      * @param {Object} res - Response Object from express
-     * @returns {jsonObject} - This maybe error json Object
+     * @returns {array} - Array of document objects
      */
-    list(req, res) {
+    listDocuments(req, res) {
       const QueryOption = {
         where: {},
         limit: 0,
@@ -93,9 +92,9 @@ const Error = require('./Tools').Error;
      *
      * @param {Object} req - Request Object from express
      * @param {Object} res - Response Object from express
-     * @returns {jsonObject} - This maybe error json Object
+     * @returns {array} - Array of document objects
      */
-    GetPublic(req, res) {
+    getPublicDocuments(req, res) {
       const AccessParam = req.params.type;
       let query;
       switch (AccessParam) {
@@ -129,9 +128,7 @@ const Error = require('./Tools').Error;
       }
       query.order = '"id" DESC';
       if (req.params.id == null) {
-        return res.status(404).send({
-          message: 'No ID found',
-        });
+        return NotFoundResponse(res, 'No ID found');
       }
       const offset = parseInt(req.query.offset, 10) || 0;
       const limit = parseInt(req.query.limit, 10) || 0;
@@ -145,9 +142,7 @@ const Error = require('./Tools').Error;
         .findAndCountAll(query)
         .then((document) => {
           if (!document) {
-            return res.status(404).send({
-              message: 'Document Not Found',
-            });
+            return NotFoundResponse(res, 'Document not found');
           }
           return res.status(200).send(document);
         })
@@ -159,21 +154,17 @@ const Error = require('./Tools').Error;
      *
      * @param {Object} req - Request Object from express
      * @param {Object} res - Response Object from express
-     * @returns {jsonObject} - This maybe error json Object
+     * @returns {Object} - document object
      */
-    GetDocument(req, res) {
-      if (req.params.id == null) {
-        return res.status(404).send({
-          message: 'No ID found',
-        });
+    getSingleDocument(req, res) {
+      if (req.params.id === null) {
+        return NotFoundResponse(res, 'No ID found');
       }
       return Documents
         .findById(req.params.id)
         .then((document) => {
           if (!document) {
-            return res.status(404).send({
-              message: 'Document Not Found',
-            });
+            return NotFoundResponse(res, 'Document not found');
           }
           if (document.access === req.parcel.id ||
           document.UserId === req.parcel.id || document.access === -1) {
@@ -191,16 +182,14 @@ const Error = require('./Tools').Error;
      *
      * @param {Object} req - Request Object from express
      * @param {Object} res - Response Object from express
-     * @returns {jsonObject} - This maybe error json Object
+     * @returns {Object} - object of the updated document
      */
-    UpdateDocument(req, res) {
+    updateDocument(req, res) {
       return Documents
         .findById(req.params.id)
         .then((document) => {
           if (!document) {
-            return res.status(404).send({
-              message: 'Document Not Found',
-            });
+            return NotFoundResponse(res, 'Document not found');
           }
           if (req.parcel.id === document.UserId || (req.parcel.role === 3)) {
             return document
@@ -222,16 +211,15 @@ const Error = require('./Tools').Error;
      *
      * @param {Object} req - Request Object from express
      * @param {Object} res - Response Object from express
-     * @returns {jsonObject} - This maybe error json Object
+     * @returns {Object} - response object containing status code
+     * and message
      */
-    DeleteDocument(req, res) {
+    deleteDocument(req, res) {
       return Documents
         .findById(req.params.id)
         .then((document) => {
           if (!document) {
-            res.status(404).send({
-              message: 'Document Not Found',
-            });
+            return NotFoundResponse(res, 'Document not found');
           } else {
             if (req.parcel.id === document.UserId || (req.parcel.role === 3)) {
               return document

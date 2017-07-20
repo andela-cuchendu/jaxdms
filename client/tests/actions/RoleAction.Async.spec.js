@@ -44,7 +44,7 @@ describe('Roles Actions Spec: ', () => {
     ];
     const store = mockStore();
 
-    return store.dispatch(RolesActions.GetRoles())
+    return store.dispatch(RolesActions.getRoles())
       .then(() => {
         expect(store.getActions()).toEqual(expected);
       });

@@ -75,6 +75,7 @@ export class SignIn extends Component {
    */
   toggleSignIn(event) {
     event.preventDefault();
+    this.props.userActions.voidUserError();
     this.props.toggleSignUp(this.refs.signInContainer);
   }
 

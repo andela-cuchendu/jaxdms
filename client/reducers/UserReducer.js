@@ -5,6 +5,8 @@ export default function userReducer(state = InitialState, action) {
   switch (action.type) {
     case ActionTypes.EDIT_PAGE:
       return { ...state, ...action.data };
+    case ActionTypes.VOID_USER_ERROR:
+      return { ...state, ...action.data };
     case ActionTypes.USER_DELETE_SUCCESS:
       return { ...state, ...action.data };
     case ActionTypes.USER_DELETE_HANDLED:

@@ -27,7 +27,7 @@ const router = express.Router();
    *          type: string
    *      responses:
    *        200:
-   *          description: Documents
+   *          description: Array of documents
    *          examples:
    *            application/json: [{ id: 38, title: "T-shirt", content: "example" }]
    */
@@ -55,7 +55,7 @@ const router = express.Router();
    *          type: string
    *      responses:
    *        200:
-   *          description: Users
+   *          description: Array of users
    *          examples:
    *            application/json: [{ id: 38, firstname: "T-shirt",
    * lastname: "example", username: "uname", createdAt: "189027897" }]

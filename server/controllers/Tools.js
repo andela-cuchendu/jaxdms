@@ -32,6 +32,46 @@ module.exports = {
     });
     return ExtractedUser.payload;
   },
+  /**
+   * -DeleteUserKeys -deletes unwanted User keys and
+   * return the user
+   *
+   * @param {object} User - user object
+   * @param {number}  - typeNumber type of delete
+   * @return{object} - Updated User Object
+   */
+  DeleteUserKeys: (user, typeNumber) => {
+    const newUser = user;
+    switch (typeNumber) {
+      case 1:
+        delete newUser.password;
+        delete newUser.updatedAt;
+        return newUser;
+      case 2:
+        delete newUser.password;
+        delete newUser.loggedin;
+        delete newUser.updatedAt;
+        return newUser;
+      default:
+        delete newUser.password;
+        delete newUser.loggedin;
+        delete newUser.createdAt;
+        delete newUser.updatedAt;
+        return newUser;
+
+    }
+  },
+  /**
+   * -NotFoundResponse -sends out message with response object
+   *
+   * @param {object} res - Response object
+   * @param {string} message - Response message
+   */
+  NotFoundResponse: (res, message) => {
+    res.status(404).send({
+      message,
+    });
+  },
   Error: CustomError,
   ComparePassword: (password, compare) => bcrypt.compareSync(password, compare),
 };

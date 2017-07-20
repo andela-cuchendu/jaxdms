@@ -6,7 +6,7 @@ const jwt = require('jsonwebtoken');
 const ExtractUser = require('./Tools').ExtractUser;
 const Error = require('./Tools').Error;
 const ComparePassword = require('./Tools').ComparePassword;
-
+const DeleteUserKeys = require('./Tools').DeleteUserKeys;
 /**
  * Represents The User activities
  */
@@ -20,7 +20,7 @@ module.exports = {
    * @returns {Object} This maybe error json Object
    * or result json Object
    */
-  create(req, res) {
+  createUser(req, res) {
     const required = ['username', 'firstname',
       'lastname', 'email', 'password',
     ];
@@ -50,16 +50,13 @@ module.exports = {
           loggedin: false,
         })
         .then((user) => {
-          const TokenUser = _.pick(user, 'id', 'role', 'loggedin');
+          const tokenUser = _.pick(user, 'id', 'role', 'loggedin');
           const AppSecret = req.app.get('superSecret');
-          const token = jwt.sign(TokenUser, AppSecret, {
+          const token = jwt.sign(tokenUser, AppSecret, {
             expiresIn: 43200,
           });
-          const newUser = user.dataValues;
-          delete newUser.password;
-          delete newUser.loggedin;
-          delete newUser.createdAt;
-          delete newUser.updatedAt;
+          let newUser = user.dataValues;
+          newUser = DeleteUserKeys(newUser, 0);
           res.status(201).json({
             newUser,
             token,
@@ -70,7 +67,10 @@ module.exports = {
           const newErr = err;
           if (newErr.name === 'SequelizeUniqueConstraintError') {
             newErr.status = 500;
-            newErr.message = err.original.message;
+            newErr.message = 'Username already exist';
+            if (err.errors[0].message.includes('email must be unique')) {
+              newErr.message = 'Email already exist';
+            }
           }
           res.json({
             message: newErr.message,
@@ -92,7 +92,7 @@ module.exports = {
    * @param {Object} res - Response Object from express
    * @returns {Object} - This maybe error json Object
    */
-  list(req, res) {
+  listUsers(req, res) {
     if (req.decoded.role !== 3) {
       res.status(403).json({
         error: 'Unauthorized Access' });
@@ -134,7 +134,7 @@ module.exports = {
    * @param {Object} res - Response Object from express
    * @returns {Object} - This maybe error json Object
    */
-  GetData(req, res) {
+  getUserData(req, res) {
     return Users
       .findById(req.decoded.id)
       .then((User) => {
@@ -143,11 +143,8 @@ module.exports = {
             message: 'User Not Found',
           });
         }
-        const newUser = User.dataValues;
-        delete newUser.password;
-        delete newUser.loggedin;
-        delete newUser.createdAt;
-        delete newUser.updatedAt;
+        let newUser = User.dataValues;
+        newUser = DeleteUserKeys(newUser, 0);
         return res.status(200).send(newUser);
       })
       .catch((error) => { res.status(400).send(error); });
@@ -160,7 +157,7 @@ module.exports = {
    * @param {Object} res - Response Object from express
    * @returns {Object} - This maybe error json Object
    */
-  GetUser(req, res) {
+  getUser(req, res) {
     if (req.decoded.id.toString() === req.params.id ||
       req.decoded.role === 3) {
       if (req.params.id == null) {
@@ -176,12 +173,9 @@ module.exports = {
                 message: 'User Not Found',
               });
             }
-            const newUser = User.dataValues;
-            delete newUser.password;
-            delete newUser.loggedin;
-            delete newUser.createdAt;
-            delete newUser.updatedAt;
-            return res.status(200).send(User);
+            let newUser = User.dataValues;
+            newUser = DeleteUserKeys(newUser, 0);
+            return res.status(200).send(newUser);
           })
           .catch(error => res.status(400).send(error));
       }
@@ -229,7 +223,7 @@ module.exports = {
    * @param {Object} res - Response Object from express
    * @returns {Object} json Object
    */
-  UpdateUser(req, res) {
+  updateUser(req, res) {
     if (req.decoded.id.toString() === req.params.id ||
       req.decoded.role === 3) {
       Users
@@ -247,10 +241,8 @@ module.exports = {
                 fields: Object.keys(req.body),
               })
               .then(() => {
-                const newUser = User.dataValues;
-                delete newUser.password;
-                delete newUser.loggedin;
-                delete newUser.updatedAt;
+                let newUser = User.dataValues;
+                newUser = DeleteUserKeys(newUser, 2);
                 return res.status(200).send(newUser);
               })
               .catch(error => res.status(400).send(error));
@@ -309,9 +301,8 @@ module.exports = {
                 loggedin: true,
               })
               .then((user) => {
-                const newUser = user.dataValues;
-                delete newUser.password;
-                delete newUser.updatedAt;
+                let newUser = user.dataValues;
+                newUser = DeleteUserKeys(newUser, 1);
                 const UserToken = {
                   id: newUser.id,
                   role: newUser.role,
@@ -385,7 +376,7 @@ module.exports = {
    * @param {Object} next - Middleware
    * @returns {Object} - json Object
    */
-  delete(req, res, next) {
+  deleteUser(req, res, next) {
     if (req.decoded.id.toString() === req.params.id ||
       req.decoded.role === 3) {
       Users
@@ -420,7 +411,7 @@ module.exports = {
    * @param {Object} next - Middleware
    * @returns {responseObject} - json Object
    */
-  GetDocs(req, res) {
+  getUserDocuments(req, res) {
     Documents
     .findAll({
       where: {

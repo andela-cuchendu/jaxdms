@@ -43,7 +43,7 @@ describe('User Actions Spec: ', () => {
     }];
     const store = mockStore();
 
-    return store.dispatch(UserAction.EditData(1))
+    return store.dispatch(UserAction.editUserData(1))
       .then(() => {
         expect(store.getActions()).toEqual(expected);
       });
@@ -77,7 +77,7 @@ describe('User Actions Spec: ', () => {
       type: 'USER_CREATE_FAILED' }];
     const store = mockStore();
 
-    return store.dispatch(UserAction.CreateUserData({}, 'true'))
+    return store.dispatch(UserAction.createUserData({}, 'true'))
       .then(() => {
         expect(store.getActions()).toEqual(expected);
       });

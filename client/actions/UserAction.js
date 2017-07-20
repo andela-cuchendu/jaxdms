@@ -2,8 +2,7 @@ import * as ActionTypes from './ActionTypes';
 import CallApi from '../api/BaseApi';
 
 /**
- * createUser - Dispatches
- * createUser action
+ * createUser - Updates store with new user information
  *
  * @param {object} user
  * @returns {object}
@@ -14,14 +13,28 @@ export function createUser(user) {
     data: user,
   };
 }
-
 /**
- * UserDeleted - Dispatches
- * UserDeleted action
+ * voidUserError - Updates store by clearing user error
  *
  * @returns {object}
  */
-export function UserDeleted() {
+export function voidUserError() {
+  return (dispatch) => {
+    dispatch({
+      type: ActionTypes.VOID_USER_ERROR,
+      data: { error: null,
+        displayLoader: 'hide-element',
+        UserError: null,
+      },
+    });
+  };
+}
+/**
+ * userDeleted - Informs the store that user delete was successful
+ *
+ * @returns {object}
+ */
+export function userDeleted() {
   return {
     type: ActionTypes.USER_DELETE_SUCCESS,
     data: {
@@ -31,14 +44,14 @@ export function UserDeleted() {
 }
 
 /**
- * editPage - Dispatches
+ * editPage - Prepares page for userdata editing
  * editPage action
  *
  * @param {object} userData
  * @returns {object}
  */
 export function editPage(userData) {
-  const editData = {
+  const editUsersData = {
     firstname: userData.firstname,
     lastname: userData.lastname,
     role: userData.role,
@@ -46,19 +59,19 @@ export function editPage(userData) {
   return {
     type: ActionTypes.EDIT_PAGE,
     data: {
-      editUserData: editData,
+      editUserData: editUsersData,
     },
   };
 }
 
 /**
- * EditData - Dispatches
+ * editUserData - Edits User data and then dispatches editPage
  * editPage action
  *
  * @param {object} userId
  * @returns {object}
  */
-export function EditData(userId) {
+export function editUserData(userId) {
   return (dispatch) => {
     const url = `/api/users/${userId}`;
     return CallApi(null, 'get', url)
@@ -67,12 +80,11 @@ export function EditData(userId) {
 }
 
 /**
- * VoidEditSuccess - Dispatches
- * VoidEditSuccess action
+ * voidEditSuccess - Updates the store with data pre editSuccess action
  *
  * @returns {object}
  */
-export function VoidEditSuccess() {
+export function voidEditSuccess() {
   return (dispatch) => {
     dispatch({
       type: ActionTypes.UPDATED_USER_DATA,
@@ -82,8 +94,7 @@ export function VoidEditSuccess() {
 }
 
 /**
- * editSuccess - Dispatches
- * editSuccess action
+ * editSuccess - UPdates store with data after User editing was successful
  *
  * @returns {object}
  */
@@ -103,8 +114,7 @@ export function editSuccess() {
 }
 
 /**
- * updatingUserData - Dispatches
- * updatingUserData action
+ * updatingUserData - Prepares store before updating the user
  *
  * @returns {object}
  */
@@ -118,8 +128,8 @@ export function updatingUserData() {
 }
 
 /**
- * upadateUser - Dispatches
- * upadateUser action
+ * upadateUser - Updates user by calling update API
+ * then dispatches editSuccess action
  *
  * @param {object} - newUserData
  * @param {number} - userId
@@ -137,8 +147,8 @@ export function upadateUser(newUserData, userId) {
 }
 
 /**
- * savingUser - Dispatches
- * savingUser action
+ * savingUser - Updates store with
+ * state needed before saving user
  *
  * @returns {object}
  */
@@ -152,8 +162,7 @@ export function savingUser() {
 }
 
 /**
- * savedUser - Dispatches
- * savedUser action
+ * savedUser - Updates store after user creation was successful
  *
  * @returns {object}
  */
@@ -169,8 +178,7 @@ export function savedUser() {
 }
 
 /**
- * saveUserSuccess - Dispatches
- * saveUserSuccess action
+ * saveUserSuccess - Dispatches savingUser Action
  *
  * @param {object} dispatch
  * @returns {object}
@@ -188,8 +196,8 @@ export function saveUserSuccess(dispatch) {
 }
 
 /**
- * DefaultUserSuccess - Dispatches
- * DefaultUserSuccess action
+ * DefaultUserSuccess - Defaults the store with
+ * state before user was saved
  *
  * @returns {object}
  */
@@ -205,13 +213,13 @@ export function DefaultUserSuccess() {
 }
 
 /**
- * UsersSuccess - Dispatches
- * UsersSuccess action
+ * usersSuccess - Updates store with users after
+ * successful API call
  *
  * @param {object} Users
  * @returns {object}
  */
-export function UsersSuccess(Users) {
+export function usersSuccess(Users) {
   return {
     type: ActionTypes.FETCH_USERS_SUCCESS,
     data: {
@@ -222,8 +230,7 @@ export function UsersSuccess(Users) {
 }
 
 /**
- * checkingUser - Dispatches
- * checkingUser action
+ * checkingUser - Sets state before user validation.
  *
  * @returns {object}
  */
@@ -237,8 +244,7 @@ export function checkingUser() {
 }
 
 /**
- * loginSuccess - Dispatches
- * loginSuccess action
+ * loginSuccess - Updates store with login details
  *
  * @param {object} loginResult
  * @returns {object}
@@ -255,8 +261,7 @@ export function loginSuccess(loginResult) {
 }
 
 /**
- * userUpdated - Dispatches
- * userUpdated action
+ * userUpdated - Updates store with user updated data
  *
  * @param {object} newUserData
  * @returns {object}
@@ -275,8 +280,7 @@ export function userUpdated(newUserData) {
 }
 
 /**
- * updateFailed - Dispatches
- * updateFailed action
+ * updateFailed - Updates store with user update error
  *
  * @returns {object}
  */
@@ -293,9 +297,7 @@ export function updateFailed() {
 }
 
 /**
- * loginFailed - Dispatches
- * loginFailed action
- *
+ * loginFailed - Updates store with user login error
  * @param {object} loginResult
  * @returns {object}
  */
@@ -310,8 +312,7 @@ export function loginFailed(loginResult) {
 }
 
 /**
- * saveUserFailed - Dispatches
- * saveUserFailed action
+ * saveUserFailed - Updates store with save user error
  *
  * @param {string} ErrorMessage
  * @returns {object}
@@ -327,8 +328,8 @@ export function saveUserFailed(ErrorMessage) {
 }
 
 /**
- * checkLoginResult - Dispatches
- * checkLoginResult action
+ * checkLoginResult - Validates login result
+ * and dispatches appropriate action
  *
  * @param {object} loginData
  * @returns {object}
@@ -347,14 +348,13 @@ export function checkLoginResult(loginData) {
 }
 
 /**
- * CreateUserData - Dispatches
- * CreateUserData action
+ * createUserData - Creates a user and updates store with the user date
  *
  * @param {object} user
  * @param {string} login
  * @returns {object}
  */
-export function CreateUserData(user, login) {
+export function createUserData(user, login) {
   return (dispatch) => {
     const url = '/api/users/';
     return CallApi(user, 'post', url)
@@ -375,8 +375,8 @@ export function CreateUserData(user, login) {
 }
 
 /**
- * loginUser - Dispatches
- * loginUser action
+ * loginUser - Login user and validate
+ * login result by dispatching checkLoginResult
  *
  * @param {object} userData
  * @returns {object}
@@ -393,8 +393,7 @@ export function loginUser(userData) {
 }
 
 /**
- * fetchUsers - Dispatches
- * fetchUsers action
+ * fetchUsers - Fetches users from server and dispatches usersSuccess
  *
  * @param {number} offset
  * @param {number} limit
@@ -405,19 +404,19 @@ export function fetchUsers(offset, limit) {
     const url = `/api/users?offset=${offset}&limit=${limit}`;
     return CallApi(null, 'get', url)
     .then((apiResult) => {
-      dispatch(UsersSuccess(apiResult));
+      dispatch(usersSuccess(apiResult));
     });
   };
 }
 
 /**
- * DeleteModalData - Dispatches
- * DeleteModalData action
+ * deleteModalData - Dispatches actions on
+ * deleting user data on the modal form
  *
  * @param {object} selectedUser
  * @returns {object}
  */
-export function DeleteModalData(selectedUser) {
+export function deleteModalData(selectedUser) {
   return {
     type: ActionTypes.MODAL_FOR_DELETE,
     data: {
@@ -427,8 +426,7 @@ export function DeleteModalData(selectedUser) {
 }
 
 /**
- * deleteUserAction - Dispatches
- * deleteUserAction action
+ * deleteUserAction - Deletes user and dispatches userDeleted and fetchUsers
  *
  * @param {number} userId
  * @returns {object}
@@ -438,7 +436,7 @@ export function deleteUserAction(userId) {
     const url = `/api/users/${userId}`;
     return CallApi(null, 'delete', url)
     .then(() => {
-      dispatch(UserDeleted());
+      dispatch(userDeleted());
       if (global.Materialize !== undefined) {
         global.Materialize.toast('Account successfully deleted', 4000);
       }

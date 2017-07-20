@@ -34,11 +34,25 @@ const NewDocumentForm = ({
       title: 'Role',
     },
   ];
+  let plugins = 'advlist autolink lists link image charmap ';
+  plugins += 'print preview anchor insertdatetime media table contextmenu ';
+  plugins += 'paste hr anchor pagebreak spellchecker code';
+  let toolbar = 'insertfile undo redo | styleselect | bold italic | ';
+  toolbar += 'alignleft aligncenter alignright alignjustify | bullist numlist ';
+  toolbar += 'outdent indent | link image | print preview media fullpage | ';
+  toolbar += 'forecolor backcolor emoticons | code';
   return (
     <form onSubmit={submitAction}>
       <div id="createModal" className="modal modal-fixed-footer custom-modal">
         <div className="modal-content">
           <h4 className="custom-blue-text">Create new document</h4>
+          <Row>
+            <span>
+              Note: This application can only allow 50,000 characters
+            </span>
+            <br />
+            <p />
+          </Row>
           <Row>
             <Input
               required
@@ -64,8 +78,8 @@ const NewDocumentForm = ({
               config={{
                 height: '160',
                 forced_root_block: false,
-                plugins: 'link image code',
-                toolbar: 'undo redo | bold italic | alignleft aligncenter alignright | code',
+                plugins,
+                toolbar,
               }}
               onChange={tinymceEvent}
             />

@@ -2,14 +2,14 @@ const ExtractUser = require('./Tools').ExtractUser;
 const jwt = require('jsonwebtoken');
 
   /**
-   * Verify user by checking for token and logged in
-   * before perfomring any operation on dicument
+   * Verify document owner by checking for token
+   * before perfomring any operation on document
    *
    * @param {object} req - Request Object from express
    * @param {object} res - Response Object from express
    * @param {object} next - Middleware
    */
-const verifyDoc = (req, res, next) => {
+const verifyDocumentOwner = (req, res, next) => {
   const token = req.body.token || req.headers['x-access-token'];
   if (token) {
     const user = ExtractUser(token);
@@ -43,7 +43,6 @@ const verifyDoc = (req, res, next) => {
    * @param {object} req - Request Object from express
    * @param {object} res - Response Object from express
    * @param {object} next - Middleware
-   * @returns {responseObject} - json Object
    */
 const verifyUser = (req, res, next) => {
   const token = req.body.token || req.headers['x-access-token'];
@@ -77,5 +76,5 @@ const verifyUser = (req, res, next) => {
 
 export default {
   verifyUser,
-  verifyDoc,
+  verifyDocumentOwner,
 };

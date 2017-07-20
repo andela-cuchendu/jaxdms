@@ -44,6 +44,9 @@ export class SignUp extends Component {
   onChangeEvent(event) {
     this.state.user[event.target.name] = event.target.value;
     this.setState({ user: this.state.user });
+    if (event.target.name.includes('email')) {
+      this.validateEmail(event);
+    }
   }
 
   /**
@@ -56,6 +59,7 @@ export class SignUp extends Component {
    */
   toggleDisplay(event) {
     event.preventDefault();
+    this.props.userActions.voidUserError();
     this.props.toggleSignUp(this.refs.signUpComponent);
   }
 
@@ -160,7 +164,7 @@ export class SignUp extends Component {
       return false;
     }
 
-    return this.props.userActions.CreateUserData(this.state.user, event);
+    return this.props.userActions.createUserData(this.state.user, event);
   }
 
   render() {

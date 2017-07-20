@@ -23,15 +23,15 @@ export class EditUser extends Component {
   }
 
   /**
-   * componentWillMount
+   * componentDidMount
    *
    *
    * @memberOf EditUser
    */
-  componentWillMount() {
+  componentDidMount() {
     const seletedUser = this.props.stateProp.userState.editUserData;
     const { firstname, lastname, role } = seletedUser;
-    this.props.userActions.EditData(parseInt(this.props.params.id, 10));
+    this.props.userActions.editUserData(parseInt(this.props.params.id, 10));
     this.setState({ firstname, lastname, role });
   }
 
@@ -52,9 +52,20 @@ export class EditUser extends Component {
     };
 
     if (editSuccess) {
-      this.props.userActions.VoidEditSuccess();
+      this.props.userActions.voidEditSuccess();
       Materialize.toast('User updated', 4000);
-      this.context.router.push('/users');
+      this.props.documentActions.validateUser('own');
+      if (this.props.stateProp.userState.userInfo.role < 3) {
+        const UserInfo = this.props.stateProp.userState.userInfo;
+        const editDocumentData = this.props.stateProp.userState.editUserData;
+        UserInfo.firstname = editDocumentData.firstname;
+        UserInfo.lastname = editDocumentData.lastname;
+        UserInfo.role = editDocumentData.role;
+        this.props.documentActions.updateStoreUSerData(UserInfo);
+        this.context.router.push('/docs');
+      } else {
+        this.context.router.push('/users');
+      }
     }
   }
 
@@ -123,7 +134,7 @@ EditUser.propTypes = {
   stateProp: PropTypes.string.isRequired,
   params: PropTypes.string.isRequired,
   userActions: PropTypes.string.isRequired,
-  EditData: PropTypes.string.isRequired,
+  editUserData: PropTypes.string.isRequired,
 };
 
 export default AppWrapper(EditUser);

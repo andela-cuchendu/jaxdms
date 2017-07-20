@@ -111,5 +111,4 @@ describe('User component', () => {
     expect(users.find('.btn-floating').length).toBe(1);
     expect(users.find('.btn-floating').text()).toBe('add');
   });
-
 });

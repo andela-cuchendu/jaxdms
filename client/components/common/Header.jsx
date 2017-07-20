@@ -7,6 +7,7 @@ import { Link } from 'react-router';
  * the header
  */
 const Header = ({ LogoutEvent, UserStatus, SearchEvent, User }) => {
+  const EditUser = `/users/edit/${User.id}`;
   return (
     <div>
       <nav>
@@ -78,6 +79,13 @@ const Header = ({ LogoutEvent, UserStatus, SearchEvent, User }) => {
                 <Link to="/role">
                   <div className="div-neat waves-effect">
                     <span>Role Documents</span>
+                  </div>
+                </Link>
+              </li>
+              <li id="USERS" className="bold edit">
+                <Link to={EditUser}>
+                  <div className="div-neat waves-effect">
+                    <span>Edit Profile</span>
                   </div>
                 </Link>
               </li>

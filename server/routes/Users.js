@@ -81,7 +81,7 @@ const router = express.Router();
  *           application/json: { id: 38, firstname: "T-shirt",
  * lastname: "example", username: "uname", createdAt: "189027897" }
  */
-  router.post('/', Users.create);
+  router.post('/', Users.createUser);
 
 /**
  * @swagger
@@ -100,15 +100,15 @@ const router = express.Router();
  *         type: string
  *     responses:
  *       200:
- *         description: Users list
+ *         description: Array of User object
  *         schema:
  *           $ref: '#/definitions/User'
  *         examples:
  *           application/json: [{ id: 38, firstname: "T-shirt",
  * lastname: "example", username: "uname", createdAt: "189027897" }]
  */
-  router.get('/', Middleware.verifyUser, Users.list);
-  router.get('/data/data', Middleware.verifyUser, Users.GetData);
+  router.get('/', Middleware.verifyUser, Users.listUsers);
+  router.get('/data/data', Middleware.verifyUser, Users.getUserData);
 
 /**
  * @swagger
@@ -132,14 +132,14 @@ const router = express.Router();
  *         type: number
  *     responses:
  *       200:
- *         description: Get User
+ *         description: Returns User object
  *         schema:
  *           $ref: '#/definitions/User'
  *         examples:
  *           application/json: { id: 38, firstname: "T-shirt",
  * lastname: "example", username: "uname", createdAt: "189027897" }
  */
-  router.get('/:id', Middleware.verifyUser, Users.GetUser);
+  router.get('/:id', Middleware.verifyUser, Users.getUser);
 
   /**
  * @swagger
@@ -185,7 +185,7 @@ const router = express.Router();
  *           application/json: { id: 38, firstname: "T-shirt",
  * lastname: "example", username: "uname", createdAt: "189027897" }
  */
-  router.put('/:id', Middleware.verifyUser, Users.UpdateUser);
+  router.put('/:id', Middleware.verifyUser, Users.updateUser);
 
 /**
  * @swagger
@@ -214,7 +214,7 @@ const router = express.Router();
  *         type: string
  *     responses:
  *       201:
- *         description: User login successful
+ *         description: Returns User object on successful login
  *         schema:
  *           $ref: '#/definitions/User'
  *         examples:
@@ -277,7 +277,7 @@ const router = express.Router();
  *         examples:
  *           application/json: {}
  */
-  router.delete('/:id', Middleware.verifyUser, Users.delete);
+  router.delete('/:id', Middleware.verifyUser, Users.deleteUser);
 
 /**
  * @swagger
@@ -305,6 +305,6 @@ const router = express.Router();
  *         examples:
  *           application/json: [{ id: 38, title: "T-shirt", content: "example" }]
  */
-  router.get('/:id/documents', Users.GetDocs);
+  router.get('/:id/documents', Users.getUserDocuments);
 })();
 export default router;

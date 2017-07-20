@@ -6,11 +6,11 @@ import { Provider } from 'react-redux';
 import { Router, browserHistory } from 'react-router';
 import Store from './store/ConfigureStore';
 import routes from './routes';
-import { GetRoles } from './actions/RolesActions';
+import { getRoles } from './actions/RolesActions';
 import './styles/index.sass';
 
 const store = Store();
-store.dispatch(GetRoles());
+store.dispatch(getRoles());
 
 render(
   <Provider store={store}>

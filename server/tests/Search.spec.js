@@ -19,64 +19,56 @@ describe('Search API Spec: ', () => {
     loggedin: true,
     role: 3,
   };
+  before((done) => {
+    request.post('/api/users')
+      .set('x-access-token', null)
+      .set('Accept', 'application/json')
+      .send({
+        username: 'chibujax',
+        firstname: 'kakashi',
+        lastname: 'mightguy',
+        email: 'fantasy@movies.com',
+        password: 'password123',
+        role: 3,
+      })
+      .end((err, res) => {
+        request.post('/api/users/login')
+          .set('x-access-token', null)
+          .set('Accept', 'application/json')
+          .send({
+            username: 'chibujax',
+            password: 'password123',
+          })
+          .end((err, res) => {
+            token = res.body.token;
+            id = res.body.userData;
+
+            request.post('/api/documents')
+              .set('x-access-token', token)
+              .set('Accept', 'application/json')
+              .send({
+                title: 'doc title',
+                content: 'Doc content',
+                creator: 'Chibujax',
+                access: 3,
+                userid: id,
+              })
+              .end((err, res) => {
+                expect(res.statusCode).toBe(201);
+                expect(err).toBe(null);
+                expect(res.body.title).toEqual('doc title');
+                DocId = res.body.id;
+                done();
+              });
+          });
+      });
+  });
 
   after(() => {
     Users.truncate({
       cascade: true,
     });
   });
-
-  describe('Api', () => {
-    it('should create and login user', (done) => {
-      request.post('/api/users')
-        .set('x-access-token', null)
-        .set('Accept', 'application/json')
-        .send({
-          username: 'chibujax',
-          firstname: 'kakashi',
-          lastname: 'mightguy',
-          email: 'fantasy@movies.com',
-          password: 'password123',
-          role: 3,
-        })
-        .end((err, res) => {
-          request.post('/api/users/login')
-            .set('x-access-token', null)
-            .set('Accept', 'application/json')
-            .send({
-              username: 'chibujax',
-              password: 'password123',
-            })
-            .end((err, res) => {
-              token = res.body.token;
-              id = res.body.userData;
-              done();
-            });
-        });
-    });
-
-    it('should create a document and return id', (done) => {
-      request.post('/api/documents')
-        .set('x-access-token', token)
-        .set('Accept', 'application/json')
-        .send({
-          title: 'doc title',
-          content: 'Doc content',
-          creator: 'Chibujax',
-          access: 3,
-          userid: id,
-        })
-        .end((err, res) => {
-          expect(res.statusCode).toBe(201);
-          expect(err).toBe(null);
-          expect(res.body.title).toEqual('doc title');
-          DocId = res.body.id;
-          done();
-        });
-    });
-
-  });
-
 
   describe('Search Api', () => {
 
@@ -103,7 +95,7 @@ describe('Search API Spec: ', () => {
           expect(res.body.length).toBe(0);
           done();
         });
-    });    
+    });
 
     it('should search for users', (done) => {
       request.get('/api/search/users?q=chibu')
@@ -116,7 +108,7 @@ describe('Search API Spec: ', () => {
           expect(res.body.length).toBe(1);
           done();
         });
-    });   
+    });
 
     it('should search for users that dont exist', (done) => {
       request.get('/api/search/users?q=andela')
@@ -128,7 +120,6 @@ describe('Search API Spec: ', () => {
           expect(res.body.length).toBe(0);
           done();
         });
-    });     
-
+    });
   });
 });

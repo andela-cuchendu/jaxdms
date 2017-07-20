@@ -43,7 +43,7 @@ describe('Test the sign in functions', () => {
     },
     userActions: {
       saveUser: (userData => userData),
-      CreateUserData: (userData => userData),
+      createUserData: (userData => userData),
     },
   };
   let signUp;

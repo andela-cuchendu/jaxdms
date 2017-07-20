@@ -34,7 +34,7 @@ describe('DocActions Spec: ', () => {
     request.Request.prototype.end = originalEnd;
   });
 
-  it('it should dispatch public documents', () => {
+  it('should dispatch public documents', () => {
     const expected = [
       {
         data: {
@@ -134,7 +134,7 @@ describe('DocActions Spec: ', () => {
 
     const store = mockStore();
 
-    return store.dispatch(DocActions.EditData(1))
+    return store.dispatch(DocActions.editDocData(1))
       .then(() => {
         expect(store.getActions()).toEqual(expected);
       });

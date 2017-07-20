@@ -10,7 +10,34 @@ describe('Document API Spec: ', () => {
   let token;
   let id;
   let DocId;
-
+  before((done) => {
+    request.post('/api/users')
+      .set('x-access-token', null)
+      .set('Accept', 'application/json')
+      .send({
+        username: 'chibujax',
+        firstname: 'kakashi',
+        lastname: 'mightguy',
+        email: 'fantasy@movies.com',
+        password: 'password123',
+        loggedin: true,
+        role: 3,
+      })
+      .end(() => {
+        request.post('/api/users/login')
+          .set('x-access-token', null)
+          .set('Accept', 'application/json')
+          .send({
+            username: 'chibujax',
+            password: 'password123',
+          })
+          .end((err, response) => {
+            token = response.body.token;
+            id = response.body.userData.id;
+            done();
+          });
+      });
+  });
   after(() => {
     Users.truncate({
       cascade: true,
@@ -32,35 +59,6 @@ describe('Document API Spec: ', () => {
           expect(res.statusCode).toBe(403);
           expect(res.body.error).toEqual('No token found.');
           done();
-        });
-    });
-
-    it('should create and login user', (done) => {
-      request.post('/api/users')
-        .set('x-access-token', null)
-        .set('Accept', 'application/json')
-        .send({
-          username: 'chibujax',
-          firstname: 'kakashi',
-          lastname: 'mightguy',
-          email: 'fantasy@movies.com',
-          password: 'password123',
-          loggedin: true,
-          role: 3,
-        })
-        .end(() => {
-          request.post('/api/users/login')
-            .set('x-access-token', null)
-            .set('Accept', 'application/json')
-            .send({
-              username: 'chibujax',
-              password: 'password123',
-            })
-            .end((err, response) => {
-              token = response.body.token;
-              id = response.body.userData.id;
-              done();
-            });
         });
     });
   });
@@ -139,7 +137,7 @@ describe('Document API Spec: ', () => {
         });
     });
 
-    it('should be able to delete user', (done) => {
+    it('should be able to delete document', (done) => {
       request.delete(`/api/documents/${DocId}`)
         .set('x-access-token', token)
         .set('Accept', 'application/json')

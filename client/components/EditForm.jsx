@@ -20,11 +20,24 @@ const EditDocumentForm = ({
   tinymceEvent,
 }) => {
   const { title, content } = formDefaultData;
-
+  let plugins = 'advlist autolink lists link image charmap ';
+  plugins += 'print preview anchor insertdatetime media table contextmenu ';
+  plugins += 'paste hr anchor pagebreak spellchecker code';
+  let toolbar = 'insertfile undo redo | styleselect | bold italic | ';
+  toolbar += 'alignleft aligncenter alignright alignjustify | bullist numlist ';
+  toolbar += 'outdent indent | link image | print preview media fullpage | ';
+  toolbar += 'forecolor backcolor emoticons | code';
   if (title.length) {
     return (
       <div className="edit-doc-form">
         <form onSubmit={submitAction}>
+          <Row>
+            <span>
+              Note: This application can only allow 50,000 characters
+            </span>
+            <br />
+            <p />
+          </Row>
           <Row>
             <Input
               s={6}
@@ -52,8 +65,8 @@ const EditDocumentForm = ({
               config={{
                 height: '280',
                 forced_root_block: false,
-                plugins: 'link image code',
-                toolbar: 'undo redo | bold italic | alignleft aligncenter alignright | code',
+                plugins,
+                toolbar,
               }}
               onChange={tinymceEvent}
             />

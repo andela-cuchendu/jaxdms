@@ -2,8 +2,7 @@ import * as ActionTypes from './ActionTypes';
 import ApiCall from '../api/BaseApi';
 
 /**
- * searchCompleted - Dispatches
- * searchCompleted action
+ * searchCompleted - Updates store about the end of search process
  *
  * @param {string} query
  * @param {object} searchResult
@@ -24,8 +23,8 @@ export function searchCompleted(query, searchResult, myUrl) {
 }
 
 /**
- * searchDoc - Dispatches
- * searchDoc action
+ * searchDoc - Dispatches searchCompleted after
+ * calling API for searching documents
  *
  * @param {string} query
  * @param {number} RoleId
@@ -43,8 +42,8 @@ export function searchDoc(query, RoleId, myUrl) {
 }
 
 /**
- * searchUsers - Dispatches
- * searchUsers action
+ * searchUsers - Dispatches searchCompleted after
+ * calling API for searching for users
  *
  * @param {string} query
  * @param {string} myUrl
@@ -61,8 +60,7 @@ export function searchUsers(query, myUrl) {
 }
 
 /**
- * updatedSearch - Dispatches
- * updatedSearch action
+ * updatedSearch - Updates store with serach result
  *
  * @param {object} newDocs
  * @returns {object}

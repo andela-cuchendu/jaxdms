@@ -4,7 +4,8 @@ import { mount } from 'enzyme';
 import Header from '../../components/common/Header';
 
 const props = {
-  userData: {
+  User: {
+    id: 4,
     name: {
       firstname: 'firstname',
       lastname: 'lastname',

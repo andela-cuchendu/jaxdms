@@ -64,13 +64,13 @@ const router = express.Router();
  *         type: number
  *     responses:
  *       200:
- *         description: Document object created
+ *         description: Returns created document object
  *         schema:
  *           $ref: '#/definitions/Document'
  *         examples:
- *           application/json: { id: 38, title: "T-shirt", content: "example" }
+ *           application/json: {id:39,title:"T-shirt",content: "example"}
  */
-  router.post('/', Middleware.verifyDoc, Documents.create);
+  router.post('/', Middleware.verifyDocumentOwner, Documents.createDocument);
 
 /**
  * @swagger
@@ -89,13 +89,13 @@ const router = express.Router();
  *         type: string
  *     responses:
  *       200:
- *         description: Document list created
+ *         description: returns array of Documents
  *         schema:
  *           $ref: '#/definitions/Document'
  *         examples:
  *           application/json: [{ id: 38, title: "T-shirt", content: "example" }]
  */
-  router.get('/', Middleware.verifyDoc, Documents.list);
+  router.get('/', Middleware.verifyDocumentOwner, Documents.listDocuments);
 
 /**
  * @swagger
@@ -125,7 +125,7 @@ const router = express.Router();
  *         examples:
  *           application/json: { id: 38, title: "T-shirt", content: "example" }
  */
-  router.get('/:id', Middleware.verifyDoc, Documents.GetDocument);
+  router.get('/:id', Middleware.verifyDocumentOwner, Documents.getSingleDocument);
 
 /**
  * @swagger
@@ -159,13 +159,13 @@ const router = express.Router();
  *         type: string
  *     responses:
  *       201:
- *         description: Document object updated
+ *         description: returns updated document
  *         schema:
  *           $ref: '#/definitions/Document'
  *         examples:
  *           application/json: { id: 38, title: "T-shirt", content: "example" }
  */
-  router.put('/:id', Middleware.verifyDoc, Documents.UpdateDocument);
+  router.put('/:id', Middleware.verifyDocumentOwner, Documents.updateDocument);
 
 /**
  * @swagger
@@ -195,7 +195,7 @@ const router = express.Router();
  *         examples:
  *           application/json: {}
  */
-  router.delete('/:id', Middleware.verifyDoc, Documents.DeleteDocument);
+  router.delete('/:id', Middleware.verifyDocumentOwner, Documents.deleteDocument);
 
 /**
  * @swagger
@@ -224,12 +224,12 @@ const router = express.Router();
  *         type: string
  *     responses:
  *       200:
- *         description: Document list created
+ *         description: returns array of documents
  *         schema:
  *           $ref: '#/definitions/Document'
  *         examples:
  *           application/json: [{ id: 38, title: "T-shirt", content: "example" }]
  */
-  router.get('/:id/:type', Middleware.verifyDoc, Documents.GetPublic);
+  router.get('/:id/:type', Middleware.verifyDocumentOwner, Documents.getPublicDocuments);
 })();
 export default router;

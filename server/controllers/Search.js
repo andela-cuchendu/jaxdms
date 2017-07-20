@@ -1,5 +1,6 @@
 const Users = require('../models').Users;
 const Documents = require('../models').Documents;
+const NotFoundResponse = require('./Tools').NotFoundResponse;
 
 /**
  * Represents Search
@@ -10,9 +11,10 @@ module.exports = {
    * user and result returned is based on
    * access rights
    *
-   * @param {Object} req - Request Object from express
-   * @param {Object} res - Response Object from express
-   * @returns {Object} - This maybe error json Object
+   * @param {object} req - Request Object from express
+   * @param {object} res - Response Object from express
+   * @returns {array} - array of documents. This could be
+   * empty array
    */
   FindDocuments(req, res) {
     const query = req.query.q.trim();
@@ -63,17 +65,13 @@ module.exports = {
         .findAll(QueryOption)
         .then((documents) => {
           if (!documents) {
-            return res.status(404).send({
-              message: 'No Document Found',
-            });
+            return NotFoundResponse(res, 'Document not found');
           }
           return res.status(200).send(documents);
         })
         .catch(error => res.status(400).send(error));
     }
-    return res.status(404).send({
-      message: 'No Query found',
-    });
+    return NotFoundResponse(res, 'No Query found');
   },
   /**
    * Find Users. This can be done any
@@ -81,7 +79,8 @@ module.exports = {
    *
    * @param {Object} req - Request Object from express
    * @param {Object} res - Response Object from express
-   * @returns {Object} - This maybe error json Object
+   * @returns {array} - array of users. This could be
+   * empty array
    */
   FindUsers(req, res) {
     const query = req.query.q.trim();
