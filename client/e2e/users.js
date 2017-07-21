@@ -5,6 +5,7 @@ const loginUrl = `${config.url}auth`;
 const userUrl = `${config.url}users`;
 const alias = faker.internet;
 const user = faker.name;
+const testUsername = alias.userName();
 module.exports = {
 
   'User sign in success': (browser) => {
@@ -17,6 +18,7 @@ module.exports = {
       .waitForElementVisible('input[type=search]', config.waitFor)
       .assert.urlEquals(`${config.url}docs`);
   },
+
 
   'Delete user': (browser) => {
     browser
@@ -60,7 +62,7 @@ module.exports = {
       .setValue('input[name=lastname]', 'pogba')
       .setValue('input[name=email]', alias.email())
       .setValue('input[name=firstname]', 'paul')
-      .setValue('input[name=username]', alias.userName())
+      .setValue('input[name=username]', testUsername)
       .setValue('input[name=password]', 'password123')
       .setValue('input[name=lastname]', 'pogba')
       .setValue('input[name=confirmPassword]', 'password123')
@@ -69,6 +71,8 @@ module.exports = {
       .waitForElementVisible('//*[@id="toast-container"]/div', config.waitFor)
       .assert.containsText('//*[@id="toast-container"]/div',
       'Account successfully created')
+      .useCss()
+      .assert.containsText('.card-title', testUsername)
       .end();
   },
 };

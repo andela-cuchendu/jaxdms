@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <testsuites errors="0"
-            failures="0"
+            failures="1"
             tests="5">
 
   <testsuite name="signup"
-    errors="0" failures="0" hostname="" id="" package="signup" skipped="0"
-    tests="5" time="26.36" timestamp="Thu, 20 Jul 2017 18:22:10 GMT">
+    errors="0" failures="1" hostname="" id="" package="signup" skipped="3"
+    tests="5" time="16.82" timestamp="Fri, 21 Jul 2017 12:41:37 GMT">
   
-    <testcase name="User sign up without firstname" classname="signup" time="11.10" assertions="3">
+    <testcase name="User sign up without firstname" classname="signup" time="9.245" assertions="3">
 
     
 
@@ -16,32 +16,10 @@
     
     </testcase>
   
-    <testcase name="User sign up with invalid email" classname="signup" time="3.603" assertions="2">
+    <testcase name="User sign up with invalid email" classname="signup" time="7.572" assertions="2">
 
-    
-
-    
-    </testcase>
-  
-    <testcase name="User sign up with less password keys" classname="signup" time="3.214" assertions="2">
-
-    
-
-    
-    </testcase>
-  
-    <testcase name="User sign up with inconsistent password" classname="signup" time="3.334" assertions="2">
-
-    
-
-    
-    </testcase>
-  
-    <testcase name="User successfully signs up" classname="signup" time="5.118" assertions="3">
-
-    
-
-    
+      <failure message="Testing if element &lt;//*[@id=&quot;sign-up&quot;]/div[2]/div[1]/span&gt; contains text: &quot;Invalid email address&quot;.">    at Object.User sign up with invalid email (/Users/andeladeveloper/Documents/checkp2/jaxdms/client/e2e/signup.js:38:15)
+    at _combinedTickCallback (internal/process/next_tick.js:73:7)</failure>
 
     
     </testcase>
@@ -49,6 +27,23 @@
 
   
 
+  
+    
+    <testcase
+      name="User sign up with less password keys" classname="signup">
+      <skipped />
+    </testcase>
+    
+    <testcase
+      name="User sign up with inconsistent password" classname="signup">
+      <skipped />
+    </testcase>
+    
+    <testcase
+      name="User successfully signs up" classname="signup">
+      <skipped />
+    </testcase>
+    
   
   </testsuite>
 </testsuites>

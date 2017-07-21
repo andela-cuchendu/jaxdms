@@ -262,16 +262,21 @@ export const AppWrapper = (ChildComponent) => {
       event.preventDefault();
       const { docData } = this.state;
       const username = this.props.stateProp.userState.userInfo.username;
-      this.setState({
-        docData: {
-          title: '',
-          content: '',
-          access: -1,
-        },
-      });
+      const contentLength = this.state.docData.content.length;
+      if (contentLength < 1 || contentLength > 50000) {
+        Materialize.toast('Sorry, only 1 to 50000 cahracters allowed', 4000);
+      } else {
+        this.setState({
+          docData: {
+            title: '',
+            content: '',
+            access: -1,
+          },
+        });
 
-      this.props.documentActions.createDoc(docData, username);
-      event.currentTarget.reset();
+        this.props.documentActions.createDoc(docData, username);
+        event.currentTarget.reset();
+      }
     }
 
     /**

@@ -1,9 +1,7 @@
 const config = require('./config/config');
-const faker = require('faker');
 
 const loginUrl = `${config.url}auth`;
 const docUrl = `${config.url}auth`;
-const content = faker.lorem;
 module.exports = {
 
   'User sign in success': (browser) => {
@@ -23,10 +21,11 @@ module.exports = {
       .waitForElementVisible('body', config.waitFor)
       .useXpath()
       .click('.//*[@id="search"]')
-      .setValue('.//*[@id="search"]', 'this')
+      .setValue('.//*[@id="search"]', 'a')
       .sendKeys('.//*[@id="search"]', browser.Keys.ENTER)
       .assert.containsText('//*[@id="app"]/div/div/div[2]/div[1]/div[2]/div/a',
       'Go Back')
+      .useCss()
       .end();
   },
 };

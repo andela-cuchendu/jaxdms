@@ -4,6 +4,7 @@ const config = require('./config/config');
 const loginUrl = `${config.url}auth`;
 const docUrl = `${config.url}auth`;
 const content = faker.lorem;
+const testTitile = content.words();
 module.exports = {
 
   'User sign in success': (browser) => {
@@ -25,7 +26,7 @@ module.exports = {
       .useXpath()
       .click('//*[@id="app"]/div/div/div[2]/div[2]/a/i')
       .useCss()
-      .setValue('input[name=title]', content.words())
+      .setValue('input[name=title]', testTitile)
       .click('.mce-i-code')
       .setValue('.mce-textbox', faker.lorem.paragraphs())
       .click('.mce-floatpanel .mce-container-body button')
@@ -35,6 +36,8 @@ module.exports = {
       .waitForElementVisible('//*[@id="toast-container"]/div', config.waitFor)
       .assert.containsText('//*[@id="toast-container"]/div',
       'Document Created successfully')
+      .useCss()
+      .assert.containsText('.card-title', testTitile)
       .useCss();
   },
 
@@ -58,7 +61,7 @@ module.exports = {
       .assert.urlContains('edit')
       .click('.mce-i-code')
       .clearValue('.mce-textbox')
-      .setValue('.mce-textbox', faker.lorem.paragraphs())
+      .setValue('.mce-textbox', 'edited')
       .click('.mce-floatpanel .mce-container-body button')
       .pause(2000)
       .useXpath()
